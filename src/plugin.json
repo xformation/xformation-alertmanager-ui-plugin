@@ -22,7 +22,14 @@
         "name": "Home",
         "addToNav": true,
         "defaultNav": true,
-        "component": "AlertManagerMainClass"
+        "component": "Dashboard"
+      },
+      {
+        "type": "page",
+        "name": "MonitorAlerts",
+        "addToNav": false,
+        "defaultNav": false,
+        "component": "MonitorAlerts"
       }
     ],
     "dependencies": {

@@ -1,11 +1,123 @@
-#alert-main-container{
-    padding: 20px 50px;
+@media (max-width: 768px){
+    #alert-main-container {
+        padding-left: 60px;
+    }
 }
 
-.main-view{
-    background: white;
+#alert-main-container a{
+    color:black;
 }
 
-.page-container{
+.plugin-page-container{
     padding: 0px;
+    background-color: white;
+    height: 100%;
+    max-width: 100%;
+}
+
+/************************** Forms ***********************/
+
+.form-row>.col, .form-row>[class*=col-] {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label{
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.form-row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -5px;
+    margin-left: -5px;
+}
+
+/************************ alert data table ********************/
+
+.alert-data-table{
+    width: 100%;
+}
+
+.alert-data-table th {
+    color: #737373;
+}
+
+.alert-data-table tr{
+    border-bottom: 2px solid #b7b8b9;
+}
+
+.alert-data-table tr th,.alert-data-table tr td{
+    padding: 5px 0px;
+}
+
+.alert-data-table tr.colored-label{
+    color: #43a8ea;
+}
+
+.alert-data-table tr.bold-label{
+    font-weight: 500;
+}
+
+/*************** Severity *****************/
+.severity-urgent{
+    border-left: 3px solid #fe0100;
+    padding-left: 10px;
+}
+
+.severity-critical{
+    border-left: 3px solid #ff9800;
+    padding-left: 10px;
+}
+
+.severity-high{
+    border-left: 3px solid #f6fe00;
+    padding-left: 10px;
+}
+
+.severity-medium{
+    border-left: 3px solid #02bcfd;
+    padding-left: 10px;
+}
+
+.severity-low{
+    border-left: 3px solid #0021ff;
+    padding-left: 10px;
+}
+
+/******************** Progress bar ***************************/
+
+.progress {
+    padding-left: 15px;
+    height: 20px;
+    display: inline-block;
+    width: 75%;
+    position: absolute;
+}
+
+.progress .progress-bar{
+    height: 100%;
+    background: #fda867;
 }

@@ -1,4 +1,4 @@
-import { AlertManagerMainClass } from './ui/AlertManagerMainClass';
+import { Dashboard, MonitorAlerts } from './ui';
 import { ConfigCtrl } from './ConfigCtrl';
 
-export { ConfigCtrl, AlertManagerMainClass };
+export { ConfigCtrl, Dashboard, MonitorAlerts };

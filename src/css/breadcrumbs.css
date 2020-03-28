@@ -1,0 +1,17 @@
+.breadcrumbs-container{
+    background-color: #e7edf1;
+    padding: 10px 0px;
+    padding-left: 10px;
+}
+
+.breadcrumbs-container a.breadcrumbs-link {
+    color: #2a9ce7 !important;
+}
+
+.breadcrumbs-container .current-page{
+    color: #89898a;
+}
+
+.breadcrumbs-container .separator{
+    color: #89898a;
+}

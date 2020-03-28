@@ -1,0 +1,78 @@
+.monitor-alerts-container .page-header-container {
+    background-color: #e9f4fc;
+    padding: 10px 0px;
+    padding-left: 10px;
+}
+
+.monitor-alerts-container .page-header-container .page-header{
+    color: #7a7a7a;
+    margin-right: 30px;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.monitor-alerts-container .page-header-container .header-button{
+    margin-right: 30px;
+    color: #7a7a7a;
+    border: none;
+    background: none;
+}
+
+.monitor-alerts-container .page-header-container .header-button i{
+    padding-right: 10px;
+}
+
+.monitor-alerts-container .page-header-container .header-button:hover{
+    color: #040404 !important;
+}
+
+.monitor-alerts-container .filter-container{
+    background: #44a9eb;
+    padding: 10px 10px 10px 40px;
+}
+
+.monitor-alerts-container .filter-container label{
+    color: white;
+}
+
+.monitor-alerts-container .filter-container .filter-control-group {
+    max-width: 250px;
+}
+
+.monitor-alerts-container .alert-data-container{
+    padding: 30px 10px 0px 40px;
+}
+
+.monitor-alerts-container .alert-data-container .alert-data-block{
+    margin-bottom: 10px;
+}
+
+.monitor-alerts-container .alert-data-container .alert-data-block .alert-data-label{
+    color: #717171;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.monitor-alerts-container .alert-data-container .alert-data-block .alert-data{
+    color: #43a8ea;
+    font-size: 30px;
+}
+
+.monitor-alerts-container .alert-data-container .alert-data-block .alert-data-meta{
+    color: #8b8c8d;
+    font-size: 11px;
+}
+
+.monitor-alerts-container .alert-data-table-container{
+    padding: 30px 20px 40px 40px;
+}
+
+.monitor-alerts-container .alert-data-table-container .progress-td{
+    width: 50%;
+    position: relative;
+}
+
+.monitor-alerts-container .alert-data-table-container .progress-label{
+    display: inline-block;
+    width: 50px;
+}
