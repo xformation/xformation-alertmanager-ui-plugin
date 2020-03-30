@@ -15,6 +15,51 @@
     max-width: 100%;
 }
 
+/*************************** Page header ********************/
+
+.page-header-container {
+    background-color: #e9f4fc;
+    padding: 10px 0px;
+    padding-left: 10px;
+}
+
+.page-header-container .page-header{
+    color: #7a7a7a;
+    margin-right: 30px;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.page-header-container .header-button{
+    margin-right: 30px;
+    color: #7a7a7a;
+    border: none;
+    background: none;
+}
+
+.page-header-container .header-button i{
+    padding-right: 10px;
+}
+
+.page-header-container .header-button:hover{
+    color: #040404 !important;
+}
+
+/************************* Filter container ********************/
+
+.filter-container{
+    background: #44a9eb;
+    padding: 10px 10px 10px 40px;
+}
+
+.filter-container label{
+    color: white;
+}
+
+.filter-container .filter-control-group {
+    max-width: 250px;
+}
+
 /************************** Forms ***********************/
 
 .form-row>.col, .form-row>[class*=col-] {
@@ -73,11 +118,15 @@
     padding: 5px 0px;
 }
 
-.alert-data-table tr.colored-label{
+.alert-data-table .colored-label{
     color: #43a8ea;
 }
 
-.alert-data-table tr.bold-label{
+.alert-data-table .gray-label{
+    color: gray;
+}
+
+.alert-data-table .bold-label{
     font-weight: 500;
 }
 

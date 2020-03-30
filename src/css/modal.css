@@ -1,0 +1,26 @@
+.alert-modal-container .modal-content{
+    padding: 15px;
+    background-color: white !important;
+    color: black;
+}
+
+.alert-modal-container .modal-header{
+    background: white;
+    box-shadow: none;
+    border: none;
+}
+
+.alert-modal-container .modal-header .modal-title {
+    color: #7b7b7b;
+    float: left;
+    margin: 0px;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.alert-modal-container .modal-header button {
+    float: right;
+    font-size: 33px;
+    top: -15px;
+    position: relative;
+}

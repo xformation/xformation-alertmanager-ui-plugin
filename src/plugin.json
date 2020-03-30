@@ -30,6 +30,13 @@
         "addToNav": false,
         "defaultNav": false,
         "component": "MonitorAlerts"
+      },
+      {
+        "type": "page",
+        "name": "AllAlerts",
+        "addToNav": false,
+        "defaultNav": false,
+        "component": "AllAlerts"
       }
     ],
     "dependencies": {

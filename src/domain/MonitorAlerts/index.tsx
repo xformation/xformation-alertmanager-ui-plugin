@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
 
@@ -94,15 +95,17 @@ export class MonitorAlerts extends React.Component<any, any> {
                 </div>
                 <div className="alert-data-container row">
                     <div className="alert-data-block col-sm-3">
-                        <div className="alert-data-label">
-                            Total alerts
+                        <Link to={`${config.basePath}/allalerts`}>
+                            <div className="alert-data-label">
+                                Total alerts
                         </div>
-                        <div className="alert-data">
-                            26482
+                            <div className="alert-data">
+                                26482
                         </div>
-                        <div className="alert-data-meta">
-                            Since 16/03/2020, 07:00 PM
+                            <div className="alert-data-meta">
+                                Since 16/03/2020, 07:00 PM
                         </div>
+                        </Link>
                     </div>
                     <div className="alert-data-block col-sm-3">
                         <div className="alert-data-label">
