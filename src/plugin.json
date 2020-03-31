@@ -37,6 +37,13 @@
         "addToNav": false,
         "defaultNav": false,
         "component": "AllAlerts"
+      },
+      {
+        "type": "page",
+        "name": "Rules",
+        "addToNav": false,
+        "defaultNav": false,
+        "component": "Rules"
       }
     ],
     "dependencies": {

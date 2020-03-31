@@ -98,13 +98,13 @@ export class MonitorAlerts extends React.Component<any, any> {
                         <Link to={`${config.basePath}/allalerts`}>
                             <div className="alert-data-label">
                                 Total alerts
-                        </div>
+                            </div>
                             <div className="alert-data">
                                 26482
-                        </div>
+                            </div>
                             <div className="alert-data-meta">
                                 Since 16/03/2020, 07:00 PM
-                        </div>
+                            </div>
                         </Link>
                     </div>
                     <div className="alert-data-block col-sm-3">
@@ -120,15 +120,17 @@ export class MonitorAlerts extends React.Component<any, any> {
                         </div>
                     </div>
                     <div className="alert-data-block col-sm-3">
-                        <div className="alert-data-label">
-                            Total alert rules
-                        </div>
-                        <div className="alert-data">
-                            24
-                        </div>
-                        <div className="alert-data-meta">
-                            Enabled 451
-                        </div>
+                        <Link to={`${config.basePath}/rules`}>
+                            <div className="alert-data-label">
+                                Total alert rules
+                            </div>
+                            <div className="alert-data">
+                                24
+                            </div>
+                            <div className="alert-data-meta">
+                                Enabled 451
+                            </div>
+                        </Link>
                     </div>
                     <div className="alert-data-block col-sm-3">
                         <div className="alert-data-label">
