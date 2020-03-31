@@ -44,7 +44,7 @@ export class PopupContent extends React.Component<any, any> {
     render() {
         const state = this.state;
         return (
-            <div className="all-alerts-container">
+            <div className="">
                 <Nav tabs>
                     <NavItem>
                         <NavLink className={`${state.activeTab === 0 ? 'active' : ''}`} onClick={() => { this.setActiveTab(0); }} >
@@ -179,10 +179,42 @@ export class PopupContent extends React.Component<any, any> {
                         </div>
                     </TabPane>
                     <TabPane tabId={1}>
-                        This is tab 2
+                        <table className="alert-data-table history-data-table">
+                            <tbody>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Date/Time</th>
+                                </tr>
+                                <tr className="gray-label">
+                                    <td>Action group <a href="" className="colored-label">email to Siddhesh</a> executed (configured on alert rule)</td>
+                                    <td>17/03/2020, 11:29:00</td>
+                                </tr>
+                                <tr className="gray-label">
+                                    <td>Alert fired</td>
+                                    <td>17/03/2020, 11:28:56</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </TabPane>
                     <TabPane tabId={2}>
-                        This is tab 3
+                        <table className="alert-data-table diagnostics-data-table">
+                            <tbody>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Serverity</th>
+                                    <th>Monitor Condition</th>
+                                    <th>Alert State</th>
+                                    <th>Affected Resource</th>
+                                </tr>
+                                <tr className="gray-label">
+                                    <td className="colored-label">Percentage CPU</td>
+                                    <td><div className="severity-urgent bold-label colored-label">Urgent</div></td>
+                                    <td>Fired</td>
+                                    <td>New</td>
+                                    <td>Prod_DB_SYN14</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </TabPane>
                 </TabContent>
             </div>

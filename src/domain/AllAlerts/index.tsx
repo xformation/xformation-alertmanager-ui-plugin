@@ -327,7 +327,7 @@ export class AllAlerts extends React.Component<any, any> {
                 </div>
                 <Modal isOpen={state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">
                     <ModalHeader toggle={this.toggle}>Percentage CPU</ModalHeader>
-                    <ModalBody style={{maxHeight: 'calc(100vh - 210px)', overflowY: 'auto', overflowX: "hidden"}}>
+                    <ModalBody style={{height: 'calc(100vh - 210px)', overflowY: 'auto', overflowX: "hidden"}}>
                         <PopupContent />
                     </ModalBody>
                 </Modal>

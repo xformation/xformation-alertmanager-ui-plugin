@@ -123,6 +123,10 @@
     color: #43a8ea;
 }
 
+.colored-label:hover{
+    color: #43a8ea !important;
+}
+
 .gray-label{
     color: gray;
 }
