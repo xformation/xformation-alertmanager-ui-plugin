@@ -28,6 +28,7 @@
     margin-right: 30px;
     font-size: 19px;
     font-weight: bold;
+    padding: 0px !important;
 }
 
 .page-header-container .header-button{
@@ -128,6 +129,10 @@
 
 .bold-label{
     font-weight: 500;
+}
+
+.pointer-label{
+    cursor: pointer;
 }
 
 /*************** Severity *****************/

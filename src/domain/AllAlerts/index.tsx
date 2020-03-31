@@ -198,7 +198,7 @@ export class AllAlerts extends React.Component<any, any> {
                             </tr>
                             <tr className="gray-label">
                                 <td className="colored-label">
-                                    <span onClick={this.toggle}>Percentage CPU</span>
+                                    <div className="pointer-label" onClick={this.toggle}>Percentage CPU</div>
                                 </td>
                                 <td>
                                     <div className="severity-urgent bold-label colored-label">Urgent</div>
