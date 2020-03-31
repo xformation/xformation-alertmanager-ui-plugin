@@ -16,10 +16,10 @@ export class Breadcrumbs extends React.Component<any, any> {
                 {
                     breadcrumbs.map((breadcrumb: any, index: any) => {
                         if (breadcrumb.isCurrentPage) {
-                            return <span className="current-page">{breadcrumb.label}</span>
+                            return <span key={index} className="current-page">{breadcrumb.label}</span>
                         } else {
                             return (
-                            <React.Fragment>
+                            <React.Fragment key={index}>
                                 <Link to={`${breadcrumb.route}`} className="breadcrumbs-link">{breadcrumb.label}</Link>
                                 <span className="separator">&nbsp;&nbsp;&nbsp;&nbsp;<i className="fa fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </React.Fragment>);

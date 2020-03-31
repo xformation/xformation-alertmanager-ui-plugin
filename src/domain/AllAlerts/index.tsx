@@ -1,15 +1,16 @@
 import * as React from 'react';
-import { Modal, ModalHeader, ModalBody, TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
+import { PopupContent } from './PopupContent';
 
 export class AllAlerts extends React.Component<any, any> {
+
     breadCrumbs: any;
     constructor(props: any) {
         super(props);
         this.state = {
             modal: false,
-            activeTab: 0
         };
         this.breadCrumbs = [
             {
@@ -30,12 +31,6 @@ export class AllAlerts extends React.Component<any, any> {
     toggle = () => {
         this.setState({
             modal: !this.state.modal
-        });
-    };
-
-    setActiveTab = (activeTab: any) => {
-        this.setState({
-            activeTab
         });
     };
 
@@ -330,37 +325,10 @@ export class AllAlerts extends React.Component<any, any> {
                         </tbody>
                     </table>
                 </div>
-                <Modal isOpen={state.modal} toggle={this.toggle} className="alert-modal-container">
+                <Modal isOpen={state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">
                     <ModalHeader toggle={this.toggle}>Percentage CPU</ModalHeader>
-                    <ModalBody>
-                        <Nav tabs>
-                            <NavItem>
-                                <NavLink className={`${state.activeTab === 0 ? 'active' : ''}`} onClick={() => { this.setActiveTab(0); }} >
-                                    Summary
-                                </NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink className={`${state.activeTab === 1 ? 'active' : ''}`} onClick={() => { this.setActiveTab(1); }} >
-                                    History
-                                </NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink className={`${state.activeTab === 2 ? 'active' : ''}`} onClick={() => { this.setActiveTab(2); }} >
-                                    Diagnostics
-                                </NavLink>
-                            </NavItem>
-                        </Nav>
-                        <TabContent activeTab={state.activeTab}>
-                            <TabPane tabId={0}>
-                                This is tab 1
-                            </TabPane>
-                            <TabPane tabId={1}>
-                                This is tab 2
-                            </TabPane>
-                            <TabPane tabId={2}>
-                                This is tab 3
-                            </TabPane>
-                        </TabContent>
+                    <ModalBody style={{maxHeight: 'calc(100vh - 210px)', overflowY: 'auto', overflowX: "hidden"}}>
+                        <PopupContent />
                     </ModalBody>
                 </Modal>
             </div>
