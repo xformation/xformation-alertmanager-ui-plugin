@@ -135,6 +135,14 @@
     font-weight: 500;
 }
 
+.italic-label{
+    font-style: italic;
+}
+
+.border-bottom{
+    border-bottom: 1px solid gray;
+}
+
 .pointer-label{
     cursor: pointer;
 }

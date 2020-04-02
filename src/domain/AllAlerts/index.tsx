@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
@@ -41,10 +42,10 @@ export class AllAlerts extends React.Component<any, any> {
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} />
                 <div className="page-header-container">
                     <span className="page-header">All Alerts</span>
-                    <button className="header-button">
+                    <Link to={`${config.basePath}/createrule`} className="header-button">
                         <i className="fa fa-plus"></i>
                         New Alert Rule
-                    </button>
+                    </Link>
                     <button className="header-button">
                         <i className="fa fa-table"></i>
                         Edit Columns
