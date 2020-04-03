@@ -19,7 +19,7 @@ export class AddActionPopup extends React.Component<any, any> {
         const state = this.state;
         return (
             <Modal isOpen={state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">
-                <ModalHeader toggle={this.toggle}>Select Resource</ModalHeader>
+                <ModalHeader toggle={this.toggle}>Select an action group to attach to this alert rule</ModalHeader>
                 <ModalBody style={{ height: 'calc(100vh - 210px)', overflowY: 'auto', overflowX: "hidden" }}>
                     <div className="select-resource-container">
                         <div className="italic-label gray-label">
