@@ -2,7 +2,8 @@
     padding: 0px 30px;
 }
 
-.create-rule-container .main-header{
+.create-rule-container .main-header,
+.select-resource-container .main-header{
     padding-bottom: 7px;
     font-size: 18px;
 }

@@ -4,6 +4,7 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { CreateRule } from './CreateRule';
 import '../css/custom.css';
 import '../css/create-rule.css';
+import '../css/modal.css';
 import { config } from '../config';
 
 export default function init() {
