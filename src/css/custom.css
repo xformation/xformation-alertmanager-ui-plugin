@@ -33,7 +33,7 @@
 
 .page-header-container .header-button{
     margin-right: 30px;
-    color: #7a7a7a;
+    color: #7a7a7a !important;
     border: none;
     background: none;
 }
