@@ -51,6 +51,13 @@
         "addToNav": false,
         "defaultNav": false,
         "component": "CreateRule"
+      },
+      {
+        "type": "page",
+        "name": "AllTickets",
+        "addToNav": false,
+        "defaultNav": false,
+        "component": "AllTickets"
       }
     ],
     "dependencies": {

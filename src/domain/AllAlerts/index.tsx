@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, UncontrolledPopover, PopoverBody } from 'reactstrap';
 import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
 import { PopupContent } from './PopupContent';
 
 export class AllAlerts extends React.Component<any, any> {
-
     breadCrumbs: any;
     constructor(props: any) {
         super(props);
@@ -196,6 +195,7 @@ export class AllAlerts extends React.Component<any, any> {
                                 <th>Fired Time</th>
                                 <th>Subscription</th>
                                 <th>Suppression State</th>
+                                <th>Action</th>
                             </tr>
                             <tr className="gray-label">
                                 <td className="colored-label">
@@ -214,6 +214,11 @@ export class AllAlerts extends React.Component<any, any> {
                                 <td>17/03/2020, 11:29:00</td>
                                 <td>Alert Management</td>
                                 <td>None</td>
+                                <td>
+                                    <button className="btn btn-link" id="PopoverFocus">
+                                        <i className="fa fa-ellipsis-h"></i>
+                                    </button>
+                                </td>
                             </tr>
                             <tr className="gray-label">
                                 <td className="colored-label">
@@ -232,6 +237,11 @@ export class AllAlerts extends React.Component<any, any> {
                                 <td>17/03/2020, 11:29:00</td>
                                 <td>Alert Management</td>
                                 <td>None</td>
+                                <td>
+                                    <button className="btn btn-link" id="PopoverFocus">
+                                        <i className="fa fa-ellipsis-h"></i>
+                                    </button>
+                                </td>
                             </tr>
                             <tr className="gray-label">
                                 <td className="colored-label">
@@ -250,6 +260,11 @@ export class AllAlerts extends React.Component<any, any> {
                                 <td>17/03/2020, 11:29:00</td>
                                 <td>Alert Management</td>
                                 <td>None</td>
+                                <td>
+                                    <button className="btn btn-link" id="PopoverFocus">
+                                        <i className="fa fa-ellipsis-h"></i>
+                                    </button>
+                                </td>
                             </tr>
                             <tr className="gray-label">
                                 <td className="colored-label">
@@ -268,6 +283,11 @@ export class AllAlerts extends React.Component<any, any> {
                                 <td>17/03/2020, 11:29:00</td>
                                 <td>Alert Management</td>
                                 <td>None</td>
+                                <td>
+                                    <button className="btn btn-link" id="PopoverFocus">
+                                        <i className="fa fa-ellipsis-h"></i>
+                                    </button>
+                                </td>
                             </tr>
                             <tr className="gray-label">
                                 <td className="colored-label">
@@ -286,6 +306,11 @@ export class AllAlerts extends React.Component<any, any> {
                                 <td>17/03/2020, 11:29:00</td>
                                 <td>Alert Management</td>
                                 <td>None</td>
+                                <td>
+                                    <button className="btn btn-link" id="PopoverFocus">
+                                        <i className="fa fa-ellipsis-h"></i>
+                                    </button>
+                                </td>
                             </tr>
                             <tr className="gray-label">
                                 <td className="colored-label">
@@ -304,6 +329,11 @@ export class AllAlerts extends React.Component<any, any> {
                                 <td>17/03/2020, 11:29:00</td>
                                 <td>Alert Management</td>
                                 <td>None</td>
+                                <td>
+                                    <button className="btn btn-link" id="PopoverFocus">
+                                        <i className="fa fa-ellipsis-h"></i>
+                                    </button>
+                                </td>
                             </tr>
                             <tr className="gray-label">
                                 <td className="colored-label">
@@ -322,16 +352,28 @@ export class AllAlerts extends React.Component<any, any> {
                                 <td>17/03/2020, 11:29:00</td>
                                 <td>Alert Management</td>
                                 <td>None</td>
+                                <td>
+                                    <button className="btn btn-link" id="PopoverFocus">
+                                        <i className="fa fa-ellipsis-h"></i>
+                                    </button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <Modal isOpen={state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">
                     <ModalHeader toggle={this.toggle}>Percentage CPU</ModalHeader>
-                    <ModalBody style={{height: 'calc(100vh - 210px)', overflowY: 'auto', overflowX: "hidden"}}>
+                    <ModalBody style={{ height: 'calc(100vh - 210px)', overflowY: 'auto', overflowX: "hidden" }}>
                         <PopupContent />
                     </ModalBody>
                 </Modal>
+                <UncontrolledPopover trigger="legacy" placement="bottom" target="PopoverFocus">
+                    <PopoverBody>
+                        <Link className="bold-label colored-label" to={`${config.basePath}/alltickets`}>Create Ticket</Link>
+                        <br/>
+                        <Link className="bold-label colored-label" to="">Silence</Link>
+                    </PopoverBody>
+                </UncontrolledPopover>
             </div>
         );
     }
