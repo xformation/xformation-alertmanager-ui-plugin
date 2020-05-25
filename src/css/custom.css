@@ -10,7 +10,7 @@
 
 .plugin-page-container{
     padding: 0px;
-    background-color: white;
+    background-color: #f9fafc;
     height: 100%;
     max-width: 100%;
 }
@@ -44,21 +44,6 @@
 
 .page-header-container .header-button:hover{
     color: #040404 !important;
-}
-
-/************************* Filter container ********************/
-
-.filter-container{
-    background: #44a9eb;
-    padding: 10px 10px 10px 40px;
-}
-
-.filter-container label{
-    color: white;
-}
-
-.filter-container .filter-control-group {
-    max-width: 250px;
 }
 
 /************************** Forms ***********************/
@@ -157,77 +142,7 @@
     border-radius: .25rem;
 }
 
-/************************ alert data table ********************/
-
-.alert-data-table{
-    width: 100%;
-}
-
-.alert-data-table th {
-    color: #737373;
-}
-
-.alert-data-table tr{
-    border-bottom: 2px solid #b7b8b9;
-}
-
-.alert-data-table tr th,.alert-data-table tr td{
-    padding: 5px 0px;
-}
-
-.colored-label{
-    color: #43a8ea;
-}
-
-.colored-label:hover{
-    color: #43a8ea !important;
-}
-
-.gray-label{
-    color: gray;
-}
-
-.bold-label{
-    font-weight: 500;
-}
-
-.italic-label{
-    font-style: italic;
-}
-
-.border-bottom{
-    border-bottom: 1px solid gray;
-}
-
-.pointer-label{
-    cursor: pointer;
-}
-
 /*************** Severity *****************/
-.severity-urgent{
-    border-left: 3px solid #fe0100;
-    padding-left: 5px;
-}
-
-.severity-critical{
-    border-left: 3px solid #ff9800;
-    padding-left: 5px;
-}
-
-.severity-high{
-    border-left: 3px solid #f6fe00;
-    padding-left: 5px;
-}
-
-.severity-medium{
-    border-left: 3px solid #02bcfd;
-    padding-left: 5px;
-}
-
-.severity-low{
-    border-left: 3px solid #0021ff;
-    padding-left: 5px;
-}
 
 .enabled-disabled-container .enabled{
     width: 20px;
@@ -429,4 +344,113 @@
     padding: 0.5rem 0.75rem;
     color: #212529;
   }
+
+
+/********************** New css ******************************/
+
+.alert-page-container{
+    background-color: white;
+    margin:10px 20px;
+    border-radius: 10px;
+    padding-bottom: 10px;
+}
+
+/************************* Filter container ********************/
+
+.filter-container{
+    background: transparent;
+    margin: 10px 40px !important;
+}
+
+.filter-container label{
+    color: #3b4859;
+}
+
+.filter-container .filter-control-group {
+    max-width: 250px;
+    padding-left: 0px;
+}
+
+.filter-container .filter-control-group .form-control{
+    background-color: #f0f3f7 !important;
+    border: none !important;
+}
+
+/***************************** severity ************************/
+
+.severity-urgent{
+    border-left: 3px solid #ff0000;
+    padding-left: 5px;
+}
+
+.severity-critical{
+    border-left: 3px solid #ff9800;
+    padding-left: 5px;
+}
+
+.severity-high{
+    border-left: 3px solid #39579a;
+    padding-left: 5px;
+}
+
+.severity-medium{
+    border-left: 3px solid #3b7cff;
+    padding-left: 5px;
+}
+
+.severity-low{
+    border-left: 3px solid #9c80f7;
+    padding-left: 5px;
+}
+
+/************************ alert data table ********************/
+
+.alert-data-table{
+    width: 100%;
+    color:#3b4859
+}
+
+.alert-data-table th {
+    color: #3b4859;
+}
+
+.alert-data-table .alert-data-table-header{
+    border-bottom: 1px solid #f8f9fb;
+}
+
+.alert-data-table tr:nth-child(even) { 
+    background-color: #f8f9fb; 
+} 
+
+.alert-data-table tr th,.alert-data-table tr td{
+    padding: 10px 0px 10px 20px;
+}
+
+.colored-label{
+    color: #43a8ea;
+}
+
+.colored-label:hover{
+    color: #43a8ea !important;
+}
+
+.gray-label{
+    color: gray;
+}
+
+.bold-label{
+    font-weight: 500;
+}
+
+.italic-label{
+    font-style: italic;
+}
+
+.border-bottom{
+    border-bottom: 1px solid gray;
+}
+
+.pointer-label{
+    cursor: pointer;
+}
   

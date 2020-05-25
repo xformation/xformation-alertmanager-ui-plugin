@@ -1,29 +1,30 @@
 .monitor-alerts-container .alert-data-container{
-    padding: 30px 10px 0px 40px;
+    margin: 10px 40px !important;
 }
 
 .monitor-alerts-container .alert-data-container .alert-data-block{
     margin-bottom: 10px;
+    padding-left: 0px;
 }
 
 .monitor-alerts-container .alert-data-container .alert-data-block .alert-data-label{
-    color: #717171;
+    color: #3b4859;
     font-weight: 500;
     font-size: 15px;
 }
 
 .monitor-alerts-container .alert-data-container .alert-data-block .alert-data{
-    color: #43a8ea;
+    color: #39579a;
     font-size: 30px;
 }
 
 .monitor-alerts-container .alert-data-container .alert-data-block .alert-data-meta{
-    color: #8b8c8d;
+    color: #475363;
     font-size: 11px;
 }
 
 .monitor-alerts-container .alert-data-table-container{
-    padding: 30px 20px 40px 40px;
+    margin: 30px 20px 40px 40px;
 }
 
 .monitor-alerts-container .alert-data-table-container .progress-td{
@@ -34,4 +35,22 @@
 .monitor-alerts-container .alert-data-table-container .progress-label{
     display: inline-block;
     width: 50px;
+}
+
+/******************* new css **************************/
+
+.monitor-alerts-container .alert-page-container .button-main-container{
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f5f6f5;
+}
+
+.monitor-alerts-container .alert-page-container .button-main-container .alert-button{
+    background: #3b7cff;
+    color: white;
+    border: none;
+    padding: 7px 11px;
+    border-radius: 4px;
+    margin-right: 10px;
 }
