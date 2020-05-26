@@ -96,16 +96,18 @@ export class MonitorAlerts extends React.Component<any, any> {
                             </Link>
                         </div>
                         <div className="alert-data-block col-sm-3">
-                            <div className="alert-data-label">
-                                Smart group (Preview)&nbsp;&nbsp;&nbsp;
-                            <i className="fa fa-question-circle"></i>
-                            </div>
-                            <div className="alert-data">
-                                367
-                            </div>
-                            <div className="alert-data-meta">
-                                90% Reduction
-                            </div>
+                            <a>
+                                <div className="alert-data-label">
+                                    Smart group (Preview)&nbsp;&nbsp;&nbsp;
+                                    <i className="fa fa-question-circle"></i>
+                                </div>
+                                <div className="alert-data">
+                                    367
+                                </div>
+                                <div className="alert-data-meta">
+                                    90% Reduction
+                                </div>
+                            </a>
                         </div>
                         <div className="alert-data-block col-sm-3">
                             <Link to={`${config.basePath}/rules`}>
@@ -121,16 +123,18 @@ export class MonitorAlerts extends React.Component<any, any> {
                             </Link>
                         </div>
                         <div className="alert-data-block col-sm-3">
-                            <div className="alert-data-label">
-                                Workflows&nbsp;&nbsp;&nbsp;
-                                <i className="fa fa-question-circle"></i>
-                            </div>
-                            <div className="alert-data">
-                                67
-                            </div>
-                            <div className="alert-data-meta">
-                                Enabled 55
-                            </div>
+                            <a>
+                                <div className="alert-data-label">
+                                    Workflows&nbsp;&nbsp;&nbsp;
+                                    <i className="fa fa-question-circle"></i>
+                                </div>
+                                <div className="alert-data">
+                                    67
+                                </div>
+                                <div className="alert-data-meta">
+                                    Enabled 55
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div className="alert-data-table-container common-container">

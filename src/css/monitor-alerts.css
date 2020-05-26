@@ -7,6 +7,15 @@
     padding-left: 0px;
 }
 
+.monitor-alerts-container .alert-data-container .alert-data-block a{
+    display: block;
+    padding: 8px;
+}
+
+.monitor-alerts-container .alert-data-container .alert-data-block a:hover{
+    background: #e8e8e8;
+}
+
 .monitor-alerts-container .alert-data-container .alert-data-block .alert-data-label{
     color: #3b4859;
     font-weight: 500;
