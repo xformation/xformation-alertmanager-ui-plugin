@@ -33,98 +33,148 @@ export class CreateRule extends React.Component<any, any> {
         this.addActionRef = React.createRef();
     }
 
-    onClickSelectResource = (e:any) => {
+    onClickSelectResource = (e: any) => {
         this.selectResourceModalRef.current.toggle();
     };
 
-    onClickAddCondition = (e:any) => {
+    onClickAddCondition = (e: any) => {
         this.addConditionRef.current.toggle();
     };
 
-    onClickAddAction = (e:any) => {
+    onClickAddAction = (e: any) => {
         this.addActionRef.current.toggle();
     };
 
     render() {
         return (
             <div className="create-rule-container">
-                <Breadcrumbs breadcrumbs={this.breadCrumbs} />
-                <div className="page-header-container">
-                    <span className="page-header">Create Rule</span>
-                </div>
-                <div className="row data-block m-t-2">
-                    <div className="col-sm-12">
-                        <div className="border-bottom bold-label main-header gray-label">
-                            Select Resource
-                        </div>
-                        <div className="gray-label italic-label m-t-1">
-                            Select the target(s) that you wish to monitor
-                        </div>
-                        <div className="m-t-1">
-                            <button className="btn btn-secondary" onClick={this.onClickSelectResource}>Select Resource</button>
+                <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="CREATE RULE" />
+                <div className="alert-page-container">
+                    <div className="common-container">
+                        <a className="alert-white-button">
+                            <i className="fa fa-plus"></i>&nbsp;&nbsp;
+                            New Alert Rule
+                        </a>
+                        <a className="alert-white-button">
+                            <i className="fa fa-play-circle"></i>&nbsp;&nbsp;
+                            Enable
+                        </a>
+                        <a className="alert-white-button">
+                            <i className="fa fa-stop-circle"></i>&nbsp;&nbsp;
+                            Disable
+                        </a>
+                        <a className="alert-white-button">
+                            <i className="fa fa-refresh"></i>&nbsp;&nbsp;
+                            Refresh
+                        </a>
+                        <a className="alert-white-button">
+                            <i className="fa fa-trash"></i>&nbsp;&nbsp;
+                            Delete
+                        </a>
+                    </div>
+                    <div className="common-container">
+                        <div className="row">
+                            <div className="col-md-6 col-sm-12">
+                                <div className="create-rule-header-container">
+                                    <div className="create-rule-header-image">
+                                        <i className="fa fa-desktop"></i>
+                                    </div>
+                                    <div className="create-rule-header-text">
+                                        <span style={{ color: "red", marginRight: "10px" }}>*</span>
+                                        <span>SELECT RESOURCES</span>
+                                    </div>
+                                </div>
+                                <div className="create-rule-header-content">
+                                    <div className="italic-label">Select the target(s) you wish to monitor</div>
+                                    <div>
+                                        <button className="alert-blue-button">Select Resource</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-6 col-sm-12">
+                                <div className="create-rule-header-container">
+                                    <div className="create-rule-header-image">
+                                        <i className="fa fa-file-o"></i>
+                                    </div>
+                                    <div className="create-rule-header-text">
+                                        <span style={{ color: "red", marginRight: "10px" }}>*</span>
+                                        <span>CONDITION</span>
+                                    </div>
+                                </div>
+                                <div className="create-rule-header-content">
+                                    <div className="italic-label">
+                                        No condition is selected. Click on 'Add' to select a signal and define its logic.
+                                    </div>
+                                    <div>
+                                        <button className="alert-blue-button">Add Condition</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="row data-block m-t-2">
-                    <div className="col-sm-12">
-                        <div className="border-bottom bold-label main-header gray-label">
-                            Condition
-                        </div>
-                        <div className="gray-label italic-label m-t-1">
-                            No condition is defined. Click 'Add' to add a signal and define its logic
-                        </div>
-                        <div className="m-t-1">
-                            <button className="btn btn-secondary" onClick={this.onClickAddCondition}>Add Condition</button>
-                        </div>
-                    </div>
-                </div>
-                <div className="row data-block m-t-2">
-                    <div className="col-sm-12">
-                        <div className="border-bottom bold-label main-header gray-label">
-                            Action Group
-                        </div>
-                        <table className="alert-data-table m-t-1">
-                            <tbody>
-                                <tr>
-                                    <th>Action group name</th>
-                                    <th>Contain action</th>
-                                </tr>
-                                <tr className="gray-label">
-                                    <td colSpan={2}>No action group selected</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div className="m-t-1">
-                            <button className="btn btn-secondary m-r-2" onClick={this.onClickAddAction}>Add Action</button>
-                            <button className="btn btn-secondary">Create Action</button>
-                        </div>
-                    </div>
-                </div>
-                <div className="row data-block m-t-2 m-b-3">
-                    <div className="col-sm-12">
-                        <div className="border-bottom bold-label main-header gray-label">
-                            Alert Details
-                        </div>
-                        <div className="form-group filter-control-group col-md-6 col-sm-12 m-t-1">
-                            <label htmlFor="ruleName" className="bold-label gray-label">
-                                Alert Rule Name
-                            </label>
-                            <input type="text" className="form-control" id="ruleName" />
-                        </div>
-                        <div className="form-group filter-control-group col-md-6 col-sm-12">
-                            <label htmlFor="description" className="bold-label gray-label">
-                                Description
-                            </label>
-                            <textarea className="form-control" id="description"></textarea>
-                        </div>
-                        <div className="m-t-1">
-                            <button className="btn btn-secondary m-r-2">Save &amp; enable</button>
-                            <button className="btn btn-secondary">Save</button>
+                    <div className="common-container">
+                        <div className="row">
+                            <div className="col-md-6 col-sm-12">
+                                <div className="create-rule-header-container">
+                                    <div className="create-rule-header-image">
+                                        <i className="fa fa-android"></i>
+                                    </div>
+                                    <div className="create-rule-header-text">
+                                        <span>ACTION GROUPS (Optional)</span>
+                                    </div>
+                                </div>
+                                <div className="create-rule-header-content">
+                                    <div className="italic-label">
+                                        No action group selected
+                                    </div>
+                                    <div>
+                                        <button className="alert-gray-button m-r-2">
+                                            Add
+                                        </button>
+                                        <button className="alert-gray-button">
+                                            Create
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-6 col-sm-12">
+                                <div className="create-rule-header-container">
+                                    <div className="create-rule-header-image">
+                                        <i className="fa fa-file-text"></i>
+                                    </div>
+                                    <div className="create-rule-header-text">
+                                        <span>ALERT DETAILS</span>
+                                    </div>
+                                </div>
+                                <div className="create-rule-header-content">
+                                    <div className="form-group filter-control-group col-md-6 col-sm-12 m-t-1 p-l-0 p-r-0">
+                                        <label htmlFor="ruleName" className="">
+                                            Alert Rule Name
+                                        </label>
+                                        <input type="text" className="form-control" id="ruleName" />
+                                    </div>
+                                    <div className="form-group filter-control-group col-md-6 col-sm-12 p-l-0 p-r-0">
+                                        <label htmlFor="description" className="">
+                                            Description
+                                        </label>
+                                        <textarea className="form-control" id="description"></textarea>
+                                    </div>
+                                    <div className="m-t-1">
+                                        <button className="alert-gray-button m-r-2">Save &amp; enable</button>
+                                        <button className="alert-gray-button">Save</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div className="common-container">
+                        <button className="alert-gray-button">
+                            Create Alert Rule
+                        </button>
+                    </div>
                 </div>
-                <SelectResourcePopup ref={this.selectResourceModalRef}/>
-                <AddConditionPopup ref={this.addConditionRef}/>
+                <SelectResourcePopup ref={this.selectResourceModalRef} />
+                <AddConditionPopup ref={this.addConditionRef} />
                 <AddActionPopup ref={this.addActionRef} />
             </div>
         );

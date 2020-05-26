@@ -7,3 +7,35 @@
     padding-bottom: 7px;
     font-size: 18px;
 }
+
+.create-rule-container .create-rule-header-container{
+    color: #3b4859;
+    border-bottom: 1px solid #fafafa;
+    margin-right: 15px;
+}
+
+.create-rule-container .create-rule-header-container .create-rule-header-text{
+    display: inline-block;
+    top: -10px;
+    position: relative;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+.create-rule-container .create-rule-header-container .create-rule-header-image{
+    color: #4c4c4c;
+    display: inline-block;
+    font-size: 40px;
+}
+
+.create-rule-container .create-rule-header-content{
+    color: #3b4859;
+    margin-right: 15px;
+    margin-bottom: 20px;
+}
+
+.create-rule-container .create-rule-header-content div{
+    text-align: left;
+    margin-left: 35px;
+    margin-top: 15px;
+}
