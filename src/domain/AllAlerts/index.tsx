@@ -38,328 +38,337 @@ export class AllAlerts extends React.Component<any, any> {
         const state = this.state;
         return (
             <div className="all-alerts-container">
-                <Breadcrumbs breadcrumbs={this.breadCrumbs} />
-                <div className="page-header-container">
-                    <span className="page-header">All Alerts</span>
-                    <Link to={`${config.basePath}/createrule`} className="header-button">
-                        <i className="fa fa-plus"></i>
-                        New Alert Rule
-                    </Link>
-                    <button className="header-button">
-                        <i className="fa fa-table"></i>
-                        Edit Columns
-                    </button>
-                    <button className="header-button">
-                        <i className="fa fa-cog"></i>
-                        Edit Columns
-                    </button>
-                    <button className="header-button">
-                        <i className="fa fa-bell"></i>
-                        View Classic Alerts
-                    </button>
-                    <button className="header-button">
-                        <i className="fa fa-refresh"></i>
-                        Refresh
-                    </button>
-                </div>
-                <div className="filter-container form-row">
-                    <div className="form-group filter-control-group col-md-4 col-sm-12">
-                        <label htmlFor="rousourceGroup">
-                            Rousource Group&nbsp;&nbsp;&nbsp;
-                            <i className="fa fa-info-circle"></i>
-                        </label>
-                        <select className="form-control" id="rousourceGroup">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
+                <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALL ALERTS" />
+                <div className="alert-page-container">
+                    <div className="common-container">
+                        <Link to={`${config.basePath}/createrule`} className="alert-white-button">
+                            <i className="fa fa-plus"></i>&nbsp;&nbsp;
+                            New Alert Rule
+                        </Link>
+                        <a className="alert-white-button">
+                            <i className="fa fa-cog"></i>&nbsp;&nbsp;
+                            Manage Alert Rule
+                        </a>
+                        <a className="alert-white-button">
+                            <i className="fa fa-table"></i>&nbsp;&nbsp;
+                            Columns
+                        </a>
+                        <a className="alert-white-button">
+                            <i className="fa fa-play-circle"></i>&nbsp;&nbsp;
+                            Enable
+                        </a>
+                        <a className="alert-white-button">
+                            <i className="fa fa-stop-circle"></i>&nbsp;&nbsp;
+                            Disable
+                        </a>
+                        <a className="alert-white-button">
+                            <i className="fa fa-refresh"></i>&nbsp;&nbsp;
+                            Refresh
+                        </a>
+                        <a className="alert-white-button">
+                            <i className="fa fa-trash"></i>&nbsp;&nbsp;
+                            Delete
+                        </a>
                     </div>
-                    <div className="form-group filter-control-group col-md-4 col-sm-12">
-                        <label htmlFor="resources">
-                            Rousources type&nbsp;&nbsp;&nbsp;
+                    <div className="filter-container form-row common-container">
+                        <div className="form-group filter-control-group col-md-4 col-sm-12">
+                            <label htmlFor="rousourceGroup">
+                                Rousource Group&nbsp;&nbsp;&nbsp;
                             <i className="fa fa-info-circle"></i>
-                        </label>
-                        <select className="form-control" id="resources">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
-                    <div className="form-group filter-control-group col-md-4 col-sm-12">
-                        <label htmlFor="resources">
-                            Rousources&nbsp;&nbsp;&nbsp;
+                            </label>
+                            <select className="form-control" id="rousourceGroup">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div className="form-group filter-control-group col-md-4 col-sm-12">
+                            <label htmlFor="resources">
+                                Rousources type&nbsp;&nbsp;&nbsp;
                             <i className="fa fa-info-circle"></i>
-                        </label>
-                        <select className="form-control" id="resources">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
-                    <div className="form-group filter-control-group col-md-4 col-sm-12">
-                        <label htmlFor="timeRange">
-                            Time Range&nbsp;&nbsp;&nbsp;
+                            </label>
+                            <select className="form-control" id="resources">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div className="form-group filter-control-group col-md-4 col-sm-12">
+                            <label htmlFor="resources">
+                                Rousources&nbsp;&nbsp;&nbsp;
                             <i className="fa fa-info-circle"></i>
-                        </label>
-                        <select className="form-control" id="timeRange">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
-                    <div className="form-group filter-control-group col-md-4 col-sm-12">
-                        <label htmlFor="timeRange">
-                            Smart group ID&nbsp;&nbsp;&nbsp;
+                            </label>
+                            <select className="form-control" id="resources">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div className="form-group filter-control-group col-md-4 col-sm-12">
+                            <label htmlFor="timeRange">
+                                Time Range&nbsp;&nbsp;&nbsp;
                             <i className="fa fa-info-circle"></i>
-                        </label>
-                        <select className="form-control" id="timeRange">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
-                    <div className="form-group filter-control-group col-md-4 col-sm-12">
-                        <label htmlFor="timeRange">
-                            Monitor services&nbsp;&nbsp;&nbsp;
+                            </label>
+                            <select className="form-control" id="timeRange">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div className="form-group filter-control-group col-md-4 col-sm-12">
+                            <label htmlFor="timeRange">
+                                Smart group ID&nbsp;&nbsp;&nbsp;
                             <i className="fa fa-info-circle"></i>
-                        </label>
-                        <select className="form-control" id="timeRange">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
-                    <div className="form-group filter-control-group col-md-4 col-sm-12">
-                        <label htmlFor="timeRange">
-                            Monitor condition&nbsp;&nbsp;&nbsp;
+                            </label>
+                            <select className="form-control" id="timeRange">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div className="form-group filter-control-group col-md-4 col-sm-12">
+                            <label htmlFor="timeRange">
+                                Monitor services&nbsp;&nbsp;&nbsp;
                             <i className="fa fa-info-circle"></i>
-                        </label>
-                        <select className="form-control" id="timeRange">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
-                    <div className="form-group filter-control-group col-md-4 col-sm-12">
-                        <label htmlFor="timeRange">
-                            Serverity&nbsp;&nbsp;&nbsp;
+                            </label>
+                            <select className="form-control" id="timeRange">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div className="form-group filter-control-group col-md-4 col-sm-12">
+                            <label htmlFor="timeRange">
+                                Monitor condition&nbsp;&nbsp;&nbsp;
                             <i className="fa fa-info-circle"></i>
-                        </label>
-                        <select className="form-control" id="timeRange">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
-                    <div className="form-group filter-control-group col-md-4 col-sm-12">
-                        <label htmlFor="timeRange">
-                            Alert state&nbsp;&nbsp;&nbsp;
+                            </label>
+                            <select className="form-control" id="timeRange">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div className="form-group filter-control-group col-md-4 col-sm-12">
+                            <label htmlFor="timeRange">
+                                Serverity&nbsp;&nbsp;&nbsp;
                             <i className="fa fa-info-circle"></i>
-                        </label>
-                        <select className="form-control" id="timeRange">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
+                            </label>
+                            <select className="form-control" id="timeRange">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div className="form-group filter-control-group col-md-4 col-sm-12">
+                            <label htmlFor="timeRange">
+                                Alert state&nbsp;&nbsp;&nbsp;
+                            <i className="fa fa-info-circle"></i>
+                            </label>
+                            <select className="form-control" id="timeRange">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div className="alert-data-table-container">
-                    <table className="alert-data-table">
-                        <tbody>
-                            <tr>
-                                <th>Name</th>
-                                <th>Severity</th>
-                                <th>Monitor Condition</th>
-                                <th>Alert State</th>
-                                <th>Affected Resource</th>
-                                <th>Monitor Service</th>
-                                <th>Signal Type</th>
-                                <th>Fired Time</th>
-                                <th>Subscription</th>
-                                <th>Suppression State</th>
-                                <th>Action</th>
-                            </tr>
-                            <tr className="gray-label">
-                                <td className="colored-label">
-                                    <div className="pointer-label" onClick={this.toggle}>Percentage CPU</div>
+                    <div className="alert-data-table-container common-container">
+                        <table className="alert-data-table">
+                            <tbody>
+                                <tr className="alert-data-table-header">
+                                    <th>Name</th>
+                                    <th>Severity</th>
+                                    <th>Monitor Condition</th>
+                                    <th>Alert State</th>
+                                    <th>Affected Resource</th>
+                                    <th>Monitor Service</th>
+                                    <th>Signal Type</th>
+                                    <th>Fired Time</th>
+                                    <th>Subscription</th>
+                                    <th>Suppression State</th>
+                                    <th>Action</th>
+                                </tr>
+                                <tr className="">
+                                    <td className="">
+                                        <div className="pointer-label" onClick={this.toggle}>Percentage CPU</div>
+                                    </td>
+                                    <td>
+                                        <div className="severity-urgent  ">Urgent</div>
+                                    </td>
+                                    <td>
+                                        Fired
                                 </td>
-                                <td>
-                                    <div className="severity-urgent bold-label colored-label">Urgent</div>
+                                    <td>New</td>
+                                    <td>Prod_DB_SYN14</td>
+                                    <td>Prometheus</td>
+                                    <td>Metrics</td>
+                                    <td>17/03/2020, 11:29:00</td>
+                                    <td>Alert Management</td>
+                                    <td>None</td>
+                                    <td>
+                                        <button className="btn btn-link" id="PopoverFocus">
+                                            <i className="fa fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr className="">
+                                    <td className="">
+                                        CPU Credits
                                 </td>
-                                <td>
-                                    Fired
+                                    <td>
+                                        <div className="severity-critical  ">Critical</div>
+                                    </td>
+                                    <td>
+                                        Fired
                                 </td>
-                                <td>New</td>
-                                <td>Prod_DB_SYN14</td>
-                                <td>Prometheus</td>
-                                <td>Metrics</td>
-                                <td>17/03/2020, 11:29:00</td>
-                                <td>Alert Management</td>
-                                <td>None</td>
-                                <td>
-                                    <button className="btn btn-link" id="PopoverFocus">
-                                        <i className="fa fa-ellipsis-h"></i>
-                                    </button>
+                                    <td>New</td>
+                                    <td>Prod_DB_SYN14</td>
+                                    <td>Prometheus</td>
+                                    <td>Metrics</td>
+                                    <td>17/03/2020, 11:29:00</td>
+                                    <td>Alert Management</td>
+                                    <td>None</td>
+                                    <td>
+                                        <button className="btn btn-link" id="PopoverFocus">
+                                            <i className="fa fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr className="">
+                                    <td className="">
+                                        Network In
                                 </td>
-                            </tr>
-                            <tr className="gray-label">
-                                <td className="colored-label">
-                                    CPU Credits
+                                    <td>
+                                        <div className="severity-high  ">High</div>
+                                    </td>
+                                    <td>
+                                        Fired
                                 </td>
-                                <td>
-                                    <div className="severity-critical bold-label colored-label">Critical</div>
+                                    <td>New</td>
+                                    <td>Prod_DB_SYN14</td>
+                                    <td>Prometheus</td>
+                                    <td>Metrics</td>
+                                    <td>17/03/2020, 11:29:00</td>
+                                    <td>Alert Management</td>
+                                    <td>None</td>
+                                    <td>
+                                        <button className="btn btn-link" id="PopoverFocus">
+                                            <i className="fa fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr className="">
+                                    <td className="">
+                                        Disk Read Bytes
                                 </td>
-                                <td>
-                                    Fired
+                                    <td>
+                                        <div className="severity-medium  ">Medium</div>
+                                    </td>
+                                    <td>
+                                        Fired
                                 </td>
-                                <td>New</td>
-                                <td>Prod_DB_SYN14</td>
-                                <td>Prometheus</td>
-                                <td>Metrics</td>
-                                <td>17/03/2020, 11:29:00</td>
-                                <td>Alert Management</td>
-                                <td>None</td>
-                                <td>
-                                    <button className="btn btn-link" id="PopoverFocus">
-                                        <i className="fa fa-ellipsis-h"></i>
-                                    </button>
+                                    <td>New</td>
+                                    <td>Prod_DB_SYN14</td>
+                                    <td>Prometheus</td>
+                                    <td>Metrics</td>
+                                    <td>17/03/2020, 11:29:00</td>
+                                    <td>Alert Management</td>
+                                    <td>None</td>
+                                    <td>
+                                        <button className="btn btn-link" id="PopoverFocus">
+                                            <i className="fa fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr className="">
+                                    <td className="">
+                                        Disk Write Bytes
                                 </td>
-                            </tr>
-                            <tr className="gray-label">
-                                <td className="colored-label">
-                                    Network In
+                                    <td>
+                                        <div className="severity-medium  ">Medium</div>
+                                    </td>
+                                    <td>
+                                        Fired
                                 </td>
-                                <td>
-                                    <div className="severity-high bold-label colored-label">High</div>
+                                    <td>New</td>
+                                    <td>Prod_DB_SYN14</td>
+                                    <td>Prometheus</td>
+                                    <td>Metrics</td>
+                                    <td>17/03/2020, 11:29:00</td>
+                                    <td>Alert Management</td>
+                                    <td>None</td>
+                                    <td>
+                                        <button className="btn btn-link" id="PopoverFocus">
+                                            <i className="fa fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr className="">
+                                    <td className="">
+                                        Power Off Machine
                                 </td>
-                                <td>
-                                    Fired
+                                    <td>
+                                        <div className="severity-medium  ">Medium</div>
+                                    </td>
+                                    <td>
+                                        Fired
                                 </td>
-                                <td>New</td>
-                                <td>Prod_DB_SYN14</td>
-                                <td>Prometheus</td>
-                                <td>Metrics</td>
-                                <td>17/03/2020, 11:29:00</td>
-                                <td>Alert Management</td>
-                                <td>None</td>
-                                <td>
-                                    <button className="btn btn-link" id="PopoverFocus">
-                                        <i className="fa fa-ellipsis-h"></i>
-                                    </button>
+                                    <td>New</td>
+                                    <td>Prod_DB_SYN14</td>
+                                    <td>Prometheus</td>
+                                    <td>Metrics</td>
+                                    <td>17/03/2020, 11:29:00</td>
+                                    <td>Alert Management</td>
+                                    <td>None</td>
+                                    <td>
+                                        <button className="btn btn-link" id="PopoverFocus">
+                                            <i className="fa fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr className="">
+                                    <td className="">
+                                        Percentage CPU
                                 </td>
-                            </tr>
-                            <tr className="gray-label">
-                                <td className="colored-label">
-                                    Disk Read Bytes
+                                    <td>
+                                        <div className="severity-urgent  ">Urgent</div>
+                                    </td>
+                                    <td>
+                                        Fired
                                 </td>
-                                <td>
-                                    <div className="severity-medium bold-label colored-label">Medium</div>
-                                </td>
-                                <td>
-                                    Fired
-                                </td>
-                                <td>New</td>
-                                <td>Prod_DB_SYN14</td>
-                                <td>Prometheus</td>
-                                <td>Metrics</td>
-                                <td>17/03/2020, 11:29:00</td>
-                                <td>Alert Management</td>
-                                <td>None</td>
-                                <td>
-                                    <button className="btn btn-link" id="PopoverFocus">
-                                        <i className="fa fa-ellipsis-h"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr className="gray-label">
-                                <td className="colored-label">
-                                    Disk Write Bytes
-                                </td>
-                                <td>
-                                    <div className="severity-medium bold-label colored-label">Medium</div>
-                                </td>
-                                <td>
-                                    Fired
-                                </td>
-                                <td>New</td>
-                                <td>Prod_DB_SYN14</td>
-                                <td>Prometheus</td>
-                                <td>Metrics</td>
-                                <td>17/03/2020, 11:29:00</td>
-                                <td>Alert Management</td>
-                                <td>None</td>
-                                <td>
-                                    <button className="btn btn-link" id="PopoverFocus">
-                                        <i className="fa fa-ellipsis-h"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr className="gray-label">
-                                <td className="colored-label">
-                                    Power Off Machine
-                                </td>
-                                <td>
-                                    <div className="severity-medium bold-label colored-label">Medium</div>
-                                </td>
-                                <td>
-                                    Fired
-                                </td>
-                                <td>New</td>
-                                <td>Prod_DB_SYN14</td>
-                                <td>Prometheus</td>
-                                <td>Metrics</td>
-                                <td>17/03/2020, 11:29:00</td>
-                                <td>Alert Management</td>
-                                <td>None</td>
-                                <td>
-                                    <button className="btn btn-link" id="PopoverFocus">
-                                        <i className="fa fa-ellipsis-h"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr className="gray-label">
-                                <td className="colored-label">
-                                    Percentage CPU
-                                </td>
-                                <td>
-                                    <div className="severity-urgent bold-label colored-label">Urgent</div>
-                                </td>
-                                <td>
-                                    Fired
-                                </td>
-                                <td>New</td>
-                                <td>Prod_DB_SYN14</td>
-                                <td>Prometheus</td>
-                                <td>Metrics</td>
-                                <td>17/03/2020, 11:29:00</td>
-                                <td>Alert Management</td>
-                                <td>None</td>
-                                <td>
-                                    <button className="btn btn-link" id="PopoverFocus">
-                                        <i className="fa fa-ellipsis-h"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    <td>New</td>
+                                    <td>Prod_DB_SYN14</td>
+                                    <td>Prometheus</td>
+                                    <td>Metrics</td>
+                                    <td>17/03/2020, 11:29:00</td>
+                                    <td>Alert Management</td>
+                                    <td>None</td>
+                                    <td>
+                                        <button className="btn btn-link" id="PopoverFocus">
+                                            <i className="fa fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <Modal isOpen={state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">
                     <ModalHeader toggle={this.toggle}>Percentage CPU</ModalHeader>
@@ -369,9 +378,9 @@ export class AllAlerts extends React.Component<any, any> {
                 </Modal>
                 <UncontrolledPopover trigger="legacy" placement="bottom" target="PopoverFocus">
                     <PopoverBody>
-                        <Link className="bold-label colored-label" to={`${config.basePath}/alltickets`}>Create Ticket</Link>
-                        <br/>
-                        <Link className="bold-label colored-label" to="">Silence</Link>
+                        <Link className=" " to={`${config.basePath}/alltickets`}>Create Ticket</Link>
+                        <br />
+                        <Link className=" " to="">Silence</Link>
                     </PopoverBody>
                 </UncontrolledPopover>
             </div>

@@ -4,10 +4,6 @@
     }
 }
 
-#alert-main-container a{
-    color:black;
-}
-
 .plugin-page-container{
     padding: 0px;
     background-color: #f9fafc;
@@ -355,12 +351,14 @@
     padding-bottom: 10px;
 }
 
-/************************* Filter container ********************/
-
-.filter-container{
-    background: transparent;
-    margin: 10px 40px !important;
+.common-container{
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f5f6f5;
 }
+
+/************************* Filter container ********************/
 
 .filter-container label{
     color: #3b4859;
@@ -452,5 +450,36 @@
 
 .pointer-label{
     cursor: pointer;
+}
+
+
+/*********************************** Buttons *********************************/
+
+.alert-blue-button{
+    background: #3b7cff;
+    color: white;
+    border: none;
+    padding: 10px 11px;
+    border-radius: 4px;
+    margin-right: 10px;
+    height: 37px;
+    display: inline-block;
+}
+
+.alert-white-button{
+    background: white;
+    color: #3b4859;
+    border: none;
+    padding: 10px 11px;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.alert-white-button:hover{
+    color: #3b4859;
+}
+
+.alert-white-button i{
+    color: #57a4ff !important;
 }
   

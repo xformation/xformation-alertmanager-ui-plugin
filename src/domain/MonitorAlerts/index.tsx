@@ -26,21 +26,21 @@ export class MonitorAlerts extends React.Component<any, any> {
             <div className="monitor-alerts-container">
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALERTS" />
                 <div className="alert-page-container">
-                    <div className="button-main-container">
-                        <button className="alert-button">
+                    <div className="common-container">
+                        <a className="alert-blue-button">
                             <i className="fa fa-cog"></i>&nbsp;&nbsp;
                             Manage Alert Rule
-                        </button>
-                        <button className="alert-button">
+                        </a>
+                        <a className="alert-blue-button">
                             <i className="fa fa-cog"></i>&nbsp;&nbsp;
                             Manage Workflows
-                        </button>
-                        <button className="alert-button">
+                        </a>
+                        <a className="alert-blue-button">
                             <i className="fa fa-refresh"></i>&nbsp;&nbsp;
                             Refresh
-                        </button>
+                        </a>
                     </div>
-                    <div className="filter-container form-row">
+                    <div className="filter-container form-row common-container">
                         <div className="form-group filter-control-group col-md-4 col-sm-12">
                             <label htmlFor="rousourceGroup">
                                 Rousource Group&nbsp;&nbsp;&nbsp;
@@ -81,7 +81,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                             </select>
                         </div>
                     </div>
-                    <div className="alert-data-container row">
+                    <div className="alert-data-container row common-container">
                         <div className="alert-data-block col-sm-3">
                             <Link to={`${config.basePath}/allalerts`}>
                                 <div className="alert-data-label">
@@ -133,7 +133,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                             </div>
                         </div>
                     </div>
-                    <div className="alert-data-table-container">
+                    <div className="alert-data-table-container common-container">
                         <table className="alert-data-table">
                             <tbody>
                                 <tr className="alert-data-table-header">
