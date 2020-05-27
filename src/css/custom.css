@@ -369,7 +369,8 @@
     padding-left: 0px;
 }
 
-.filter-container .filter-control-group .form-control{
+.filter-container .filter-control-group .form-control,
+.primary-select-box{
     background-color: #f0f3f7 !important;
     border: none !important;
 }
@@ -436,6 +437,10 @@
     color: gray;
 }
 
+.primary-color-label{
+    color: #3B4859;
+}
+
 .bold-label{
     font-weight: 500;
 }
@@ -446,6 +451,10 @@
 
 .border-bottom{
     border-bottom: 1px solid gray;
+}
+
+.border-bottom-dashed{
+    border-bottom: 1px dashed #A2C0D4;
 }
 
 .pointer-label{

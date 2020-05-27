@@ -2,10 +2,18 @@
     padding: 0px 30px;
 }
 
-.create-rule-container .main-header,
 .select-resource-container .main-header{
     padding-bottom: 7px;
     font-size: 18px;
+    border-bottom: 1px dashed #A2C0D4;
+}
+
+.select-resource-container .resource-table{
+    width: 250px;
+}
+
+.select-resource-container .resource-table td{
+    padding: 10px;
 }
 
 .create-rule-container .create-rule-header-container{

@@ -87,7 +87,9 @@ export class CreateRule extends React.Component<any, any> {
                                 <div className="create-rule-header-content">
                                     <div className="italic-label">Select the target(s) you wish to monitor</div>
                                     <div>
-                                        <button className="alert-blue-button">Select Resource</button>
+                                        <button className="alert-blue-button" onClick={this.onClickSelectResource}>
+                                            Select Resource
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +108,7 @@ export class CreateRule extends React.Component<any, any> {
                                         No condition is selected. Click on 'Add' to select a signal and define its logic.
                                     </div>
                                     <div>
-                                        <button className="alert-blue-button">Add Condition</button>
+                                        <button className="alert-blue-button" onClick={this.onClickAddCondition}>Add Condition</button>
                                     </div>
                                 </div>
                             </div>

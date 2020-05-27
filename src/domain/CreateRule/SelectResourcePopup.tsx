@@ -5,7 +5,7 @@ export class SelectResourcePopup extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            modal: 0
+            modal: false
         };
     }
 
@@ -22,13 +22,15 @@ export class SelectResourcePopup extends React.Component<any, any> {
                 <ModalHeader toggle={this.toggle}>Select Resource</ModalHeader>
                 <ModalBody style={{ height: 'calc(100vh - 210px)', overflowY: 'auto', overflowX: "hidden" }}>
                     <div className="select-resource-container">
-                        <div className="italic-label gray-label">Select the target(s) that you wish to monitor</div>
+                        <div className="italic-label p-t-1 primary-color-label">
+                            No condition defined, click on 'Add' to select a signal and define its logic
+                        </div>
                         <div className="form-row m-t-1">
                             <div className="form-group filter-control-group col-md-6 col-sm-12">
-                                <label htmlFor="resourcetype" className="bold-label gray-label">
+                                <label htmlFor="resourcetype" className="primary-color-label">
                                     Filter by resource type
                                 </label>
-                                <select className="form-control" id="resourcetype">
+                                <select className="form-control primary-select-box" id="resourcetype">
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -37,10 +39,10 @@ export class SelectResourcePopup extends React.Component<any, any> {
                                 </select>
                             </div>
                             <div className="form-group filter-control-group col-md-6 col-sm-12">
-                                <label htmlFor="location" className="bold-label gray-label">
+                                <label htmlFor="location" className="primary-color-label">
                                     Filter by location
                                 </label>
-                                <select className="form-control" id="location">
+                                <select className="form-control primary-select-box" id="location">
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -59,29 +61,37 @@ export class SelectResourcePopup extends React.Component<any, any> {
                         </div>
                         <div className="row data-block m-t-2 m-b-3">
                             <div className="col-sm-12">
-                                <div className="border-bottom bold-label main-header gray-label">
-                                    Action Group
+                                <div className="primary-color-label main-header">
+                                    Resources
                                 </div>
-                                <table className="alert-data-table m-t-1">
+                                <table className="resource-table">
                                     <tbody>
                                         <tr>
-                                            <th><input type="checkbox"/></th>
-                                            <th className="colored-label">Demo resource group</th>
+                                            <td><input type="checkbox"/></td>
+                                            <td className="primary-color-label">
+                                                <select className="form-control primary-select-box" id="location">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
+                                            </td>
                                         </tr>
                                         <tr className="gray-label">
                                             <td><input type="checkbox" /></td>
-                                            <td className="colored-label bold-label">Prod_DB_SYN14</td>
+                                            <td className="primary-color-label">Prod_DB_SYN14</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        <div className="m-t-3 m-b-2">
-                            <div className="italic-label gray-label">Selection Preview</div>
-                            <div className="bold-label colored-label">Prod_DB_SYN14</div>
+                        <div className="m-t-3 m-b-2 border-bottom-dashed p-b-2">
+                            <div className="italic-label primary-color-label">Selection Preview</div>
+                            <div className="primary-color-label">Prod_DB_SYN14</div>
                         </div>
                         <div>
-                            <button className="btn btn-secondary">Done</button>
+                            <button className="alert-blue-button">Done</button>
                         </div>
                     </div>
                 </ModalBody>
