@@ -19,13 +19,6 @@
     "includes": [
       {
         "type": "page",
-        "name": "Home",
-        "addToNav": true,
-        "defaultNav": true,
-        "component": "Dashboard"
-      },
-      {
-        "type": "page",
         "name": "MonitorAlerts",
         "addToNav": false,
         "defaultNav": false,
