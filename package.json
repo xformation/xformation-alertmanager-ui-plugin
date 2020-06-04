@@ -21,6 +21,7 @@
     "url": "https://github.com/raintank/app-plugin-worldping/issues"
   },
   "devDependencies": {
+    "@babel/core": "^7.10.2",
     "@grafana/ui": "^6.7.0",
     "@types/grafana": "github:CorpGlory/types-grafana",
     "@types/jest": "^22.2.3",
