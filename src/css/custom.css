@@ -134,19 +134,43 @@
 /*************** Severity *****************/
 
 .enabled-disabled-container .enabled{
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background-color: #7ed321;
-    border-radius: 10px;
     display: inline-block;
+    position: relative;
+    margin: 5px 0 0 5px;
+}
+
+.enabled-disabled-container .enabled:after{
+    position: absolute;
+    left: -4px;
+    top: -4px;
+    width: 16px;
+    height: 16px;
+    content: "";
+    border: 1px solid #7ed321;
+    border-radius: 50%;
 }
 
 .enabled-disabled-container .disabled{
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background-color: #ff8f00;
-    border-radius: 10px;
     display: inline-block;
+    position: relative;
+    margin: 5px 0 0 5px;
+}
+
+.enabled-disabled-container .disabled:after{
+    position: absolute;
+    left: -4px;
+    top: -4px;
+    width: 16px;
+    height: 16px;
+    content: "";
+    border: 1px solid #ff8f00;
+    border-radius: 50%;
 }
 
 .enabled-disabled-container .text{
@@ -506,4 +530,72 @@
 .alert-white-button i{
     color: #57a4ff !important;
 }
-  
+
+
+.monitor-alerts-container .alert-data-container{
+    margin: 0px !important;
+}
+
+.monitor-alerts-container .alert-data-container .alert-data-block{
+    margin-bottom: 10px;
+    padding-left: 0px;
+    padding-right: 45px;
+}
+
+.monitor-alerts-container .alert-data-container .alert-data-block a{
+    display: block;
+    padding: 10px;
+    background-color: #F0F3F7;
+    box-shadow: 0px 1px 5px #00000029;
+    border-radius: 5px;
+}
+
+.monitor-alerts-container .alert-data-container .alert-data-block a:hover{
+    background: #f8f9fa;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.3);
+}
+
+.monitor-alerts-container .alert-data-container .alert-data-block .alert-data-label{
+    color: #3b4859;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    position: relative;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.monitor-alerts-container .alert-data-container .alert-data-block .alert-data-label:after{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: #3b7cff;
+    width: 40px;
+    height: 2px;
+    content: "";
+}
+
+.monitor-alerts-container .alert-data-container .alert-data-block .alert-data{
+    color: #39579a;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 34px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.monitor-alerts-container .alert-data-container .alert-data-block .alert-data-meta{
+    color: #475363;
+    font-size: 11px;
+    line-height: 14px;
+}
+
+.monitor-alerts-container .alert-data-table-container .progress-td{
+    width: 50%;
+    position: relative;
+}
+
+.monitor-alerts-container .alert-data-table-container .progress-label{
+    display: inline-block;
+    width: 50px;
+}

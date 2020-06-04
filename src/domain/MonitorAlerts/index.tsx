@@ -40,49 +40,8 @@ export class MonitorAlerts extends React.Component<any, any> {
                             Refresh
                         </a>
                     </div>
-                    <div className="filter-container form-row common-container">
-                        <div className="form-group filter-control-group col-md-4 col-sm-12">
-                            <label htmlFor="rousourceGroup">
-                                Rousource Group&nbsp;&nbsp;&nbsp;
-                                <i className="fa fa-info-circle"></i>
-                            </label>
-                            <select className="form-control" id="rousourceGroup">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                        <div className="form-group filter-control-group col-md-4 col-sm-12">
-                            <label htmlFor="resources">
-                                Rousources&nbsp;&nbsp;&nbsp;
-                                <i className="fa fa-info-circle"></i>
-                            </label>
-                            <select className="form-control" id="resources">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                        <div className="form-group filter-control-group col-md-4 col-sm-12">
-                            <label htmlFor="timeRange">
-                                Time Range&nbsp;&nbsp;&nbsp;
-                                <i className="fa fa-info-circle"></i>
-                            </label>
-                            <select className="form-control" id="timeRange">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                    </div>
                     <div className="alert-data-container row common-container">
-                        <div className="alert-data-block col-sm-3">
+                        <div className="alert-data-block col-lg-4 col-md-12 col-sm-12">
                             <Link to={`${config.basePath}/allalerts`}>
                                 <div className="alert-data-label">
                                     Total alerts
@@ -95,21 +54,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                                 </div>
                             </Link>
                         </div>
-                        <div className="alert-data-block col-sm-3">
-                            <a>
-                                <div className="alert-data-label">
-                                    Smart group (Preview)&nbsp;&nbsp;&nbsp;
-                                    <i className="fa fa-question-circle"></i>
-                                </div>
-                                <div className="alert-data">
-                                    367
-                                </div>
-                                <div className="alert-data-meta">
-                                    90% Reduction
-                                </div>
-                            </a>
-                        </div>
-                        <div className="alert-data-block col-sm-3">
+                        <div className="alert-data-block col-lg-4 col-md-12 col-sm-12">
                             <Link to={`${config.basePath}/rules`}>
                                 <div className="alert-data-label">
                                     Total alert rules
@@ -122,7 +67,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                                 </div>
                             </Link>
                         </div>
-                        <div className="alert-data-block col-sm-3">
+                        <div className="alert-data-block col-lg-4 col-md-12 col-sm-12">
                             <a>
                                 <div className="alert-data-label">
                                     Workflows&nbsp;&nbsp;&nbsp;
@@ -137,88 +82,148 @@ export class MonitorAlerts extends React.Component<any, any> {
                             </a>
                         </div>
                     </div>
-                    <div className="alert-data-table-container common-container">
-                        <table className="alert-data-table">
-                            <tbody>
-                                <tr className="alert-data-table-header">
-                                    <th>Severity</th>
-                                    <th>Total Alerts</th>
-                                    <th>New</th>
-                                    <th>Acknowledge</th>
-                                    <th>Closed</th>
-                                </tr>
-                                <tr className="">
-                                    <td>
-                                        <div className="severity-urgent">Urgent</div>
-                                    </td>
-                                    <td className="">
-                                        <div className="progress-label">30</div>
-                                        {/* <div className="progress">
-                                            <div className="progress-bar" style={{ width: "30%" }}></div>
-                                        </div> */}
-                                    </td>
-                                    <td>2185</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr className="">
-                                    <td>
-                                        <div className="severity-critical">Critical</div>
-                                    </td>
-                                    <td className="">
-                                        <div className="progress-label">80</div>
-                                        {/* <div className="progress">
-                                            <div className="progress-bar" style={{ width: "80%" }}></div>
-                                        </div> */}
-                                    </td>
-                                    <td>2185</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr className="">
-                                    <td>
-                                        <div className="severity-high">High</div>
-                                    </td>
-                                    <td className="">
-                                        <div className="progress-label">100</div>
-                                        {/* <div className="progress">
-                                            <div className="progress-bar" style={{ width: "100%" }}></div>
-                                        </div> */}
-                                    </td>
-                                    <td>2185</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr className="">
-                                    <td>
-                                        <div className="severity-medium">Medium</div>
-                                    </td>
-                                    <td className="">
-                                        <div className="progress-label">10</div>
-                                        {/* <div className="progress">
-                                            <div className="progress-bar" style={{ width: "10%" }}></div>
-                                        </div> */}
-                                    </td>
-                                    <td>2185</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr className="">
-                                    <td>
-                                        <div className="severity-low">Low</div>
-                                    </td>
-                                    <td className="">
-                                        <div className="progress-label">19</div>
-                                        {/* <div className="progress">
-                                            <div className="progress-bar" style={{ width: "19%" }}></div>
-                                        </div> */}
-                                    </td>
-                                    <td>2185</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div className="charts-container row common-container">
+                        <div className="chart-block col-lg-4 col-md-12 col-sm-12">
+                            <div className="chart-inner alerts">
+                                <div className="label">Top Alerts Today <i className="fa fa-cog"></i></div>
+                                <div className="chart-data-table">
+                                    <table className="table">
+                                        <tbody>
+                                            <tr className="chart-header">
+                                                <th>Name</th>
+                                                <th>Severity</th>
+                                                <th>Time</th>
+                                            </tr>
+                                            <tr>
+                                                <td>CPU</td>
+                                                <td>
+                                                    <div className="high">High</div>
+                                                </td>
+                                                <td>10 mins</td>
+                                            </tr>
+                                            <tr>
+                                                <td>AWS S3</td>
+                                                <td>
+                                                    <div className="low">Low</div>
+                                                </td>
+                                                <td>12 mins</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Hard disk</td>
+                                                <td>
+                                                    <div className="medium">Medium</div>
+                                                </td>
+                                                <td>18 mins</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Network</td>
+                                                <td>
+                                                    <div className="high">High</div>
+                                                </td>
+                                                <td>25 mins</td>
+                                            </tr>
+                                            <tr>
+                                                <td>vCenter</td>
+                                                <td>
+                                                    <div className="medium">Medium</div>
+                                                </td>
+                                                <td>53 mins</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="chart-block col-lg-4 col-md-12 col-sm-12">
+                            <div className="chart-inner current">
+                                <div className="label">Current Wait Time <i className="fa fa-cog"></i></div>
+                                <div className="row">
+                                    <div className="col-sm-6">
+                                        <div className="current-text">
+                                            21<sub>mm</sub>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6"></div>
+                                </div>
+                                <div className="current-bottom row">
+                                    <div className="col-sm-8">
+                                        <select>
+                                            <option>Yesterday's avaerage</option>
+                                            <option>Yesterday's avaerage</option>
+                                            <option>Yesterday's avaerage</option>
+                                        </select>
+                                    </div>
+                                    <div className="col-sm-4 minutes-text">23 minutes</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="chart-block col-lg-4 col-md-12 col-sm-12">
+                            <div className="chart-inner alert-volume">
+                                <div className="label">Alert Volume Today <i className="fa fa-cog"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="charts-container row common-container">
+                        <div className="chart-block col-lg-4 col-md-12 col-sm-12">
+                            <div className="chart-inner alerts">
+                                <div className="label">Alert Volume By Status <i className="fa fa-cog"></i></div>
+                                
+                            </div>
+                        </div>
+                        <div className="chart-block col-lg-4 col-md-12 col-sm-12">
+                            <div className="chart-inner current average">
+                                <div className="label">Average Response Time <i className="fa fa-cog"></i></div>
+                                <div className="row">
+                                    <div className="col-sm-6">
+                                        <div className="current-text">
+                                            11<sub>mm</sub>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6"></div>
+                                </div>
+                                <div className="current-bottom row">
+                                    <div className="col-sm-8">
+                                        <select>
+                                            <option>Yesterday's avaerage</option>
+                                            <option>Yesterday's avaerage</option>
+                                            <option>Yesterday's avaerage</option>
+                                        </select>
+                                    </div>
+                                    <div className="col-sm-4 minutes-text">23 minutes</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="chart-block col-lg-4 col-md-12 col-sm-12">
+                            <div className="chart-inner alert-volume">
+                                <div className="label">Team Metrics <i className="fa fa-cog"></i></div>
+                                <div className="chart-data-table">
+                                    <table className="table">
+                                        <tbody>
+                                            <tr className="chart-header">
+                                                <th>Agent</th>
+                                                <th>Alerts</th>
+                                                <th>Time</th>
+                                            </tr>
+                                            <tr>
+                                                <td>John</td>
+                                                <td>276</td>
+                                                <td>17 mins</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Bill</td>
+                                                <td>180</td>
+                                                <td>19 mins</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lynda</td>
+                                                <td>219</td>
+                                                <td>43 mins</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

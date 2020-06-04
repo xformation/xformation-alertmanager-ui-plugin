@@ -193,7 +193,7 @@ export class AllAlerts extends React.Component<any, any> {
                         <table className="alert-data-table">
                             <tbody>
                                 <tr className="alert-data-table-header">
-                                    <th>Name</th>
+                                    <th><input type="checkbox" /> Name</th>
                                     <th>Severity</th>
                                     <th>Monitor Condition</th>
                                     <th>Alert State</th>
@@ -207,14 +207,12 @@ export class AllAlerts extends React.Component<any, any> {
                                 </tr>
                                 <tr className="">
                                     <td className="">
-                                        <div className="pointer-label" onClick={this.toggle}>Percentage CPU</div>
+                                        <div className="pointer-label" onClick={this.toggle}><input type="checkbox" className="checkbox" /> Percentage CPU</div>
                                     </td>
                                     <td>
-                                        <div className="severity-urgent  ">Urgent</div>
+                                        <div className="severity-urgent">Urgent</div>
                                     </td>
-                                    <td>
-                                        Fired
-                                </td>
+                                    <td>Fired</td>
                                     <td>New</td>
                                     <td>Prod_DB_SYN14</td>
                                     <td>Prometheus</td>
@@ -223,21 +221,27 @@ export class AllAlerts extends React.Component<any, any> {
                                     <td>Alert Management</td>
                                     <td>None</td>
                                     <td>
-                                        <button className="btn btn-link" id="PopoverFocus">
-                                            <i className="fa fa-ellipsis-h"></i>
-                                        </button>
+                                        <div className="d-flex">
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-edit"></i>
+                                            </button>
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-trash"></i>
+                                            </button>
+                                            <button className="btn btn-link" id="PopoverFocus">
+                                                <i className="fa fa-ellipsis-h"></i>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr className="">
                                     <td className="">
-                                        CPU Credits
-                                </td>
-                                    <td>
-                                        <div className="severity-critical  ">Critical</div>
+                                        <div className="pointer-label"><input type="checkbox" className="checkbox" /> CPU Credits</div>
                                     </td>
                                     <td>
-                                        Fired
-                                </td>
+                                        <div className="severity-critical">Critical</div>
+                                    </td>
+                                    <td>Fired</td>
                                     <td>New</td>
                                     <td>Prod_DB_SYN14</td>
                                     <td>Prometheus</td>
@@ -246,21 +250,27 @@ export class AllAlerts extends React.Component<any, any> {
                                     <td>Alert Management</td>
                                     <td>None</td>
                                     <td>
-                                        <button className="btn btn-link" id="PopoverFocus">
-                                            <i className="fa fa-ellipsis-h"></i>
-                                        </button>
+                                        <div className="d-flex">
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-edit"></i>
+                                            </button>
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-trash"></i>
+                                            </button>
+                                            <button className="btn btn-link" id="PopoverFocus">
+                                                <i className="fa fa-ellipsis-h"></i>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr className="">
                                     <td className="">
-                                        Network In
-                                </td>
+                                        <div className="pointer-label"><input type="checkbox" className="checkbox" /> Network In</div>
+                                    </td>
                                     <td>
                                         <div className="severity-high  ">High</div>
                                     </td>
-                                    <td>
-                                        Fired
-                                </td>
+                                    <td>Fired</td>
                                     <td>New</td>
                                     <td>Prod_DB_SYN14</td>
                                     <td>Prometheus</td>
@@ -269,21 +279,27 @@ export class AllAlerts extends React.Component<any, any> {
                                     <td>Alert Management</td>
                                     <td>None</td>
                                     <td>
-                                        <button className="btn btn-link" id="PopoverFocus">
-                                            <i className="fa fa-ellipsis-h"></i>
-                                        </button>
+                                        <div className="d-flex">
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-edit"></i>
+                                            </button>
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-trash"></i>
+                                            </button>
+                                            <button className="btn btn-link" id="PopoverFocus">
+                                                <i className="fa fa-ellipsis-h"></i>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr className="">
                                     <td className="">
-                                        Disk Read Bytes
-                                </td>
+                                        <div className="pointer-label"><input type="checkbox" className="checkbox" /> Disk Read Bytes</div>
+                                    </td>
                                     <td>
                                         <div className="severity-medium  ">Medium</div>
                                     </td>
-                                    <td>
-                                        Fired
-                                </td>
+                                    <td>Fired</td>
                                     <td>New</td>
                                     <td>Prod_DB_SYN14</td>
                                     <td>Prometheus</td>
@@ -292,21 +308,27 @@ export class AllAlerts extends React.Component<any, any> {
                                     <td>Alert Management</td>
                                     <td>None</td>
                                     <td>
-                                        <button className="btn btn-link" id="PopoverFocus">
-                                            <i className="fa fa-ellipsis-h"></i>
-                                        </button>
+                                    <   div className="d-flex">
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-edit"></i>
+                                            </button>
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-trash"></i>
+                                            </button>
+                                            <button className="btn btn-link" id="PopoverFocus">
+                                                <i className="fa fa-ellipsis-h"></i>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr className="">
                                     <td className="">
-                                        Disk Write Bytes
-                                </td>
+                                        <div className="pointer-label"><input type="checkbox" className="checkbox" /> Disk Write Bytes</div>
+                                    </td>
                                     <td>
                                         <div className="severity-medium  ">Medium</div>
                                     </td>
-                                    <td>
-                                        Fired
-                                </td>
+                                    <td>Fired</td>
                                     <td>New</td>
                                     <td>Prod_DB_SYN14</td>
                                     <td>Prometheus</td>
@@ -315,21 +337,27 @@ export class AllAlerts extends React.Component<any, any> {
                                     <td>Alert Management</td>
                                     <td>None</td>
                                     <td>
-                                        <button className="btn btn-link" id="PopoverFocus">
-                                            <i className="fa fa-ellipsis-h"></i>
-                                        </button>
+                                        <div className="d-flex">
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-edit"></i>
+                                            </button>
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-trash"></i>
+                                            </button>
+                                            <button className="btn btn-link" id="PopoverFocus">
+                                                <i className="fa fa-ellipsis-h"></i>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr className="">
                                     <td className="">
-                                        Power Off Machine
-                                </td>
+                                        <div className="pointer-label"><input type="checkbox" className="checkbox" /> Power Off Machine</div>
+                                    </td>
                                     <td>
                                         <div className="severity-medium  ">Medium</div>
                                     </td>
-                                    <td>
-                                        Fired
-                                </td>
+                                    <td>Fired</td>
                                     <td>New</td>
                                     <td>Prod_DB_SYN14</td>
                                     <td>Prometheus</td>
@@ -338,21 +366,27 @@ export class AllAlerts extends React.Component<any, any> {
                                     <td>Alert Management</td>
                                     <td>None</td>
                                     <td>
-                                        <button className="btn btn-link" id="PopoverFocus">
-                                            <i className="fa fa-ellipsis-h"></i>
-                                        </button>
+                                        <div className="d-flex">
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-edit"></i>
+                                            </button>
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-trash"></i>
+                                            </button>
+                                            <button className="btn btn-link" id="PopoverFocus">
+                                                <i className="fa fa-ellipsis-h"></i>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr className="">
                                     <td className="">
-                                        Percentage CPU
-                                </td>
+                                        <div className="pointer-label"><input type="checkbox" className="checkbox" /> Percentage CPU</div>
+                                    </td>
                                     <td>
                                         <div className="severity-urgent  ">Urgent</div>
                                     </td>
-                                    <td>
-                                        Fired
-                                </td>
+                                    <td>Fired</td>
                                     <td>New</td>
                                     <td>Prod_DB_SYN14</td>
                                     <td>Prometheus</td>
@@ -361,9 +395,17 @@ export class AllAlerts extends React.Component<any, any> {
                                     <td>Alert Management</td>
                                     <td>None</td>
                                     <td>
-                                        <button className="btn btn-link" id="PopoverFocus">
-                                            <i className="fa fa-ellipsis-h"></i>
-                                        </button>
+                                        <div className="d-flex">
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-edit"></i>
+                                            </button>
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-trash"></i>
+                                            </button>
+                                            <button className="btn btn-link" id="PopoverFocus">
+                                                <i className="fa fa-ellipsis-h"></i>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>

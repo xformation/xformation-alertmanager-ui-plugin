@@ -110,6 +110,7 @@ export class Rules extends React.Component<any, any> {
                                     <th>Condition</th>
                                     <th>Status</th>
                                     <th>Target resource</th>
+                                    <th>Action</th>
                                 </tr>
                                 <tr className="">
                                     <td><input type="checkbox" />&nbsp;&nbsp;&nbsp;&nbsp;Percentage CPU</td>
@@ -117,10 +118,19 @@ export class Rules extends React.Component<any, any> {
                                     <td>
                                         <div className="enabled-disabled-container">
                                             <div className="enabled"></div>
-                                            <div className="text">Enabled</div>
                                         </div>
                                     </td>
                                     <td>kub-master-146783</td>
+                                    <td>
+                                        <div className="d-flex">
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-edit"></i>
+                                            </button>
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr className="">
                                     <td><input type="checkbox" />&nbsp;&nbsp;&nbsp;&nbsp;Disk Write Bytes</td>
@@ -128,10 +138,19 @@ export class Rules extends React.Component<any, any> {
                                     <td>
                                         <div className="enabled-disabled-container">
                                             <div className="enabled"></div>
-                                            <div className="text">Enabled</div>
                                         </div>
                                     </td>
                                     <td>Metrics</td>
+                                    <td>
+                                        <div className="d-flex">
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-edit"></i>
+                                            </button>
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr className="">
                                     <td><input type="checkbox" />&nbsp;&nbsp;&nbsp;&nbsp;Network Out</td>
@@ -139,10 +158,19 @@ export class Rules extends React.Component<any, any> {
                                     <td>
                                         <div className="enabled-disabled-container">
                                             <div className="enabled"></div>
-                                            <div className="text">Enabled</div>
                                         </div>
                                     </td>
                                     <td>Ser08-Test-11</td>
+                                    <td>
+                                        <div className="d-flex">
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-edit"></i>
+                                            </button>
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr className="">
                                     <td><input type="checkbox" />&nbsp;&nbsp;&nbsp;&nbsp;Network In</td>
@@ -150,10 +178,19 @@ export class Rules extends React.Component<any, any> {
                                     <td>
                                         <div className="enabled-disabled-container">
                                             <div className="enabled"></div>
-                                            <div className="text">Enabled</div>
                                         </div>
                                     </td>
                                     <td>Ser08-Test-11</td>
+                                    <td>
+                                        <div className="d-flex">
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-edit"></i>
+                                            </button>
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr className="">
                                     <td><input type="checkbox" />&nbsp;&nbsp;&nbsp;&nbsp;Network In</td>
@@ -161,10 +198,19 @@ export class Rules extends React.Component<any, any> {
                                     <td>
                                         <div className="enabled-disabled-container">
                                             <div className="disabled"></div>
-                                            <div className="text">Disabled</div>
                                         </div>
                                     </td>
                                     <td>Ser08-Test-11</td>
+                                    <td>
+                                        <div className="d-flex">
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-edit"></i>
+                                            </button>
+                                            <button className="btn btn-link">
+                                                <i className="fa fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
