@@ -45,22 +45,6 @@ export class AllAlerts extends React.Component<any, any> {
                             <i className="fa fa-plus"></i>&nbsp;&nbsp;
                             New Alert Rule
                         </Link>
-                        {/* <a className="alert-white-button">
-                            <i className="fa fa-cog"></i>&nbsp;&nbsp;
-                            Manage Alert Rule
-                        </a> */}
-                        {/* <a className="alert-white-button">
-                            <i className="fa fa-table"></i>&nbsp;&nbsp;
-                            Columns
-                        </a>
-                        <a className="alert-white-button">
-                            <i className="fa fa-play-circle"></i>&nbsp;&nbsp;
-                            Enable
-                        </a>
-                        <a className="alert-white-button">
-                            <i className="fa fa-stop-circle"></i>&nbsp;&nbsp;
-                            Disable
-                        </a> */}
                         <a className="alert-white-button">
                             <i className="fa fa-refresh"></i>&nbsp;&nbsp;
                             Refresh
@@ -70,175 +54,164 @@ export class AllAlerts extends React.Component<any, any> {
                             Back
                         </a>
                     </div>
-                    <div className="filter-container form-row common-container">
-                        <div className="form-group filter-control-group col-md-2 col-sm-12">
-                            <label htmlFor="rousourceGroup">
-                                Rousource Group&nbsp;&nbsp;&nbsp;
-                            <i className="fa fa-info-circle"></i>
-                            </label>
-                            <select className="form-control" id="rousourceGroup">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
+                    <div className="filter-container row common-container">
+                        <div className="col-lg-2 col-md-3 col-sm-12">
+                            <div className="form-group filter-control-group">
+                                <label htmlFor="rousourceGroup">
+                                    Rousource Group&nbsp;&nbsp;&nbsp;
+                                <i className="fa fa-info-circle"></i>
+                                </label>
+                                <select className="form-control" id="rousourceGroup">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
                         </div>
-                        {/* <div className="form-group filter-control-group col-md-6 col-sm-12">
-                            <label htmlFor="resources">
-                                Rousources type&nbsp;&nbsp;&nbsp;
-                            <i className="fa fa-info-circle"></i>
-                            </label>
-                            <select className="form-control" id="resources">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div> */}
-                        <div className="form-group filter-control-group col-md-2 col-sm-12">
-                            <label htmlFor="resources">
-                                Rousources&nbsp;&nbsp;&nbsp;
-                            <i className="fa fa-info-circle"></i>
-                            </label>
-                            <select className="form-control" id="resources">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
+                        <div className="col-lg-2 col-md-3 col-sm-12">
+                            <div className="form-group filter-control-group">
+                                <label htmlFor="resources">
+                                    Rousources&nbsp;&nbsp;&nbsp;
+                                <i className="fa fa-info-circle"></i>
+                                </label>
+                                <select className="form-control" id="resources">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
                         </div>
-                        <div className="form-group filter-control-group col-md-2 col-sm-12">
-                            <label htmlFor="timeRange">
-                                Time Range&nbsp;&nbsp;&nbsp;
-                            <i className="fa fa-info-circle"></i>
-                            </label>
-                            <select className="form-control" id="timeRange">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
+                        <div className="col-lg-2 col-md-3 col-sm-12">
+                            <div className="form-group filter-control-group">
+                                <label htmlFor="timeRange">
+                                    Time Range&nbsp;&nbsp;&nbsp;
+                                <i className="fa fa-info-circle"></i>
+                                </label>
+                                <select className="form-control" id="timeRange">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
                         </div>
-                        <div className="form-group filter-control-group col-md-2 col-sm-12">
-                            <label htmlFor="monitorServices">
-                                Monitor services&nbsp;&nbsp;&nbsp;
-                            <i className="fa fa-info-circle"></i>
-                            </label>
-                            <select className="form-control" id="monitorServices">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
+                        <div className="col-lg-2 col-md-3 col-sm-12">
+                            <div className="form-group filter-control-group">
+                                <label htmlFor="monitorServices">
+                                    Monitor services&nbsp;&nbsp;&nbsp;
+                                <i className="fa fa-info-circle"></i>
+                                </label>
+                                <select className="form-control" id="monitorServices">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
                         </div>
-                        {/* <div className="form-group filter-control-group col-md-6 col-sm-12">
-                            <label htmlFor="timeRange">
-                                Smart group ID&nbsp;&nbsp;&nbsp;
-                            <i className="fa fa-info-circle"></i>
-                            </label>
-                            <select className="form-control" id="timeRange">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div> */}
-                        {/* <div className="form-group filter-control-group col-md-4 col-sm-12">
-                            <label htmlFor="timeRange">
-                                Monitor condition&nbsp;&nbsp;&nbsp;
-                            <i className="fa fa-info-circle"></i>
-                            </label>
-                            <select className="form-control" id="timeRange">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div> */}
-                        <div className="form-group filter-control-group col-md-2 col-sm-12">
-                            <label htmlFor="alertType">
-                                Alert Type&nbsp;&nbsp;&nbsp;
-                            <i className="fa fa-info-circle"></i>
-                            </label>
-                            <select className="form-control" id="alertType">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
+                        <div className="col-lg-2 col-md-3 col-sm-12">
+                            <div className="form-group filter-control-group">
+                                <label htmlFor="alertType">
+                                    Alert Type&nbsp;&nbsp;&nbsp;
+                                <i className="fa fa-info-circle"></i>
+                                </label>
+                                <select className="form-control" id="alertType">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
                         </div>
-                        <div className="form-group filter-control-group col-md-2 col-sm-12">
-                            <label htmlFor="serverity">
-                                Serverity&nbsp;&nbsp;&nbsp;
-                            <i className="fa fa-info-circle"></i>
-                            </label>
-                            <select className="form-control" id="serverity">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
+                        <div className="col-lg-2 col-md-3 col-sm-12">
+                            <div className="form-group filter-control-group">
+                                <label htmlFor="serverity">
+                                    Serverity&nbsp;&nbsp;&nbsp;
+                                <i className="fa fa-info-circle"></i>
+                                </label>
+                                <select className="form-control" id="serverity">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
                         </div>
-                        <div className="form-group filter-control-group col-md-2 col-sm-12">
-                            <label htmlFor="alertState">
-                                Alert state&nbsp;&nbsp;&nbsp;
-                            <i className="fa fa-info-circle"></i>
-                            </label>
-                            <select className="form-control" id="alertState">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
+                        <div className="col-lg-2 col-md-3 col-sm-12">
+                            <div className="form-group filter-control-group">
+                                <label htmlFor="alertState">
+                                    Alert state&nbsp;&nbsp;&nbsp;
+                                <i className="fa fa-info-circle"></i>
+                                </label>
+                                <select className="form-control" id="alertState">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
                         </div>
-                        <div className="col-md-2 col-sm-12">
-                            <input type="checkbox" className="form-control" />
-                            <label htmlFor="archive">
-                                Archive&nbsp;&nbsp;&nbsp;
-                            </label>
+                        <div className="col-lg-2 col-md-3 col-sm-12">
+                            <div className="form-group filter-control-group archive">
+                                <input type="checkbox" className="form-control" />
+                                <label htmlFor="archive"></label>
+                                <span>Archive</span>
+                            </div>
                         </div>
-                        <div className="col-md-2 col-sm-12">
-                            <input type="checkbox" className="form-control" />
-                            <label htmlFor="clearFilter">
-                                Clear All Filters&nbsp;&nbsp;&nbsp;
-                            </label>
+                        <div className="col-lg-2 col-md-3 col-sm-12">
+                            <div className="form-group filter-control-group archive clear_filters">
+                                <input type="checkbox" className="form-control" />
+                                <label htmlFor="clearFilter"></label>
+                                <span>Clear All Filters</span>
+                            </div>
                         </div>
                     </div>
                     <div className="filter-container form-row row common-container">
                         <div className="col-md-6 col-sm-12">
                             <label htmlFor="allallerts">
-                                All Alerts&nbsp;&nbsp;&nbsp;
+                                All Alerts
                             </label>
                         </div>
                         <div className="col-md-6 col-sm-12">
-                            <div className="ft_r">
-                                <div className="form-group filter-control-group col-md-6 col-sm-12">
-                                    <select className="form-control" id="bulkaction">
-                                        <option>Delete</option>
-                                        <option>Archive</option>
-                                        <option>Processed</option>
-                                        <option>Create Ticket</option>
-                                        <option>Execute Workflow</option>
-                                    </select>
-                                </div>
-                                <div className="form-group filter-control-group col-md-6 col-sm-12">
-                                    <div className="input-group-text"><i className="fa fa-search"></i></div>
+                            <div className="alerts__right_form">
+                                <div className="row">
+                                    <div className="col-md-4 col-sm-12">
+                                        <div className="form-group filter-control-group">
+                                            <select className="form-control" id="bulkaction">
+                                                <option>Delete</option>
+                                                <option>Archive</option>
+                                                <option>Processed</option>
+                                                <option>Create Ticket</option>
+                                                <option>Execute Workflow</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-8 col-sm-12">
+                                        <div className="form-group filter-control-group">
+                                            <form>
+                                                <input type="text" className="input-group-text" />
+                                                <button>
+                                                    <i className="fa fa-search"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="alert-data-table-container common-container">
-                        <table className="alert-data-table">
+                        <div className="container_inner">
+                            <table className="alert-data-table">
                             <tbody>
                                 <tr className="alert-data-table-header">
                                     <th><input type="checkbox" /> Name</th>
@@ -458,6 +431,7 @@ export class AllAlerts extends React.Component<any, any> {
                                 </tr>
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </div>
                 <Modal isOpen={state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">

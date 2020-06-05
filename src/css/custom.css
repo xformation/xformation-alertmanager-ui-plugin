@@ -1,3 +1,11 @@
+.wide-side-menu .monitor-main-body{
+    max-width: 100%;
+}
+
+a:focus, a:hover{
+    color: #000000;
+}
+
 @media (max-width: 768px){
     #alert-main-container {
         padding-left: 60px;

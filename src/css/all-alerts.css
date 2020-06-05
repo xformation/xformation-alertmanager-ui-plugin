@@ -1,6 +1,121 @@
-.alert-white-button.float-right{
+.alert-white-button.float-right {
     float: right;
+    text-align: right;
+    min-width: auto;
+    margin-top: -7px;
 }
-.ft_r{
+
+.filter-container{
+    padding-right: 20px;
+}
+
+.filter-container .filter-control-group.archive{
+    margin-top: 27px;
+    position: relative;
+}
+
+.filter-container .filter-control-group.archive input {
+    visibility: hidden;
+    vertical-align: middle;
+    display: inline-block;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.filter-container .filter-control-group.archive label{
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 20px;
+    height: 20px;
+    background-color: #F0F3F7;
+    cursor: pointer;
+}
+
+.filter-container .filter-control-group.archive label:after{
+    content: '';
+    width: 10px;
+    height: 6px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    border: 1px solid #333;
+    border-top: none;
+    border-right: none;
+    background: transparent;
+    opacity: 0;
+    transform: rotate(-45deg);
+    cursor: pointer;
+}
+.filter-container .filter-control-group.archive .checked + label:after {
+    opacity: 1;
+}
+.filter-container .filter-control-group.archive span{
+    display: inline-block;
+    padding-left: 30px;
+    color: #333333;
+    vertical-align: middle;
+    padding-top: 7px;
+}
+.filter-container .filter-control-group.clear_filters label:after{
+    border: none;
+    background-color: #333333;
+    width: 1px;
+    opacity: 1;
+    height: 10px;
+    left: 9px;
+}
+.filter-container .filter-control-group.clear_filters label:before{
+    border: none;
+    background-color: #333333;
+    width: 1px;
+    opacity: 1;
+    height: 10px;
+    left: 9px;
+    transform: rotate(45deg);
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 9px;
+}
+
+
+.alerts__right_form{
     float: right;
+    width: 80%;
+}
+.alerts__right_form .filter-control-group{
+    position: relative;
+    margin-bottom: 0;
+}
+.alerts__right_form .filter-control-group .input-group-text{
+    max-width: 100%;
+    text-align: left;
+    padding-left: 30px;
+    width: 100%;
+    border: 1px solid #8392A7;
+    background-color: #ffffff;
+}
+.alerts__right_form .filter-control-group button{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    width: 34px;
+    height: 34px;
+}
+.alerts__right_form .filter-control-group button:hover{
+    color: #333333;
+}
+.alert-data-table-container .container_inner{   
+    overflow-x: scroll;
+    width: 1020px;
+}
+.alert-data-table-container.common-container .alert-data-table{
+    width: 1400px;
 }
