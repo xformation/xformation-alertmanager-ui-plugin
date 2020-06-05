@@ -45,11 +45,11 @@ export class AllAlerts extends React.Component<any, any> {
                             <i className="fa fa-plus"></i>&nbsp;&nbsp;
                             New Alert Rule
                         </Link>
-                        <a className="alert-white-button">
+                        {/* <a className="alert-white-button">
                             <i className="fa fa-cog"></i>&nbsp;&nbsp;
                             Manage Alert Rule
-                        </a>
-                        <a className="alert-white-button">
+                        </a> */}
+                        {/* <a className="alert-white-button">
                             <i className="fa fa-table"></i>&nbsp;&nbsp;
                             Columns
                         </a>
@@ -60,18 +60,18 @@ export class AllAlerts extends React.Component<any, any> {
                         <a className="alert-white-button">
                             <i className="fa fa-stop-circle"></i>&nbsp;&nbsp;
                             Disable
-                        </a>
+                        </a> */}
                         <a className="alert-white-button">
                             <i className="fa fa-refresh"></i>&nbsp;&nbsp;
                             Refresh
                         </a>
-                        <a className="alert-white-button">
-                            <i className="fa fa-trash"></i>&nbsp;&nbsp;
-                            Delete
+                        <a className="alert-white-button float-right">
+                            <i className="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;
+                            Back
                         </a>
                     </div>
                     <div className="filter-container form-row common-container">
-                        <div className="form-group filter-control-group col-md-4 col-sm-12">
+                        <div className="form-group filter-control-group col-md-2 col-sm-12">
                             <label htmlFor="rousourceGroup">
                                 Rousource Group&nbsp;&nbsp;&nbsp;
                             <i className="fa fa-info-circle"></i>
@@ -84,7 +84,7 @@ export class AllAlerts extends React.Component<any, any> {
                                 <option>5</option>
                             </select>
                         </div>
-                        <div className="form-group filter-control-group col-md-4 col-sm-12">
+                        {/* <div className="form-group filter-control-group col-md-6 col-sm-12">
                             <label htmlFor="resources">
                                 Rousources type&nbsp;&nbsp;&nbsp;
                             <i className="fa fa-info-circle"></i>
@@ -96,8 +96,8 @@ export class AllAlerts extends React.Component<any, any> {
                                 <option>4</option>
                                 <option>5</option>
                             </select>
-                        </div>
-                        <div className="form-group filter-control-group col-md-4 col-sm-12">
+                        </div> */}
+                        <div className="form-group filter-control-group col-md-2 col-sm-12">
                             <label htmlFor="resources">
                                 Rousources&nbsp;&nbsp;&nbsp;
                             <i className="fa fa-info-circle"></i>
@@ -110,7 +110,7 @@ export class AllAlerts extends React.Component<any, any> {
                                 <option>5</option>
                             </select>
                         </div>
-                        <div className="form-group filter-control-group col-md-4 col-sm-12">
+                        <div className="form-group filter-control-group col-md-2 col-sm-12">
                             <label htmlFor="timeRange">
                                 Time Range&nbsp;&nbsp;&nbsp;
                             <i className="fa fa-info-circle"></i>
@@ -123,7 +123,20 @@ export class AllAlerts extends React.Component<any, any> {
                                 <option>5</option>
                             </select>
                         </div>
-                        <div className="form-group filter-control-group col-md-4 col-sm-12">
+                        <div className="form-group filter-control-group col-md-2 col-sm-12">
+                            <label htmlFor="monitorServices">
+                                Monitor services&nbsp;&nbsp;&nbsp;
+                            <i className="fa fa-info-circle"></i>
+                            </label>
+                            <select className="form-control" id="monitorServices">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        {/* <div className="form-group filter-control-group col-md-6 col-sm-12">
                             <label htmlFor="timeRange">
                                 Smart group ID&nbsp;&nbsp;&nbsp;
                             <i className="fa fa-info-circle"></i>
@@ -135,21 +148,8 @@ export class AllAlerts extends React.Component<any, any> {
                                 <option>4</option>
                                 <option>5</option>
                             </select>
-                        </div>
-                        <div className="form-group filter-control-group col-md-4 col-sm-12">
-                            <label htmlFor="timeRange">
-                                Monitor services&nbsp;&nbsp;&nbsp;
-                            <i className="fa fa-info-circle"></i>
-                            </label>
-                            <select className="form-control" id="timeRange">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                        <div className="form-group filter-control-group col-md-4 col-sm-12">
+                        </div> */}
+                        {/* <div className="form-group filter-control-group col-md-4 col-sm-12">
                             <label htmlFor="timeRange">
                                 Monitor condition&nbsp;&nbsp;&nbsp;
                             <i className="fa fa-info-circle"></i>
@@ -161,13 +161,26 @@ export class AllAlerts extends React.Component<any, any> {
                                 <option>4</option>
                                 <option>5</option>
                             </select>
+                        </div> */}
+                        <div className="form-group filter-control-group col-md-2 col-sm-12">
+                            <label htmlFor="alertType">
+                                Alert Type&nbsp;&nbsp;&nbsp;
+                            <i className="fa fa-info-circle"></i>
+                            </label>
+                            <select className="form-control" id="alertType">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
                         </div>
-                        <div className="form-group filter-control-group col-md-4 col-sm-12">
-                            <label htmlFor="timeRange">
+                        <div className="form-group filter-control-group col-md-2 col-sm-12">
+                            <label htmlFor="serverity">
                                 Serverity&nbsp;&nbsp;&nbsp;
                             <i className="fa fa-info-circle"></i>
                             </label>
-                            <select className="form-control" id="timeRange">
+                            <select className="form-control" id="serverity">
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -175,18 +188,53 @@ export class AllAlerts extends React.Component<any, any> {
                                 <option>5</option>
                             </select>
                         </div>
-                        <div className="form-group filter-control-group col-md-4 col-sm-12">
-                            <label htmlFor="timeRange">
+                        <div className="form-group filter-control-group col-md-2 col-sm-12">
+                            <label htmlFor="alertState">
                                 Alert state&nbsp;&nbsp;&nbsp;
                             <i className="fa fa-info-circle"></i>
                             </label>
-                            <select className="form-control" id="timeRange">
+                            <select className="form-control" id="alertState">
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
                                 <option>4</option>
                                 <option>5</option>
                             </select>
+                        </div>
+                        <div className="col-md-2 col-sm-12">
+                            <input type="checkbox" className="form-control" />
+                            <label htmlFor="archive">
+                                Archive&nbsp;&nbsp;&nbsp;
+                            </label>
+                        </div>
+                        <div className="col-md-2 col-sm-12">
+                            <input type="checkbox" className="form-control" />
+                            <label htmlFor="clearFilter">
+                                Clear All Filters&nbsp;&nbsp;&nbsp;
+                            </label>
+                        </div>
+                    </div>
+                    <div className="filter-container form-row row common-container">
+                        <div className="col-md-6 col-sm-12">
+                            <label htmlFor="allallerts">
+                                All Alerts&nbsp;&nbsp;&nbsp;
+                            </label>
+                        </div>
+                        <div className="col-md-6 col-sm-12">
+                            <div className="ft_r">
+                                <div className="form-group filter-control-group col-md-6 col-sm-12">
+                                    <select className="form-control" id="bulkaction">
+                                        <option>Delete</option>
+                                        <option>Archive</option>
+                                        <option>Processed</option>
+                                        <option>Create Ticket</option>
+                                        <option>Execute Workflow</option>
+                                    </select>
+                                </div>
+                                <div className="form-group filter-control-group col-md-6 col-sm-12">
+                                    <div className="input-group-text"><i className="fa fa-search"></i></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="alert-data-table-container common-container">
@@ -308,7 +356,7 @@ export class AllAlerts extends React.Component<any, any> {
                                     <td>Alert Management</td>
                                     <td>None</td>
                                     <td>
-                                    <   div className="d-flex">
+                                        <   div className="d-flex">
                                             <button className="btn btn-link">
                                                 <i className="fa fa-edit"></i>
                                             </button>
