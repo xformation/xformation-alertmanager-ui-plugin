@@ -2,6 +2,9 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
+import { ChartContent } from './chartcontent';
+import { LineChartContent } from './lineChartContent';
+import { LineChart } from './lineChart';
 
 export class MonitorAlerts extends React.Component<any, any> {
     breadCrumbs: any;
@@ -143,7 +146,9 @@ export class MonitorAlerts extends React.Component<any, any> {
                                             21<sub>mm</sub>
                                         </div>
                                     </div>
-                                    <div className="col-sm-6"></div>
+                                    <div className="col-sm-6">
+                                        <ChartContent />
+                                    </div>
                                 </div>
                                 <div className="current-bottom row">
                                     <div className="col-sm-8">
@@ -160,6 +165,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                         <div className="chart-block col-lg-4 col-md-12 col-sm-12">
                             <div className="chart-inner alert-volume">
                                 <div className="label">Alert Volume Today <i className="fa fa-cog"></i></div>
+                                    <LineChart />
                             </div>
                         </div>
                     </div>
@@ -167,7 +173,8 @@ export class MonitorAlerts extends React.Component<any, any> {
                         <div className="chart-block col-lg-4 col-md-12 col-sm-12">
                             <div className="chart-inner alerts">
                                 <div className="label">Alert Volume By Status <i className="fa fa-cog"></i></div>
-                                
+                                <LineChartContent />
+
                             </div>
                         </div>
                         <div className="chart-block col-lg-4 col-md-12 col-sm-12">
@@ -179,7 +186,9 @@ export class MonitorAlerts extends React.Component<any, any> {
                                             11<sub>mm</sub>
                                         </div>
                                     </div>
-                                    <div className="col-sm-6"></div>
+                                    <div className="col-sm-6">
+                                        <ChartContent />
+                                    </div>
                                 </div>
                                 <div className="current-bottom row">
                                     <div className="col-sm-8">
