@@ -4,6 +4,8 @@ import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
 import { Wizard } from './Wizard';
 import { AlertDetails } from './AlertDetails';
+import { AlertTypes } from './AlertTypes';
+import { Conditions } from './Conditions';
 export class ManageAlertRule extends React.Component<any, any> {
     breadCrumbs: any;
     steps: any;
@@ -28,10 +30,10 @@ export class ManageAlertRule extends React.Component<any, any> {
             component: <AlertDetails />
         },{
             name: "Alert Type",
-            component: <div>This is alert type</div>
+            component: <AlertTypes />
         },{
             name: "Conditions",
-            component: <div>This is conditions</div>
+            component: <Conditions />
         },{
             name: "Alert Handlers",
             component: <div>This is alert handlers</div>
@@ -58,7 +60,7 @@ export class ManageAlertRule extends React.Component<any, any> {
                             Back
                         </a>
                     </div>
-                    <div className="wizard-container">
+                    <div className="common-container wizard-container">
                         <Wizard steps={this.steps} />
                     </div>
                 </div>
