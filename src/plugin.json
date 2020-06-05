@@ -51,6 +51,13 @@
         "addToNav": false,
         "defaultNav": false,
         "component": "AllTickets"
+      },
+      {
+        "type": "page",
+        "name": "ManageAlertRule",
+        "addToNav": false,
+        "defaultNav": false,
+        "component": "ManageAlertRule"
       }
     ],
     "dependencies": {
