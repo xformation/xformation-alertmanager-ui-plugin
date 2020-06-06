@@ -6,6 +6,7 @@ import { Wizard } from './Wizard';
 import { AlertDetails } from './AlertDetails';
 import { AlertTypes } from './AlertTypes';
 import { Conditions } from './Conditions';
+import { Message } from './Message';
 export class ManageAlertRule extends React.Component<any, any> {
     breadCrumbs: any;
     steps: any;
@@ -39,7 +40,7 @@ export class ManageAlertRule extends React.Component<any, any> {
             component: <div>This is alert handlers</div>
         },{
             name: "Message",
-            component: <div>This is message</div>
+            component: <Message />
         }];
     }
 

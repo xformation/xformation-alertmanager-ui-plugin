@@ -314,3 +314,46 @@
     min-height: 300px;
     text-align: center;
 }
+.condition_message_box{
+    padding: 20px;
+    padding-bottom: 50px;
+    display: block;
+}
+.condition_message_examplex{
+    padding: 10px 20px;
+    border: 1px solid #979797;
+    min-height: 250px;
+}
+.condition_message_examplex pre{
+    background-color: transparent;
+    color: #3B4859;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 0;
+    font-weight: 400;
+    border: none;
+    padding: 0;
+}
+.templates_text{
+    display: block;
+    margin-top: 15px;
+}
+.templates_text li{
+    color: #3B4859;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 40px;
+    padding: 0 7px 7px 0;
+    display: inline-block;
+    vertical-align: top;
+}
+.templates_text li pre{
+    background-color: #EFEFEF;
+    color: #2662F0;
+    font-size: 14px;
+    line-height: 40px;
+    margin-bottom: 0;
+    font-weight: 400;
+    border: none;
+    padding: 0 7px;
+}
