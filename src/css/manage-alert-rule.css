@@ -357,3 +357,38 @@
     border: none;
     padding: 0 7px;
 }
+.alert_handler_box{
+    border-bottom: 1px solid #8392A7;
+    border-left: 1px solid  #8392A7;
+    border-right: 1px solid  #8392A7;
+   height: 300px;
+
+}
+.alert_handler_span{
+    font-size: 18px;
+    color:#3B4859;
+    font-weight: bold;
+    font-family: Montserrat;
+}
+.alert_left_box{
+   background-color:#DDE4E9;
+   padding: 10px;
+   height: 300px;
+
+}
+.alert_handler_label{
+    font-size: 16px;
+    color: #3B4859;
+    font-family: Montserrat;
+}
+.alert_icon {
+    color: red;
+    float: right;
+  }
+  .alert_handler_datainput
+  {
+      margin-top: 15px;;
+  }
+  .alert_description{
+      padding: 10px;;
+  }
