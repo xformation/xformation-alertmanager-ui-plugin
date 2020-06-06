@@ -1,33 +1,25 @@
 import * as React from 'react';
 import { Line } from 'react-chartjs-2';
 
-export class LineChartContent extends React.Component<any, any> {
+export class AlertVolumeChart extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
             datasets: [{
-                label: "New",
-                backgroundColor: "rgba(252, 203, 80, 0.7)",
+                label: "New 156",
+                lineTension: 0.1,
+                fill: false,
                 borderColor: "rgba(252, 203, 80, 1)",
+                // backgroundColor: "rgba(255, 255,255, 0.1)",
                 data: [20, 29, 34, 11, 46, 25, 49]
             },
             {
-                label: "Open",
-                backgroundColor: "rgba(73, 183, 234, 0.7)",
+                label: "Resolved 75",
+                lineTension: 0.1,
+                fill: false,
                 borderColor: "rgba(73, 183, 234, 1)",
-                data: [20, 39, 38, 50, 56, 70, 39]
-            },
-            {
-                label: "Pendding",
-                backgroundColor: "rgba(109, 219, 146, 0.7)",
-                borderColor: "rgba(109, 219, 146, 1)",
-                data: [28, 48, 40, 19, 86, 27, 90]
-            },
-            {
-                label: "Resolved",
-                backgroundColor: "rgba(250, 125, 137, 0.7)",
-                borderColor: "rgba(250, 125, 137, 1)",
-                data: [60, 49, 68, 31, 66, 75, 49]
+                // backgroundColor: "rgba(255, 255,255, 0.1)",
+                data: [40, 19, 38, 20, 26, 70, 39]
             }
             ],
             labels: ['', '', '', '', '', '']
@@ -62,4 +54,3 @@ export class LineChartContent extends React.Component<any, any> {
     }
 
 };
-

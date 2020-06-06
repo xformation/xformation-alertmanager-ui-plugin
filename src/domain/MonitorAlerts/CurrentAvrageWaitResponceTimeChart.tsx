@@ -2,7 +2,7 @@ import * as React from 'react';
 // import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import { Bar } from 'react-chartjs-2';
 
-export class ChartContent extends React.Component<any, any> {
+export class CurrentAvrageWaitResponceTimeChart extends React.Component<any, any> {
 
     constructor(props: any) {
         super(props);
