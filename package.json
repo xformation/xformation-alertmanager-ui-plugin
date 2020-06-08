@@ -17,6 +17,9 @@
   },
   "author": "",
   "license": "ISC",
+  "lint-staged": {
+    "*.{js,ts,json,css,md}": ["prettier --write", "git add"]
+  },
   "bugs": {
     "url": "https://github.com/raintank/app-plugin-worldping/issues"
   },
