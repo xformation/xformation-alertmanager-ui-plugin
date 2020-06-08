@@ -436,3 +436,32 @@
   background-color: #3b7cff;
   color: #f9fafc;
 }
+.alert-heading {
+  line-height: 36px;
+  color: #3b4859;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 992px) {
+  .common-right-btn .alert-white-button {
+    min-width: 100px;
+  }
+  .float-right.common-right-btn {
+    text-align: left;
+    float: left;
+  }
+  .wizard-step-line-container .wizard-step-button {
+    width: 100%;
+    border-left: 1px solid #707070b5;
+    border-right: 1px solid #707070b5;
+    border-bottom: none;
+  }
+  .wizard-step-line-container .wizard-step-button:last-child {
+    border-bottom: 1px solid #707070b5;
+  }
+  .wizard-step-line-container .wizard-step-button:before,
+  .wizard-step-line-container .wizard-step-button:after {
+    display: none;
+  }
+}

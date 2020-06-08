@@ -52,15 +52,23 @@ export class ManageAlertRule extends React.Component<any, any> {
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MANAGE ALERT RULE" />
                 <div className="alert-page-container">
                     <div className="common-container">
-                        Alert Rule Builder
-                        <div className="float-right common-right-btn">
-                            <button className="alert-white-button save-rule">
-                                Save Rule
-                            </button>
-                            <button className="alert-white-button">
-                                <i className="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;
-                                Back
-                            </button>
+                        <div className="row">
+                            <div className="col-md-5 col-sm-12">
+                                <div className="alert-heading">
+                                    Alert Rule Builder
+                                </div>
+                            </div>
+                            <div className="col-md-7 col-sm-12">
+                                <div className="float-right common-right-btn">
+                                    <button className="alert-white-button save-rule">
+                                        Save Rule
+                                    </button>
+                                    <button className="alert-white-button">
+                                        <i className="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;
+                                        Back
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="common-container wizard-container">
