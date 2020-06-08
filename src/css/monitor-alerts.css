@@ -44,7 +44,9 @@
     box-shadow: 0px 1px 5px #00000029;
     display: block;
     min-height: 250px;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    overflow: hidden;
 }
 .charts-container .chart-block .chart-inner.current{
     background: #E31335;
@@ -168,7 +170,5 @@
     padding-left: 0;
     padding-top: 10px;
 }
-.padding-top{
-    padding-top: 10px;
-}
+
 
