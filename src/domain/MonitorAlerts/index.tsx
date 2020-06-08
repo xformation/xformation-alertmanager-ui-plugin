@@ -4,7 +4,7 @@ import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
 import { CurrentAvrageWaitResponceTimeChart } from './CurrentAvrageWaitResponceTimeChart';
 import { AlertVolumeByStatusChart } from './AlertVolumeByStatusChart';
-import { AlertVolumeChart } from './AlertVolueChar';
+import { AlertVolumeChart } from './AlertVolumeChart';
 
 export class MonitorAlerts extends React.Component<any, any> {
     breadCrumbs: any;
