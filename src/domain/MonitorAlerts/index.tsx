@@ -2,6 +2,9 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
+import { CurrentAvrageWaitResponceTimeChart } from './CurrentAvrageWaitResponceTimeChart';
+import { AlertVolumeByStatusChart } from './AlertVolumeByStatusChart';
+import { AlertVolumeChart } from './AlertVolueChar';
 
 export class MonitorAlerts extends React.Component<any, any> {
     breadCrumbs: any;
@@ -143,7 +146,9 @@ export class MonitorAlerts extends React.Component<any, any> {
                                             21<sub>mm</sub>
                                         </div>
                                     </div>
-                                    <div className="col-sm-6"></div>
+                                    <div className="col-sm-6">
+                                        <CurrentAvrageWaitResponceTimeChart />
+                                    </div>
                                 </div>
                                 <div className="current-bottom row">
                                     <div className="col-sm-8">
@@ -160,12 +165,13 @@ export class MonitorAlerts extends React.Component<any, any> {
                         <div className="chart-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
                             <div className="chart-inner alert-volume">
                                 <div className="label">Alert Volume Today <i className="fa fa-cog"></i></div>
+                                <AlertVolumeChart />
                             </div>
                         </div>
                         <div className="chart-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
                             <div className="chart-inner alerts">
                                 <div className="label">Alert Volume By Status <i className="fa fa-cog"></i></div>
-                                
+                                <AlertVolumeByStatusChart />
                             </div>
                         </div>
                         <div className="chart-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
@@ -177,7 +183,9 @@ export class MonitorAlerts extends React.Component<any, any> {
                                             11<sub>mm</sub>
                                         </div>
                                     </div>
-                                    <div className="col-sm-6"></div>
+                                    <div className="col-sm-6">
+                                        <CurrentAvrageWaitResponceTimeChart />
+                                    </div>
                                 </div>
                                 <div className="current-bottom row">
                                     <div className="col-sm-8">
