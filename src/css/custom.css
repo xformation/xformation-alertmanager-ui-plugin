@@ -8,7 +8,7 @@ a:focus, a:hover{
 
 @media (max-width: 768px){
     #alert-main-container {
-        padding-left: 60px;
+        padding-left: 0px;
     }
 }
 
@@ -496,6 +496,7 @@ a:focus, a:hover{
     padding: 7px 11px;
     border-radius: 4px;
     margin-right: 10px;
+    margin-bottom: 10px;
     display: inline-block;
     min-width: 120px;
 }
@@ -606,4 +607,10 @@ a:focus, a:hover{
 .monitor-alerts-container .alert-data-table-container .progress-label{
     display: inline-block;
     width: 50px;
+}
+
+@media (max-width: 767px){
+    .monitor-alerts-container .alert-data-container .alert-data-block{
+        padding-right: 15px;
+    }
 }

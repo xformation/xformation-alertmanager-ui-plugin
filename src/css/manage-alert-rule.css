@@ -250,6 +250,7 @@
 .condition_box{
     background-color: #F8F9FB;
     border: 1px solid #979797;
+    border-radius: 5px;
 }
 .condition_header{
     border-bottom: 1px solid #979797;
@@ -358,10 +359,10 @@
     padding: 0 7px;
 }
 .alert_handler_box{
-    border-bottom: 1px solid #8392A7;
+    /* border-bottom: 1px solid #8392A7;
     border-left: 1px solid  #8392A7;
-    border-right: 1px solid  #8392A7;
-   height: 300px;
+    border-right: 1px solid  #8392A7; */
+    height: 300px;
 
 }
 .alert_handler_span{
@@ -372,10 +373,27 @@
 }
 .alert_left_box{
    background-color:#DDE4E9;
-   padding: 10px;
+   padding: 0px;
    height: 300px;
-
 }
+.alert_left_box .nav-tabs > li{
+    width: 100%;
+}
+.alert_left_box .nav-tabs > li > a{
+    margin: 0px !important;
+    left: 0;
+    padding: 7px 15px!important;
+    color: #3B4859!important;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 300;
+}
+.alert_left_box .nav-tabs > li.active > a,
+.alert_left_box .nav-tabs > li > a:hover{
+    background-color: #F8F9FB;
+    color: #2662F0;
+}
+
 .alert_handler_label{
     font-size: 16px;
     color: #3B4859;
@@ -384,11 +402,24 @@
 .alert_icon {
     color: red;
     float: right;
+    font-weight: 400;
   }
-  .alert_handler_datainput
-  {
-      margin-top: 15px;;
-  }
-  .alert_description{
-      padding: 10px;;
-  }
+.alert_handler_datainput{
+    margin-top: 15px;
+}
+.alert_handler_span{
+    padding-top: 20px;
+    color: #3B4859;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 18px;
+    display: block;
+}
+.alert_handler_datainput .alert_handler_label{
+    padding-bottom: 5px!important;
+    font-weight: 300!important;
+    font-size: 13px!important;
+}
+.alert_handler_datainput .form-control{
+    font-size: 12px;
+}
