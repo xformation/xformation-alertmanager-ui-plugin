@@ -147,7 +147,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
-                                        <div className="current_time_chart">
+                                        <div className="current_responce_time_chart">
                                             <CurrentAvrageWaitResponceTimeChart />
                                         </div>
                                     </div>
@@ -190,7 +190,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
-                                        <div className="current_time_chart">
+                                        <div className="current_responce_time_chart">
                                             <CurrentAvrageWaitResponceTimeChart />
                                         </div>
                                     </div>

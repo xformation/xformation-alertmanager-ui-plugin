@@ -171,7 +171,16 @@
     padding-left: 0;
     padding-top: 10px;
 }
+.current_responce_time_chart{
+    padding: 15px;
+    height: 170px;
+    display: block;
+    width: 100%;
+}
 .current_time_chart{
     padding: 15px;
+    height: 250px;
+    display: block;
+    width: 100%;
 }
 
