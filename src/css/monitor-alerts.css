@@ -1,186 +1,194 @@
 .alert-data-table-container.common-container {
-    margin-right: 20px;
-    padding-left: 0;
-    margin-left: 20px;   
+  margin-right: 20px;
+  padding-left: 0;
+  margin-left: 20px;
 }
 
-.alert-data-table-container.common-container .alert-data-table{
-    font-size: 13px;
+.alert-data-table-container.common-container .alert-data-table {
+  font-size: 13px;
 }
-.alert-data-table-container .alert-data-table tr th, .alert-data-table-container .alert-data-table tr td{
-    padding: 8px 10px 8px 10px;
+.alert-data-table-container .alert-data-table tr th,
+.alert-data-table-container .alert-data-table tr td {
+  padding: 8px 10px 8px 10px;
 }
-.popover a{
-    color: #3b4859;
+.popover a {
+  color: #3b4859;
 }
 .popover a:hover,
-.popover a:focus{
-    color: #000000;
+.popover a:focus {
+  color: #000000;
 }
-.alert-data-table-container .alert-data-table .btn-link{
-    color: #57a4ff !important;
-    padding-left: 5px;
-    padding-right: 5px; 
+.alert-data-table-container .alert-data-table .btn-link {
+  color: #57a4ff !important;
+  padding-left: 5px;
+  padding-right: 5px;
 }
-.alert-data-table-container .alert-data-table .pointer-label{
-    position: relative;
-    padding-left: 22px;
+.alert-data-table-container .alert-data-table .pointer-label {
+  position: relative;
+  padding-left: 22px;
 }
-.alert-data-table-container .alert-data-table .pointer-label .checkbox{
-    position: absolute;
-    left: 0;
-    top: 0;
+.alert-data-table-container .alert-data-table .pointer-label .checkbox {
+  position: absolute;
+  left: 0;
+  top: 0;
 }
-.d-flex{
-    display: flex;
-}
-
-.charts-container{
-    padding-right: 20px;
-    border-bottom: none;
-}
-.charts-container .chart-block .chart-inner{
-    background: #F0F3F7;
-    box-shadow: 0px 1px 5px #00000029;
-    display: block;
-    min-height: 290px;
-    margin-bottom: 30px;
-    border-radius: 5px;
-    overflow: hidden;
-}
-.charts-container .chart-block .chart-inner.current{
-    background: #E31335;
-}
-.charts-container .chart-block .chart-inner.current.average{
-    background: #15C64C;
-}
-.charts-container .chart-block .chart-inner .label{
-    text-align: center;
-    display: block;
-    background: #dae4f3;
-    color: #3B4859;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 600;
-}
-.charts-container .chart-block .chart-inner .label i{
-    float: right;
-    padding-right: 10px;
-    font-size: 18px;
-}
-.charts-container .chart-block .chart-inner.current .label{
-    color: #FFFFFF;
-    background: #E31335;
-    border-bottom: 1px solid #f1899a;
-}
-.charts-container .chart-block .chart-inner.current.average .label{
-    background: #15C64C;
-    border-bottom: 1px solid #95e5ae;
+.d-flex {
+  display: flex;
 }
 
-.chart-data-table{
-    display: block;
-    width: 100%;
-    padding-top: 5px;
+.charts-container {
+  padding-right: 20px;
+  border-bottom: none;
+}
+.charts-container .chart-block .chart-inner {
+  background: #f0f3f7;
+  box-shadow: 0px 1px 5px #00000029;
+  display: block;
+  min-height: 260px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-right: 45px;
+}
+.charts-container .chart-block .chart-inner.current {
+  background: #e31335;
+}
+.charts-container .chart-block .chart-inner.current.average {
+  background: #15c64c;
+}
+.charts-container .chart-block .chart-inner .label {
+  text-align: center;
+  display: block;
+  background: #dae4f3;
+  color: #3b4859;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+}
+.charts-container .chart-block .chart-inner .label i {
+  float: right;
+  padding-right: 10px;
+  font-size: 18px;
+}
+.charts-container .chart-block .chart-inner.current .label {
+  color: #ffffff;
+  background: #e31335;
+  border-bottom: 1px solid #f1899a;
+}
+.charts-container .chart-block .chart-inner.current.average .label {
+  background: #15c64c;
+  border-bottom: 1px solid #95e5ae;
+}
+
+.chart-data-table {
+  display: block;
+  width: 100%;
+  padding-top: 5px;
 }
 .chart-data-table .table,
 .chart-data-table .table tbody,
-.chart-data-table .table tbody tr{
-    width: 100%;
+.chart-data-table .table tbody tr {
+  width: 100%;
 }
 .chart-data-table .table th,
-.chart-data-table .table td{
-    color: #3b4859;
-    font-size: 11px;
-    line-height: 15px;
-    padding: 8px 20px 8px 20px;
+.chart-data-table .table td {
+  color: #3b4859;
+  font-size: 11px;
+  line-height: 15px;
+  padding: 8px 20px 8px 20px;
 }
-.chart-data-table .table .chart-header{
-    border-bottom: 1px solid #e4ebf4;
-    text-transform: uppercase;
+.chart-data-table .table .chart-header {
+  border-bottom: 1px solid #e4ebf4;
+  text-transform: uppercase;
 }
-.chart-data-table .table .high{
-    background: #FF0000;
-    border-radius: 4px;
-    color: #FFFFFF;
-    font-weight: 500;
-    display: block;
-    font-size: 10px;
-    line-height: 16px;
-    text-align: center;
+.chart-data-table .table .high {
+  background: #ff0000;
+  border-radius: 4px;
+  color: #ffffff;
+  font-weight: 500;
+  display: block;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
 }
-.chart-data-table .table .low{
-    background: #3B7CFF;
-    border-radius: 4px;
-    color: #FFFFFF;
-    font-weight: 500;
-    display: block;
-    font-size: 10px;
-    line-height: 16px;
-    text-align: center;
+.chart-data-table .table .low {
+  background: #3b7cff;
+  border-radius: 4px;
+  color: #ffffff;
+  font-weight: 500;
+  display: block;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
 }
-.chart-data-table .table .medium{
-    background: #FF8F00;
-    border-radius: 4px;
-    color: #FFFFFF;
-    font-weight: 500;
-    display: block;
-    font-size: 10px;
-    line-height: 16px;
-    text-align: center;
+.chart-data-table .table .medium {
+  background: #ff8f00;
+  border-radius: 4px;
+  color: #ffffff;
+  font-weight: 500;
+  display: block;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
 }
-.current-text{
-    font-size: 60px;
-    color: #FFFFFF;
-    font-weight: 400;
-    line-height: 66px;
-    display: block;
-    padding: 50px 0 0 0;
-    text-align: right;
+.current-text {
+  font-size: 48px;
+  color: #ffffff;
+  font-weight: 400;
+  line-height: 66px;
+  display: block;
+  padding: 50px 0 0 0;
+  text-align: right;
 }
-.current-text sub{
-    font-size: 18px;
+.current-text sub {
+  font-size: 18px;
 }
-.current-bottom{
-    margin-top: 10px;
-    margin-bottom: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
+.current-bottom {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
-.current-bottom select{
-    background-color: #E31335;
-    border: 1px solid #FFFFFF;
-    color: #FFFFFF;
-    border-radius: 25px;
-    font-size: 11px;
-    line-height: 18px;
-    font-weight: 400;
-    padding: 2px 10px;
-    width: 100%;
+.current-bottom select {
+  background-color: #e31335;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  border-radius: 25px;
+  font-size: 11px;
+  line-height: 18px;
+  font-weight: 400;
+  padding: 2px 10px;
+  width: 100%;
 }
-.average .current-bottom select{
-    background-color: #15C64C;
+.average .current-bottom select {
+  background-color: #15c64c;
 }
-.current-bottom .minutes-text{
-    font-size: 11px;
-    line-height: 18px;
-    font-weight: 400;
-    color: #FFFFFF;
-    padding-left: 0;
-    padding-top: 10px;
+.current-bottom .minutes-text {
+  font-size: 11px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #ffffff;
+  padding-left: 0;
+  padding-top: 10px;
 }
-.current_responce_time_chart{
-    padding: 15px;
-    height: 170px;
-    display: block;
-    width: 100%;
+.current_responce_time_chart {
+  padding: 15px;
+  padding-left: 0;
+  height: 140px;
+  display: block;
+  width: 100%;
 }
-.current_time_chart{
-    padding: 15px;
-    height: 250px;
-    display: block;
-    width: 100%;
+.current_time_chart {
+  padding: 15px;
+  height: 220px;
+  display: block;
+  width: 100%;
 }
 
+@media only screen and (max-width: 992px) {
+  .charts-container .chart-block .chart-inner {
+    margin-right: 0;
+  }
+}

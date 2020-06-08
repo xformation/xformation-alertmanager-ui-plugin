@@ -141,12 +141,12 @@ export class MonitorAlerts extends React.Component<any, any> {
                             <div className="chart-inner current">
                                 <div className="label">Current Wait Time <i className="fa fa-cog"></i></div>
                                 <div className="row">
-                                    <div className="col-sm-6">
+                                    <div className="col-sm-5">
                                         <div className="current-text">
                                             21<sub>mm</sub>
                                         </div>
                                     </div>
-                                    <div className="col-sm-6">
+                                    <div className="col-sm-7">
                                         <div className="current_responce_time_chart">
                                             <CurrentAvrageWaitResponceTimeChart />
                                         </div>
@@ -184,12 +184,12 @@ export class MonitorAlerts extends React.Component<any, any> {
                             <div className="chart-inner current average">
                                 <div className="label">Average Response Time <i className="fa fa-cog"></i></div>
                                 <div className="row">
-                                    <div className="col-sm-6">
+                                    <div className="col-sm-5">
                                         <div className="current-text">
                                             11<sub>mm</sub>
                                         </div>
                                     </div>
-                                    <div className="col-sm-6">
+                                    <div className="col-sm-7">
                                         <div className="current_responce_time_chart">
                                             <CurrentAvrageWaitResponceTimeChart />
                                         </div>
