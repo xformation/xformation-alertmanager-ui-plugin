@@ -53,14 +53,15 @@ export class ManageAlertRule extends React.Component<any, any> {
                 <div className="alert-page-container">
                     <div className="common-container">
                         Alert Rule Builder
-                        <button className="alert-white-button">
-                            <i className="fa fa-refresh"></i>&nbsp;&nbsp;
-                            Save
-                        </button>
-                        <a className="alert-white-button float-right">
-                            <i className="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;
-                            Back
-                        </a>
+                        <div className="float-right common-right-btn">
+                            <button className="alert-white-button save-rule">
+                                Save Rule
+                            </button>
+                            <button className="alert-white-button">
+                                <i className="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;
+                                Back
+                            </button>
+                        </div>
                     </div>
                     <div className="common-container wizard-container">
                         <Wizard steps={this.steps} />
