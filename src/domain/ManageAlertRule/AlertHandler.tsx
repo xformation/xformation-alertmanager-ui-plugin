@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
-//import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
-//import classnames from 'classnames';
+import classnames from 'classnames';
 
 export class AlertHandler extends React.Component<any, any>{
 
