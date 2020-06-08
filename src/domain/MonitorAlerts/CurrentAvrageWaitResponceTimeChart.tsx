@@ -33,7 +33,7 @@ export class CurrentAvrageWaitResponceTimeChart extends React.Component<any, any
 
     render() {
         return (
-            <div className="">
+            <div className="" style={{width: "100%", height: "100%"}}>
                 <Bar
                     data={this.state}
                     options={{
@@ -49,19 +49,14 @@ export class CurrentAvrageWaitResponceTimeChart extends React.Component<any, any
                                 ticks: {
                                     fontColor: "white",
                                     stepSize: 10,
-                                    // beginAtZero: true
                                 }
                             }]
                         },
-                        // title: {
-                        //     display: true,
-                        //     text: 'Average Rainfall per month',
-                        //     fontSize: 20
-                        // },
                         legend: {
                             display: false,
-                            // position: 'right'
-                        }
+                        },
+                        responsive: true,
+                        maintainAspectRatio: false,
                     }}
                 />
             </div>

@@ -29,7 +29,7 @@ export class AlertVolumeChart extends React.Component<any, any> {
 
     render() {
         return (
-            <div className="padding-top">
+            <div className="padding-top" style={{width: "100%", height: "100%"}}>
                 <Line
                     data={this.state}
                     options={{
