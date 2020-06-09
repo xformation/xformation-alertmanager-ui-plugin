@@ -1,6 +1,6 @@
-import init from '../domain/ManageAlertRuleApp';
+import init from '../domain/AlertRuleBuilderApp';
 
-export class ManageAlertRule {
+export class AlertRuleBuilder {
     static templateUrl = '/partials/alerts.html';
     constructor() {
         init();

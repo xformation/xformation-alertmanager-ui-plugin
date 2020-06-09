@@ -54,10 +54,10 @@
       },
       {
         "type": "page",
-        "name": "ManageAlertRule",
+        "name": "AlertRuleBuilder",
         "addToNav": false,
         "defaultNav": false,
-        "component": "ManageAlertRule"
+        "component": "AlertRuleBuilder"
       }
     ],
     "dependencies": {

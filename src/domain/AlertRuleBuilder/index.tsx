@@ -8,7 +8,7 @@ import { AlertTypes } from './AlertTypes';
 import { Conditions } from './Conditions';
 import { AlertHandler } from './AlertHandler'
 import { Message } from './Message';
-export class ManageAlertRule extends React.Component<any, any> {
+export class AlertRuleBuilder extends React.Component<any, any> {
     breadCrumbs: any;
     steps: any;
     constructor(props: any) {
