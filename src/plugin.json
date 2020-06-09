@@ -58,6 +58,13 @@
         "addToNav": false,
         "defaultNav": false,
         "component": "AlertRuleBuilder"
+      },
+      {
+        "type": "page",
+        "name": "ManageAlertRule",
+        "addToNav": false,
+        "defaultNav": false,
+        "component": "ManageAlertRule"
       }
     ],
     "dependencies": {
