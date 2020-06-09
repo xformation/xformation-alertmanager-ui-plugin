@@ -47,7 +47,7 @@ export class AlertHandler extends React.Component<any, any>{
                                             className={`${activeTab == 0 ? 'side-active' : ''}`}
                                             onClick={() => { this.toggleTab(0); }}
                                         >
-                                            Post &nbsp; &nbsp; <i className="fa fa-close alert_icon"></i>
+                                            Post
                                         </NavLink>
                                     </NavItem>
                                     <NavItem>
@@ -55,7 +55,7 @@ export class AlertHandler extends React.Component<any, any>{
                                             className={`${activeTab == 1 ? 'side-active' : ''}`}
                                             onClick={() => { this.toggleTab(1); }}
                                         >
-                                            Tcp &nbsp; &nbsp; <i className="fa fa-close alert_icon"></i>
+                                            Tcp
                                         </NavLink>
                                     </NavItem>
                                     <NavItem>
@@ -63,7 +63,7 @@ export class AlertHandler extends React.Component<any, any>{
                                             className={`${activeTab == 2 ? 'side-active' : ''}`}
                                             onClick={() => { this.toggleTab(2); }}
                                         >
-                                            Exec &nbsp; &nbsp; <i className="fa fa-close alert_icon"></i>
+                                            Exec
                                         </NavLink>
                                     </NavItem>
                                     <NavItem>
@@ -71,7 +71,7 @@ export class AlertHandler extends React.Component<any, any>{
                                             className={`${activeTab == 3 ? 'side-active' : ''}`}
                                             onClick={() => { this.toggleTab(3); }}
                                         >
-                                            Log &nbsp; &nbsp; <i className="fa fa-close alert_icon"></i>
+                                            Log
                                         </NavLink>
                                     </NavItem>
                                 </Nav>

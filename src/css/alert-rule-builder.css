@@ -28,7 +28,7 @@
 }
 .wizard-step-line-container .wizard-step-button.active,
 .wizard-step-line-container .wizard-step-button:hover {
-  background-color: #ffffff;
+  background-color: #efefef;
   color: #2662f0;
 }
 .wizard-step-line-container .wizard-step-button:after {
@@ -62,12 +62,12 @@
 .wizard-step-line-container .wizard-step-button.active:after,
 .wizard-step-line-container .wizard-step-button:hover:after {
   border-color: rgba(255, 255, 255, 0);
-  border-left-color: #ffffff;
+  border-left-color: #efefef;
 }
 .wizard-step-line-container .wizard-step-button.active:before,
 .wizard-step-line-container .wizard-step-button:hover:before {
   border-color: rgba(255, 255, 255, 0);
-  border-left-color: #fff;
+  border-left-color: #efefef;
 }
 .wizard-step-line-container .wizard-step-button:last-child:after,
 .wizard-step-line-container .wizard-step-button:last-child:before {
@@ -386,8 +386,33 @@
   font-size: 13px;
   line-height: 18px;
   font-weight: 400;
+  position: relative;
 }
-.alert_left_box .nav-tabs > li.active > a,
+.alert_left_box .nav-tabs > li > a:before {
+  border: none;
+  background-color: red;
+  width: 1px;
+  height: 10px;
+  transform: rotate(45deg);
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: 20px;
+}
+.alert_left_box .nav-tabs > li > a:after {
+  content: "";
+  position: absolute;
+  background: transparent;
+  transform: rotate(-45deg);
+  border: none;
+  background-color: red;
+  width: 1px;
+  height: 10px;
+  right: 20px;
+  top: 12px;
+}
+
+.alert_left_box .nav-tabs > li > a.side-active,
 .alert_left_box .nav-tabs > li > a:hover {
   background-color: #f8f9fb;
   color: #2662f0 !important;

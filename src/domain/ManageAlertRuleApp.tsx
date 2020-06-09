@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
-import { AlertRuleBuilder } from './AlertRuleBuilder';
+import { ManageAlertRule } from './ManageAlertRule';
 import '../css/custom.css';
-import '../css/alert-rule-builder.css';
+import '../css/monitor-alerts.css';
 import { config } from '../config';
 
 export default function init() {
@@ -11,7 +11,7 @@ export default function init() {
     ReactDOM.render(
       <BrowserRouter>
         <Switch>
-          <Route path={`${config.basePath}/alertrulebuilder`} component={AlertRuleBuilder} />
+          <Route path={`${config.basePath}/managealertrule`} component={ManageAlertRule} />
         </Switch>
       </BrowserRouter>,
       document.getElementById('alert-main-container')
