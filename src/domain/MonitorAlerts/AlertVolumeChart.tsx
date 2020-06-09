@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Line } from 'react-chartjs-2';
 
 export class AlertVolumeChart extends React.Component<any, any> {
+    chart: any;
     constructor(props: any) {
         super(props);
         this.state = {
@@ -22,15 +23,50 @@ export class AlertVolumeChart extends React.Component<any, any> {
                 data: [40, 19, 38, 20, 26, 70, 39]
             }
             ],
-            labels: ['', '', '', '', '', '']
-
+            labels: ['', '', '', '', '', ''],
+            legends: []
         };
+        this.chart = null;
     }
+
+    componentDidMount() {
+        if (this.chart) {
+            this.setState({
+                legends: this.chart.chartInstance.legend.legendItems
+            });
+        }
+    }
+
+    createLegend = () => {
+        const text = [];
+        const { legends } = this.state;
+        if (legends && legends.length > 0) {
+            for (var i = 0; i < legends.length; i++) {
+                text.push(
+                    <li>
+                        <div className="chart-legend">
+                            <span style={{ backgroundColor: legends[i].fillStyle }}>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                            </span>
+                            <span className="legend-label">
+                                {legends[i].text}
+                            </span>
+                        </div>
+                    </li>
+                );
+                text.push(
+                    <div className="clear"></div>
+                );
+            }
+        }
+        return text;
+    };
 
     render() {
         return (
-            <div className="padding-top" style={{width: "100%", height: "100%"}}>
+            <div className="padding-top" style={{ width: "100%", height: "100%" }}>
                 <Line
+                    ref={ref => (this.chart = ref)}
                     data={this.state}
                     options={{
                         responsive: true,
@@ -44,11 +80,16 @@ export class AlertVolumeChart extends React.Component<any, any> {
                             }],
                         },
                         legend: {
-                            display: true,
+                            display: false,
                             position: 'bottom'
                         }
                     }}
                 />
+                <div className="legend-container">
+                    <ul className="custom-chart-legends">
+                        {this.createLegend()}
+                    </ul>
+                </div>
             </div>
         );
     }
