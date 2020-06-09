@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { ManageAlertRule } from './ManageAlertRule';
 import '../css/custom.css';
-import '../css/monitor-alerts.css';
+import '../css/manage-alert-rule.css';
 import { config } from '../config';
 
 export default function init() {

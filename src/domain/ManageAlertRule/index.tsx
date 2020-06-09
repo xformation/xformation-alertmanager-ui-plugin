@@ -24,8 +24,201 @@ export class ManageAlertRule extends React.Component<any, any> {
 
     render() {
         return (
-            <div className="monitor-alerts-container">
+            <div className="monitor-alerts-container manage-alert-rule">
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALERTS" />
+                <div className="alert-page-container">
+                    <div className="common-container">
+                        <div className="row">
+                            <div className="col-md-6 col-sm-6">
+                                <button className="alert-white-button kpi-btn">KPI</button>
+                                <button className="alert-white-button log-btn">Log</button>
+                            </div>
+                            <div className="col-md-6 col-sm-6">
+                                <div className="float-right common-right-btn">
+                                    <button className="alert-white-button"><i className="fa fa-arrow-circle-left"></i>&nbsp;&nbsp; Back</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="common-container manage-container">
+                        <div className="row">
+                            <div className="col-lg-8 col-md-12 col-sm-12 manage-rules-search">
+                                <div className="manage-rules-search-text">3 Alert Rules</div>
+                                <div className="manage-rules-search-box">
+                                    <form>
+                                        <input type="text" className="input-group-text" placeholder="Search Rule" />
+                                        <button><i className="fa fa-search"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div className="col-lg-4 col-md-12 col-sm-12 manage-rules-btn">
+                                <div className="float-right common-right-btn">
+                                    <button className="alert-white-button create-rule-btn">Create Alert Rule</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="manage-data-table">
+                            <div className="manage-data-table-inner">
+                                <div className="table-scroll">
+                                    <table className="table">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Rule Type</td>
+                                            <td>Message</td>
+                                            <td>Alert Handlers</td>
+                                            <td>Actions</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>CPU Percentage</td>
+                                            <td>Threshold</td>
+                                            <td>
+                                                <pre>
+                                                    <code>&#0123;&#0123;.ID&#0125;&#0125; &#0123;&#0123;.Name&#0125;&#0125; &#0123;&#0123;.TaskName&#0125;&#0125; &#0123;&#0123;….</code>
+                                                </pre>
+                                            </td>
+                                            <td>
+                                                <pre>
+                                                    <code>Slack (default)</code>
+                                                </pre>
+                                            </td>
+                                            <td>
+                                                <div className="d-flex">
+                                                    <div className="enabled"></div>
+                                                    <button className="btn btn-link"><i className="fa fa-edit"></i></button>
+                                                    <button className="btn btn-link"><i className="fa fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Disk Read Bytes</td>
+                                            <td>Threshold</td>
+                                            <td>
+                                                <pre>
+                                                    <code>&#0123;&#0123;.ID&#0125;&#0125; &#0123;&#0123;.Name&#0125;&#0125; &#0123;&#0123;.TaskName&#0125;&#0125; &#0123;&#0123;….</code>
+                                                </pre>
+                                            </td>
+                                            <td>
+                                                <pre>
+                                                    <code>Slack (default)</code>
+                                                </pre>
+                                            </td>
+                                            <td>
+                                                <div className="d-flex">
+                                                    <div className="enabled"></div>
+                                                    <button className="btn btn-link"><i className="fa fa-edit"></i></button>
+                                                    <button className="btn btn-link"><i className="fa fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Disk Write Bytes</td>
+                                            <td>Threshold</td>
+                                            <td>
+                                                <pre>
+                                                    <code>&#0123;&#0123;.ID&#0125;&#0125; &#0123;&#0123;.Name&#0125;&#0125; &#0123;&#0123;.TaskName&#0125;&#0125; &#0123;&#0123;….</code>
+                                                </pre>
+                                            </td>
+                                            <td>
+                                                <pre>
+                                                    <code>Slack (default)</code>
+                                                </pre>
+                                            </td>
+                                            <td>
+                                                <div className="d-flex">
+                                                    <div className="enabled"></div>
+                                                    <button className="btn btn-link"><i className="fa fa-edit"></i></button>
+                                                    <button className="btn btn-link"><i className="fa fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="common-container manage-container">
+                        <div className="row">
+                            <div className="col-lg-8 col-md-12 col-sm-12 manage-rules-search">
+                                <div className="manage-rules-search-text">3 Scripts</div>
+                                <div className="manage-rules-search-box">
+                                    <form>
+                                        <input type="text" className="input-group-text" placeholder="Search Script" />
+                                        <button><i className="fa fa-search"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div className="col-lg-4 col-md-12 col-sm-12 manage-rules-btn">
+                                <div className="float-right common-right-btn">
+                                    <button className="alert-white-button create-rule-btn">Write Script</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="manage-data-table">
+                            <div className="manage-data-table-inner">
+                                <table className="table">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Type</td>
+                                            <td>Actions</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>CPU Percentage</td>
+                                            <td>
+                                                <pre>
+                                                    <code>Slack (default)</code>
+                                                </pre>
+                                            </td>
+                                            <td>
+                                                <div className="d-flex">
+                                                    <div className="enabled"></div>
+                                                    <button className="btn btn-link"><i className="fa fa-edit"></i></button>
+                                                    <button className="btn btn-link"><i className="fa fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Disk Read Bytes</td>
+                                            <td>
+                                                <pre>
+                                                    <code>Slack (default)</code>
+                                                </pre>
+                                            </td>
+                                            <td>
+                                                <div className="d-flex">
+                                                    <div className="enabled"></div>
+                                                    <button className="btn btn-link"><i className="fa fa-edit"></i></button>
+                                                    <button className="btn btn-link"><i className="fa fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Disk Write Bytes</td>
+                                            <td>
+                                                <pre>
+                                                    <code>Slack (default)</code>
+                                                </pre>
+                                            </td>
+                                            <td>
+                                                <div className="d-flex">
+                                                    <div className="enabled"></div>
+                                                    <button className="btn btn-link"><i className="fa fa-edit"></i></button>
+                                                    <button className="btn btn-link"><i className="fa fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
             </div>
         );
     }
