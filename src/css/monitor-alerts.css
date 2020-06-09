@@ -2,6 +2,7 @@
   margin-right: 20px;
   padding-left: 0;
   margin-left: 20px;
+  display: grid;
 }
 
 .alert-data-table-container.common-container .alert-data-table {
@@ -191,6 +192,29 @@
 }
 .p-r-0 {
   padding-right: 0;
+}
+.custom-chart-legends {
+  list-style: none;
+  text-align: center;
+  margin-top: -15px;
+}
+.custom-chart-legends li {
+  display: inline-block;
+  padding: 0 10px;
+  font-size: 12px;
+  line-height: 16px;
+  vertical-align: top;
+  color: #3b4859;
+  font-weight: 300;
+}
+.custom-chart-legends li .legend-background {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+  margin-top: -2px;
 }
 
 @media only screen and (max-width: 992px) {

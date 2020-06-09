@@ -45,9 +45,7 @@ export class AlertVolumeChart extends React.Component<any, any> {
                 text.push(
                     <li>
                         <div className="chart-legend">
-                            <span style={{ backgroundColor: legends[i].fillStyle }}>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                            </span>
+                            <span className="legend-background" style={{ backgroundColor: legends[i].fillStyle }}></span>
                             <span className="legend-label">
                                 {legends[i].text}
                             </span>
@@ -55,7 +53,7 @@ export class AlertVolumeChart extends React.Component<any, any> {
                     </li>
                 );
                 text.push(
-                    <div className="clear"></div>
+                    
                 );
             }
         }
