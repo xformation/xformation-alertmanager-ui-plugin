@@ -385,12 +385,16 @@
   color: #3b4859 !important;
   font-size: 13px;
   line-height: 18px;
-  font-weight: 300;
+  font-weight: 400;
 }
 .alert_left_box .nav-tabs > li.active > a,
 .alert_left_box .nav-tabs > li > a:hover {
   background-color: #f8f9fb;
-  color: #2662f0;
+  color: #2662f0 !important;
+}
+.alert_left_box .nav-tabs > li > a > i {
+  line-height: 18px;
+  font-weight: 300;
 }
 
 .alert_handler_label {
