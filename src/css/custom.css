@@ -600,17 +600,3 @@ a:hover {
 .popover a:focus {
   color: #000000;
 }
-.alert-data-table-container .alert-data-table .btn-link {
-  color: #57a4ff !important;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-.alert-data-table-container .alert-data-table .pointer-label {
-  position: relative;
-  padding-left: 22px;
-}
-.alert-data-table-container .alert-data-table .pointer-label .checkbox {
-  position: absolute;
-  left: 0;
-  top: 0;
-}
