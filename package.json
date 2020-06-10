@@ -18,7 +18,10 @@
   "author": "",
   "license": "ISC",
   "lint-staged": {
-    "*.{js,ts,json,css,md}": ["prettier --write", "git add"]
+    "*.{js,ts,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "bugs": {
     "url": "https://github.com/raintank/app-plugin-worldping/issues"
@@ -58,8 +61,10 @@
   "dependencies": {
     "@types/react-router-dom": "^5.1.3",
     "chart.js": "^2.9.3",
+    "codemirror": "^5.54.0",
     "lodash": "^4.17.11",
     "react-chartjs-2": "^2.9.0",
+    "react-codemirror2": "^7.2.1",
     "react-router-dom": "^5.2.0",
     "reactstrap": "^8.4.1"
   },

@@ -86,34 +86,12 @@
   }
 }
 /*********************************** Script Editor Code *********************************/
-.script-editor-code {
-  display: block;
-}
-.script-editor-code pre {
-  font-size: 14px;
-  line-height: 18px;
-  font-weight: 300;
-  font-style: italic;
-  background-color: #000000;
-  border-radius: 5px;
-  padding: 25px 15px;
-}
-.script-editor-code pre .span1 {
-  color: #8912f2;
-}
-.script-editor-code pre .span2 {
-  color: #00c9ff;
-}
-.script-editor-code pre .span3 {
-  color: #ff8f00;
-}
-.script-editor-code pre .span4 {
-  color: #7eba8a;
-}
+
 .validate-bottom-text {
   display: block;
   font-size: 11px;
   line-height: 16px;
   color: #3b4859;
   font-weight: 300;
+  margin-top: 25px;
 }
