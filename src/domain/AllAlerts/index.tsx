@@ -162,27 +162,28 @@ export class AllAlerts extends React.Component<any, any> {
                         </div>
                         <div className="col-lg-2 col-md-3 col-sm-12">
                             <div className="form-group filter-control-group archive">
-                                <input type="checkbox" className="form-control" />
-                                <label htmlFor="archive"></label>
-                                <span>Archive</span>
+                                <label htmlFor="archive">
+                                    <input type="checkbox" className="form-control" checked />
+                                    <span>Archive</span>
+                                </label>
                             </div>
                         </div>
                         <div className="col-lg-2 col-md-3 col-sm-12">
-                            <div className="form-group filter-control-group archive clear_filters">
-                                <input type="checkbox" className="form-control" />
-                                <label htmlFor="clearFilter"></label>
-                                <span>Clear All Filters</span>
+                            <div className="form-group filter-control-group clear-filters">
+                                <label htmlFor="clearFilter">
+                                    <span>Clear All Filters</span>
+                                </label>
                             </div>
                         </div>
                     </div>
                     <div className="filter-container form-row row common-container">
-                        <div className="col-md-6 col-sm-12">
-                            <label htmlFor="allallerts">
+                        <div className="col-md-3 col-sm-12">
+                            <label htmlFor="allallerts" className="all-alerts">
                                 All Alerts
                             </label>
                         </div>
-                        <div className="col-md-6 col-sm-12">
-                            <div className="alerts__right_form">
+                        <div className="col-md-9 col-sm-12">
+                            <div className="alerts-right-form">
                                 <div className="row">
                                     <div className="col-md-4 col-sm-12">
                                         <div className="form-group filter-control-group">
@@ -214,7 +215,9 @@ export class AllAlerts extends React.Component<any, any> {
                             <table className="alert-data-table">
                             <tbody>
                                 <tr className="alert-data-table-header">
-                                    <th><input type="checkbox" /> Name</th>
+                                    <th>
+                                        <div className="pointer-label" onClick={this.toggle}><input type="checkbox" className="checkbox" /> Name</div>
+                                    </th>
                                     <th>Severity</th>
                                     <th>Monitor Condition</th>
                                     <th>Alert State</th>
