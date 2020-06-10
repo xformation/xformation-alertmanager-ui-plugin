@@ -21,13 +21,13 @@ export class AlertHandler extends React.Component<any, any>{
     render() {
         const { activeTab } = this.state;
         return (
-            <div className="alert_details">
-                <div className="alert_details_name">
+            <div className="alert-details">
+                <div className="alert-details-name">
                     <label>Condition</label>
-                    <div className="condition_box">
-                        <div className="condition_header">
-                            <div className="send_alert_text">Send this alert to:</div>
-                            <div className="greater_select">
+                    <div className="condition-box">
+                        <div className="condition-header">
+                            <div className="send-alert-text">Send this alert to:</div>
+                            <div className="greater-select">
                                 <select className="form-control" id="rousourceGroup">
                                     <option>post</option>
                                     <option>tcp</option>
@@ -37,10 +37,10 @@ export class AlertHandler extends React.Component<any, any>{
                                 </select>
                             </div>
                         </div>
-                        <div className="alert_handler_box">
+                        <div className="alert-handler-box">
                             <section className="tab-container row vertical-tab-container">
                             <div className="col-lg-2 col-md-3 col-sm-6">
-                                <div className="alert_left_box">
+                                <div className="alert-left-box">
                                     <Nav tabs>
                                     <NavItem>
                                         <NavLink
@@ -77,23 +77,23 @@ export class AlertHandler extends React.Component<any, any>{
                                 </Nav>
                                 </div>
                             </div>
-                            <div className="col-lg-9 col-md-9 col-sm-6 alert_description">
+                            <div className="col-lg-9 col-md-9 col-sm-6 alert-description">
                                 <TabContent activeTab={activeTab}>
                                     <TabPane tabId={0}>
-                                        <span className="alert_handler_span">Parameters for this Alert Handler</span>
+                                        <span className="alert-handler-span">Parameters for this Alert Handler</span>
                                         <div className="row">
-                                            <div className="col-lg-12 col-md-12 col-sm-12 alert_handler_datainput">
-                                                <label className="alert_handler_label">HTTP endpoint for POST request</label>
+                                            <div className="col-lg-12 col-md-12 col-sm-12 alert-handler-datainput">
+                                                <label className="alert-handler-label">HTTP endpoint for POST request</label>
                                                 <input type="text" className="form-control" placeholder="ex:http://example.com/api/alert" />
                                             </div>
                                         </div>
                                         <div className="row">
-                                            <div className="col-lg-6 col-md-6 col-sm-12 alert_handler_datainput">
-                                                <label className="alert_handler_label">Header Key</label>
+                                            <div className="col-lg-6 col-md-6 col-sm-12 alert-handler-datainput">
+                                                <label className="alert-handler-label">Header Key</label>
                                                 <input type="text" className="form-control" />
                                             </div>
-                                            <div className="col-lg-6 col-md-6 col-sm-12 alert_handler_datainput">
-                                                <label className="alert_handler_label">Heade Value</label>
+                                            <div className="col-lg-6 col-md-6 col-sm-12 alert-handler-datainput">
+                                                <label className="alert-handler-label">Heade Value</label>
                                                 <input type="text" className="form-control" />
                                             </div>
                                         </div>
@@ -155,7 +155,7 @@ export class AlertHandler extends React.Component<any, any>{
                         </div>
                     </div>
                 </div>
-                <div className="alert_details_next"><button className="btn next-btn">Next</button></div>                
+                <div className="alert-details-next"><button className="btn next-btn">Next</button></div>                
             </div>
         )
     };

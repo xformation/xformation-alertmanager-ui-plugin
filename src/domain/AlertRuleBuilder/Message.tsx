@@ -3,22 +3,22 @@ import * as React from 'react';
 export class Message extends React.Component<any,any>{
     render(){
         return (
-        <div className="alert_details">
-            <div className="alert_details_name">
+        <div className="alert-details">
+            <div className="alert-details-name">
                 <label>Condition</label>
-                <div className="condition_box">
-                    <div className="condition_header">
-                        <div className="send_alert_text">Message</div>
+                <div className="condition-box">
+                    <div className="condition-header">
+                        <div className="send-alert-text">Message</div>
                     </div>
-                    <div className="condition_message_box">
-                        <div className="condition_message_examplex">
+                    <div className="condition-message-box">
+                        <div className="condition-message-examplex">
                             <pre>
                                 <code>
                                     Example: &#0123;&#0123;.ID&#0125;&#0125; is &#0123;&#0123;.Level&#0125;&#0125; value: &#0123;&#0123;index.Fields "value"&#0125;&#0125;
                                 </code>
                             </pre>
                         </div>
-                        <div className="templates_text">
+                        <div className="templates-text">
                             <ul>
                                 <li>
                                 <span>Templates:</span>
@@ -84,7 +84,6 @@ export class Message extends React.Component<any,any>{
                                     </pre>
                                 </li>
                             </ul>
-                            
                         </div>
                     </div>
                 </div>
