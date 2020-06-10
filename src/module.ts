@@ -1,4 +1,5 @@
 import {
+  ScriptEditor,
   MonitorAlerts,
   AllAlerts,
   Rules,
@@ -11,6 +12,7 @@ import { ConfigCtrl } from "./ConfigCtrl";
 
 export {
   ConfigCtrl,
+  ScriptEditor,
   MonitorAlerts,
   AllAlerts,
   Rules,

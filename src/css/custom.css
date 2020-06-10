@@ -12,7 +12,9 @@ a:hover {
     padding-left: 0px;
   }
 }
-
+.float-right {
+  float: right;
+}
 .d-flex {
   display: flex;
 }
@@ -22,6 +24,13 @@ a:hover {
 }
 .p-r-0 {
   padding-right: 0;
+}
+.p-t-20 {
+  padding-top: 20px;
+}
+
+.border-bottom-0 {
+  border-bottom: none;
 }
 
 /*************************** Page header ********************/
@@ -575,6 +584,7 @@ a:hover {
   padding: 7px 11px;
   border-radius: 4px;
   margin-right: 10px;
+  display: inline-block;
 }
 
 .alert-white-button:hover {
