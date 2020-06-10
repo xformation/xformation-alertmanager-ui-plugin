@@ -62,7 +62,7 @@ export class AlertVolumeChart extends React.Component<any, any> {
 
     render() {
         return (
-            <div className="padding-top" style={{ width: "100%", height: "100%" }}>
+            <div className="row" style={{ width: "100%", height: "100%", marginLeft: "0px" }}>
                 <Line
                     ref={ref => (this.chart = ref)}
                     data={this.state}

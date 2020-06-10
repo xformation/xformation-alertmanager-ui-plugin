@@ -167,7 +167,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                         <div className="chart-block col-xl-4 col-lg-6 col-md-12 col-sm-12">
                             <div className="chart-inner alert-volume">
                                 <div className="label">Alert Volume Today <i className="fa fa-cog"></i></div>
-                                <div className="current-time-chart">
+                                <div className="current-time-chart row" style={{margin: "0px"}}>
                                     <AlertVolumeChart />
                                 </div>
                             </div>
@@ -175,7 +175,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                         <div className="chart-block col-xl-4 col-lg-6 col-md-12 col-sm-12">
                             <div className="chart-inner alerts">
                                 <div className="label">Alert Volume By Status <i className="fa fa-cog"></i></div>
-                                <div className="current-time-chart">
+                                <div className="current-time-chart row" style={{margin: "0px"}}>
                                     <AlertVolumeByStatusChart />
                                 </div>
                             </div>
