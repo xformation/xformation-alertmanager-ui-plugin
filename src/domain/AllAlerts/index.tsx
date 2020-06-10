@@ -177,13 +177,13 @@ export class AllAlerts extends React.Component<any, any> {
                         </div>
                     </div>
                     <div className="filter-container form-row row common-container">
-                        <div className="col-md-6 col-sm-12">
-                            <label htmlFor="allallerts">
+                        <div className="col-md-3 col-sm-12">
+                            <label htmlFor="allallerts" className="all-alerts">
                                 All Alerts
                             </label>
                         </div>
-                        <div className="col-md-6 col-sm-12">
-                            <div className="alerts__right_form">
+                        <div className="col-md-9 col-sm-12">
+                            <div className="alerts-right-form">
                                 <div className="row">
                                     <div className="col-md-4 col-sm-12">
                                         <div className="form-group filter-control-group">
