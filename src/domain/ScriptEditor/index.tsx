@@ -2,13 +2,17 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
-
+import { Controlled as CodeMirror } from 'react-codemirror2'
+import 'codemirror/lib/codemirror.css';
+require('codemirror/mode/javascript/javascript');
+require('codemirror/theme/material.css');
 
 export class ScriptEditor extends React.Component<any, any> {
     breadCrumbs: any;
     constructor(props: any) {
         super(props);
         this.state = {
+            codeEditorValue: ""
         };
         this.breadCrumbs = [
             {
@@ -61,27 +65,22 @@ export class ScriptEditor extends React.Component<any, any> {
                         </div>
                     </div>
                     <div className="common-container border-bottom-0 p-t-20 script-editor">
-                        <div className="script-editor-code">
-                            <pre>
-                                <code>
-                                    <span className="span1">var</span> <span className="span2">db</span> <span className="span3">=</span> <span className="span4">'_internal'</span> <br /><br />
-                                    <span className="span1">var</span> <span className="span2">rp</span> <span className="span3">=</span> <span className="span4">'monitor'</span> <br /><br />
-                                    <span className="span1">var</span> <span className="span2">measurement</span> <span className="span3">=</span> <span className="span4">'runtime'</span> <br /><br />
-                                    <span className="span1">var</span> <span className="span2">groupBy</span> <span className="span3">=</span> <span className="span4">[]</span> <br /><br />
-                                    <span className="span1">var</span> <span className="span2">whereFilter</span> <span className="span3">=</span> <span className="span4">lambda: ("hostname" == 'ip-172-16-1-210')</span> <br /><br />
-                                    <span className="span1">var</span> <span className="span2">name</span> <span className="span3">=</span> <span className="span4">'Alert rule - Host Frees'</span> <br /><br />
-                                    <span className="span1">var</span> <span className="span2">idVar</span> <span className="span3">=</span> <span className="span4">name</span> <br /><br />
-                                    <span className="span1">var</span> <span className="span2">message</span> <span className="span3">=</span> <span className="span4">' &#0123;&#0123;.ID&#0125;&#0125; &#0123;&#0123;.Name&#0125;&#0125; &#0123;&#0123;.TaskName&#0125;&#0125; &#0123;&#0123;.Group&#0125;&#0125; &#0123;&#0123;.Tags&#0125;&#0125; &#0123;&#0123; index .Tags "value" &#0125;&#0125; &#0123;&#0123;.Level&#0125;&#0125; &#0123;&#0123;.Fields&#0125;&#0125; &#0123;&#0123; index .Fields "value" &#0125;&#0125; &#0123;&#0123;.Time&#0125;&#0125;'</span> <br /><br />
-                                    <span className="span1">var</span> <span className="span2">idTag</span> <span className="span3">=</span> <span className="span4">'alertID'</span> <br /><br />
-                                    <span className="span1">var</span> <span className="span2">levelTag</span> <span className="span3">=</span> <span className="span4">'level'</span> <br /><br />
-                                    <span className="span1">var</span> <span className="span2">messageField</span> <span className="span3">=</span> <span className="span4">'message'</span> <br /><br />
-                                    <span className="span1">var</span> <span className="span2">durationField</span> <span className="span3">=</span> <span className="span4">'duration var outputDB = 'chronograf'</span>
-                                </code>
-                            </pre>
-                        </div>
+                        <CodeMirror
+                            value={this.state.codeEditorValue}
+                            options={{
+                                mode: "javascript",
+                                lineNumbers: true,
+                                theme: "material"
+                            }}
+                            onBeforeChange={(editor, data, value) => {
+                                this.setState({codeEditorValue: value});
+                            }}
+                            onChange={(editor, data, value) => {
+                            }}
+                        />
                         <div className="validate-bottom-text"> > You have unsaved changes, save to validate TICKscript</div>
                     </div>
-                    
+
                 </div>
             </div>
         );
