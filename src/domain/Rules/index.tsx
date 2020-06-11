@@ -101,8 +101,8 @@ export class Rules extends React.Component<any, any> {
                         </div>
                     </div>
                     <div className="alert-data-table-container common-container">
-                        <div className="container_inner">
-                            <table className="alert-data-table">
+                        <div className="container-inner">
+                            <table className="alert-data-table rules-data-table">
                             <tbody>
                                 <tr className="alert-data-table-header">
                                     <th><input type="checkbox" />&nbsp;&nbsp;&nbsp;&nbsp;Name</th>

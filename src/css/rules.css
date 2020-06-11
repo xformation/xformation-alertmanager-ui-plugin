@@ -78,3 +78,7 @@
   position: relative;
   padding-left: 5px;
 }
+.alert-data-table-container.common-container
+  .alert-data-table.rules-data-table {
+  width: 1100px;
+}

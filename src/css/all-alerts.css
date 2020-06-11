@@ -150,7 +150,7 @@
   overflow-x: scroll;
 }
 .alert-data-table-container.common-container .alert-data-table {
-  width: 1400px;
+  width: 1600px;
 }
 
 .alert-data-table-container .alert-data-table .pointer-label {
@@ -163,14 +163,14 @@
   top: 3px;
 }
 .alert-data-table-container .alert-data-table .btn-link {
-  color: #57a4ff !important;
+  color: #3b7cff !important;
   padding: 0 5px;
   font-size: 18px;
   line-height: 22px;
   vertical-align: middle;
 }
 .alert-data-table-container .alert-data-table .btn-link:last-child {
-  padding-top: 3px;
+  padding-top: 4px;
 }
 .alert-data-table-container .alert-data-table .btn-link:first-child {
   padding-top: 3px;
