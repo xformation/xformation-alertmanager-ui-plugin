@@ -88,7 +88,7 @@
   background: #f0f3f7;
   box-shadow: 0px 1px 5px #00000029;
   display: block;
-  min-height: 260px;
+  min-height: 285px;
   margin-bottom: 30px;
   border-radius: 5px;
   overflow: hidden;
@@ -241,10 +241,17 @@
 }
 
 /*********************************** Alert Volume Today *********************************/
+.legend-container {
+  width: 100%;
+  display: block;
+  text-align: center;
+}
 .custom-chart-legends {
   list-style: none;
   text-align: center;
-  margin-top: -15px;
+  margin-top: -10px;
+  display: block;
+  width: 100%;
 }
 .custom-chart-legends li {
   display: inline-block;
