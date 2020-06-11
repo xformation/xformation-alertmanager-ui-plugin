@@ -332,7 +332,7 @@ export class AllAlerts extends React.Component<any, any> {
                                     <td>Alert Management</td>
                                     <td>None</td>
                                     <td>
-                                        <   div className="d-flex">
+                                        <div className="d-flex">
                                             <button className="btn btn-link">
                                                 <i className="fa fa-edit"></i>
                                             </button>
@@ -446,7 +446,6 @@ export class AllAlerts extends React.Component<any, any> {
                 <UncontrolledPopover trigger="legacy" placement="bottom" target="PopoverFocus">
                     <PopoverBody>
                         <Link className=" " to={`${config.basePath}/alltickets`}>Create Ticket</Link>
-                        <br />
                         <Link className=" " to="">Silence</Link>
                     </PopoverBody>
                 </UncontrolledPopover>

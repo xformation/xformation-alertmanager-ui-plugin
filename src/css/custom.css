@@ -378,6 +378,20 @@ a:hover {
   padding: 0.5rem 0.75rem;
   color: #212529;
 }
+.popover a {
+  display: block;
+  background-color: #3b7cff;
+  padding: 3px 7px;
+  font-size: 12px;
+  line-height: 16px;
+  color: #ffffff;
+  margin-bottom: 5px;
+  text-align: center;
+}
+.popover a:hover,
+.popover a:focus {
+  color: #ffffff;
+}
 
 /********************** New css ******************************/
 
@@ -559,11 +573,4 @@ a:hover {
 .alert-data-table-container .alert-data-table tr th,
 .alert-data-table-container .alert-data-table tr td {
   padding: 8px 10px 8px 10px;
-}
-.popover a {
-  color: #3b4859;
-}
-.popover a:hover,
-.popover a:focus {
-  color: #000000;
 }
