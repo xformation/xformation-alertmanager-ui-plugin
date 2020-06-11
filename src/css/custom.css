@@ -573,4 +573,11 @@ a:hover {
 .alert-data-table-container .alert-data-table tr th,
 .alert-data-table-container .alert-data-table tr td {
   padding: 8px 10px 8px 10px;
+  text-align: center;
+}
+.alert-data-table-container .alert-data-table tr th:nth-child(1),
+.alert-data-table-container .alert-data-table tr th:nth-child(2),
+.alert-data-table-container .alert-data-table tr td:nth-child(1),
+.alert-data-table-container .alert-data-table tr td:nth-child(2) {
+  text-align: left;
 }

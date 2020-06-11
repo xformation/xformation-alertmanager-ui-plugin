@@ -82,3 +82,8 @@
   .alert-data-table.rules-data-table {
   width: 1100px;
 }
+
+.alert-data-table-container .alert-data-table.rules-data-table tr th,
+.alert-data-table-container .alert-data-table.rules-data-table tr td {
+  text-align: left;
+}
