@@ -146,7 +146,7 @@
 .alerts-right-form .filter-control-group button:hover {
   color: #333333;
 }
-.alert-data-table-container .container_inner {
+.alert-data-table-container .container-inner {
   overflow-x: scroll;
 }
 .alert-data-table-container.common-container .alert-data-table {

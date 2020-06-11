@@ -28,6 +28,12 @@ a:hover {
 .p-t-20 {
   padding-top: 20px !important;
 }
+.width-auto {
+  width: auto;
+}
+.min-width-inherit {
+  min-width: inherit !important;
+}
 
 .border-bottom-0 {
   border-bottom: none !important;

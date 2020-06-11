@@ -1,31 +1,28 @@
-.alert-modal-container{
-    max-width: 1200px !important;
+.alert-modal-container {
+  max-width: 1200px !important;
 }
-.alert-modal-container .modal-content{
-    padding: 15px;
-    background-color: white !important;
-    color: black;
+.alert-modal-container .modal-content {
+  padding: 15px;
+  background-color: white !important;
+  color: black;
 }
-
-.alert-modal-container .modal-header{
-    background: white;
-    box-shadow: none;
-    border-bottom: 1px dashed #A2C0D4;
-    height: 35px;
+.alert-modal-container .modal-header {
+  background: white;
+  box-shadow: none;
+  border-bottom: 1px dashed #a2c0d4;
+  height: 35px;
 }
-
 .alert-modal-container .modal-header .modal-title {
-    color: #3b4859;
-    float: left;
-    margin: 0px;
-    font-size: 20px;
+  color: #3b4859;
+  float: left;
+  margin: 0px;
+  font-size: 20px;
 }
-
 .alert-modal-container .modal-header button {
-    float: right;
-    font-size: 33px;
-    top: -15px;
-    position: relative;
-    color: red;
-    opacity: 1;
+  float: right;
+  font-size: 33px;
+  top: -15px;
+  position: relative;
+  color: red;
+  opacity: 1;
 }

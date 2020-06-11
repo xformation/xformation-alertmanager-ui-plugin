@@ -35,7 +35,7 @@ export class ManageAlertRule extends React.Component<any, any> {
                             </div>
                             <div className="col-md-6 col-sm-6">
                                 <div className="float-right common-right-btn">
-                                    <Link to={`${config.basePath}/monitoralerts`} className="alert-white-button"><i className="fa fa-arrow-circle-left"></i>&nbsp;&nbsp; Back</Link>
+                                    <Link to={`${config.basePath}/monitoralerts`} className="alert-white-button min-width-inherit"><i className="fa fa-arrow-circle-left"></i>&nbsp;&nbsp; Back</Link>
                                 </div>
                             </div>
                         </div>
@@ -53,7 +53,7 @@ export class ManageAlertRule extends React.Component<any, any> {
                             </div>
                             <div className="col-lg-4 col-md-12 col-sm-12 manage-rules-btn">
                                 <div className="float-right common-right-btn">
-                                    <button className="alert-white-button create-rule-btn">Create Alert Rule</button>
+                                    <Link to={`${config.basePath}/alertrulebuilder`} className="alert-white-button create-rule-btn">Create Alert Rule</Link>
                                 </div>
                             </div>
                         </div>
