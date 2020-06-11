@@ -52,9 +52,6 @@ export class AlertVolumeChart extends React.Component<any, any> {
                         </div>
                     </li>
                 );
-                text.push(
-                    
-                );
             }
         }
         return text;
