@@ -49,10 +49,10 @@ export class AllAlerts extends React.Component<any, any> {
                             <i className="fa fa-refresh"></i>&nbsp;&nbsp;
                             Refresh
                         </a>
-                        <a className="alert-white-button float-right">
+                        <Link to={`${config.basePath}/monitoralerts`} className="alert-white-button float-right">
                             <i className="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;
                             Back
-                        </a>
+                        </Link>
                     </div>
                     <div className="filter-container row common-container">
                         <div className="col-lg-2 col-md-3 col-sm-12">
