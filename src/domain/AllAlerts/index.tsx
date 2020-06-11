@@ -15,7 +15,7 @@ export class AllAlerts extends React.Component<any, any> {
         this.breadCrumbs = [
             {
                 label: "Home",
-                route: `${config.basePath}/home`
+                route: `/`
             },
             {
                 label: "Monitor | Alerts",

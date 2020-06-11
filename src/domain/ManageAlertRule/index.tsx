@@ -13,7 +13,7 @@ export class ManageAlertRule extends React.Component<any, any> {
         this.breadCrumbs = [
             {
                 label: "Home",
-                route: `${config.basePath}/home`
+                route: `/`
             },
             {
                 label: "Monitor | Alerts",
@@ -35,7 +35,7 @@ export class ManageAlertRule extends React.Component<any, any> {
                             </div>
                             <div className="col-md-6 col-sm-6">
                                 <div className="float-right common-right-btn">
-                                    <button className="alert-white-button"><i className="fa fa-arrow-circle-left"></i>&nbsp;&nbsp; Back</button>
+                                    <Link to={`${config.basePath}/monitoralerts`} className="alert-white-button"><i className="fa fa-arrow-circle-left"></i>&nbsp;&nbsp; Back</Link>
                                 </div>
                             </div>
                         </div>

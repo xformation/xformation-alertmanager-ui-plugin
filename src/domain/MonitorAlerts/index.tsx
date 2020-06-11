@@ -15,7 +15,7 @@ export class MonitorAlerts extends React.Component<any, any> {
         this.breadCrumbs = [
             {
                 label: "Home",
-                route: `${config.basePath}/home`
+                route: `/`
             },
             {
                 label: "Monitor | Alerts",
@@ -30,10 +30,10 @@ export class MonitorAlerts extends React.Component<any, any> {
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALERTS" />
                 <div className="alert-page-container">
                     <div className="common-container">
-                        <a className="alert-blue-button">
+                        <Link to={`${config.basePath}/managealertrule`} className="alert-blue-button">
                             <i className="fa fa-cog"></i>&nbsp;&nbsp;
                             Manage Alert Rule
-                        </a>
+                        </Link>
                         <a className="alert-blue-button">
                             <i className="fa fa-cog"></i>&nbsp;&nbsp;
                             Manage Workflows
