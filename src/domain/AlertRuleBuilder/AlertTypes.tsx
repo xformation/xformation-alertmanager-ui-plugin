@@ -18,12 +18,13 @@ export class AlertTypes extends React.Component<any,any>{
             <div className="alert-details-description">
                 <label>Time Series</label>
                 <div className="time-series-box">
-                    <div className="time-series-header">
-                        <div className="heading retention-policy">DB.RetentionPolicy</div>
-                        <div className="heading measurements">Measurements & Tags</div>
-                        <div className="heading fields">Fields</div>
-                    </div>
-                    <div className="time-series-body">
+                    <div className="time-series-inner">
+                        <div className="time-series-header">
+                            <div className="heading retention-policy">DB.RetentionPolicy</div>
+                            <div className="heading measurements">Measurements & Tags</div>
+                            <div className="heading fields">Fields</div>
+                        </div>
+                        <div className="time-series-body">
                         <div className="database">
                             <ul>
                                 <li className="active"><a href="#">Database_1</a></li>
@@ -89,6 +90,7 @@ export class AlertTypes extends React.Component<any,any>{
                                 </li>
                             </ul>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
