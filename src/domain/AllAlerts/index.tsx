@@ -29,7 +29,7 @@ export class AllAlerts extends React.Component<any, any> {
         ];
         this.allAlertsData = [{
             name: 'Percentage CPU',
-            severity: 'Urgent',
+            severity: 'urgent',
             monitorCondition: 'Fired',
             alertState: 'New',
             affectedResource: 'Prod_DB_SYN14',
@@ -40,7 +40,7 @@ export class AllAlerts extends React.Component<any, any> {
             suppressionState: 'None',
         }, {
             name: 'CPU Credits',
-            severity: 'Critical',
+            severity: 'critical',
             monitorCondition: 'Fired',
             alertState: 'New',
             affectedResource: 'Prod_DB_SYN14',
@@ -51,7 +51,7 @@ export class AllAlerts extends React.Component<any, any> {
             suppressionState: 'None',
         }, {
             name: 'Network In',
-            severity: 'High',
+            severity: 'high',
             monitorCondition: 'Fired',
             alertState: 'New',
             affectedResource: 'Prod_DB_SYN14',
@@ -73,7 +73,7 @@ export class AllAlerts extends React.Component<any, any> {
             suppressionState: 'None',
         }, {
             name: 'Disk Write Bytes',
-            severity: 'Medium',
+            severity: 'medium',
             monitorCondition: 'Fired',
             alertState: 'New',
             affectedResource: 'Prod_DB_SYN14',
@@ -84,7 +84,7 @@ export class AllAlerts extends React.Component<any, any> {
             suppressionState: 'None',
         }, {
             name: 'Power Off Machine',
-            severity: 'Medium',
+            severity: 'medium',
             monitorCondition: 'Fired',
             alertState: 'New',
             affectedResource: 'Prod_DB_SYN14',
@@ -95,7 +95,7 @@ export class AllAlerts extends React.Component<any, any> {
             suppressionState: 'None',
         }, {
             name: 'Percentage CPU',
-            severity: 'Urgent',
+            severity: 'urgent',
             monitorCondition: 'Fired',
             alertState: 'New',
             affectedResource: 'Prod_DB_SYN14',
@@ -117,7 +117,14 @@ export class AllAlerts extends React.Component<any, any> {
                         <div className="pointer-label" onClick={this.toggle}><input type="checkbox" className="checkbox" /> {alert.name}</div>
                     </td>
                     <td>
-                        <div className="severity-urgent">{alert.severity}</div>
+                        {
+                            alert.severity === 'urgent' && 
+                            <div className="severity-urgent">Urgent</div>
+                        }
+                        {
+                            alert.severity === 'critical' && 
+                            <div className="severity-critical">Critical</div>
+                        }
                     </td>
                     <td>{alert.monitorCondition}</td>
                     <td>{alert.alertState}</td>
