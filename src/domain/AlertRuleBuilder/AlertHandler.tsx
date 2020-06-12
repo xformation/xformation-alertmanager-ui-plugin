@@ -29,11 +29,16 @@ export class AlertHandler extends React.Component<any, any>{
                             <div className="send-alert-text">Send this alert to:</div>
                             <div className="greater-select">
                                 <select className="form-control" id="rousourceGroup">
-                                    <option>post</option>
-                                    <option>tcp</option>
-                                    <option>exec</option>
-                                    <option>log</option>
-                                    <option>stack(default)</option>
+                                    <option value="Add another Handler">Add another Handler</option>
+                                    <option value="post">post</option>
+                                    <option value="tcp">tcp</option>
+                                    <option value="exec">exec</option>
+                                    <option value="log">log</option>
+                                    <option value="stack(default)">stack(default)</option>
+                                    <option value="email">email</option>
+                                    <option value="alerta">alerta</option>
+                                    <option value="hipChat">hipChat</option>
+                                    <option value="Kafka (localhost)">Kafka (localhost)</option>
                                 </select>
                             </div>
                         </div>

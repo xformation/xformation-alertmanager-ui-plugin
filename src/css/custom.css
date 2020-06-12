@@ -424,6 +424,8 @@ a:hover {
 .primary-select-box {
   background-color: #f0f3f7 !important;
   border: none !important;
+  font-size: 12px;
+  cursor: pointer;
 }
 
 /***************************** severity ************************/

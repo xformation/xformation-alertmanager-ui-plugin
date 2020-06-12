@@ -285,11 +285,11 @@ export class AllAlerts extends React.Component<any, any> {
                                 <i className="fa fa-info-circle"></i>
                                 </label>
                                 <select className="form-control" id="alertState">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                    <option value="Select Alert State">Select Alert State</option>
+                                    <option value="New Generated">New Generated</option>
+                                    <option value="In Process">In Process</option>
+                                    <option value="Processed">Processed</option>
+                                    <option value="Archived">Archived</option>
                                 </select>
                             </div>
                         </div>
@@ -321,11 +321,11 @@ export class AllAlerts extends React.Component<any, any> {
                                     <div className="col-md-4 col-sm-12">
                                         <div className="form-group filter-control-group">
                                             <select className="form-control" id="bulkaction">
-                                                <option>Delete</option>
-                                                <option>Archive</option>
-                                                <option>Processed</option>
-                                                <option>Create Ticket</option>
-                                                <option>Execute Workflow</option>
+                                                <option value="Delete">Delete</option>
+                                                <option value="Archive">Archive</option>
+                                                <option value="Processed">Processed</option>
+                                                <option value="Create Ticket">Create Ticket</option>
+                                                <option value="Execute Workflow">Execute Workflow</option>
                                             </select>
                                         </div>
                                     </div>

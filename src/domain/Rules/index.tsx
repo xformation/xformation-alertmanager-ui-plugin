@@ -136,11 +136,12 @@ export class Rules extends React.Component<any, any> {
                             <div className="col-md-6 col-sm-12 text-right">
                                 <div className="bulk-action">
                                     <select className="form-control">
-                                        <option>Bulk Action</option>
-                                        <option>Bulk Action</option>
-                                        <option>Bulk Action</option>
-                                        <option>Bulk Action</option>
-                                        <option>Bulk Action</option>
+                                        <option value="Bulk Action">Bulk Action</option>
+                                        <option value="Delete">Delete</option>
+                                        <option value="Archive">Archive</option>
+                                        <option value="Processed">Processed</option>
+                                        <option value="Create Ticket">Create Ticket</option>
+                                        <option value="Execute Workflow">Execute Workflow</option>
                                     </select>
                                 </div>
                             </div>
