@@ -6,6 +6,7 @@ import { config } from '../../config';
 import { PopupContent } from './PopupContent';
 
 export class AllAlerts extends React.Component<any, any> {
+    allAlertsData: any;
     breadCrumbs: any;
     constructor(props: any) {
         super(props);
@@ -26,6 +27,123 @@ export class AllAlerts extends React.Component<any, any> {
                 isCurrentPage: true
             }
         ];
+        this.allAlertsData = [{
+            name: 'Percentage CPU',
+            severity: 'Urgent',
+            monitorCondition: 'Fired',
+            alertState: 'New',
+            affectedResource: 'Prod_DB_SYN14',
+            monitorService: 'Prometheus',
+            signalType: 'Metrics',
+            firedTime: '17/03/2020, 11:29:00',
+            subscription: 'Alert Management',
+            suppressionState: 'None',
+        }, {
+            name: 'CPU Credits',
+            severity: 'Critical',
+            monitorCondition: 'Fired',
+            alertState: 'New',
+            affectedResource: 'Prod_DB_SYN14',
+            monitorService: 'Prometheus',
+            signalType: 'Metrics',
+            firedTime: '17/03/2020, 11:29:00',
+            subscription: 'Alert Management',
+            suppressionState: 'None',
+        }, {
+            name: 'Network In',
+            severity: 'High',
+            monitorCondition: 'Fired',
+            alertState: 'New',
+            affectedResource: 'Prod_DB_SYN14',
+            monitorService: 'Prometheus',
+            signalType: 'Metrics',
+            firedTime: '17/03/2020, 11:29:00',
+            subscription: 'Alert Management',
+            suppressionState: 'None',
+        }, {
+            name: 'Disk Read Bytes',
+            severity: 'Medium',
+            monitorCondition: 'Fired',
+            alertState: 'New',
+            affectedResource: 'Prod_DB_SYN14',
+            monitorService: 'Prometheus',
+            signalType: 'Metrics',
+            firedTime: '17/03/2020, 11:29:00',
+            subscription: 'Alert Management',
+            suppressionState: 'None',
+        }, {
+            name: 'Disk Write Bytes',
+            severity: 'Medium',
+            monitorCondition: 'Fired',
+            alertState: 'New',
+            affectedResource: 'Prod_DB_SYN14',
+            monitorService: 'Prometheus',
+            signalType: 'Metrics',
+            firedTime: '17/03/2020, 11:29:00',
+            subscription: 'Alert Management',
+            suppressionState: 'None',
+        }, {
+            name: 'Power Off Machine',
+            severity: 'Medium',
+            monitorCondition: 'Fired',
+            alertState: 'New',
+            affectedResource: 'Prod_DB_SYN14',
+            monitorService: 'Prometheus',
+            signalType: 'Metrics',
+            firedTime: '17/03/2020, 11:29:00',
+            subscription: 'Alert Management',
+            suppressionState: 'None',
+        }, {
+            name: 'Percentage CPU',
+            severity: 'Urgent',
+            monitorCondition: 'Fired',
+            alertState: 'New',
+            affectedResource: 'Prod_DB_SYN14',
+            monitorService: 'Prometheus',
+            signalType: 'Metrics',
+            firedTime: '17/03/2020, 11:29:00',
+            subscription: 'Alert Management',
+            suppressionState: 'None',
+        }];
+    }
+    createAllAlertsTable = () => {
+        const retData = [];
+        const allAlerts = this.allAlertsData.length;
+        for (let i = 0; i < allAlerts; i++) {
+            const alert = this.allAlertsData[i];
+            retData.push(
+                <tr className="">
+                    <td className="">
+                        <div className="pointer-label" onClick={this.toggle}><input type="checkbox" className="checkbox" /> {alert.name}</div>
+                    </td>
+                    <td>
+                        <div className="severity-urgent">{alert.severity}</div>
+                    </td>
+                    <td>{alert.monitorCondition}</td>
+                    <td>{alert.alertState}</td>
+                    <td>{alert.affectedResource}</td>
+                    <td>{alert.monitorService}</td>
+                    <td>{alert.signalType}</td>
+                    <td>{alert.firedTime}</td>
+                    <td>{alert.subscription}</td>
+                    <td>{alert.suppressionState}</td>
+                    <td>
+                        <div className="d-flex">
+                            <button className="btn btn-link">
+                                <i className="fa fa-edit"></i>
+                            </button>
+                            <button className="btn btn-link">
+                                <i className="fa fa-trash"></i>
+                            </button>
+                            <button className="btn btn-link" id="PopoverFocus">
+                                <i className="fa fa-ellipsis-h"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            );
+        }
+        return retData;
     }
 
     toggle = () => {
@@ -229,209 +347,7 @@ export class AllAlerts extends React.Component<any, any> {
                                     <th>Suppression State</th>
                                     <th>Action</th>
                                 </tr>
-                                <tr className="">
-                                    <td className="">
-                                        <div className="pointer-label" onClick={this.toggle}><input type="checkbox" className="checkbox" /> Percentage CPU</div>
-                                    </td>
-                                    <td>
-                                        <div className="severity-urgent">Urgent</div>
-                                    </td>
-                                    <td>Fired</td>
-                                    <td>New</td>
-                                    <td>Prod_DB_SYN14</td>
-                                    <td>Prometheus</td>
-                                    <td>Metrics</td>
-                                    <td>17/03/2020, 11:29:00</td>
-                                    <td>Alert Management</td>
-                                    <td>None</td>
-                                    <td>
-                                        <div className="d-flex">
-                                            <button className="btn btn-link">
-                                                <i className="fa fa-edit"></i>
-                                            </button>
-                                            <button className="btn btn-link">
-                                                <i className="fa fa-trash"></i>
-                                            </button>
-                                            <button className="btn btn-link" id="PopoverFocus">
-                                                <i className="fa fa-ellipsis-h"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr className="">
-                                    <td className="">
-                                        <div className="pointer-label"><input type="checkbox" className="checkbox" /> CPU Credits</div>
-                                    </td>
-                                    <td>
-                                        <div className="severity-critical">Critical</div>
-                                    </td>
-                                    <td>Fired</td>
-                                    <td>New</td>
-                                    <td>Prod_DB_SYN14</td>
-                                    <td>Prometheus</td>
-                                    <td>Metrics</td>
-                                    <td>17/03/2020, 11:29:00</td>
-                                    <td>Alert Management</td>
-                                    <td>None</td>
-                                    <td>
-                                        <div className="d-flex">
-                                            <button className="btn btn-link">
-                                                <i className="fa fa-edit"></i>
-                                            </button>
-                                            <button className="btn btn-link">
-                                                <i className="fa fa-trash"></i>
-                                            </button>
-                                            <button className="btn btn-link" id="PopoverFocus">
-                                                <i className="fa fa-ellipsis-h"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr className="">
-                                    <td className="">
-                                        <div className="pointer-label"><input type="checkbox" className="checkbox" /> Network In</div>
-                                    </td>
-                                    <td>
-                                        <div className="severity-high  ">High</div>
-                                    </td>
-                                    <td>Fired</td>
-                                    <td>New</td>
-                                    <td>Prod_DB_SYN14</td>
-                                    <td>Prometheus</td>
-                                    <td>Metrics</td>
-                                    <td>17/03/2020, 11:29:00</td>
-                                    <td>Alert Management</td>
-                                    <td>None</td>
-                                    <td>
-                                        <div className="d-flex">
-                                            <button className="btn btn-link">
-                                                <i className="fa fa-edit"></i>
-                                            </button>
-                                            <button className="btn btn-link">
-                                                <i className="fa fa-trash"></i>
-                                            </button>
-                                            <button className="btn btn-link" id="PopoverFocus">
-                                                <i className="fa fa-ellipsis-h"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr className="">
-                                    <td className="">
-                                        <div className="pointer-label"><input type="checkbox" className="checkbox" /> Disk Read Bytes</div>
-                                    </td>
-                                    <td>
-                                        <div className="severity-medium  ">Medium</div>
-                                    </td>
-                                    <td>Fired</td>
-                                    <td>New</td>
-                                    <td>Prod_DB_SYN14</td>
-                                    <td>Prometheus</td>
-                                    <td>Metrics</td>
-                                    <td>17/03/2020, 11:29:00</td>
-                                    <td>Alert Management</td>
-                                    <td>None</td>
-                                    <td>
-                                        <div className="d-flex">
-                                            <button className="btn btn-link">
-                                                <i className="fa fa-edit"></i>
-                                            </button>
-                                            <button className="btn btn-link">
-                                                <i className="fa fa-trash"></i>
-                                            </button>
-                                            <button className="btn btn-link" id="PopoverFocus">
-                                                <i className="fa fa-ellipsis-h"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr className="">
-                                    <td className="">
-                                        <div className="pointer-label"><input type="checkbox" className="checkbox" /> Disk Write Bytes</div>
-                                    </td>
-                                    <td>
-                                        <div className="severity-medium  ">Medium</div>
-                                    </td>
-                                    <td>Fired</td>
-                                    <td>New</td>
-                                    <td>Prod_DB_SYN14</td>
-                                    <td>Prometheus</td>
-                                    <td>Metrics</td>
-                                    <td>17/03/2020, 11:29:00</td>
-                                    <td>Alert Management</td>
-                                    <td>None</td>
-                                    <td>
-                                        <div className="d-flex">
-                                            <button className="btn btn-link">
-                                                <i className="fa fa-edit"></i>
-                                            </button>
-                                            <button className="btn btn-link">
-                                                <i className="fa fa-trash"></i>
-                                            </button>
-                                            <button className="btn btn-link" id="PopoverFocus">
-                                                <i className="fa fa-ellipsis-h"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr className="">
-                                    <td className="">
-                                        <div className="pointer-label"><input type="checkbox" className="checkbox" /> Power Off Machine</div>
-                                    </td>
-                                    <td>
-                                        <div className="severity-medium  ">Medium</div>
-                                    </td>
-                                    <td>Fired</td>
-                                    <td>New</td>
-                                    <td>Prod_DB_SYN14</td>
-                                    <td>Prometheus</td>
-                                    <td>Metrics</td>
-                                    <td>17/03/2020, 11:29:00</td>
-                                    <td>Alert Management</td>
-                                    <td>None</td>
-                                    <td>
-                                        <div className="d-flex">
-                                            <button className="btn btn-link">
-                                                <i className="fa fa-edit"></i>
-                                            </button>
-                                            <button className="btn btn-link">
-                                                <i className="fa fa-trash"></i>
-                                            </button>
-                                            <button className="btn btn-link" id="PopoverFocus">
-                                                <i className="fa fa-ellipsis-h"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr className="">
-                                    <td className="">
-                                        <div className="pointer-label"><input type="checkbox" className="checkbox" /> Percentage CPU</div>
-                                    </td>
-                                    <td>
-                                        <div className="severity-urgent  ">Urgent</div>
-                                    </td>
-                                    <td>Fired</td>
-                                    <td>New</td>
-                                    <td>Prod_DB_SYN14</td>
-                                    <td>Prometheus</td>
-                                    <td>Metrics</td>
-                                    <td>17/03/2020, 11:29:00</td>
-                                    <td>Alert Management</td>
-                                    <td>None</td>
-                                    <td>
-                                        <div className="d-flex">
-                                            <button className="btn btn-link">
-                                                <i className="fa fa-edit"></i>
-                                            </button>
-                                            <button className="btn btn-link">
-                                                <i className="fa fa-trash"></i>
-                                            </button>
-                                            <button className="btn btn-link" id="PopoverFocus">
-                                                <i className="fa fa-ellipsis-h"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                {this.createAllAlertsTable()}
                             </tbody>
                         </table>
                         </div>
