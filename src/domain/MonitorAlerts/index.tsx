@@ -7,6 +7,8 @@ import { AlertVolumeByStatusChart } from './AlertVolumeByStatusChart';
 import { AlertVolumeChart } from './AlertVolumeChart';
 
 export class MonitorAlerts extends React.Component<any, any> {
+    topAlertsTodayData: any;
+    teamMetricsData: any;
     breadCrumbs: any;
     constructor(props: any) {
         super(props);
@@ -22,6 +24,83 @@ export class MonitorAlerts extends React.Component<any, any> {
                 isCurrentPage: true
             }
         ];
+        this.topAlertsTodayData = [{
+            name: 'CPU',
+            severity: 'high',
+            time: '10 mins',
+        }, {
+            name: 'AWS S3',
+            severity: 'low',
+            time: '12 mins',
+        }, {
+            name: 'Hard disk',
+            severity: 'medium',
+            time: '18 mins',
+        }, {
+            name: 'Network',
+            severity: 'high',
+            time: '25 mins',
+        }, {
+            name: 'vCenter',
+            severity: 'medium',
+            time: '53 mins',
+        }];
+        this.teamMetricsData = [{
+            agent: 'John',
+            alerts: '276',
+            time: '17 mins',
+        }, {
+            agent: 'Bill',
+            alerts: '180',
+            time: '19 mins',
+        }, {
+            agent: 'Lynda',
+            alerts: '219',
+            time: '43 mins',
+        }];
+    }
+    createTopAlertsTodayTable = () => {
+        const retData = [];
+        const topAlertsToday = this.topAlertsTodayData.length;
+        for (let i = 0; i < topAlertsToday; i++) {
+            const topAlerts = this.topAlertsTodayData[i];
+            retData.push(
+                <tr>
+                    <td>{topAlerts.name}</td>
+                    <td>
+                        {
+                            topAlerts.severity === 'high' && 
+                            <div className="high">High</div>
+                        }
+                        {
+                            topAlerts.severity === 'low' && 
+                            <div className="low">Low</div>
+                        }
+                        {
+                            topAlerts.severity === 'medium' && 
+                            <div className="medium">Medium</div>
+                        }
+                    </td>
+                    <td>{topAlerts.time}</td>
+                </tr>
+            );
+        }
+        return retData;
+    }
+    createteamMetricsTable = () => {
+        const retData = [];
+        const teamMetrics = this.teamMetricsData.length;
+        for (let i = 0; i < teamMetrics; i++) {
+            const teamMetrics = this.teamMetricsData[i];
+            retData.push(
+                <tr>
+                    <td>{teamMetrics.agent}</td>
+                    <td>{teamMetrics.alerts}</td>
+                    <td>{teamMetrics.time}</td>
+                </tr>
+            );
+        }
+        return retData;
     }
 
     render() {
@@ -97,41 +176,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                                                 <th>Severity</th>
                                                 <th>Time</th>
                                             </tr>
-                                            <tr>
-                                                <td>CPU</td>
-                                                <td>
-                                                    <div className="high">High</div>
-                                                </td>
-                                                <td>10 mins</td>
-                                            </tr>
-                                            <tr>
-                                                <td>AWS S3</td>
-                                                <td>
-                                                    <div className="low">Low</div>
-                                                </td>
-                                                <td>12 mins</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Hard disk</td>
-                                                <td>
-                                                    <div className="medium">Medium</div>
-                                                </td>
-                                                <td>18 mins</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Network</td>
-                                                <td>
-                                                    <div className="high">High</div>
-                                                </td>
-                                                <td>25 mins</td>
-                                            </tr>
-                                            <tr>
-                                                <td>vCenter</td>
-                                                <td>
-                                                    <div className="medium">Medium</div>
-                                                </td>
-                                                <td>53 mins</td>
-                                            </tr>
+                                            {this.createTopAlertsTodayTable()}
                                         </tbody>
                                     </table>
                                 </div>
@@ -218,21 +263,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                                                 <th>Alerts</th>
                                                 <th>Time</th>
                                             </tr>
-                                            <tr>
-                                                <td>John</td>
-                                                <td>276</td>
-                                                <td>17 mins</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Bill</td>
-                                                <td>180</td>
-                                                <td>19 mins</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Lynda</td>
-                                                <td>219</td>
-                                                <td>43 mins</td>
-                                            </tr>
+                                            {this.createteamMetricsTable()}
                                         </tbody>
                                     </table>
                                 </div>

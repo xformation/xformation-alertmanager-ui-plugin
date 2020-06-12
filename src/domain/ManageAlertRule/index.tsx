@@ -5,6 +5,8 @@ import { config } from '../../config';
 
 
 export class ManageAlertRule extends React.Component<any, any> {
+    alertsRulesData: any;
+    alertsScriptsData: any;
     breadCrumbs: any;
     constructor(props: any) {
         super(props);
@@ -20,6 +22,88 @@ export class ManageAlertRule extends React.Component<any, any> {
                 isCurrentPage: true
             }
         ];
+        this.alertsRulesData = [{
+            name: 'CPU Percentage',
+            ruleType: 'Threshold',
+            message: '{{.ID}} {{.Name}} {{.TaskName}} {{….',
+            alertHandlers: 'Slack (default)'
+        }, {
+            name: 'Disk Read Bytes	',
+            ruleType: 'Threshold',
+            message: '{{.ID}} {{.Name}} {{.TaskName}} {{….',
+            alertHandlers: 'Slack (default)'
+        }, {
+            name: 'Disk Write Bytes	',
+            ruleType: 'Threshold',
+            message: '{{.ID}} {{.Name}} {{.TaskName}} {{….',
+            alertHandlers: 'Slack (default)'
+        }];
+        this.alertsScriptsData = [{
+            name: 'CPU Percentage',
+            type: 'Slack (default)',
+        }, {
+            name: 'Disk Read Bytes	',
+            type: 'Slack (default)',
+        }, {
+            name: 'Disk Write Bytes	',
+            type: 'Slack (default)',
+        }];
+    }
+    createAlertsRulesTable = () => {
+        const retData = [];
+        const alertsRules = this.alertsRulesData.length;
+        for (let i = 0; i < alertsRules; i++) {
+            const alerts = this.alertsRulesData[i];
+            retData.push(
+                <tr>
+                    <td>{alerts.name}</td>
+                    <td>{alerts.ruleType}</td>
+                    <td>
+                        <pre>
+                            <code>{alerts.message}</code>
+                        </pre>
+                    </td>
+                    <td>
+                        <pre>
+                            <code>{alerts.alertHandlers}</code>
+                        </pre>
+                    </td>
+                    <td>
+                        <div className="d-flex">
+                            <div className="enabled"></div>
+                            <button className="btn btn-link"><i className="fa fa-edit"></i></button>
+                            <button className="btn btn-link"><i className="fa fa-trash"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            );
+        }
+        return retData;
+    }
+    createAlertsScriptsTable = () => {
+        const retData = [];
+        const alertsScripts = this.alertsScriptsData.length;
+        for (let i = 0; i < alertsScripts; i++) {
+            const scripts = this.alertsScriptsData[i];
+            retData.push(
+                <tr>
+                    <td>{scripts.name}</td>
+                    <td>
+                        <pre>
+                            <code>{scripts.type}</code>
+                        </pre>
+                    </td>
+                    <td>
+                        <div className="d-flex">
+                            <div className="enabled"></div>
+                            <button className="btn btn-link"><i className="fa fa-edit"></i></button>
+                            <button className="btn btn-link"><i className="fa fa-trash"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            );
+        }
+        return retData;
     }
 
     render() {
@@ -71,69 +155,7 @@ export class ManageAlertRule extends React.Component<any, any> {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>CPU Percentage</td>
-                                            <td>Threshold</td>
-                                            <td>
-                                                <pre>
-                                                    <code>&#0123;&#0123;.ID&#0125;&#0125; &#0123;&#0123;.Name&#0125;&#0125; &#0123;&#0123;.TaskName&#0125;&#0125; &#0123;&#0123;….</code>
-                                                </pre>
-                                            </td>
-                                            <td>
-                                                <pre>
-                                                    <code>Slack (default)</code>
-                                                </pre>
-                                            </td>
-                                            <td>
-                                                <div className="d-flex">
-                                                    <div className="enabled"></div>
-                                                    <button className="btn btn-link"><i className="fa fa-edit"></i></button>
-                                                    <button className="btn btn-link"><i className="fa fa-trash"></i></button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Disk Read Bytes</td>
-                                            <td>Threshold</td>
-                                            <td>
-                                                <pre>
-                                                    <code>&#0123;&#0123;.ID&#0125;&#0125; &#0123;&#0123;.Name&#0125;&#0125; &#0123;&#0123;.TaskName&#0125;&#0125; &#0123;&#0123;….</code>
-                                                </pre>
-                                            </td>
-                                            <td>
-                                                <pre>
-                                                    <code>Slack (default)</code>
-                                                </pre>
-                                            </td>
-                                            <td>
-                                                <div className="d-flex">
-                                                    <div className="enabled"></div>
-                                                    <button className="btn btn-link"><i className="fa fa-edit"></i></button>
-                                                    <button className="btn btn-link"><i className="fa fa-trash"></i></button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Disk Write Bytes</td>
-                                            <td>Threshold</td>
-                                            <td>
-                                                <pre>
-                                                    <code>&#0123;&#0123;.ID&#0125;&#0125; &#0123;&#0123;.Name&#0125;&#0125; &#0123;&#0123;.TaskName&#0125;&#0125; &#0123;&#0123;….</code>
-                                                </pre>
-                                            </td>
-                                            <td>
-                                                <pre>
-                                                    <code>Slack (default)</code>
-                                                </pre>
-                                            </td>
-                                            <td>
-                                                <div className="d-flex">
-                                                    <div className="enabled"></div>
-                                                    <button className="btn btn-link"><i className="fa fa-edit"></i></button>
-                                                    <button className="btn btn-link"><i className="fa fa-trash"></i></button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        {this.createAlertsRulesTable()}
                                     </tbody>
                                 </table>
                                 </div>
@@ -168,6 +190,7 @@ export class ManageAlertRule extends React.Component<any, any> {
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {this.createAlertsScriptsTable()}
                                         <tr>
                                             <td>CPU Percentage</td>
                                             <td>

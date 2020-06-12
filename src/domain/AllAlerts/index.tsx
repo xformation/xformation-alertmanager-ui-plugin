@@ -62,7 +62,7 @@ export class AllAlerts extends React.Component<any, any> {
             suppressionState: 'None',
         }, {
             name: 'Disk Read Bytes',
-            severity: 'Medium',
+            severity: 'medium',
             monitorCondition: 'Fired',
             alertState: 'New',
             affectedResource: 'Prod_DB_SYN14',
@@ -124,6 +124,14 @@ export class AllAlerts extends React.Component<any, any> {
                         {
                             alert.severity === 'critical' && 
                             <div className="severity-critical">Critical</div>
+                        }
+                        {
+                            alert.severity === 'high' && 
+                            <div className="severity-high">High</div>
+                        }
+                        {
+                            alert.severity === 'medium' && 
+                            <div className="severity-medium">Medium</div>
                         }
                     </td>
                     <td>{alert.monitorCondition}</td>
