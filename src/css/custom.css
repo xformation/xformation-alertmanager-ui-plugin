@@ -520,7 +520,7 @@ a:hover {
 
 .alert-blue-button {
   background: #3b7cff;
-  color: white;
+  color: #ffffff;
   border: none;
   padding: 7px 11px;
   border-radius: 4px;
@@ -532,6 +532,7 @@ a:hover {
 
 .alert-blue-button:hover {
   background: #0f5efd !important;
+  color: #ffffff;
 }
 
 .alert-gray-button {
