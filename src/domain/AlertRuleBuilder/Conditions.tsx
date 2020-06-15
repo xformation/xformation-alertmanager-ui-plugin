@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ConditionsChart } from './ConditionsChart';
 
 export class Conditions extends React.Component<any,any>{
     render(){
@@ -21,7 +22,7 @@ export class Conditions extends React.Component<any,any>{
                         </div>
                     </div>
                     <div className="time-series-preview-box">
-                        Select a Time-Series to preview on a graph
+                        <ConditionsChart />
                     </div>
                 </div>
                 
