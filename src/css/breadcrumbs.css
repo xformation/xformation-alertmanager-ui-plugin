@@ -21,13 +21,8 @@
   padding: 0 10px;
 }
 @media (max-width: 768px) {
-  .breadcrumbs-container .page-title {
-    font-size: 13px;
-  }
   .breadcrumbs-container .breadcrumbs {
-    font-size: 12px;
-  }
-  .breadcrumbs-container .separator {
-    padding: 0 5px;
+    float: none;
+    padding-top: 5px;
   }
 }

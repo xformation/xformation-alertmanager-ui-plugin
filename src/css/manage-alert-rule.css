@@ -142,3 +142,13 @@
     margin-bottom: 20px;
   }
 }
+@media only screen and (max-width: 767px) {
+  .manage-rules-search .manage-rules-search-box {
+    display: block;
+    padding-left: 0;
+  }
+  .common-container .kpi-btn,
+  .common-container .log-btn {
+    margin-bottom: 10px;
+  }
+}

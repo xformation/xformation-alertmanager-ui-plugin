@@ -85,20 +85,24 @@ export class Rules extends React.Component<any, any> {
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALERTS" />
                 <div className="alert-page-container">
                     <div className="common-container">
-
-                        <Link to={`${config.basePath}/createrule`} className="alert-white-button">
-                            <i className="fa fa-plus"></i>&nbsp;&nbsp;
-                            New Alert Rule
-                        </Link>
-
-                        <a className="alert-white-button">
-                            <i className="fa fa-refresh"></i>&nbsp;&nbsp;
-                            Refresh
-                        </a>
-                        <Link to={`${config.basePath}/monitoralerts`} className="alert-white-button float-right">
-                            <i className="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;
-                            Back
-                        </Link>
+                        <div className="row">
+                            <div className="col-md-9 col-sm-12">
+                                <Link to={`${config.basePath}/createrule`} className="alert-white-button">
+                                    <i className="fa fa-plus"></i>&nbsp;&nbsp;
+                                    New Alert Rule
+                                </Link>
+                                <a className="alert-white-button">
+                                    <i className="fa fa-refresh"></i>&nbsp;&nbsp;
+                                    Refresh
+                                </a>
+                            </div>
+                            <div className="col-md-3 col-sm-12">
+                                <Link to={`${config.basePath}/monitoralerts`} className="alert-white-button float-right">
+                                    <i className="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;
+                                    Back
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                     <div className="filter-container form-row common-container">
                         <div className="form-group filter-control-group col-md-4 col-sm-12">

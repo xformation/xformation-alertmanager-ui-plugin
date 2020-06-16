@@ -113,11 +113,11 @@ export class ManageAlertRule extends React.Component<any, any> {
                 <div className="alert-page-container">
                     <div className="common-container">
                         <div className="row">
-                            <div className="col-md-6 col-sm-6">
+                            <div className="col-md-6 col-sm-12">
                                 <button className="alert-gray-button kpi-btn">KPI</button>
                                 <button className="alert-gray-button log-btn">Log</button>
                             </div>
-                            <div className="col-md-6 col-sm-6">
+                            <div className="col-md-6 col-sm-12">
                                 <div className="float-right common-right-btn">
                                     <Link to={`${config.basePath}/monitoralerts`} className="alert-white-button min-width-inherit"><i className="fa fa-arrow-circle-left"></i>&nbsp;&nbsp; Back</Link>
                                 </div>

@@ -89,10 +89,17 @@
 }
 @media (max-width: 767px) {
   .common-container .alert-white-button {
-    padding: 7px;
+    min-width: inherit;
   }
   .bulk-action {
     width: 100%;
     float: left;
+  }
+  .alert-white-button.float-right {
+    float: none;
+    text-align: left;
+  }
+  .filter-container .filter-control-group {
+    max-width: 100%;
   }
 }
