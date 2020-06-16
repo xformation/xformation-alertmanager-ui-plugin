@@ -87,3 +87,12 @@
 .alert-data-table-container .alert-data-table.rules-data-table tr td {
   text-align: left;
 }
+@media (max-width: 767px) {
+  .common-container .alert-white-button {
+    padding: 7px;
+  }
+  .bulk-action {
+    width: 100%;
+    float: left;
+  }
+}

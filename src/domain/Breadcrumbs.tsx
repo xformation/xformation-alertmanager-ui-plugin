@@ -27,7 +27,7 @@ export class Breadcrumbs extends React.Component<any, any> {
                                 return (
                                 <React.Fragment key={index}>
                                     <Link to={`${breadcrumb.route}`} className="breadcrumbs-link">{breadcrumb.label}</Link>
-                                    <span className="separator">&nbsp;&nbsp;&nbsp;&nbsp;<i className="fa fa-chevron-right"></i>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    <span className="separator"><i className="fa fa-chevron-right"></i></span>
                                 </React.Fragment>);
                             }
                         })
