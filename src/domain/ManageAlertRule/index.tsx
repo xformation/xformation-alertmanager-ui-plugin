@@ -114,8 +114,8 @@ export class ManageAlertRule extends React.Component<any, any> {
                     <div className="common-container">
                         <div className="row">
                             <div className="col-md-6 col-sm-6">
-                                <button className="alert-white-button kpi-btn">KPI</button>
-                                <button className="alert-white-button log-btn">Log</button>
+                                <button className="alert-gray-button kpi-btn">KPI</button>
+                                <button className="alert-gray-button log-btn">Log</button>
                             </div>
                             <div className="col-md-6 col-sm-6">
                                 <div className="float-right common-right-btn">
@@ -137,7 +137,7 @@ export class ManageAlertRule extends React.Component<any, any> {
                             </div>
                             <div className="col-lg-4 col-md-12 col-sm-12 manage-rules-btn">
                                 <div className="float-right common-right-btn">
-                                    <Link to={`${config.basePath}/alertrulebuilder`} className="alert-white-button create-rule-btn">Create Alert Rule</Link>
+                                    <Link to={`${config.basePath}/alertrulebuilder`} className="alert-blue-button create-rule-btn">Create Alert Rule</Link>
                                 </div>
                             </div>
                         </div>
@@ -175,7 +175,7 @@ export class ManageAlertRule extends React.Component<any, any> {
                             </div>
                             <div className="col-lg-4 col-md-12 col-sm-12 manage-rules-btn">
                                 <div className="float-right common-right-btn">
-                                    <button className="alert-white-button create-rule-btn">Write Script</button>
+                                    <button className="alert-blue-button create-rule-btn">Write Script</button>
                                 </div>
                             </div>
                         </div>

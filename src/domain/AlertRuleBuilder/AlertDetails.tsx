@@ -19,7 +19,7 @@ export class AlertDetails extends React.Component<any,any>{
                 <textarea placeholder="Specify alert rule description"></textarea>
             </div>
             <div className="alert-details-next">
-                <button className="btn next-btn">Next</button>
+                <button className="alert-blue-button next-btn">Next</button>
             </div>
         </div>
         );

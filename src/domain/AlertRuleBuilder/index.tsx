@@ -60,7 +60,7 @@ export class AlertRuleBuilder extends React.Component<any, any> {
                             </div>
                             <div className="col-md-7 col-sm-12">
                                 <div className="float-right common-right-btn">
-                                    <button className="alert-white-button save-rule">
+                                    <button className="alert-blue-button save-rule">
                                         Save Rule
                                     </button>
                                     <Link to={`${config.basePath}/monitoralerts`} className="alert-white-button min-width-inherit">

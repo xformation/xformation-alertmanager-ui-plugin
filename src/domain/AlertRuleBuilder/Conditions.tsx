@@ -28,7 +28,7 @@ export class Conditions extends React.Component<any,any>{
                 
             </div>
             <div className="alert-details-next">
-                <button className="btn next-btn">Next</button>
+                <button className="alert-blue-button next-btn">Next</button>
             </div>
         </div>
         );

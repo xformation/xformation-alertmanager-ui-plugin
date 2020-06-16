@@ -4,16 +4,9 @@
 .common-container .kpi-btn,
 .common-container .log-btn {
   min-width: 60px;
-  background-color: #dde4e9;
-  color: #8392a7;
   font-size: 14px;
   font-weight: 300;
   box-shadow: 0px 2px 2px #8392a71a;
-}
-.common-container .kpi-btn:hover,
-.common-container .log-btn:hover {
-  background-color: #3b7cff;
-  color: #f9fafc;
 }
 .manage-container {
   padding-right: 45px;
@@ -59,8 +52,6 @@
   width: 30px;
 }
 .manage-rules-btn .common-right-btn .alert-white-button {
-  background-color: #3b7cff;
-  color: #f9fafc;
   font-size: 14px;
   font-weight: 300;
   margin-right: 0;

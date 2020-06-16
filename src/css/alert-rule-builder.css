@@ -145,9 +145,9 @@
   text-align: right;
 }
 .alert-details .alert-details-next .next-btn {
-  background-color: #3b7cff;
-  color: #f9fafc;
   font-weight: 300;
+  min-width: 70px;
+  margin-right: 0;
 }
 
 /*************************** Alert Type ********************/
@@ -779,10 +779,6 @@
 .common-right-btn .alert-white-button:hover i {
   color: #3b4859 !important;
 }
-.common-right-btn .alert-white-button.save-rule {
-  background-color: #3b7cff;
-  color: #f9fafc;
-}
 .alert-heading {
   line-height: 36px;
   color: #3b4859;
@@ -790,14 +786,18 @@
   font-weight: 600;
 }
 
-@media only screen and (max-width: 992px) {
-  .common-right-btn .alert-white-button {
-    min-width: 100px;
-  }
+@media only screen and (max-width: 767px) {
   .float-right.common-right-btn {
     text-align: left;
     float: left;
   }
+}
+
+@media only screen and (max-width: 992px) {
+  .common-right-btn .alert-white-button {
+    min-width: 100px;
+  }
+
   .wizard-step-line-container .wizard-step-button {
     width: 100%;
     border-left: 1px solid #707070b5;
