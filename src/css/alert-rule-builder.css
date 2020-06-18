@@ -706,7 +706,7 @@
   font-weight: 400;
   position: relative;
 }
-.alert-left-box .nav-tabs > li > a:before {
+/* .alert-left-box .nav-tabs > li > a:before {
   border: none;
   background-color: red;
   width: 1px;
@@ -728,6 +728,11 @@
   height: 10px;
   right: 20px;
   top: 12px;
+} */
+.alert-left-box .nav-tabs > li > a > i {
+  float: right;
+  color: red;
+  font-weight: 400;
 }
 
 .alert-left-box .nav-tabs > li > a.side-active,
