@@ -174,7 +174,7 @@ export class AllAlerts extends React.Component<any, any> {
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALL ALERTS" />
                 <div className="alert-page-container">
                     <div className="common-container">
-                        <Link to={`${config.basePath}/createrule`} className="alert-white-button">
+                        <Link to={`${config.basePath}/managealertrule`} className="alert-white-button">
                             <i className="fa fa-plus"></i>&nbsp;&nbsp;
                             New Alert Rule
                         </Link>
@@ -182,7 +182,7 @@ export class AllAlerts extends React.Component<any, any> {
                             <i className="fa fa-refresh"></i>&nbsp;&nbsp;
                             Refresh
                         </a>
-                        <Link to={`${config.basePath}/monitoralerts`} className="alert-white-button float-right">
+                        <Link to={`${config.basePath}/managealertrule`} className="alert-white-button float-right">
                             <i className="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;
                             Back
                         </Link>
