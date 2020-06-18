@@ -8,6 +8,11 @@
   font-weight: 300;
   box-shadow: 0px 2px 2px #8392a71a;
 }
+.common-container .kpi-btn.active {
+  background-color: #3b7cff;
+  color: #ffffff;
+}
+
 .manage-container {
   padding-right: 45px;
   border-bottom: none;
