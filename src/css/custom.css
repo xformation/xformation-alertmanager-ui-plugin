@@ -522,12 +522,13 @@ a:hover {
   background: #3b7cff;
   color: #ffffff;
   border: none;
-  padding: 7px 11px;
+  padding: 7px 20px;
   border-radius: 4px;
   margin-right: 10px;
   margin-bottom: 10px;
   display: inline-block;
-  min-width: 120px;
+  min-width: 182px;
+  text-align: center;
 }
 
 .alert-blue-button:hover,
@@ -540,11 +541,12 @@ a:hover {
   background: #dde4e9;
   color: #8392a7;
   border: none;
-  padding: 7px 11px;
+  padding: 7px 20px;
   border-radius: 4px;
   margin-right: 10px;
   display: inline-block;
-  min-width: 120px;
+  min-width: 182px;
+  text-align: center;
 }
 
 .alert-gray-button:hover,
@@ -555,13 +557,14 @@ a:hover {
 
 .alert-white-button {
   background: white;
-  min-width: 120px;
+  min-width: 182px;
   color: #3b4859;
   border: none;
-  padding: 7px 11px;
+  padding: 7px 20px;
   border-radius: 4px;
   margin-right: 10px;
   display: inline-block;
+  text-align: center;
 }
 
 .alert-white-button:hover,

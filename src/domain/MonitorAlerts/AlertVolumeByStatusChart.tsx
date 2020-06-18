@@ -19,7 +19,7 @@ export class AlertVolumeByStatusChart extends React.Component<any, any> {
                 data: [20, 39, 38, 50, 56, 70, 39]
             },
             {
-                label: "Pendding",
+                label: "Pending",
                 backgroundColor: "rgba(109, 219, 146, 0.7)",
                 borderColor: "rgba(109, 219, 146, 1)",
                 data: [28, 48, 40, 19, 86, 27, 90]

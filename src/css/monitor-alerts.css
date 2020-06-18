@@ -88,11 +88,11 @@
   background: #f0f3f7;
   box-shadow: 0px 1px 5px #00000029;
   display: block;
-  min-height: 285px;
+  min-height: 250px;
   margin-bottom: 30px;
   border-radius: 5px;
   overflow: hidden;
-  margin-right: 45px;
+  margin-right: 30px;
 }
 .charts-container .chart-block .chart-inner.current {
   background: #e31335;
@@ -235,7 +235,7 @@
 }
 .current-time-chart {
   padding: 15px;
-  height: 220px;
+  height: 200px;
   display: block;
   width: 100%;
 }
@@ -255,9 +255,9 @@
 }
 .custom-chart-legends li {
   display: inline-block;
-  padding: 0 10px;
-  font-size: 12px;
-  line-height: 16px;
+  padding: 0 5px;
+  font-size: 10px;
+  line-height: 14px;
   vertical-align: top;
   color: #3b4859;
   font-weight: 300;

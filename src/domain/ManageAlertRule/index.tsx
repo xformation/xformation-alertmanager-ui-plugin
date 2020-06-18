@@ -175,7 +175,7 @@ export class ManageAlertRule extends React.Component<any, any> {
                             </div>
                             <div className="col-lg-4 col-md-12 col-sm-12 manage-rules-btn">
                                 <div className="float-right common-right-btn">
-                                    <button className="alert-blue-button create-rule-btn">Write Script</button>
+                                    <Link to={`${config.basePath}/scripteditor`} className="alert-blue-button create-rule-btn">Write Script</Link>
                                 </div>
                             </div>
                         </div>
