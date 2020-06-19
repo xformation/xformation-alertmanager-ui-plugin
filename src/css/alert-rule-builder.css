@@ -635,20 +635,17 @@
   padding-bottom: 50px;
   display: block;
 }
-.condition-message-examplex {
-  padding: 10px 20px;
-  border: 1px solid #979797;
-  min-height: 250px;
-}
-.condition-message-examplex pre {
+.condition-message-examplex textarea {
   background-color: transparent;
   color: #3b4859;
   font-size: 14px;
   line-height: 20px;
   margin-bottom: 0;
   font-weight: 400;
-  border: none;
-  padding: 0;
+  padding: 10px 20px;
+  border: 1px solid #979797;
+  min-height: 250px;
+  width: 100%;
 }
 .templates-text {
   display: block;
