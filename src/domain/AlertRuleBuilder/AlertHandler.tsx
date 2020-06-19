@@ -2,10 +2,10 @@ import * as React from 'react';
 import { useState } from 'react';
 // import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
-import { Tcp, Exec, Post } from './AlertHandleComponents';
+import { Tcp, Exec, Post, Log, StackDefault, Alerta, Email, Hipchat, Kafka } from './AlertHandleComponents';
 
 export class AlertHandler extends React.Component<any, any>{
-    tabComponentsList:any;
+    tabComponentsList: any;
     constructor(props: any) {
         super(props);
         this.state = {
@@ -16,7 +16,13 @@ export class AlertHandler extends React.Component<any, any>{
         this.tabComponentsList = {
             'tcp': <Tcp />,
             'exec': <Exec />,
-            'post': <Post />
+            'post': <Post />,
+            'log': <Log />,
+            'stack(default)': <StackDefault />,
+            'alerta': <Alerta />,
+            'email': <Email />,
+            'hipChat': <Hipchat />,
+            'Kafka(localhost)': <Kafka />
         };
     }
 
@@ -38,8 +44,8 @@ export class AlertHandler extends React.Component<any, any>{
     };
 
     deleteTabData = (index: any) => {
-        const {tabData} = this.state;
-        tabData.splice(index,1);
+        const { tabData } = this.state;
+        tabData.splice(index, 1);
         this.setState({
             tabData
         });
@@ -55,7 +61,7 @@ export class AlertHandler extends React.Component<any, any>{
                         onClick={() => { this.toggleTab(i); }}
                     >
                         {tabData[i]}
-                    <i className="fa fa-close" onClick={() => { this.deleteTabData(i) }}></i>
+                        <i className="fa fa-close" onClick={() => { this.deleteTabData(i) }}></i>
                     </NavLink>
                 </NavItem>
             );
@@ -96,7 +102,7 @@ export class AlertHandler extends React.Component<any, any>{
                                     <option value="email">email</option>
                                     <option value="alerta">alerta</option>
                                     <option value="hipChat">hipChat</option>
-                                    <option value="Kafka (localhost)">Kafka (localhost)</option>
+                                    <option value="Kafka(localhost)">Kafka (localhost)</option>
                                 </select>
                             </div>
                         </div>

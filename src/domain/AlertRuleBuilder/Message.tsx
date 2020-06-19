@@ -20,7 +20,6 @@ export class Message extends React.Component<any, any>{
     };
 
     combineMessages = (event: any) => {
-        console.log(event.target.value);
         const { messageData } = this.state;
         this.setState({
             messageData: event.target.value
