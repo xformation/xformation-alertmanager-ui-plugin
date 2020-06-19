@@ -2,22 +2,32 @@ import * as React from 'react';
 import { useState } from 'react';
 // import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { Tcp, Exec, Post } from './AlertHandleComponents';
 
 export class AlertHandler extends React.Component<any, any>{
-
+    tabComponentsList:any;
     constructor(props: any) {
         super(props);
         this.state = {
             activeTab: 0,
             tabData: [],
+            tabComponents: []
+        };
+        this.tabComponentsList = {
+            'tcp': <Tcp />,
+            'exec': <Exec />,
+            'post': <Post />
         };
     }
 
-    handleChange(event: any) {
-        const { tabData } = this.state;
-        tabData.push(event.target.value);
+    handleAlertSelection = (event: any) => {
+        const { tabData, tabComponents } = this.state;
+        const { value } = event.target;
+        tabData.push(value);
+        tabComponents.push(this.tabComponentsList[value]);
         this.setState({
-            tabData
+            tabData,
+            tabComponents
         });
     };
 
@@ -27,14 +37,12 @@ export class AlertHandler extends React.Component<any, any>{
         });
     };
 
-    deleteTabData = (index: any, val:any) => {
+    deleteTabData = (index: any) => {
         const {tabData} = this.state;
-        for (let i = 0; i < tabData.length; i++) {
-            let deleted_index = tabData.indexOf(val);
-            if(tabData.indexOf(val)=== i){
-                tabData.splice(deleted_index,1);
-            }
-        }
+        tabData.splice(index,1);
+        this.setState({
+            tabData
+        });
     };
 
     createTabs = (tabData: any) => {
@@ -44,10 +52,10 @@ export class AlertHandler extends React.Component<any, any>{
             retData.push(
                 <NavItem>
                     <NavLink className={`${activeTab == i ? 'side-active' : ''}`}
-                        onClick={() => { this.toggleTab({ i }); }}
+                        onClick={() => { this.toggleTab(i); }}
                     >
                         {tabData[i]}
-                    <i className="fa fa-close" onClick={() => { this.deleteTabData(i, tabData[i]) }}></i>
+                    <i className="fa fa-close" onClick={() => { this.deleteTabData(i) }}></i>
                     </NavLink>
                 </NavItem>
             );
@@ -55,8 +63,21 @@ export class AlertHandler extends React.Component<any, any>{
         return retData;
     };
 
+    createTabPanes = (tabComponents: any) => {
+        const retData = [];
+        const { activeTab } = this.state;
+        for (let i = 0; i < tabComponents.length; i++) {
+            retData.push(
+                <TabPane tabId={i}>
+                    {tabComponents[i]}
+                </TabPane>
+            );
+        }
+        return retData;
+    };
+
     render() {
-        const { activeTab, tabData } = this.state;
+        const { activeTab, tabData, tabComponents } = this.state;
         return (
             <div className="alert-details">
                 <div className="alert-details-name">
@@ -65,7 +86,7 @@ export class AlertHandler extends React.Component<any, any>{
                         <div className="condition-header">
                             <div className="send-alert-text">Send this alert to:</div>
                             <div className="greater-select">
-                                <select className="form-control" id="rousourceGroup" onChange={e => this.handleChange(e)}>
+                                <select className="form-control" id="rousourceGroup" onChange={this.handleAlertSelection}>
                                     <option value="Add another Handler">Add another Handler</option>
                                     <option value="post">post</option>
                                     <option value="tcp">tcp</option>
@@ -90,79 +111,10 @@ export class AlertHandler extends React.Component<any, any>{
                                 </div>
                                 <div className="col-lg-9 col-md-9 col-sm-6 alert-description">
                                     <TabContent activeTab={activeTab}>
-                                        <TabPane tabId={0}>
-                                            <span className="alert-handler-span">Parameters for this Alert Handler</span>
-                                            <div className="row">
-                                                <div className="col-lg-12 col-md-12 col-sm-12 alert-handler-datainput">
-                                                    <label className="alert-handler-label">HTTP endpoint for POST request</label>
-                                                    <input type="text" className="form-control" placeholder="ex:http://example.com/api/alert" />
-                                                </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-lg-6 col-md-6 col-sm-12 alert-handler-datainput">
-                                                    <label className="alert-handler-label">Header Key</label>
-                                                    <input type="text" className="form-control" />
-                                                </div>
-                                                <div className="col-lg-6 col-md-6 col-sm-12 alert-handler-datainput">
-                                                    <label className="alert-handler-label">Heade Value</label>
-                                                    <input type="text" className="form-control" />
-                                                </div>
-                                            </div>
-                                        </TabPane>
-                                        <TabPane tabId={1}>
-                                            <Row>
-                                                <Col sm="6">
-                                                    <Card body>
-                                                        <CardTitle>Special Title Treatment</CardTitle>
-                                                        <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-                                                        <Button>Go somewhere</Button>
-                                                    </Card>
-                                                </Col>
-                                                <Col sm="6">
-                                                    <Card body>
-                                                        <CardTitle>Special Title Treatment</CardTitle>
-                                                        <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-                                                        <Button>Go somewhere</Button>
-                                                    </Card>
-                                                </Col>
-                                            </Row>
-                                        </TabPane>
-                                        <TabPane tabId={2}>
-                                            <Row>
-                                                <Col sm="6">
-                                                    <Card body>
-                                                        <CardTitle>Special Title Treatment</CardTitle>
-                                                        <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-                                                        <Button>Go somewhere</Button>
-                                                    </Card>
-                                                </Col>
-                                                <Col sm="6">
-                                                    <Card body>
-                                                        <CardTitle>Special Title Treatment</CardTitle>
-                                                        <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-                                                        <Button>Go somewhere</Button>
-                                                    </Card>
-                                                </Col>
-                                            </Row>
-                                        </TabPane>
+                                        {this.createTabPanes(tabComponents)}
                                     </TabContent>
                                 </div>
                             </section>
-                            {/* <div className="col-lg-9 col-md-9 col-sm-6 alert_description">
-                                    <span className="alert_handler_span">Parameters for this Alert Handler</span>
-                                    <label className="alert_handler_label">HTTP endpoint for POST request</label>
-                                    <input type="text" className="form-control" />
-                                    <div className="row">
-                                        <div className="col-lg-6 col-md-6 col-sm-12 alert_handler_datainput">
-                                            <label>Header Key</label>
-                                            <input type="text" className="form-control" />
-                                        </div>
-                                        <div className="col-lg-6 col-md-6 col-sm-12 alert_handler_datainput">
-                                            <label>Heade Value</label>
-                                            <input type="text" className="form-control" />
-                                        </div>
-                                    </div>
-                                </div> */}
                         </div>
                     </div>
                 </div>
