@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import '../css/breadcrumbs.css';
 
 export class Breadcrumbs extends React.Component<any, any> {
     constructor(props: any) {

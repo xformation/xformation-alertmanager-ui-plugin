@@ -138,7 +138,7 @@
   font-size: 12px;
   font-weight: 500;
   width: 100%;
-  max-height: 300px;
+  max-height: 250px;
   height: 250px;
 }
 .alert-details .alert-details-next {
@@ -647,20 +647,6 @@
   min-height: 250px;
   width: 100%;
 }
-
-.email-message-examplex textarea {
-  background-color: transparent;
-  color: #3b4859;
-  font-size: 14px;
-  line-height: 20px;
-  margin-bottom: 0;
-  font-weight: 400;
-  padding: 10px 20px;
-  border: 1px solid #979797;
-  min-height: 50px;
-  margin-top: 10px;
-  width: 100%;
-}
 .templates-text {
   display: block;
   margin-top: 15px;
@@ -691,7 +677,7 @@
 
 /*************************** Alert Handler ********************/
 .alert-handler-box {
-  height: 350px;
+  height: 300px;
 }
 .alert-handler-span {
   font-size: 18px;
@@ -699,11 +685,10 @@
   font-weight: bold;
   font-family: Montserrat;
 }
-
 .alert-left-box {
   background-color: #dde4e9;
   padding: 0px;
-  height: 350px;
+  height: 300px;
 }
 .alert-left-box .nav-tabs > li {
   width: 100%;
@@ -717,42 +702,6 @@
   line-height: 18px;
   font-weight: 400;
   position: relative;
-}
-.alert-handler-alerta-span {
-  padding-top: 20px;
-  color: #3b4859;
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 18px;
-  display: block;
-  text-align: center;
-}
-.exit-rule-config {
-  text-align: center;
-  display: block;
-  padding-top: 5%;
-}
-.exit-rule-config-box {
-  padding: 10px;
-  border: solid 1px #979797;
-  border-radius: 5px;
-  background-color: #979797;
-  color: black;
-  display: inline-block;
-}
-.email-message-box textarea {
-  background-color: transparent;
-  color: #3b4859;
-  font-size: 14px;
-  line-height: 20px;
-  margin-bottom: 0;
-  font-weight: 400;
-  border: none;
-  padding: 0;
-  padding: 10px 20px;
-  border: 1px solid #979797;
-  min-height: 250px;
-  width: 100%;
 }
 /* .alert-left-box .nav-tabs > li > a:before {
   border: none;
@@ -821,31 +770,6 @@
 }
 .alert-handler-datainput .form-control {
   font-size: 12px;
-}
-.alert-handler-value-config {
-  border: solid 1px #979797;
-  padding-top: 7px;
-  padding-left: 5px;
-  border-radius: 10px;
-  /* margin: 5px; */
-  color: black;
-}
-.alert-handler-setting {
-  width: 50%;
-  height: 80%;
-  margin-left: 51% !important;
-  font-size: 16px;
-  font-weight: bold;
-  padding-bottom: 5px;
-}
-.icon-color {
-  color: green;
-  padding-top: 2px;
-  font-size: 20;
-}
-.setting-icon {
-  padding-top: 2px;
-  font-size: 30;
 }
 .common-right-btn {
   width: auto;
