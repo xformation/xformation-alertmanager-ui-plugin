@@ -10,6 +10,10 @@ export class AlertTypes extends React.Component<any, any>{
         };
     }
 
+    sendAlertType = (val:any) => {
+        this.props.parentCallback(val);
+   }
+
     DBRetentionPolicy() {
         let retantionData = (
             <div className="database">
@@ -99,12 +103,14 @@ export class AlertTypes extends React.Component<any, any>{
                 messurementTag: true,
                 fields: true
             });
+            this.sendAlertType(tabValue);
         } else if (tabValue === 'Availability') {
             this.setState({
                 retantionPolicy: true,
                 messurementTag: true,
                 fields: false
             });
+            this.sendAlertType(tabValue);
         }
     }
     render() {

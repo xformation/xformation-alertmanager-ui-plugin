@@ -11,10 +11,14 @@ import { Message } from './Message';
 export class AlertRuleBuilder extends React.Component<any, any> {
     breadCrumbs: any;
     steps: any;
+    conditionsRef: any;
     constructor(props: any) {
         super(props);
         this.state = {
             modal: false,
+            data: "Hello World",
+            message: "",
+            conditionData: true,
         };
         this.breadCrumbs = [
             {
@@ -26,23 +30,28 @@ export class AlertRuleBuilder extends React.Component<any, any> {
                 isCurrentPage: true
             }
         ];
-
+        this.conditionsRef = React.createRef();
         this.steps = [{
             name: "Alert Details",
             component: <AlertDetails />
-        },{
+        }, {
             name: "Alert Type",
-            component: <AlertTypes />
-        },{
+            component: <AlertTypes parentCallback = {this.callbackFunction} />
+        }, {
             name: "Conditions",
-            component: <Conditions />
-        },{
+            component: <Conditions ref= {this.conditionsRef} />
+        }, {
             name: "Alert Handlers",
-            component: <AlertHandler/>
-        },{
+            component: <AlertHandler />
+        }, {
             name: "Message",
             component: <Message />
         }];
+    }
+
+    callbackFunction = (childData:any) => {
+        console.log(childData)
+        this.conditionsRef.current.onChangeAlertType(childData);
     }
 
     render() {
