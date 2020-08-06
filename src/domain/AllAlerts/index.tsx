@@ -5,120 +5,121 @@ import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
 import { PopupContent } from './PopupContent';
 import { severityDS } from '../_utilities/commonDS';
+import { RestService } from '../_service/RestService';
 
 //This is temporary. when data come from server, please remove this.
 const allAlertsData = [{
     "name": "Percentage CPU",
     "severity": "Low",
-    "monitorCondition": "Fired",
-    "alertState": "InProgress",
-    "affectedResource": "Prod_Service_20",
-    "monitorService": "Native AWS",
-    "signalType": "Logs",
-    "firedTimed": "03/06/2020, 1596616397872",
+    "monitorcondition": "Fired",
+    "alertstate": "InProgress",
+    "affectedresource": "Prod_Service_20",
+    "monitorservice": "Native AWS",
+    "signaltype": "Logs",
+    "firedtime": "03/06/2020, 1596616397872",
     "subscription": "Alert Management",
-    "suppressionState": "None",
-    "resourceGroup": "Compute",
+    "suppressionstate": "None",
+    "resourcegroup": "Compute",
     "resources": "App"
 }, {
     "name": "CPU Credits",
     "severity": "High",
-    "monitorCondition": "Fired",
-    "alertState": "InProgress",
-    "affectedResource": "Prod_Service_20",
-    "monitorService": "Native AWS",
-    "signalType": "Logs",
-    "firedTimed": "03/06/2020, 1596616397872",
+    "monitorcondition": "Fired",
+    "alertstate": "InProgress",
+    "affectedresource": "Prod_Service_20",
+    "monitorservice": "Native AWS",
+    "signaltype": "Logs",
+    "firedtime": "03/06/2020, 1596616397872",
     "subscription": "Alert Management",
-    "suppressionState": "None",
-    "resourceGroup": "Compute",
+    "suppressionstate": "None",
+    "resourcegroup": "Compute",
     "resources": "Node"
 }, {
     "name": "Network In",
     "severity": "Medium",
-    "monitorCondition": "Fired",
-    "alertState": "InProgress",
-    "affectedResource": "Prod_Service_20",
-    "monitorService": "Native AWS",
-    "signalType": "Logs",
-    "firedTimed": "03/06/2020, 1596616397872",
+    "monitorcondition": "Fired",
+    "alertstate": "InProgress",
+    "affectedresource": "Prod_Service_20",
+    "monitorservice": "Native AWS",
+    "signaltype": "Logs",
+    "firedtime": "03/06/2020, 1596616397872",
     "subscription": "Alert Management",
-    "suppressionState": "None",
-    "resourceGroup": "Compute",
+    "suppressionstate": "None",
+    "resourcegroup": "Compute",
     "resources": "Storage"
 }, {
     "name": "Disk Read Bytes",
     "severity": "Medium",
-    "monitorCondition": "Fired",
-    "alertState": "InProgress",
-    "affectedResource": "Prod_Service_20",
-    "monitorService": "Native AWS",
-    "signalType": "Logs",
-    "firedTimed": "03/06/2020, 1596616397872",
+    "monitorcondition": "Fired",
+    "alertstate": "InProgress",
+    "affectedresource": "Prod_Service_20",
+    "monitorservice": "Native AWS",
+    "signaltype": "Logs",
+    "firedtime": "03/06/2020, 1596616397872",
     "subscription": "Alert Management",
-    "suppressionState": "None",
-    "resourceGroup": "Compute",
+    "suppressionstate": "None",
+    "resourcegroup": "Compute",
     "resources": "Database"
 }, {
     "name": "Disk Write Bytes",
     "severity": "Medium",
-    "monitorCondition": "Fired",
-    "alertState": "InProgress",
-    "affectedResource": "Prod_Service_20",
-    "monitorService": "Native AWS",
-    "signalType": "Logs",
-    "firedTimed": "03/06/2020, 1596616397872",
+    "monitorcondition": "Fired",
+    "alertstate": "InProgress",
+    "affectedresource": "Prod_Service_20",
+    "monitorservice": "Native AWS",
+    "signaltype": "Logs",
+    "firedtime": "03/06/2020, 1596616397872",
     "subscription": "Alert Management",
-    "suppressionState": "None",
-    "resourceGroup": "Jobs",
+    "suppressionstate": "None",
+    "resourcegroup": "Jobs",
     "resources": "SHELL JOBS"
 }, {
     "name": "Power Off Machine",
     "severity": "Medium",
-    "monitorCondition": "Fired",
-    "alertState": "InProgress",
-    "affectedResource": "Prod_Service_20",
-    "monitorService": "Native AWS",
-    "signalType": "Logs",
-    "firedTimed": "03/06/2020, 1596616397872",
+    "monitorcondition": "Fired",
+    "alertstate": "InProgress",
+    "affectedresource": "Prod_Service_20",
+    "monitorservice": "Native AWS",
+    "signaltype": "Logs",
+    "firedtime": "03/06/2020, 1596616397872",
     "subscription": "Alert Management",
-    "suppressionState": "None",
-    "resourceGroup": "Jobs",
+    "suppressionstate": "None",
+    "resourcegroup": "Jobs",
     "resources": "ETL JOBS"
 }, {
     "name": "Power Off Machine",
     "severity": "Medium",
-    "monitorCondition": "Fired",
-    "alertState": "InProgress",
-    "affectedResource": "Prod_Service_20",
-    "monitorService": "Native AWS",
-    "signalType": "Logs",
-    "firedTimed": "03/06/2020, 1596616397872",
+    "monitorcondition": "Fired",
+    "alertstate": "InProgress",
+    "affectedresource": "Prod_Service_20",
+    "monitorservice": "Native AWS",
+    "signaltype": "Logs",
+    "firedtime": "03/06/2020, 1596616397872",
     "subscription": "Alert Management",
-    "suppressionState": "None",
-    "resourceGroup": "Compute",
+    "suppressionstate": "None",
+    "resourcegroup": "Compute",
     "resources": "App"
 }];
 
 export class AllAlerts extends React.Component<any, any> {
     breadCrumbs: any;
-    resourceGroup: any;
+    resourcegroup: any;
     resources: any;
     monitoringServices: any;
     alertTypes: any;
     severity: any;
-    alertStates: any;
+    alertstates: any;
     constructor(props: any) {
         super(props);
         this.state = {
             alertData: [],
             modal: false,
-            resourceGroup: "",
+            resourcegroup: "",
             resource: "",
-            monitorService: "",
+            monitorservice: "",
             alertType: "",
             severity: "",
-            alertState: ""
+            alertstate: ""
         };
         this.breadCrumbs = [
             {
@@ -134,7 +135,7 @@ export class AllAlerts extends React.Component<any, any> {
                 isCurrentPage: true
             }
         ];
-        this.resourceGroup = [{
+        this.resourcegroup = [{
             label: "Compute",
             value: "Compute"
         }, {
@@ -203,7 +204,7 @@ export class AllAlerts extends React.Component<any, any> {
             label: "Low",
             value: severityDS.LOW
         }];
-        this.alertStates = [{
+        this.alertstates = [{
             label: "New",
             value: "New"
         }, {
@@ -218,38 +219,50 @@ export class AllAlerts extends React.Component<any, any> {
     componentDidMount() {
         //Below timeout is to mimic the API call
         setTimeout(() => {
-            this.setState({
-                alertData: allAlertsData
-            });
+            try {
+                RestService.getData(`http://localhost:8092/search/query?q=alert`, null, null).then(
+                    (response: any) => {
+                        this.setState({
+                            alertData: response
+                        });
+                        console.log("alert data : ", response);
+                    }
+                );
+            } catch (err) {
+                console.log("Loading alert data from elastic failed. Error: ", err);
+            }
+            // this.setState({
+            //     alertData: allAlertsData
+            // });
         }, 3000);
     }
 
     createAllAlertsTable = () => {
         const retData = [];
         let isDataPresent = true;
-        const { alertData, resourceGroup, resource, monitorService, alertType, severity, alertState } = this.state;
+        const { alertData, resourcegroup, resource, monitorservice, alertType, severity, alertstate } = this.state;
         if (alertData && alertData.length > 0) {
             const length = alertData.length;
             for (let i = 0; i < length; i++) {
                 const alert = alertData[i];
                 let isMatched = true;
-                if (resourceGroup) {
-                    isMatched = resourceGroup === alert.resourceGroup;
+                if (resourcegroup) {
+                    isMatched = resourcegroup === alert.resourcegroup;
                 }
                 if (isMatched && resource) {
                     isMatched = resource === alert.resources;
                 }
-                if (isMatched && monitorService) {
-                    isMatched = monitorService === alert.monitorService;
+                if (isMatched && monitorservice) {
+                    isMatched = monitorservice === alert.monitorservice;
                 }
                 if (isMatched && alertType) {
-                    isMatched = alertType === alert.signalType;
+                    isMatched = alertType === alert.signaltype;
                 }
                 if (isMatched && severity) {
                     isMatched = severity === alert.severity;
                 }
-                if (isMatched && alertState) {
-                    isMatched = alertState === alert.alertState;
+                if (isMatched && alertstate) {
+                    isMatched = alertstate === alert.alertstate;
                 }
                 if (isMatched) {
                     retData.push(
@@ -279,14 +292,14 @@ export class AllAlerts extends React.Component<any, any> {
                                     <div className="severity-medium">Low</div>
                                 }
                             </td>
-                            <td>{alert.monitorCondition}</td>
-                            <td>{alert.alertState}</td>
-                            <td>{alert.affectedResource}</td>
-                            <td>{alert.monitorService}</td>
-                            <td>{alert.signalType}</td>
-                            <td>{alert.firedTime}</td>
+                            <td>{alert.monitorcondition}</td>
+                            <td>{alert.alertstate}</td>
+                            <td>{alert.affectedresource}</td>
+                            <td>{alert.monitorservice}</td>
+                            <td>{alert.signaltype}</td>
+                            <td>{alert.firedtime}</td>
                             <td>{alert.subscription}</td>
-                            <td>{alert.suppressionState}</td>
+                            <td>{alert.suppressionstate}</td>
                             <td>
                                 <div className="d-flex">
                                     <button className="btn btn-link">
@@ -350,7 +363,7 @@ export class AllAlerts extends React.Component<any, any> {
         this.setState({
             [name]: value
         });
-        if (name === "resourceGroup") {
+        if (name === "resourcegroup") {
             this.setState({
                 resource: ""
             });
@@ -381,25 +394,25 @@ export class AllAlerts extends React.Component<any, any> {
                     <div className="filter-container row common-container">
                         <div className="col-lg-2 col-md-3 col-sm-12">
                             <div className="form-group filter-control-group">
-                                <label htmlFor="resourceGroup">
-                                    Rousource Group&nbsp;&nbsp;&nbsp;
+                                <label htmlFor="resourcegroup">
+                                    Resource Group&nbsp;&nbsp;&nbsp;
                                 <i className="fa fa-info-circle"></i>
                                 </label>
-                                <select className="form-control" name="resourceGroup" value={state.resourceGroup} onChange={this.handleStateChange}>
+                                <select className="form-control" name="resourcegroup" value={state.resourcegroup} onChange={this.handleStateChange}>
                                     <option value="">Select Resource Group</option>
-                                    {this.createSelectbox(this.resourceGroup)}
+                                    {this.createSelectbox(this.resourcegroup)}
                                 </select>
                             </div>
                         </div>
                         <div className="col-lg-2 col-md-3 col-sm-12">
                             <div className="form-group filter-control-group">
                                 <label htmlFor="resources">
-                                    Rousources&nbsp;&nbsp;&nbsp;
+                                    Resources&nbsp;&nbsp;&nbsp;
                                 <i className="fa fa-info-circle"></i>
                                 </label>
                                 <select className="form-control" name="resource" value={state.resource} onChange={this.handleStateChange}>
                                     <option value="">Select Resources</option>
-                                    {this.createSelectbox(this.resources[state.resourceGroup])}
+                                    {this.createSelectbox(this.resources[state.resourcegroup])}
                                 </select>
                             </div>
                         </div>
@@ -420,11 +433,11 @@ export class AllAlerts extends React.Component<any, any> {
                         </div>
                         <div className="col-lg-2 col-md-3 col-sm-12">
                             <div className="form-group filter-control-group">
-                                <label htmlFor="monitorServices">
+                                <label htmlFor="monitorservices">
                                     Monitor services&nbsp;&nbsp;&nbsp;
                                 <i className="fa fa-info-circle"></i>
                                 </label>
-                                <select className="form-control" name="monitorService" value={state.monitorService} onChange={this.handleStateChange}>
+                                <select className="form-control" name="monitorservice" value={state.monitorservice} onChange={this.handleStateChange}>
                                     <option value="">Select Monitor Services</option>
                                     {this.createSelectbox(this.monitoringServices)}
                                 </select>
@@ -456,13 +469,13 @@ export class AllAlerts extends React.Component<any, any> {
                         </div>
                         <div className="col-lg-2 col-md-3 col-sm-12">
                             <div className="form-group filter-control-group">
-                                <label htmlFor="alertState">
+                                <label htmlFor="alertstate">
                                     Alert state&nbsp;&nbsp;&nbsp;
                                 <i className="fa fa-info-circle"></i>
                                 </label>
-                                <select className="form-control" name="alertState" value={state.alertState} onChange={this.handleStateChange}>
+                                <select className="form-control" name="alertstate" value={state.alertstate} onChange={this.handleStateChange}>
                                     <option value="Select Alert State">Select Alert State</option>
-                                    {this.createSelectbox(this.alertStates)}
+                                    {this.createSelectbox(this.alertstates)}
                                 </select>
                             </div>
                         </div>
