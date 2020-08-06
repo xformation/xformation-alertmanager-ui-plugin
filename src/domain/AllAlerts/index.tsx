@@ -7,20 +7,6 @@ import { PopupContent } from './PopupContent';
 import { severityDS } from '../_utilities/commonDS';
 import { RestService } from '../_service/RestService';
 
-//This is temporary. when data come from server, please remove this.
-const allAlertsData = [
-    { "severity": "Medium", "resourcegroup": "Compute", "monitorservice": "Native AWS", "signaltype": "Metrics", "resources": "Node", "subscription": "Alert Management", "firedtime": "03/06/2020, 1596616397872", "monitorcondition": "Fired", "affectedresource": "Prod_Service_20", "suppressionstate": "Archive", "name": "Disk Read Bytes", "alertstate": "InProgress", "id": 57 },
-    { "severity": "Medium", "resourcegroup": "Compute", "monitorservice": "Native AZURE", "signaltype": "Metrics", "resources": "App", "subscription": "Alert Management", "firedtime": "03/06/2020, 1596616397872", "monitorcondition": "Fired", "affectedresource": "Prod_DB_SYN14", "suppressionstate": "None", "name": "Power Off Machine", "alertstate": "Closed", "id": 58 },
-    { "severity": "Medium", "resourcegroup": "Compute", "monitorservice": "Native AWS", "signaltype": "Metrics", "resources": "Storage", "subscription": "Alert Management", "firedtime": "03/06/2020, 1596616397872", "monitorcondition": "Fired", "affectedresource": "Prod_Service_20", "suppressionstate": "None", "name": "Percentage CPU", "alertstate": "InProgress", "id": 52 },
-    { "severity": "Critical", "resourcegroup": "Compute", "monitorservice": "Native AZURE", "signaltype": "Logs", "resources": "Storage", "subscription": "Alert Management", "firedtime": "03/06/2020, 1596616397872", "monitorcondition": "Fired", "affectedresource": "Prod_Service_20", "suppressionstate": "Silence", "name": "Disk Read Bytes", "alertstate": "Closed", "id": 59 },
-    { "severity": "High", "resourcegroup": "Compute", "monitorservice": "Native AWS", "signaltype": "Logs", "resources": "Database", "subscription": "Alert Management", "firedtime": "03/06/2020, 1596616397872", "monitorcondition": "Fired", "affectedresource": "Prod_DB_SYN14", "suppressionstate": "None", "name": "Network In", "alertstate": "Closed", "id": 50 },
-    { "severity": "Urgent", "resourcegroup": "Compute", "monitorservice": "Native AWS", "signaltype": "Logs", "resources": "Storage", "subscription": "Alert Management", "firedtime": "03/06/2020, 1596616397872", "monitorcondition": "Fired", "affectedresource": "Prod_Service_20", "suppressionstate": "Silence", "name": "CPU Credits", "alertstate": "InProgress", "id": 51 },
-    { "severity": "Medium", "resourcegroup": "Compute", "monitorservice": "Native AWS", "signaltype": "Logs", "resources": "Storage", "subscription": "Alert Management", "firedtime": "03/06/2020, 1596616397872", "monitorcondition": "Fired", "affectedresource": "Prod_DB_SYN14", "suppressionstate": "Archive", "name": "Percentage CPU", "alertstate": "InProgress", "id": 53 },
-    { "severity": "Medium", "resourcegroup": "Compute", "monitorservice": "Native AWS", "signaltype": "Logs", "resources": "Storage", "subscription": "Alert Management", "firedtime": "03/06/2020, 1596616397872", "monitorcondition": "Fired", "affectedresource": "Prod_DB_SYN14", "suppressionstate": "Archive", "name": "Disk Read Bytes", "alertstate": "Closed", "id": 56 },
-    { "severity": "High", "resourcegroup": "Compute", "monitorservice": "Synectiks", "signaltype": "Logs", "resources": "App", "subscription": "Alert Management", "firedtime": "03/06/2020, 1596616397872", "monitorcondition": "Fired", "affectedresource": "Prod_DB_SYN14", "suppressionstate": "None", "name": "Network In", "alertstate": "Closed", "id": 54 },
-    { "severity": "Medium", "resourcegroup": "Compute", "monitorservice": "Native AZURE", "signaltype": "Logs", "resources": "Database", "subscription": "Alert Management", "firedtime": "03/06/2020, 1596616397872", "monitorcondition": "Fired", "affectedresource": "Prod_Service_20", "suppressionstate": "Silence", "name": "Percentage CPU", "alertstate": "New", "id": 55 }
-];
-
 export class AllAlerts extends React.Component<any, any> {
     breadCrumbs: any;
     resourceGroup: any;
@@ -140,8 +126,14 @@ export class AllAlerts extends React.Component<any, any> {
         try {
             RestService.getData(`http://localhost:8092/search/query?q=alert`, null, null).then(
                 (response: any) => {
+                    let ary = [];
+                    for(let i=0; i<response.length; i++){
+                        let j = JSON.parse(response[i]);   
+                        ary.push(j);
+                        console.log("Alert : ", j);
+                    }
                     this.setState({
-                        alertData: response
+                        alertData: ary
                     });
                     console.log("alert data : ", response);
                 }
