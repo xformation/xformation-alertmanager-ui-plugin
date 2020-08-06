@@ -8,118 +8,38 @@ import { severityDS } from '../_utilities/commonDS';
 import { RestService } from '../_service/RestService';
 
 //This is temporary. when data come from server, please remove this.
-const allAlertsData = [{
-    "name": "Percentage CPU",
-    "severity": "Low",
-    "monitorcondition": "Fired",
-    "alertstate": "InProgress",
-    "affectedresource": "Prod_Service_20",
-    "monitorservice": "Native AWS",
-    "signaltype": "Logs",
-    "firedtime": "03/06/2020, 1596616397872",
-    "subscription": "Alert Management",
-    "suppressionstate": "None",
-    "resourcegroup": "Compute",
-    "resources": "App"
-}, {
-    "name": "CPU Credits",
-    "severity": "High",
-    "monitorcondition": "Fired",
-    "alertstate": "InProgress",
-    "affectedresource": "Prod_Service_20",
-    "monitorservice": "Native AWS",
-    "signaltype": "Logs",
-    "firedtime": "03/06/2020, 1596616397872",
-    "subscription": "Alert Management",
-    "suppressionstate": "None",
-    "resourcegroup": "Compute",
-    "resources": "Node"
-}, {
-    "name": "Network In",
-    "severity": "Medium",
-    "monitorcondition": "Fired",
-    "alertstate": "InProgress",
-    "affectedresource": "Prod_Service_20",
-    "monitorservice": "Native AWS",
-    "signaltype": "Logs",
-    "firedtime": "03/06/2020, 1596616397872",
-    "subscription": "Alert Management",
-    "suppressionstate": "None",
-    "resourcegroup": "Compute",
-    "resources": "Storage"
-}, {
-    "name": "Disk Read Bytes",
-    "severity": "Medium",
-    "monitorcondition": "Fired",
-    "alertstate": "InProgress",
-    "affectedresource": "Prod_Service_20",
-    "monitorservice": "Native AWS",
-    "signaltype": "Logs",
-    "firedtime": "03/06/2020, 1596616397872",
-    "subscription": "Alert Management",
-    "suppressionstate": "None",
-    "resourcegroup": "Compute",
-    "resources": "Database"
-}, {
-    "name": "Disk Write Bytes",
-    "severity": "Medium",
-    "monitorcondition": "Fired",
-    "alertstate": "InProgress",
-    "affectedresource": "Prod_Service_20",
-    "monitorservice": "Native AWS",
-    "signaltype": "Logs",
-    "firedtime": "03/06/2020, 1596616397872",
-    "subscription": "Alert Management",
-    "suppressionstate": "None",
-    "resourcegroup": "Jobs",
-    "resources": "SHELL JOBS"
-}, {
-    "name": "Power Off Machine",
-    "severity": "Medium",
-    "monitorcondition": "Fired",
-    "alertstate": "InProgress",
-    "affectedresource": "Prod_Service_20",
-    "monitorservice": "Native AWS",
-    "signaltype": "Logs",
-    "firedtime": "03/06/2020, 1596616397872",
-    "subscription": "Alert Management",
-    "suppressionstate": "None",
-    "resourcegroup": "Jobs",
-    "resources": "ETL JOBS"
-}, {
-    "name": "Power Off Machine",
-    "severity": "Medium",
-    "monitorcondition": "Fired",
-    "alertstate": "InProgress",
-    "affectedresource": "Prod_Service_20",
-    "monitorservice": "Native AWS",
-    "signaltype": "Logs",
-    "firedtime": "03/06/2020, 1596616397872",
-    "subscription": "Alert Management",
-    "suppressionstate": "None",
-    "resourcegroup": "Compute",
-    "resources": "App"
-}];
+const allAlertsData = [
+    { "severity": "Medium", "resourcegroup": "Compute", "monitorservice": "Native AWS", "signaltype": "Metrics", "resources": "Node", "subscription": "Alert Management", "firedtime": "03/06/2020, 1596616397872", "monitorcondition": "Fired", "affectedresource": "Prod_Service_20", "suppressionstate": "Archive", "name": "Disk Read Bytes", "alertstate": "InProgress", "id": 57 },
+    { "severity": "Medium", "resourcegroup": "Compute", "monitorservice": "Native AZURE", "signaltype": "Metrics", "resources": "App", "subscription": "Alert Management", "firedtime": "03/06/2020, 1596616397872", "monitorcondition": "Fired", "affectedresource": "Prod_DB_SYN14", "suppressionstate": "None", "name": "Power Off Machine", "alertstate": "Closed", "id": 58 },
+    { "severity": "Medium", "resourcegroup": "Compute", "monitorservice": "Native AWS", "signaltype": "Metrics", "resources": "Storage", "subscription": "Alert Management", "firedtime": "03/06/2020, 1596616397872", "monitorcondition": "Fired", "affectedresource": "Prod_Service_20", "suppressionstate": "None", "name": "Percentage CPU", "alertstate": "InProgress", "id": 52 },
+    { "severity": "Critical", "resourcegroup": "Compute", "monitorservice": "Native AZURE", "signaltype": "Logs", "resources": "Storage", "subscription": "Alert Management", "firedtime": "03/06/2020, 1596616397872", "monitorcondition": "Fired", "affectedresource": "Prod_Service_20", "suppressionstate": "Silence", "name": "Disk Read Bytes", "alertstate": "Closed", "id": 59 },
+    { "severity": "High", "resourcegroup": "Compute", "monitorservice": "Native AWS", "signaltype": "Logs", "resources": "Database", "subscription": "Alert Management", "firedtime": "03/06/2020, 1596616397872", "monitorcondition": "Fired", "affectedresource": "Prod_DB_SYN14", "suppressionstate": "None", "name": "Network In", "alertstate": "Closed", "id": 50 },
+    { "severity": "Urgent", "resourcegroup": "Compute", "monitorservice": "Native AWS", "signaltype": "Logs", "resources": "Storage", "subscription": "Alert Management", "firedtime": "03/06/2020, 1596616397872", "monitorcondition": "Fired", "affectedresource": "Prod_Service_20", "suppressionstate": "Silence", "name": "CPU Credits", "alertstate": "InProgress", "id": 51 },
+    { "severity": "Medium", "resourcegroup": "Compute", "monitorservice": "Native AWS", "signaltype": "Logs", "resources": "Storage", "subscription": "Alert Management", "firedtime": "03/06/2020, 1596616397872", "monitorcondition": "Fired", "affectedresource": "Prod_DB_SYN14", "suppressionstate": "Archive", "name": "Percentage CPU", "alertstate": "InProgress", "id": 53 },
+    { "severity": "Medium", "resourcegroup": "Compute", "monitorservice": "Native AWS", "signaltype": "Logs", "resources": "Storage", "subscription": "Alert Management", "firedtime": "03/06/2020, 1596616397872", "monitorcondition": "Fired", "affectedresource": "Prod_DB_SYN14", "suppressionstate": "Archive", "name": "Disk Read Bytes", "alertstate": "Closed", "id": 56 },
+    { "severity": "High", "resourcegroup": "Compute", "monitorservice": "Synectiks", "signaltype": "Logs", "resources": "App", "subscription": "Alert Management", "firedtime": "03/06/2020, 1596616397872", "monitorcondition": "Fired", "affectedresource": "Prod_DB_SYN14", "suppressionstate": "None", "name": "Network In", "alertstate": "Closed", "id": 54 },
+    { "severity": "Medium", "resourcegroup": "Compute", "monitorservice": "Native AZURE", "signaltype": "Logs", "resources": "Database", "subscription": "Alert Management", "firedtime": "03/06/2020, 1596616397872", "monitorcondition": "Fired", "affectedresource": "Prod_Service_20", "suppressionstate": "Silence", "name": "Percentage CPU", "alertstate": "New", "id": 55 }
+];
 
 export class AllAlerts extends React.Component<any, any> {
     breadCrumbs: any;
-    resourcegroup: any;
+    resourceGroup: any;
     resources: any;
     monitoringServices: any;
     alertTypes: any;
     severity: any;
-    alertstates: any;
+    alertStates: any;
     constructor(props: any) {
         super(props);
         this.state = {
             alertData: [],
             modal: false,
-            resourcegroup: "",
+            resourceGroup: "",
             resource: "",
-            monitorservice: "",
+            monitorService: "",
             alertType: "",
             severity: "",
-            alertstate: ""
+            alertState: ""
         };
         this.breadCrumbs = [
             {
@@ -135,7 +55,7 @@ export class AllAlerts extends React.Component<any, any> {
                 isCurrentPage: true
             }
         ];
-        this.resourcegroup = [{
+        this.resourceGroup = [{
             label: "Compute",
             value: "Compute"
         }, {
@@ -204,7 +124,7 @@ export class AllAlerts extends React.Component<any, any> {
             label: "Low",
             value: severityDS.LOW
         }];
-        this.alertstates = [{
+        this.alertStates = [{
             label: "New",
             value: "New"
         }, {
@@ -217,43 +137,37 @@ export class AllAlerts extends React.Component<any, any> {
     }
 
     componentDidMount() {
-        //Below timeout is to mimic the API call
-        setTimeout(() => {
-            try {
-                RestService.getData(`http://localhost:8092/search/query?q=alert`, null, null).then(
-                    (response: any) => {
-                        this.setState({
-                            alertData: response
-                        });
-                        console.log("alert data : ", response);
-                    }
-                );
-            } catch (err) {
-                console.log("Loading alert data from elastic failed. Error: ", err);
-            }
-            // this.setState({
-            //     alertData: allAlertsData
-            // });
-        }, 3000);
+        try {
+            RestService.getData(`http://localhost:8092/search/query?q=alert`, null, null).then(
+                (response: any) => {
+                    this.setState({
+                        alertData: response
+                    });
+                    console.log("alert data : ", response);
+                }
+            );
+        } catch (err) {
+            console.log("Loading alert data from elastic failed. Error: ", err);
+        }
     }
 
     createAllAlertsTable = () => {
         const retData = [];
         let isDataPresent = true;
-        const { alertData, resourcegroup, resource, monitorservice, alertType, severity, alertstate } = this.state;
+        const { alertData, resourceGroup, resource, monitorService, alertType, severity, alertState } = this.state;
         if (alertData && alertData.length > 0) {
             const length = alertData.length;
             for (let i = 0; i < length; i++) {
                 const alert = alertData[i];
                 let isMatched = true;
-                if (resourcegroup) {
-                    isMatched = resourcegroup === alert.resourcegroup;
+                if (resourceGroup) {
+                    isMatched = resourceGroup === alert.resourcegroup;
                 }
                 if (isMatched && resource) {
                     isMatched = resource === alert.resources;
                 }
-                if (isMatched && monitorservice) {
-                    isMatched = monitorservice === alert.monitorservice;
+                if (isMatched && monitorService) {
+                    isMatched = monitorService === alert.monitorservice;
                 }
                 if (isMatched && alertType) {
                     isMatched = alertType === alert.signaltype;
@@ -261,8 +175,8 @@ export class AllAlerts extends React.Component<any, any> {
                 if (isMatched && severity) {
                     isMatched = severity === alert.severity;
                 }
-                if (isMatched && alertstate) {
-                    isMatched = alertstate === alert.alertstate;
+                if (isMatched && alertState) {
+                    isMatched = alertState === alert.alertstate;
                 }
                 if (isMatched) {
                     retData.push(
@@ -363,7 +277,7 @@ export class AllAlerts extends React.Component<any, any> {
         this.setState({
             [name]: value
         });
-        if (name === "resourcegroup") {
+        if (name === "resourceGroup") {
             this.setState({
                 resource: ""
             });
@@ -394,13 +308,13 @@ export class AllAlerts extends React.Component<any, any> {
                     <div className="filter-container row common-container">
                         <div className="col-lg-2 col-md-3 col-sm-12">
                             <div className="form-group filter-control-group">
-                                <label htmlFor="resourcegroup">
+                                <label htmlFor="resourceGroup">
                                     Resource Group&nbsp;&nbsp;&nbsp;
                                 <i className="fa fa-info-circle"></i>
                                 </label>
-                                <select className="form-control" name="resourcegroup" value={state.resourcegroup} onChange={this.handleStateChange}>
+                                <select className="form-control" name="resourceGroup" value={state.resourceGroup} onChange={this.handleStateChange}>
                                     <option value="">Select Resource Group</option>
-                                    {this.createSelectbox(this.resourcegroup)}
+                                    {this.createSelectbox(this.resourceGroup)}
                                 </select>
                             </div>
                         </div>
@@ -412,7 +326,7 @@ export class AllAlerts extends React.Component<any, any> {
                                 </label>
                                 <select className="form-control" name="resource" value={state.resource} onChange={this.handleStateChange}>
                                     <option value="">Select Resources</option>
-                                    {this.createSelectbox(this.resources[state.resourcegroup])}
+                                    {this.createSelectbox(this.resources[state.resourceGroup])}
                                 </select>
                             </div>
                         </div>
@@ -437,7 +351,7 @@ export class AllAlerts extends React.Component<any, any> {
                                     Monitor services&nbsp;&nbsp;&nbsp;
                                 <i className="fa fa-info-circle"></i>
                                 </label>
-                                <select className="form-control" name="monitorservice" value={state.monitorservice} onChange={this.handleStateChange}>
+                                <select className="form-control" name="monitorService" value={state.monitorService} onChange={this.handleStateChange}>
                                     <option value="">Select Monitor Services</option>
                                     {this.createSelectbox(this.monitoringServices)}
                                 </select>
@@ -469,13 +383,13 @@ export class AllAlerts extends React.Component<any, any> {
                         </div>
                         <div className="col-lg-2 col-md-3 col-sm-12">
                             <div className="form-group filter-control-group">
-                                <label htmlFor="alertstate">
+                                <label htmlFor="alertState">
                                     Alert state&nbsp;&nbsp;&nbsp;
                                 <i className="fa fa-info-circle"></i>
                                 </label>
-                                <select className="form-control" name="alertstate" value={state.alertstate} onChange={this.handleStateChange}>
+                                <select className="form-control" name="alertState" value={state.alertState} onChange={this.handleStateChange}>
                                     <option value="Select Alert State">Select Alert State</option>
-                                    {this.createSelectbox(this.alertstates)}
+                                    {this.createSelectbox(this.alertStates)}
                                 </select>
                             </div>
                         </div>
@@ -560,7 +474,7 @@ export class AllAlerts extends React.Component<any, any> {
                         <PopupContent />
                     </ModalBody>
                 </Modal> */}
-                {   alertTable.isDataPresent && 
+                {alertTable.isDataPresent &&
                     <UncontrolledPopover trigger="legacy" placement="bottom" target="PopoverFocus">
                         <PopoverBody>
                             <Link className=" " to={`${config.basePath}/alltickets`}>Create Ticket</Link>
