@@ -6,6 +6,7 @@ import { config } from '../../config';
 import { PopupContent } from './PopupContent';
 import { severityDS } from '../_utilities/commonDS';
 import { RestService } from '../_service/RestService';
+import { TimePicker } from 'react-time-picker';
 
 export class AllAlerts extends React.Component<any, any> {
     breadCrumbs: any;
@@ -317,7 +318,6 @@ export class AllAlerts extends React.Component<any, any> {
     }
 
     setTimeValue = (e: any) => {
-        console.log("bchdbhs");
         console.log(e.target.value);
         for (let i = 0; i < this.state.TimeOption.length; i++) {
             const timeData = this.state.TimeOption[i];
@@ -328,6 +328,13 @@ export class AllAlerts extends React.Component<any, any> {
                     toTime: timeData.to,
                 })
             }
+            // } else {
+            //     this.setState({
+            //         currentTime: e.target.value,
+            //         fromTime: e.target.value,
+            //         toTime: e.target.value,
+            //     })
+            // }
         }
     }
     render() {
@@ -382,7 +389,7 @@ export class AllAlerts extends React.Component<any, any> {
                                     Time Range&nbsp;&nbsp;&nbsp;
                                 <i className="fa fa-info-circle"></i>
                                 </label>
-                                <input className="form-control time-range" value={currentTime} onClick={this.onClickopenTimeRangePopup} id="timeRange" />
+                                <input className="form-control time-range" readOnly value={currentTime} onClick={this.onClickopenTimeRangePopup} id="timeRange" />
                                 <i className="fa fa-angle-down time-range-icon"></i>
                             </div>
                             {openTimeRange && <div className="absolute-time-range-box">
@@ -391,6 +398,10 @@ export class AllAlerts extends React.Component<any, any> {
                                     <form>
                                         <div className="form-group">
                                             <label htmlFor="From" className="d-block">From</label>
+                                            {/* <TimePicker
+                                                onChange={this.setTimeValue}
+                                                value={fromTime}
+                                            /> */}
                                             <input type="text" className="input-group-text" placeholder="now-3h" value={fromTime} />
                                         </div>
                                         <div className="form-group">
