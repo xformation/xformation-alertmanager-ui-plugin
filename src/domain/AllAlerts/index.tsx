@@ -382,10 +382,8 @@ export class AllAlerts extends React.Component<any, any> {
                                     Time Range&nbsp;&nbsp;&nbsp;
                                 <i className="fa fa-info-circle"></i>
                                 </label>
-                                <div>
-                                    <select className="form-control" value={currentTime} onClick={this.onClickopenTimeRangePopup} id="timeRange">
-                                    </select>
-                                </div>
+                                <input className="form-control time-range" value={currentTime} onClick={this.onClickopenTimeRangePopup} id="timeRange" />
+                                <i className="fa fa-angle-down time-range-icon"></i>
                             </div>
                             {openTimeRange && <div className="absolute-time-range-box">
                                 <div className="absolute-time-range-left">
@@ -400,7 +398,7 @@ export class AllAlerts extends React.Component<any, any> {
                                             <input type="text" className="input-group-text" placeholder="now" value={toTime} />
                                         </div>
                                         <div className="form-group">
-                                            <button className="blue-button">Apply time range</button>
+                                            <button className="alert-blue-button">Apply time range</button>
                                         </div>
                                     </form>
                                     <div className="absolute-time-text">
