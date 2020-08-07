@@ -6,6 +6,7 @@ import { config } from '../../config';
 import { PopupContent } from './PopupContent';
 import { severityDS } from '../_utilities/commonDS';
 import { RestService } from '../_service/RestService';
+import { TimeRangePopup } from './TimeRangePopup';
 
 export class AllAlerts extends React.Component<any, any> {
     breadCrumbs: any;
@@ -15,6 +16,7 @@ export class AllAlerts extends React.Component<any, any> {
     alertTypes: any;
     severity: any;
     alertStates: any;
+    timeRangeRef: any;
     constructor(props: any) {
         super(props);
         this.state = {
@@ -120,6 +122,7 @@ export class AllAlerts extends React.Component<any, any> {
             label: "Closed",
             value: "Closed"
         }];
+        this.timeRangeRef = React.createRef();
     }
 
     componentDidMount() {
@@ -127,8 +130,8 @@ export class AllAlerts extends React.Component<any, any> {
             RestService.getData(`http://localhost:8092/search/query?q=alert`, null, null).then(
                 (response: any) => {
                     let ary = [];
-                    for(let i=0; i<response.length; i++){
-                        let j = JSON.parse(response[i]);   
+                    for (let i = 0; i < response.length; i++) {
+                        let j = JSON.parse(response[i]);
                         ary.push(j);
                         console.log("Alert : ", j);
                     }
@@ -142,6 +145,10 @@ export class AllAlerts extends React.Component<any, any> {
             console.log("Loading alert data from elastic failed. Error: ", err);
         }
     }
+
+    onClickopenTimeRangePopup = (e: any) => {
+        this.timeRangeRef.current.toggle();
+    };
 
     createAllAlertsTable = () => {
         const retData = [];
@@ -328,13 +335,9 @@ export class AllAlerts extends React.Component<any, any> {
                                     Time Range&nbsp;&nbsp;&nbsp;
                                 <i className="fa fa-info-circle"></i>
                                 </label>
-                                <select className="form-control" id="timeRange">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
+                                <div>
+                                    <input className="timeRangeBox" onClick={this.onClickopenTimeRangePopup} type="text" />
+                                </div>
                             </div>
                         </div>
                         <div className="col-lg-2 col-md-3 col-sm-12">
@@ -474,6 +477,7 @@ export class AllAlerts extends React.Component<any, any> {
                         </PopoverBody>
                     </UncontrolledPopover>
                 }
+                <TimeRangePopup ref={this.timeRangeRef} />
             </div>
         );
     }
