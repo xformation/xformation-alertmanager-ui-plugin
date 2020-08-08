@@ -49,6 +49,22 @@ export class AllAlerts extends React.Component<any, any> {
                 { from: 'now-2y', to: 'now', display: 'Last 2 years', section: 3 },
                 { from: 'now-5y', to: 'now', display: 'Last 5 years', section: 3 },
             ],
+            otherOptions: [
+                { from: 'now-1d/d', to: 'now-1d/d', display: 'Yesterday', section: 3 },
+                { from: 'now-2d/d', to: 'now-2d/d', display: 'Day before yesterday', section: 3 },
+                { from: 'now-7d/d', to: 'now-7d/d', display: 'This day last week', section: 3 },
+                { from: 'now-1w/w', to: 'now-1w/w', display: 'Previous week', section: 3 },
+                { from: 'now-1M/M', to: 'now-1M/M', display: 'Previous month', section: 3 },
+                { from: 'now-1y/y', to: 'now-1y/y', display: 'Previous year', section: 3 },
+                { from: 'now/d', to: 'now/d', display: 'Today', section: 3 },
+                { from: 'now/d', to: 'now', display: 'Today so far', section: 3 },
+                { from: 'now/w', to: 'now/w', display: 'This week', section: 3 },
+                { from: 'now/w', to: 'now', display: 'This week so far', section: 3 },
+                { from: 'now/M', to: 'now/M', display: 'This month', section: 3 },
+                { from: 'now/M', to: 'now', display: 'This month so far', section: 3 },
+                { from: 'now/y', to: 'now/y', display: 'This year', section: 3 },
+                { from: 'now/y', to: 'now', display: 'This year so far', section: 3 },
+              ],
         };
         this.breadCrumbs = [
             {
@@ -316,6 +332,16 @@ export class AllAlerts extends React.Component<any, any> {
         }
         return retuData;
     }
+    displayOtherTimeRange = ()=>{
+        const retData = [];
+        for (let i = 0; i < this.state.otherOptions.length; i++) {
+            let data = this.state.otherOptions[i];
+            retData.push(
+                <option value={data.display}>{data.display}</option>
+            );
+        }
+        return retData;
+    }
 
     setTimeValue = (e: any) => {
         console.log(e.target.value);
@@ -400,12 +426,14 @@ export class AllAlerts extends React.Component<any, any> {
                                             <label htmlFor="From" className="d-block">From</label>
                                             {/* <TimePicker
                                                 onChange={this.setTimeValue}
-                                                value={fromTime}
+                                            value=""
                                             /> */}
-                                            <input type="text" className="input-group-text" placeholder="now-3h" value={fromTime} />
+                                            <input type="text" className="input-group-text" value={fromTime} />
+                                            {/* <input type="date" className="input-group-text" value="" /> */}
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="To" className="d-block">To</label>
+                                            {/* <input type="date" className="input-group-text" value="" /> */}
                                             <input type="text" className="input-group-text" placeholder="now" value={toTime} />
                                         </div>
                                         <div className="form-group">
@@ -421,6 +449,9 @@ export class AllAlerts extends React.Component<any, any> {
                                     <select className="form-control" value={currentTime} onChange={this.setTimeValue} id="timeRange">
                                         {this.displayTimeRange()}
                                     </select>
+                                    {/* <select className="form-control" value={currentTime} onChange={this.setTimeValue} id="otherRange">
+                                        {this.displayOtherTimeRange()}
+                                    </select> */}
                                 </div>
                             </div>}
                         </div>
