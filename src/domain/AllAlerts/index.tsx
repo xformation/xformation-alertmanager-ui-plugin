@@ -4,11 +4,13 @@ import { Modal, ModalHeader, ModalBody, UncontrolledPopover, PopoverBody } from 
 import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
 import { PopupContent } from './PopupContent';
+import { EditAlertPopup } from './EditAlertPopup';
 import { severityDS } from '../_utilities/commonDS';
 import { RestService } from '../_service/RestService';
 import { TimePicker } from 'react-time-picker';
 
 export class AllAlerts extends React.Component<any, any> {
+    editAlertRef: any;
     breadCrumbs: any;
     resourceGroup: any;
     resources: any;
@@ -159,20 +161,20 @@ export class AllAlerts extends React.Component<any, any> {
             label: "Closed",
             value: "Closed"
         }];
+        this.editAlertRef = React.createRef();
     }
 
     componentDidMount() {
         try {
-            RestService.getData(`http://localhost:8092/search/query?q=alert`, null, null).then(
+            RestService.getData(config.GET_ALL_ALERT_FROM_DB, null, null).then(
                 (response: any) => {
-                    let ary = [];
-                    for (let i = 0; i < response.length; i++) {
-                        let j = JSON.parse(response[i]);
-                        ary.push(j);
-                        console.log("Alert : ", j);
-                    }
+                    // let ary = [];
+                    // for(let i=0; i<response.length; i++){
+                    //     let j = JSON.parse(response[i]);   
+                    //     ary.push(j);
+                    // }
                     this.setState({
-                        alertData: ary
+                        alertData: response
                     });
                     console.log("alert data : ", response);
                 }
@@ -255,7 +257,7 @@ export class AllAlerts extends React.Component<any, any> {
                             <td>
                                 <div className="d-flex">
                                     <button className="btn btn-link">
-                                        <i className="fa fa-edit"></i>
+                                        <i onClick={e => this.onClickEditAlert(e, alert)} className="fa fa-edit"></i>
                                     </button>
                                     <button className="btn btn-link">
                                         <i className="fa fa-trash"></i>
@@ -322,6 +324,17 @@ export class AllAlerts extends React.Component<any, any> {
         }
     };
 
+    onClickEditAlert = (e: any, selectedAlert: any) => {
+        this.editAlertRef.current.toggle(selectedAlert);
+    };
+
+    updateAlertList(alertList: any) {
+        console.log("Updated alert list : ", alertList);
+        this.setState({
+            alertData: alertList
+        });
+    }
+    
     displayTimeRange = () => {
         const retuData = [];
         for (let i = 0; i < this.state.TimeOption.length; i++) {
@@ -592,6 +605,7 @@ export class AllAlerts extends React.Component<any, any> {
                         </PopoverBody>
                     </UncontrolledPopover>
                 }
+                <EditAlertPopup ref={this.editAlertRef} />
             </div>
         );
     }
