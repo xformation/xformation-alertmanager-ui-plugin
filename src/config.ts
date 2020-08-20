@@ -1,7 +1,7 @@
-const IP = "100.64.108.25";
+const IP = "localhost";
 
 const searchSrvUrl = `http://${IP}:8092`;
-const alertSrvUrl = `http://${IP}:5050`;
+const alertSrvUrl = `http://${IP}:5060`;
 
 export const config = {
   basePath: "/plugins/xformation-alertmanager-ui-plugin/page",

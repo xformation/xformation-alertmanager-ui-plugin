@@ -33,6 +33,7 @@ export class AllAlerts extends React.Component<any, any> {
             currentTime: 'Last 6 hours',
             fromTime: 'now-6h',
             toTime: 'now',
+            filterCheckbox:false,
             TimeOption: [
                 { from: 'now-5m', to: 'now', display: 'Last 5 minutes', section: 3 },
                 { from: 'now-15m', to: 'now', display: 'Last 15 minutes', section: 3 },
@@ -315,7 +316,8 @@ export class AllAlerts extends React.Component<any, any> {
     handleStateChange = (e: any) => {
         const { name, value } = e.target;
         this.setState({
-            [name]: value
+            [name]: value,
+            filterCheckbox:false
         });
         if (name === "resourceGroup") {
             this.setState({
@@ -358,6 +360,11 @@ export class AllAlerts extends React.Component<any, any> {
 
     setTimeValue = (e: any) => {
         console.log(e.target.value);
+        this.setState(
+            {
+                filterCheckbox:false
+            }
+        );
         for (let i = 0; i < this.state.TimeOption.length; i++) {
             const timeData = this.state.TimeOption[i];
             if (timeData.display == e.target.value) {
@@ -376,8 +383,24 @@ export class AllAlerts extends React.Component<any, any> {
             // }
         }
     }
+    clearAllFilters= () =>{
+                this.setState(
+                    {
+                        resourceGroup: "",
+                        resource: "",
+                        monitorService: "",
+                        alertType: "",
+                        severity: "",
+                        alertState: "",
+                        currentTime: 'Last 6 hours',
+                        filterCheckbox:true
+                        
+                    }
+                )
+
+    }
     render() {
-        const { resourceGroup, resource, openTimeRange, monitorService, alertType, severity, currentTime, alertState, fromTime, toTime } = this.state;
+        const { resourceGroup, resource, openTimeRange, monitorService, alertType, severity, currentTime, alertState, fromTime, toTime,filterCheckbox } = this.state;
         const alertTable = this.createAllAlertsTable();
         return (
             <div className="all-alerts-container">
@@ -526,8 +549,9 @@ export class AllAlerts extends React.Component<any, any> {
                         </div>
                         <div className="col-lg-2 col-md-3 col-sm-12">
                             <div className="form-group filter-control-group clear-filters">
-                                <label htmlFor="clearFilter">
-                                    <span>Clear All Filters</span>
+                               
+                                <label htmlFor="clearFilter" >
+                                <input className="clearAllFilter" value={filterCheckbox} type="checkbox" checked={filterCheckbox} name="clearAllFilter" onClick={this.clearAllFilters} /> <span>Clear All Filters</span>
                                 </label>
                             </div>
                         </div>
