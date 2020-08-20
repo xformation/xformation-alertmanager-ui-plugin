@@ -164,6 +164,25 @@ export class AllAlerts extends React.Component<any, any> {
         }];
         this.editAlertRef = React.createRef();
     }
+    refreshData=()=>{
+        try {
+            RestService.getData(config.GET_ALL_ALERT_FROM_DB, null, null).then(
+                (response: any) => {
+                    // let ary = [];
+                    // for(let i=0; i<response.length; i++){
+                    //     let j = JSON.parse(response[i]);   
+                    //     ary.push(j);
+                    // }
+                    this.setState({
+                        alertData: response
+                    });
+                    console.log("alert data : ", response);
+                }
+            );
+        } catch (err) {
+            console.log("Loading alert data from elastic failed. Error: ", err);
+        }
+    }
 
     componentDidMount() {
         try {
@@ -189,7 +208,7 @@ export class AllAlerts extends React.Component<any, any> {
         let status = !this.state.openTimeRange;
         this.setState({
             openTimeRange: status,
-        })
+        }) 
     };
 
     createAllAlertsTable = () => {
@@ -411,7 +430,7 @@ export class AllAlerts extends React.Component<any, any> {
                             <i className="fa fa-plus"></i>&nbsp;&nbsp;
                             New Alert Rule
                         </Link>
-                        <a className="alert-white-button">
+                        <a className="alert-white-button" onClick={this.refreshData}>
                             <i className="fa fa-refresh"></i>&nbsp;&nbsp;
                             Refresh
                         </a>
@@ -459,7 +478,7 @@ export class AllAlerts extends React.Component<any, any> {
                                     <h3>Absolute time range</h3>
                                     <form>
                                         <div className="form-group">
-                                            <label htmlFor="From" className="d-block">From</label>
+                                            <label htmlFor="From"  className="d-block">From</label>
                                             {/* <TimePicker
                                                 onChange={this.setTimeValue}
                                             value=""
