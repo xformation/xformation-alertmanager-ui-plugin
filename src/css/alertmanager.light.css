@@ -1657,6 +1657,7 @@ a:hover {
   cursor: pointer;
   position: relative;
 }
+
 .filter-container .filter-control-group.archive span:after {
   top: 7px;
   left: 0;
