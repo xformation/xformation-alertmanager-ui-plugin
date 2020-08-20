@@ -164,44 +164,37 @@ export class AllAlerts extends React.Component<any, any> {
         }];
         this.editAlertRef = React.createRef();
     }
+
     refreshData=()=>{
         try {
-            RestService.getData(config.GET_ALL_ALERT_FROM_DB, null, null).then(
-                (response: any) => {
-                    // let ary = [];
-                    // for(let i=0; i<response.length; i++){
-                    //     let j = JSON.parse(response[i]);   
-                    //     ary.push(j);
-                    // }
-                    this.setState({
-                        alertData: response
-                    });
-                    console.log("alert data : ", response);
-                }
-            );
+            this.fetchData();
         } catch (err) {
-            console.log("Loading alert data from elastic failed. Error: ", err);
+            console.log("Alert data refresh failed. Error: ", err);
         }
     }
 
     componentDidMount() {
         try {
-            RestService.getData(config.GET_ALL_ALERT_FROM_DB, null, null).then(
-                (response: any) => {
-                    // let ary = [];
-                    // for(let i=0; i<response.length; i++){
-                    //     let j = JSON.parse(response[i]);   
-                    //     ary.push(j);
-                    // }
-                    this.setState({
-                        alertData: response
-                    });
-                    console.log("alert data : ", response);
-                }
-            );
+            this.fetchData();
         } catch (err) {
             console.log("Loading alert data from elastic failed. Error: ", err);
         }
+    }
+
+    fetchData = () => {
+        RestService.getData(config.GET_ALL_ALERT_FROM_ELASTIC, null, null).then(
+            (response: any) => {
+                let ary = [];
+                for(let i=0; i<response.length; i++){
+                    let j = JSON.parse(response[i]);   
+                    ary.push(j);
+                }
+                this.setState({
+                    alertData: ary
+                });
+                console.log("alert data : ", response);
+            }
+        );
     }
 
     onClickopenTimeRangePopup = (e: any) => {
@@ -272,7 +265,7 @@ export class AllAlerts extends React.Component<any, any> {
                             <td>{alert.monitorservice}</td>
                             <td>{alert.signaltype}</td>
                             <td>{alert.firedtime}</td>
-                            <td>{alert.subscription}</td>
+                            <td>{alert.brcsubscription}</td>
                             <td>{alert.suppressionstate}</td>
                             <td>
                                 <div className="d-flex">
@@ -402,22 +395,22 @@ export class AllAlerts extends React.Component<any, any> {
             // }
         }
     }
-    clearAllFilters= () =>{
-                this.setState(
-                    {
-                        resourceGroup: "",
-                        resource: "",
-                        monitorService: "",
-                        alertType: "",
-                        severity: "",
-                        alertState: "",
-                        currentTime: 'Last 6 hours',
-                        filterCheckbox:true
-                        
-                    }
-                )
-
+    clearAllFilters= () => {
+        this.setState(
+            {
+                resourceGroup: "",
+                resource: "",
+                monitorService: "",
+                alertType: "",
+                severity: "",
+                alertState: "",
+                currentTime: 'Last 6 hours',
+                filterCheckbox:true
+                
+            }
+        )
     }
+
     render() {
         const { resourceGroup, resource, openTimeRange, monitorService, alertType, severity, currentTime, alertState, fromTime, toTime,filterCheckbox } = this.state;
         const alertTable = this.createAllAlertsTable();
@@ -570,7 +563,7 @@ export class AllAlerts extends React.Component<any, any> {
                             <div className="form-group filter-control-group clear-filters">
                                
                                 <label htmlFor="clearFilter" >
-                                <input className="clearAllFilter" value={filterCheckbox} type="checkbox" checked={filterCheckbox} name="clearAllFilter" onClick={this.clearAllFilters} /> <span>Clear All Filters</span>
+                                <input className="clearAllFilter" value={filterCheckbox} type="checkbox" checked={filterCheckbox} name="clearAllFilter" onChange={this.clearAllFilters} /> <span>Clear All Filters</span>
                                 </label>
                             </div>
                         </div>
