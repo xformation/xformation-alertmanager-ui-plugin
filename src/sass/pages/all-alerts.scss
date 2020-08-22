@@ -68,7 +68,18 @@
     &.clear-filters {
       margin-top: 27px;
       position: relative;
-
+      .clear-all-filter{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        border: none;
+        opacity: 0;
+        z-index: 1;
+        cursor: pointer;
+      }
       span {
         display: inline-block;
         padding-left: 30px;
@@ -119,6 +130,7 @@
           z-index: 1;
         }
       }
+
     }
     .time-range-icon{
       font-size: 16px;

@@ -33,7 +33,7 @@ export class AllAlerts extends React.Component<any, any> {
             currentTime: 'Last 6 hours',
             fromTime: 'now-6h',
             toTime: 'now',
-            filterCheckbox:false,
+            filterCheckbox: false,
             TimeOption: [
                 { from: 'now-5m', to: 'now', display: 'Last 5 minutes', section: 3 },
                 { from: 'now-15m', to: 'now', display: 'Last 15 minutes', section: 3 },
@@ -67,7 +67,7 @@ export class AllAlerts extends React.Component<any, any> {
                 { from: 'now/M', to: 'now', display: 'This month so far', section: 3 },
                 { from: 'now/y', to: 'now/y', display: 'This year', section: 3 },
                 { from: 'now/y', to: 'now', display: 'This year so far', section: 3 },
-              ],
+            ],
         };
         this.breadCrumbs = [
             {
@@ -395,6 +395,7 @@ export class AllAlerts extends React.Component<any, any> {
             // }
         }
     }
+
     clearAllFilters= () => {
         this.setState(
             {
@@ -405,8 +406,8 @@ export class AllAlerts extends React.Component<any, any> {
                 severity: "",
                 alertState: "",
                 currentTime: 'Last 6 hours',
-                filterCheckbox:true
-                
+                filterCheckbox:true,
+                alertData: ""
             }
         )
     }
@@ -560,10 +561,10 @@ export class AllAlerts extends React.Component<any, any> {
                             </div>
                         </div>
                         <div className="col-lg-2 col-md-3 col-sm-12">
-                            <div className="form-group filter-control-group clear-filters">
-                               
-                                <label htmlFor="clearFilter" >
-                                <input className="clearAllFilter" value={filterCheckbox} type="checkbox" checked={filterCheckbox} name="clearAllFilter" onChange={this.clearAllFilters} /> <span>Clear All Filters</span>
+                            <div className="form-check filter-control-group clear-filters">
+                                <input className="form-check-input clear-all-filter" value={filterCheckbox} type="checkbox" checked={filterCheckbox} name="clearAllFilter" onChange={this.clearAllFilters} />
+                                <label className="form-check-label" htmlFor="clearFilter">
+                                     <span>Clear All Filters</span>
                                 </label>
                             </div>
                         </div>

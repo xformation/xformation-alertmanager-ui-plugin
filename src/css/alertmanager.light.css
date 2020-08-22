@@ -1657,7 +1657,6 @@ a:hover {
   cursor: pointer;
   position: relative;
 }
-
 .filter-container .filter-control-group.archive span:after {
   top: 7px;
   left: 0;
@@ -1691,20 +1690,28 @@ a:hover {
   margin-top: 27px;
   position: relative;
 }
+.filter-container .filter-control-group.clear-filters .clear-all-filter {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  opacity: 0;
+  z-index: 1;
+  cursor: pointer;
+}
 .filter-container .filter-control-group.clear-filters span {
   display: inline-block;
-  padding-left: 9px;
+  padding-left: 30px;
   color: #3b4859;
   vertical-align: middle;
   padding-top: 7px;
   cursor: pointer;
   position: relative;
 }
-.clearAllFilter {
-  float: left;
-  margin-top: 11px;
-}
-/* .filter-container .filter-control-group.clear-filters label:after {
+.filter-container .filter-control-group.clear-filters label:after {
   top: 7px;
   left: 0;
   width: 20px;
@@ -1713,7 +1720,7 @@ a:hover {
   background-color: #f0f3f7;
   z-index: 0;
   position: absolute;
-} 
+}
 .filter-container .filter-control-group.clear-filters span:before {
   content: "";
   width: 1px;
@@ -1740,7 +1747,6 @@ a:hover {
   cursor: pointer;
   z-index: 1;
 }
-*/
 .filter-container .filter-control-group .time-range-icon {
   font-size: 16px;
   position: absolute;

@@ -1690,6 +1690,18 @@ a:hover {
   margin-top: 27px;
   position: relative;
 }
+.filter-container .filter-control-group.clear-filters .clear-all-filter {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  opacity: 0;
+  z-index: 1;
+  cursor: pointer;
+}
 .filter-container .filter-control-group.clear-filters span {
   display: inline-block;
   padding-left: 30px;
