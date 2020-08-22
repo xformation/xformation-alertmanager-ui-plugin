@@ -165,7 +165,7 @@ export class AllAlerts extends React.Component<any, any> {
         this.editAlertRef = React.createRef();
     }
 
-    refreshData=()=>{
+    refreshData = () => {
         try {
             this.fetchData();
         } catch (err) {
@@ -185,8 +185,8 @@ export class AllAlerts extends React.Component<any, any> {
         RestService.getData(config.GET_ALL_ALERT_FROM_ELASTIC, null, null).then(
             (response: any) => {
                 let ary = [];
-                for(let i=0; i<response.length; i++){
-                    let j = JSON.parse(response[i]);   
+                for (let i = 0; i < response.length; i++) {
+                    let j = JSON.parse(response[i]);
                     ary.push(j);
                 }
                 this.setState({
@@ -201,7 +201,7 @@ export class AllAlerts extends React.Component<any, any> {
         let status = !this.state.openTimeRange;
         this.setState({
             openTimeRange: status,
-        }) 
+        })
     };
 
     createAllAlertsTable = () => {
@@ -329,7 +329,7 @@ export class AllAlerts extends React.Component<any, any> {
         const { name, value } = e.target;
         this.setState({
             [name]: value,
-            filterCheckbox:false
+            filterCheckbox: false
         });
         if (name === "resourceGroup") {
             this.setState({
@@ -348,7 +348,7 @@ export class AllAlerts extends React.Component<any, any> {
             alertData: alertList
         });
     }
-    
+
     displayTimeRange = () => {
         const retuData = [];
         for (let i = 0; i < this.state.TimeOption.length; i++) {
@@ -359,7 +359,7 @@ export class AllAlerts extends React.Component<any, any> {
         }
         return retuData;
     }
-    displayOtherTimeRange = ()=>{
+    displayOtherTimeRange = () => {
         const retData = [];
         for (let i = 0; i < this.state.otherOptions.length; i++) {
             let data = this.state.otherOptions[i];
@@ -374,7 +374,7 @@ export class AllAlerts extends React.Component<any, any> {
         console.log(e.target.value);
         this.setState(
             {
-                filterCheckbox:false
+                filterCheckbox: false
             }
         );
         for (let i = 0; i < this.state.TimeOption.length; i++) {
@@ -396,7 +396,7 @@ export class AllAlerts extends React.Component<any, any> {
         }
     }
 
-    clearAllFilters= () => {
+    clearAllFilters = () => {
         this.setState(
             {
                 resourceGroup: "",
@@ -406,14 +406,15 @@ export class AllAlerts extends React.Component<any, any> {
                 severity: "",
                 alertState: "",
                 currentTime: 'Last 6 hours',
-                filterCheckbox:true,
-                alertData: ""
+                filterCheckbox: true,
+                fromTime: 'now-6h',
+                toTime: 'now',
             }
         )
     }
 
     render() {
-        const { resourceGroup, resource, openTimeRange, monitorService, alertType, severity, currentTime, alertState, fromTime, toTime,filterCheckbox } = this.state;
+        const { resourceGroup, resource, openTimeRange, monitorService, alertType, severity, currentTime, alertState, fromTime, toTime, filterCheckbox } = this.state;
         const alertTable = this.createAllAlertsTable();
         return (
             <div className="all-alerts-container">
@@ -472,7 +473,7 @@ export class AllAlerts extends React.Component<any, any> {
                                     <h3>Absolute time range</h3>
                                     <form>
                                         <div className="form-group">
-                                            <label htmlFor="From"  className="d-block">From</label>
+                                            <label htmlFor="From" className="d-block">From</label>
                                             {/* <TimePicker
                                                 onChange={this.setTimeValue}
                                             value=""
@@ -564,7 +565,7 @@ export class AllAlerts extends React.Component<any, any> {
                             <div className="form-check filter-control-group clear-filters">
                                 <input className="form-check-input clear-all-filter" value={filterCheckbox} type="checkbox" checked={filterCheckbox} name="clearAllFilter" onChange={this.clearAllFilters} />
                                 <label className="form-check-label" htmlFor="clearFilter">
-                                     <span>Clear All Filters</span>
+                                    <span>Clear All Filters</span>
                                 </label>
                             </div>
                         </div>
