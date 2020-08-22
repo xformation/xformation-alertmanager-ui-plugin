@@ -562,12 +562,15 @@ export class AllAlerts extends React.Component<any, any> {
                             </div>
                         </div>
                         <div className="col-lg-2 col-md-3 col-sm-12">
+                            {resourceGroup &&
                             <div className="form-check filter-control-group clear-filters">
                                 <input className="form-check-input clear-all-filter" value={filterCheckbox} type="checkbox" checked={filterCheckbox} name="clearAllFilter" onChange={this.clearAllFilters} />
                                 <label className="form-check-label" htmlFor="clearFilter">
                                     <span>Clear All Filters</span>
                                 </label>
                             </div>
+                            }
+
                         </div>
                     </div>
                     <div className="filter-container form-row row common-container">
