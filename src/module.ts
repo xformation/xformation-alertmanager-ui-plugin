@@ -6,7 +6,8 @@ import {
   CreateRule,
   AllTickets,
   AlertRuleBuilder,
-  ManageAlertRule
+  ManageAlertRule,
+  SearchAlert
 } from "./ui";
 import { ConfigCtrl } from "./ConfigCtrl";
 
@@ -15,9 +16,9 @@ import { ConfigCtrl } from "./ConfigCtrl";
 declare const window: any;
 export function loadPluginCss() {
   if (window.grafanaBootData.user.lightTheme) {
-    require('./css/alertmanager.light.css');
+    require("./css/alertmanager.light.css");
   } else {
-    require('./css/alertmanager.dark.css');
+    require("./css/alertmanager.dark.css");
   }
 }
 
@@ -32,5 +33,6 @@ export {
   CreateRule,
   AllTickets,
   AlertRuleBuilder,
-  ManageAlertRule
+  ManageAlertRule,
+  SearchAlert
 };

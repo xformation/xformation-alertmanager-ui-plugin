@@ -177,7 +177,7 @@ export class AllAlerts extends React.Component<any, any> {
         try {
             this.fetchData();
         } catch (err) {
-            console.log("Loading alert data from elastic failed. Error: ", err);
+            console.log("AllAlert page. Loading alert data from elastic failed. Error: ", err);
         }
     }
 

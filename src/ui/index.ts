@@ -6,3 +6,4 @@ export * from "./AllTickets";
 export * from "./AlertRuleBuilder";
 export * from "./ManageAlertRule";
 export * from "./ScriptEditor";
+export * from "./SearchAlert";

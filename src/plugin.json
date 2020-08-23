@@ -72,6 +72,13 @@
       "addToNav": false,
       "defaultNav": false,
       "component": "ScriptEditor"
+    },
+    {
+      "type": "page",
+      "name": "SearchAlert",
+      "addToNav": false,
+      "defaultNav": false,
+      "component": "SearchAlert"
     }
   ],
   "dependencies": {
