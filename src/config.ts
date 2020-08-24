@@ -1,4 +1,4 @@
-const IP = "localhost";
+const IP = "100.64.108.25";
 
 const searchSrvUrl = `http://${IP}:8092`;
 const alertSrvUrl = `http://${IP}:5060`;

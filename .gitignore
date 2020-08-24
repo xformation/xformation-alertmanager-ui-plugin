@@ -2,3 +2,5 @@ node_modules
 tmp
 /.project
 dist/**
+.gitignore
+yarn.lock
