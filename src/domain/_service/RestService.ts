@@ -1,6 +1,7 @@
 export const RestService = {
   getData,
-  add
+  add,
+  deleteObject
 };
 
 function add(url: any, data: any) {
@@ -29,4 +30,11 @@ function getRequestOptions(type: any, extraHeaders: any, body?: any): any {
     requestOptions["body"] = body;
   }
   return requestOptions;
+}
+
+function deleteObject(url: any) {
+  return fetch(url, {
+    method: "DELETE",
+    redirect: "follow"
+  }).then(response => response.text());
 }

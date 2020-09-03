@@ -8,6 +8,8 @@ import { EditAlertPopup } from './EditAlertPopup';
 import { severityDS } from '../_utilities/commonDS';
 import { RestService } from '../_service/RestService';
 import { TimePicker } from 'react-time-picker';
+import AlertMessage from '../../components/AlertMessage';
+import ConfirmDialog from '../../components/ConfirmDialog';
 
 export class AllAlerts extends React.Component<any, any> {
     editAlertRef: any;
@@ -22,13 +24,23 @@ export class AllAlerts extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
+            isConfirmDialogOpen: false,
+            confirmTitleMessage: null,
+            objectType: null,
+            objectId: null,
+            object: null,
+
+            message: null,
+            severity: "",
+            isAlertOpen: false,
+            
             alertData: [],
             modal: false,
             resourceGroup: "",
             resource: "",
             monitorService: "",
             alertType: "",
-            severity: "",
+            
             alertState: "",
             currentTime: 'Last 6 hours',
             fromTime: 'now-6h',
@@ -273,7 +285,7 @@ export class AllAlerts extends React.Component<any, any> {
                                         <i onClick={e => this.onClickEditAlert(e, alert)} className="fa fa-edit"></i>
                                     </button>
                                     <button className="btn btn-link">
-                                        <i className="fa fa-trash"></i>
+                                        <i onClick={e => this.onClickDeleteAlert(e, alert)} className="fa fa-trash"></i>
                                     </button>
                                     <button className="btn btn-link" id="PopoverFocus">
                                         <i className="fa fa-ellipsis-h"></i>
@@ -339,15 +351,23 @@ export class AllAlerts extends React.Component<any, any> {
     };
 
     onClickEditAlert = (e: any, selectedAlert: any) => {
+        console.log("Opening edit alert box. alert : ",selectedAlert);
         this.editAlertRef.current.toggle(selectedAlert);
     };
 
-    updateAlertList(alertList: any) {
-        console.log("Updated alert list : ", alertList);
+    updateAlertList = (alertList: any) => {
+        console.log("Updated alert list :::: ", alertList);
         this.setState({
             alertData: alertList
         });
+        // this.editAlertRef.current.updateList(alertList);
     }
+
+    // updateList = (alertList: any) => {
+    //     this.setState({
+    //         alertData: alertList
+    //     });
+    // };
 
     displayTimeRange = () => {
         const retuData = [];
@@ -413,12 +433,72 @@ export class AllAlerts extends React.Component<any, any> {
         )
     }
 
+    handleCloseConfirmDialog = () => {
+        this.setState({
+            isConfirmDialogOpen: false
+        })
+    }
+
+    handleConfirmDelete = (objectType: any, object: any) => {
+        console.log("Deleting alert. Alert object : ", object);
+        let url = config.DELETE_ALERT + `/` + object.guid;
+        this.callDeleteApi(url);
+        this.setState({
+            isConfirmDialogOpen: false
+        })
+    }
+
+    async callDeleteApi(url: any) {
+        await RestService.deleteObject(url).then((response: any) => {
+            console.log("Delete Response : ", response);
+            let ary = [];
+            for (let i = 0; i < response.length; i++) {
+                let j = JSON.parse(response[i]);
+                ary.push(j);
+            }
+            this.setState({
+                alertData: ary,
+                severity: config.SEVERITY_SUCCESS,
+                message: 'Alert deleted successfully',
+                isAlertOpen: true,
+            });
+        }).catch(error => {
+            console.log('Deletion error', error);
+            this.setState({
+                severity: config.SEVERITY_ERROR,
+                message: 'Alert could not be deleted. Please check the service logs for details',
+                isAlertOpen: true,
+            });
+        });
+    }
+
+    handleCloseAlert = (e: any) => {
+        this.setState({
+            isAlertOpen: false
+        })
+    }
+
+    onClickDeleteAlert = (e: any, alert: any) => {
+        console.log("Alert : " + alert);
+        this.setState({
+            confirmTitleMessage: "Delete Alert",
+            message: "Are you sure, you want to delete the alert?",
+            isConfirmDialogOpen: true,
+            objectType: "alert",
+            object: alert,
+        });
+    };
+
     render() {
-        const { resourceGroup, resource, openTimeRange, monitorService, alertType, severity, currentTime, alertState, fromTime, toTime, filterCheckbox } = this.state;
+        const { resourceGroup, resource, openTimeRange, monitorService, alertType, severity, currentTime, alertState, fromTime, toTime, filterCheckbox, objectType, object,
+            isConfirmDialogOpen, confirmTitleMessage, message, isAlertOpen } = this.state;
         const alertTable = this.createAllAlertsTable();
         return (
             <div className="all-alerts-container">
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALL ALERTS" />
+                <ConfirmDialog objectType={objectType} objectId={object} handleCloseConfirmDialog={this.handleCloseConfirmDialog} handleConfirmDelete={this.handleConfirmDelete} open={isConfirmDialogOpen} titleMsg={confirmTitleMessage} msg={message}></ConfirmDialog>
+                <AlertMessage handleCloseAlert={this.handleCloseAlert} open={isAlertOpen} severity={severity} msg={message}></AlertMessage>
+                
                 <div className="alert-page-container">
                     <div className="common-container">
                         <Link to={`${config.basePath}/managealertrule`} className="alert-white-button">
@@ -646,7 +726,7 @@ export class AllAlerts extends React.Component<any, any> {
                         </PopoverBody>
                     </UncontrolledPopover>
                 }
-                <EditAlertPopup ref={this.editAlertRef} />
+                <EditAlertPopup onSaveUpdate={this.updateAlertList} ref={this.editAlertRef} />
             </div>
         );
     }
