@@ -10,6 +10,7 @@ import { RestService } from '../_service/RestService';
 import { TimePicker } from 'react-time-picker';
 import AlertMessage from '../../components/AlertMessage';
 import ConfirmDialog from '../../components/ConfirmDialog';
+import { now } from 'lodash';
 
 export class AllAlerts extends React.Component<any, any> {
     editAlertRef: any;
@@ -177,12 +178,16 @@ export class AllAlerts extends React.Component<any, any> {
         this.editAlertRef = React.createRef();
     }
 
-    refreshData = () => {
+    refreshData =  () => {
+        
         try {
             this.fetchData();
         } catch (err) {
             console.log("Alert data refresh failed. Error: ", err);
         }
+    }
+    componentWillMount(){
+        this.refreshData();
     }
 
     componentDidMount() {
@@ -443,33 +448,49 @@ export class AllAlerts extends React.Component<any, any> {
         console.log("Deleting alert. Alert object : ", object);
         let url = config.DELETE_ALERT + `/` + object.guid;
         this.callDeleteApi(url);
+        console.log("Alert data is ",this.state.alertData)
         this.setState({
             isConfirmDialogOpen: false
         })
     }
 
     async callDeleteApi(url: any) {
-        await RestService.deleteObject(url).then((response: any) => {
-            console.log("Delete Response : ", response);
-            let ary = [];
+        await RestService.deleteObject(url).then(response => {
+            console.log('Delete alert response: ', response);
+        });
+        this.setState({
+            severity: config.SEVERITY_SUCCESS,
+            message: 'Alert deleted successfully',
+            isAlertOpen: true,
+        });
+
+        // await RestService.deleteObject(url).then((response: any) => {
+        //     console.log("AllAlert : Delete Response : ", response);
+            // response=eval(response);
+         /*  let ary = [];
             for (let i = 0; i < response.length; i++) {
                 let j = JSON.parse(response[i]);
                 ary.push(j);
             }
-            this.setState({
-                alertData: ary,
-                severity: config.SEVERITY_SUCCESS,
-                message: 'Alert deleted successfully',
-                isAlertOpen: true,
-            });
-        }).catch(error => {
-            console.log('Deletion error', error);
-            this.setState({
-                severity: config.SEVERITY_ERROR,
-                message: 'Alert could not be deleted. Please check the service logs for details',
-                isAlertOpen: true,
-            });
-        });
+            console.log("Array is=",ary)
+             */
+            //alertData: ary,
+            // this.setState({
+            //     severity: config.SEVERITY_SUCCESS,
+            //     message: 'Alert deleted successfully',
+            //     isAlertOpen: true,
+            // });
+            
+            //this.refreshData();
+        
+        // }).catch(error => {
+        //     console.log('Deletion error', error);
+        //     this.setState({
+        //         severity: config.SEVERITY_ERROR,
+        //         message: 'Alert could not be deleted. Please check the service logs for details',
+        //         isAlertOpen: true,
+        //     });
+        // });
     }
 
     handleCloseAlert = (e: any) => {
@@ -477,7 +498,9 @@ export class AllAlerts extends React.Component<any, any> {
             isAlertOpen: false
         })
     }
-
+    showData=()=>{
+        console.log("State Data=",this.state.alertData)
+    }
     onClickDeleteAlert = (e: any, alert: any) => {
         console.log("Alert : " + alert);
         this.setState({
@@ -687,6 +710,7 @@ export class AllAlerts extends React.Component<any, any> {
                             </div>
                         </div>
                     </div>
+                        <button onClick={this.showData}>Mybtn</button>
                     <div className="alert-data-table-container common-container">
                         <div className="container-inner">
                             <table className="alert-data-table">

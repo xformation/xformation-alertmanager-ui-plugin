@@ -9,7 +9,8 @@ import { EditAlertPopup } from '../AllAlerts/EditAlertPopup';
 import '../../css/alertmanager.search.css';
 // import { studentServices } from '../_services/students.service';
 // import wsCmsBackendServiceClient from '../../../wsCmsBackendServiceClient';
-
+import ConfirmDialog from '../../components/ConfirmDialog';
+import AlertMessage from '../../components/AlertMessage';
 
 export class SearchAlert extends React.Component<any, any> {
     editAlertRef: any;
@@ -25,14 +26,22 @@ export class SearchAlert extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
+            isConfirmDialogOpen: false,
+            confirmTitleMessage: null,
+            objectType: null,
+            objectId: null,
+            object: null,
 
+            message: null,
+            severity: "",
+            isAlertOpen: false,
+            
             alertData: [],
             modal: false,
             resourceGroup: "",
             resource: "",
             monitorService: "",
             alertType: "",
-            severity: "",
             alertState: "",
             currentTime: 'Last 6 hours',
             fromTime: 'now-6h',
@@ -309,7 +318,107 @@ export class SearchAlert extends React.Component<any, any> {
     onClickEditAlert = (e: any, selectedAlert: any) => {
         this.editAlertRef.current.toggle(selectedAlert);
     };
+    /*
+        Alert code
+    */
+   handleCloseAlert = (e: any) => {
+    this.setState({
+        isAlertOpen: false
+    })
+}
 
+    /*
+        Alert code
+    */
+    onClickDeleteAlert = (e: any, alert: any) => {
+        console.log("Alert : " + alert);
+        this.setState({
+            confirmTitleMessage: "Delete Alert",
+            message: "Are you sure, you want to delete the alert?",
+            isConfirmDialogOpen: true,
+            objectType: "alert",
+            object: alert,
+        });
+    };
+    handleCloseConfirmDialog = () => {
+        this.setState({
+            isConfirmDialogOpen: false
+        })
+    }
+    handleConfirmDelete = (objectType: any, object: any) => {
+        console.log("Deleting alert. Alert object : ", object);
+        let url = config.DELETE_ALERT + `/` + object.guid;
+        this.callDeleteApi(url);
+        console.log("Alert data is ",this.state.alertData)
+        this.setState({
+            isConfirmDialogOpen: false
+        })
+    }
+    // async callDeleteApi(url: any) {
+    //     await RestService.deleteObject(url).then((response: any) => {
+    //         console.log("Delete Response : ", response);
+    //         response=eval(response);
+    //        let ary = [];
+    //         for (let i = 0; i < response.length; i++) {
+    //             let j = JSON.parse(response[i]);
+    //             ary.push(j);
+    //         }
+    //         console.log("Array is=",ary) 
+    //         this.setState({
+    //              alertData: ary,
+    //             severity: config.SEVERITY_SUCCESS,
+    //             message: 'Alert deleted successfully',
+    //             isAlertOpen: true,
+    //         });
+        
+    //     }).catch(error => {
+    //         console.log('Deletion error', error);
+    //         this.setState({
+    //             severity: config.SEVERITY_ERROR,
+    //             message: 'Alert could not be deleted. Please check the service logs for details',
+    //             isAlertOpen: true,
+    //         });
+    //     });
+    // }
+
+    async callDeleteApi(url: any) {
+        await RestService.deleteObject(url).then(response => {
+            console.log('Delete alert response: ', response);
+        });
+        this.setState({
+            severity: config.SEVERITY_SUCCESS,
+            message: 'Alert deleted successfully',
+            isAlertOpen: true,
+        });
+
+        // await RestService.deleteObject(url).then((response: any) => {
+        //     console.log("AllAlert : Delete Response : ", response);
+            // response=eval(response);
+         /*  let ary = [];
+            for (let i = 0; i < response.length; i++) {
+                let j = JSON.parse(response[i]);
+                ary.push(j);
+            }
+            console.log("Array is=",ary)
+             */
+            //alertData: ary,
+            // this.setState({
+            //     severity: config.SEVERITY_SUCCESS,
+            //     message: 'Alert deleted successfully',
+            //     isAlertOpen: true,
+            // });
+            
+            //this.refreshData();
+        
+        // }).catch(error => {
+        //     console.log('Deletion error', error);
+        //     this.setState({
+        //         severity: config.SEVERITY_ERROR,
+        //         message: 'Alert could not be deleted. Please check the service logs for details',
+        //         isAlertOpen: true,
+        //     });
+        // });
+    }
     createAllAlertsTable = () => {
         const retData = [];
         let isDataPresent = true;
@@ -360,7 +469,7 @@ export class SearchAlert extends React.Component<any, any> {
                                             <i onClick={e => this.onClickEditAlert(e, alert)} className="fa fa-edit"></i>
                                         </button>
                                         <button className="btn btn-link">
-                                            <i className="fa fa-trash"></i>
+                                            <i onClick={e => this.onClickDeleteAlert(e, alert)} className="fa fa-trash"></i>
                                         </button>
                                         <button className="btn btn-link" id="PopoverFocus">
                                             <i className="fa fa-ellipsis-h"></i>
@@ -496,10 +605,12 @@ export class SearchAlert extends React.Component<any, any> {
 
     render() {
         const state = this.state;
-        const { resourceGroup, resource, openTimeRange, monitorService, alertType, severity, currentTime, alertState, fromTime, toTime,filterCheckbox } = this.state;
+        const { isConfirmDialogOpen,objectType,isAlertOpen,message,object,confirmTitleMessage,resourceGroup, resource, openTimeRange, monitorService, alertType, severity, currentTime, alertState, fromTime, toTime,filterCheckbox } = this.state;
         const alertTable = this.createAllAlertsTable();
         return (
             <section className="container-fluid">
+                 <ConfirmDialog objectType={objectType} objectId={object} handleCloseConfirmDialog={this.handleCloseConfirmDialog} handleConfirmDelete={this.handleConfirmDelete} open={isConfirmDialogOpen} titleMsg={confirmTitleMessage} msg={message}></ConfirmDialog>
+                <AlertMessage handleCloseAlert={this.handleCloseAlert} open={isAlertOpen} severity={severity} msg={message}></AlertMessage>
                 <div className="row">
                     <div className="col-xs-12 col-sm-12 col-md-2">
                         <div className="bg-white filters-box">
