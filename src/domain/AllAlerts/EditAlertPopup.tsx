@@ -76,16 +76,16 @@ export class EditAlertPopup extends React.Component<any, any> {
         await RestService.add(config.UPDATE_ALERT, obj).then(response => {
             console.log('update alert response: ', response);
             if(response.length > 0){
-                this.setState({
-                    severity : config.SEVERITY_SUCCESS,
-                    message: config.UPDATE_ALERT_SUCCESS_MESSAGE,
-                    isAlertOpen: true,
-                });
                 let ary = [];
                 for (let i = 0; i < response.length; i++) {
                     let j = JSON.parse(response[i]);
                     ary.push(j);
                 }
+                this.setState({
+                    severity : config.SEVERITY_SUCCESS,
+                    message: config.UPDATE_ALERT_SUCCESS_MESSAGE,
+                    isAlertOpen: true,
+                });
                 this.props.onSaveUpdate(ary);
             }else {
                 this.setState({
