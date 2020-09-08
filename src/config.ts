@@ -1,8 +1,8 @@
 const ALERT_URL = "alert.service.com";
 const SEARCH_URL = "search.service.com";
 
-const searchSrvUrl = `http://${SEARCH_URL}:8092`;
-const alertSrvUrl = `http://${ALERT_URL}:5060`;
+const searchSrvUrl = `http://100.64.108.25:8092`;
+const alertSrvUrl = `http://100.64.108.25:5060`;
 
 export const config = {
   basePath: "/plugins/xformation-alertmanager-ui-plugin/page",
