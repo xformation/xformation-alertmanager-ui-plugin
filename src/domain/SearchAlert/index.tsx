@@ -5,6 +5,7 @@ import { config } from '../../config';
 import { RestService } from '../_service/RestService';
 import { Link } from 'react-router-dom';
 import { Modal, ModalHeader, ModalBody, UncontrolledPopover, PopoverBody } from 'reactstrap';
+import { Breadcrumbs } from '../Breadcrumbs';
 import { EditAlertPopup } from '../AllAlerts/EditAlertPopup';
 import '../../css/alertmanager.search.css';
 // import { studentServices } from '../_services/students.service';
@@ -114,7 +115,20 @@ export class SearchAlert extends React.Component<any, any> {
             selectedBatchId: null,
             selectedSectionId: null,
         };
-
+        this.breadCrumbs = [
+            {
+                label: "Home",
+                route: `/`
+            },
+            {
+                label: "Monitor | Alerts",
+                route: `${config.basePath}/monitoralerts`
+            },
+            {
+                label: "Search Alerts",
+                isCurrentPage: true
+            }
+        ];
         this.resourceGroup = [{
             label: "Compute",
             value: "Compute"
@@ -608,152 +622,159 @@ export class SearchAlert extends React.Component<any, any> {
         const { isConfirmDialogOpen,objectType,isAlertOpen,message,object,confirmTitleMessage,resourceGroup, resource, openTimeRange, monitorService, alertType, severity, currentTime, alertState, fromTime, toTime,filterCheckbox } = this.state;
         const alertTable = this.createAllAlertsTable();
         return (
-            <section className="container-fluid">
-                 <ConfirmDialog objectType={objectType} objectId={object} handleCloseConfirmDialog={this.handleCloseConfirmDialog} handleConfirmDelete={this.handleConfirmDelete} open={isConfirmDialogOpen} titleMsg={confirmTitleMessage} msg={message}></ConfirmDialog>
+            <div className="all-alerts-container">
+                <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALL ALERTS" />
+                <ConfirmDialog objectType={objectType} objectId={object} handleCloseConfirmDialog={this.handleCloseConfirmDialog} handleConfirmDelete={this.handleConfirmDelete} open={isConfirmDialogOpen} titleMsg={confirmTitleMessage} msg={message}></ConfirmDialog>
                 <AlertMessage handleCloseAlert={this.handleCloseAlert} open={isAlertOpen} severity={severity} msg={message}></AlertMessage>
-                <div className="row">
-                    <div className="col-xs-12 col-sm-12 col-md-2">
-                        <div className="bg-white filters-box">
-                            <div className="heading">
-                                <label>Filters</label>
-                            </div>
-                            <div className="filters-btn">
-                                <button className="btn btn-secondary" onClick={this.clearAllFilters} >Clear All Filters</button>
-                                {/* <button className="btn btn-secondary apply-btn" onClick={this.onClickApply} disabled={state.isApiCalled}>Apply</button> */}
-                            </div>
-                            <div className="filterbox">
-                                <div className="box">
-                                    <label>Resource Group</label>
-                                    <div className="rainge">
-                                        <div className="min-box">
-                                            <select className="form-control" name="resourceGroup" value={resourceGroup} onChange={this.handleStateChange}>
-                                                <option value="">Select Resource Group</option>
-                                                {this.createSelectbox(this.resourceGroup)}
-                                            </select>
-                                        </div>
+                <div className="alert-page-container searchalert-container">
+                    <div className="common-container border-bottom-0">
+                        <div className="row">
+                            <div className="col-xs-12 col-sm-12 col-md-3">
+                                <div className="bg-white filters-box">
+                                    <div className="heading">
+                                        <label>Filters</label>
                                     </div>
-                                </div>
-                                <div className="box">
-                                    <label>Resources</label>
-                                    <div className="rainge">
-                                        <div className="min-box">
-                                            <select className="form-control" name="resource" value={resource} onChange={this.handleStateChange}>
-                                                <option value="">Select Resources</option>
-                                                {this.createSelectbox(this.resources[resourceGroup])}
-                                            </select>
-                                        </div>
+                                    <div className="filters-btn">
+                                        <button className="btn btn-secondary" onClick={this.clearAllFilters} >Clear All Filters</button>
+                                        {/* <button className="btn btn-secondary apply-btn" onClick={this.onClickApply} disabled={state.isApiCalled}>Apply</button> */}
                                     </div>
-                                </div>
-                                <div className="box">
-                                    <label>Monitor services</label>
-                                    <div className="rainge">
-                                        <div className="min-box">
-                                            <select className="form-control" name="monitorService" value={monitorService} onChange={this.handleStateChange}>
-                                                <option value="">Select Monitor Services</option>
-                                                {this.createSelectbox(this.monitoringServices)}
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="box">
-                                    <label>Alert Type</label>
-                                    <div className="rainge">
-                                        <div className="min-box">
-                                            <select className="form-control" name="alertType" value={alertType} onChange={this.handleStateChange}>
-                                                <option value="">Select Alert Type</option>
-                                                {this.createSelectbox(this.alertTypes)}
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="box">
-                                    <label>Serverity</label>
-                                    <div className="rainge">
-                                        <div className="min-box">
-                                            <select className="form-control" name="severity" value={severity} onChange={this.handleStateChange}>
-                                                <option value="">Select Severity</option>
-                                                {this.createSelectbox(this.severity)}
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="box">
-                                    <label>Alert state</label>
-                                    <div className="rainge">
-                                        <div className="min-box">
-                                            <select className="form-control" name="alertState" value={alertState} onChange={this.handleStateChange}>
-                                                <option value="Select Alert State">Select Alert State</option>
-                                                {this.createSelectbox(this.alertStates)}
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-xs-12 col-sm-12 col-md-10">
-                        <div className="students-main">
-                            <div className="students-heading">
-                                <h3>Alerts</h3>
-                            </div>
-                            <div className="bg-white students-inner">
-                                <div className="w-100">
-                                    <div className="button-section">
-                                        <input type="text" className="input-group-text" placeholder="Search Alerts" name="searchName" onChange={this.searchAlert} value={state.searchName}/>
-                                    </div>
-                                    <div className="students-table">
-                                        <div className="top-head">
-                                            <div className="row">
-                                                <div className="col-xs-12 col-sm-12 col-md-6 left">
-                                                    <input type="checkbox" className="checkbox" name="AllCheck" onChange={this.checkAllAlerts} checked={this.state.isAllChecked} />
-                                                    <ul>
-                                                        <li>
-                                                            <a className="fa fa-refresh" href="#" onClick={this.refreshData}></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div className="col-xs-12 col-sm-12 col-md-6 right text-right">
-                                                    <ul>
-                                                        <li><a href="#" onClick={this.onClickPrev}><i className="fa fa-chevron-left"></i> Prev</a></li>
-                                                        {this.createPaginationJSX()}
-                                                        <li><a href="#" onClick={this.onClickNext}>Next <i className="fa fa-chevron-right"></i></a></li>
-                                                    </ul>
+                                    <div className="filterbox">
+                                        <div className="box">
+                                            <label>Resource Group</label>
+                                            <div className="rainge">
+                                                <div className="min-box">
+                                                    <select className="form-control" name="resourceGroup" value={resourceGroup} onChange={this.handleStateChange}>
+                                                        <option value="">Select Resource Group</option>
+                                                        {this.createSelectbox(this.resourceGroup)}
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="">
-                                        <div className="alert-data-table-container common-container">
-                                            <div className="container-inner">
-                                                <table className="alert-data-table">
-                                                    <tbody>
-                                                        <tr className="alert-data-table-header">
-                                                            <th>
-                                                                <div className="pointer-label" onClick={this.toggle}><input type="checkbox" className="checkbox" onChange={this.checkAllAlerts} checked={this.state.isAllChecked} /> Name</div>
-                                                            </th>
-                                                            <th>Severity</th>
-                                                            <th>Monitor Condition</th>
-                                                            <th>Alert State</th>
-                                                            <th>Affected Resource</th>
-                                                            <th>Monitor Service</th>
-                                                            <th>Signal Type</th>
-                                                            <th>Fired Time</th>
-                                                            <th>Subscription</th>
-                                                            <th>Suppression State</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                        {alertTable.table}
-                                                    </tbody>
-                                                </table>
+                                        <div className="box">
+                                            <label>Resources</label>
+                                            <div className="rainge">
+                                                <div className="min-box">
+                                                    <select className="form-control" name="resource" value={resource} onChange={this.handleStateChange}>
+                                                        <option value="">Select Resources</option>
+                                                        {this.createSelectbox(this.resources[resourceGroup])}
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
+                                        <div className="box">
+                                            <label>Monitor services</label>
+                                            <div className="rainge">
+                                                <div className="min-box">
+                                                    <select className="form-control" name="monitorService" value={monitorService} onChange={this.handleStateChange}>
+                                                        <option value="">Select Monitor Services</option>
+                                                        {this.createSelectbox(this.monitoringServices)}
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
+                                        <div className="box">
+                                            <label>Alert Type</label>
+                                            <div className="rainge">
+                                                <div className="min-box">
+                                                    <select className="form-control" name="alertType" value={alertType} onChange={this.handleStateChange}>
+                                                        <option value="">Select Alert Type</option>
+                                                        {this.createSelectbox(this.alertTypes)}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="box">
+                                            <label>Serverity</label>
+                                            <div className="rainge">
+                                                <div className="min-box">
+                                                    <select className="form-control" name="severity" value={severity} onChange={this.handleStateChange}>
+                                                        <option value="">Select Severity</option>
+                                                        {this.createSelectbox(this.severity)}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="box">
+                                            <label>Alert state</label>
+                                            <div className="rainge">
+                                                <div className="min-box">
+                                                    <select className="form-control" name="alertState" value={alertState} onChange={this.handleStateChange}>
+                                                        <option value="Select Alert State">Select Alert State</option>
+                                                        {this.createSelectbox(this.alertStates)}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-xs-12 col-sm-12 col-md-9">
+                                <div className="filter-container">
+                                    <div className="row">
+                                        <div className="col-md-3 col-sm-12">
+                                            <label htmlFor="Alerts" className="alerts">Alerts</label>
+                                        </div>
+                                        <div className="col-md-9 col-sm-12">
+                                            <div className="alerts-right-form">
+                                                <div className="form-group filter-control-group">
+                                                    <form>
+                                                        <input type="text" className="input-group-text" placeholder="Search Alerts" name="searchName" onChange={this.searchAlert} value={state.searchName} />
+                                                        <button><i className="fa fa-search"></i></button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="alert-data-table-container common-container border-bottom-0">
+                                    <div className="top-head">
+                                        <div className="row">
+                                            <div className="col-xs-12 col-sm-12 col-md-6 left">
+                                                <input type="checkbox" className="checkbox" name="AllCheck" onChange={this.checkAllAlerts} checked={this.state.isAllChecked} />
+                                                <ul>
+                                                    <li>
+                                                        <a className="fa fa-refresh" href="#" onClick={this.refreshData}></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div className="col-xs-12 col-sm-12 col-md-6 right text-right">
+                                                <ul>
+                                                    <li><a href="#" onClick={this.onClickPrev}><i className="fa fa-chevron-left"></i> Prev</a></li>
+                                                    {this.createPaginationJSX()}
+                                                    <li><a href="#" onClick={this.onClickNext}>Next <i className="fa fa-chevron-right"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="container-inner">
+                                        <table className="alert-data-table">
+                                            <tbody>
+                                                <tr className="alert-data-table-header">
+                                                    <th>
+                                                        <div className="pointer-label" onClick={this.toggle}><input type="checkbox" className="checkbox" onChange={this.checkAllAlerts} checked={this.state.isAllChecked} /> Name</div>
+                                                    </th>
+                                                    <th>Severity</th>
+                                                    <th>Monitor Condition</th>
+                                                    <th>Alert State</th>
+                                                    <th>Affected Resource</th>
+                                                    <th>Monitor Service</th>
+                                                    <th>Signal Type</th>
+                                                    <th>Fired Time</th>
+                                                    <th>Subscription</th>
+                                                    <th>Suppression State</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                {alertTable.table}
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
                 {alertTable.isDataPresent &&
                     <UncontrolledPopover trigger="legacy" placement="bottom" target="PopoverFocus">
                         <PopoverBody>
@@ -763,7 +784,7 @@ export class SearchAlert extends React.Component<any, any> {
                     </UncontrolledPopover>
                 }
                 <EditAlertPopup ref={this.editAlertRef} />
-            </section>
+            </div>
 
         );
     }
