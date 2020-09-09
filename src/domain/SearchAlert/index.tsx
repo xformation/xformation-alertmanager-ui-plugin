@@ -109,7 +109,7 @@ export class SearchAlert extends React.Component<any, any> {
                 } 
             ],
         };
-        this.perPageLimit = 8,
+        this.perPageLimit = 10,
         this.state = {
             isConfirmDialogOpen: false,
             confirmTitleMessage: null,

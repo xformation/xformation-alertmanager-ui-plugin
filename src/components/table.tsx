@@ -1,5 +1,8 @@
 import * as React from 'react';
-
+import { EditAlertPopup } from '../domain/AllAlerts/EditAlertPopup';
+import { config } from '../config';
+import ConfirmDialog from './ConfirmDialog';
+import { RestService } from '../domain/_service/RestService';
 const sortEnum = {
     NONE: 0,
     ASCENDING: 1,
@@ -7,6 +10,7 @@ const sortEnum = {
 };
 
 export class Table extends React.Component<any, any> {
+    editAlertRef: any;
     constructor(props: any) {
         super(props);
         this.state = {
@@ -21,8 +25,20 @@ export class Table extends React.Component<any, any> {
             start_index: 1,
             searchKey: '',
             ending_index: this.props.perPageLimit,
+
+            isConfirmDialogOpen: false,
+            confirmTitleMessage: null,
+            objectType: null,
+            objectId: null,
+            object: null,
+
+            message: null,
+            severity: "",
+            isAlertOpen: false,
+
+            isAllChecked: false,
         }
-        
+        this.editAlertRef = React.createRef();
     };
 
     componentDidMount() {
@@ -39,12 +55,18 @@ export class Table extends React.Component<any, any> {
     }
     tableHeader() {
         const { columns } = this.state;
+        const { tableClasses } = this.props;
         const length = columns.length;
         const retData = [];
         for (let i = 0; i < length; i++) {
             const item = columns[i];
             retData.push(
-                <th key={i}>{item.label}</th>
+                <th key={i}>
+                    {item.label == 'Name' && 
+                        <input type="checkbox" className="checkbox" name="AllCheck" onChange={this.checkAllAlerts} checked={this.state.isAllChecked} />
+                    }
+                    {item.label}
+                </th>
             );
         }
         return retData;
@@ -62,7 +84,8 @@ export class Table extends React.Component<any, any> {
                         <tr>
                             <td>
                                 <div className="pointer-label">
-                                    <input type="checkbox" className="checkbox" /> {row.name}
+                                    <input type="checkbox" className="checkbox" name={row.name} onChange={e => this.onCheckAlert(alert, e)} checked={row.isChecked}/> 
+                                    {row.name}
                                 </div> 
                             </td>
                             {(tableClasses.severityClassHigh != undefined && tableClasses.severityClassLow != undefined && tableClasses.severityClassUrgent != undefined) && 
@@ -79,10 +102,10 @@ export class Table extends React.Component<any, any> {
                             <td>{row.suppressionstate}</td>
                             <td>
                                 <div className="d-flex">
-                                    <button className="btn btn-link">
+                                    <button className="btn btn-link" onClick={e => this.onClickEditAlert(e, alert)}>
                                         <i className="fa fa-edit"></i>
                                     </button>
-                                    <button className="btn btn-link">
+                                    <button className="btn btn-link" onClick={e => this.onClickDeleteAlert(e, alert)}>
                                         <i className="fa fa-trash"></i>
                                     </button>
                                     <button className="btn btn-link" id="PopoverFocus">
@@ -95,10 +118,24 @@ export class Table extends React.Component<any, any> {
                 } 
             }
         } else {
-            retuData.push(<div className="d-block width-100 there-no-data">There is no data</div>);
+            retuData.push(<tr><td className="there-no-data" colSpan={12}>There is no data</td></tr>);
         }
         return retuData;
     }
+    onClickEditAlert = (e: any, selectedAlert: any) => {
+        this.editAlertRef.current.toggle(selectedAlert);
+    };
+    onClickDeleteAlert = (e: any, alert: any) => {
+        console.log("Alert : " + alert);
+        this.setState({
+            confirmTitleMessage: "Delete Alert",
+            message: "Are you sure, you want to delete the alert?",
+            isConfirmDialogOpen: true,
+            objectType: "alert",
+            object: alert,
+        });
+    };
+
     peginationOfTable() {
         const { currentPage, totalPages } = this.state;
         let rows = [];
@@ -226,9 +263,9 @@ export class Table extends React.Component<any, any> {
         const { searchData } = this.state;
         var searchResult = [];
         for (let i = 0; i < searchData.length; i++) {
-            if (searchData[i].requesterName.indexOf(value) !== -1 || value === '') {
+            if (searchData[i].name.indexOf(value) !== -1 || value === '') {
                 searchResult.push(searchData[i]);
-            } else if (searchData[i].requesterName.toLowerCase().indexOf(value) !== -1 || value === '') {
+            } else if (searchData[i].name.toLowerCase().indexOf(value) !== -1 || value === '') {
                 searchResult.push(searchData[i]);
             }
         }
@@ -238,13 +275,58 @@ export class Table extends React.Component<any, any> {
             currentPage: 0
         });
     }
+    handleCloseConfirmDialog = () => {
+        this.setState({
+            isConfirmDialogOpen: false
+        })
+    }
+    handleConfirmDelete = (objectType: any, object: any) => {
+        console.log("Deleting alert. Alert object : ", object);
+        let url = config.DELETE_ALERT + `/` + object.guid;
+        this.callDeleteApi(url);
+        console.log("Alert data is ",this.state.alertData)
+        this.setState({
+            isConfirmDialogOpen: false
+        })
+    }
 
+    async callDeleteApi(url: any) {
+        await RestService.deleteObject(url).then(response => {
+            console.log('Delete alert response: ', response);
+        });
+        this.setState({
+            severity: config.SEVERITY_SUCCESS,
+            message: 'Alert deleted successfully',
+            isAlertOpen: true,
+        });
+    }
+
+    checkAllAlerts(e: any) {
+        const { checked } = e.target;
+        const { displayData } = this.state;
+        this.setState({
+            isAllChecked: checked
+        });
+        let length = displayData.length;
+        for (let i = 0; i < length; i++) {
+            const alert = displayData[i];
+            alert.isChecked = checked;
+        }
+        this.setState({
+            displayData: displayData
+        });
+    }
+    onCheckAlert(row: any, e: any) {
+        const { name, checked } = e.target;
+        row.isChecked = checked;
+    }
 
     render() {
-        const { displayData, start_index, ending_index, perPageLimit } = this.state;
+        const { displayData, start_index, ending_index, perPageLimit, objectType, object, isConfirmDialogOpen, confirmTitleMessage, message } = this.state;
         const { tableClasses } = this.props;
         return (
             <div className={tableClasses.allAlertData}>
+                <ConfirmDialog objectType={objectType} objectId={object} handleCloseConfirmDialog={this.handleCloseConfirmDialog} handleConfirmDelete={this.handleConfirmDelete} open={isConfirmDialogOpen} titleMsg={confirmTitleMessage} msg={message}></ConfirmDialog>
                 <div className="filter-container">
                     <div className="row">
                         <div className="col-lg-8 col-md-8 col-sm-12">
@@ -271,7 +353,7 @@ export class Table extends React.Component<any, any> {
                 <div className="top-head">
                     <div className="row">
                         <div className="col-xs-12 col-sm-12 col-md-6 left">
-                        <input type="checkbox" className="checkbox" name="AllCheck" />
+                            <input type="checkbox" className="checkbox" name="AllCheck" onChange={this.checkAllAlerts} checked={this.state.isAllChecked} />
                             <ul>
                                 <li>
                                     <a className="fa fa-refresh" href="#"></a>
@@ -295,7 +377,8 @@ export class Table extends React.Component<any, any> {
                             {this.tableBodyData()}
                         </tbody>
                     </table>
-                </div>                
+                </div>  
+                <EditAlertPopup ref={this.editAlertRef} />              
             </div>
         );
     }

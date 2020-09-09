@@ -772,7 +772,8 @@ a:hover {
   font-size: 13px;
   line-height: 18px;
   font-weight: 500;
-  padding: 8px 10px 8px 10px;
+  padding: 8px 15px 8px 15px;
+  text-align: center;
 }
 .alert-data-table-container
   .all-alert-data-table
@@ -796,6 +797,17 @@ a:hover {
   .all-alert-data-table
   .alerts-data-tabel
   .alert-data-tabel
+  thead
+  tr
+  th
+  .checkbox {
+  margin: 3px 10px 0 0;
+  vertical-align: top;
+}
+.alert-data-table-container
+  .all-alert-data-table
+  .alerts-data-tabel
+  .alert-data-tabel
   tbody
   tr:nth-child(odd) {
   background-color: #f8f9fb;
@@ -811,7 +823,7 @@ a:hover {
   font-size: 13px;
   line-height: 22px;
   font-weight: 400;
-  padding: 8px 10px 8px 10px;
+  padding: 8px 15px 8px 15px;
   text-align: center;
 }
 .alert-data-table-container
@@ -838,6 +850,15 @@ a:hover {
   .alert-data-tabel
   tbody
   tr
+  td.there-no-data {
+  text-align: center;
+}
+.alert-data-table-container
+  .all-alert-data-table
+  .alerts-data-tabel
+  .alert-data-tabel
+  tbody
+  tr
   td
   .pointer-label {
   position: relative;
@@ -854,7 +875,7 @@ a:hover {
   .checkbox {
   position: absolute;
   left: 0;
-  top: 3px;
+  top: 5px;
 }
 .alert-data-table-container
   .all-alert-data-table
