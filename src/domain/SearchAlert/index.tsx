@@ -12,6 +12,7 @@ import '../../css/alertmanager.search.css';
 // import wsCmsBackendServiceClient from '../../../wsCmsBackendServiceClient';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import AlertMessage from '../../components/AlertMessage';
+import Table from './../../components/table';
 
 export class SearchAlert extends React.Component<any, any> {
     editAlertRef: any;
@@ -23,9 +24,92 @@ export class SearchAlert extends React.Component<any, any> {
     severity: any;
     alertStates: any;
     timeRangeRef: any;
-    
+    tableValue: any;
+    perPageLimit: any;
     constructor(props: any) {
         super(props);
+        this.tableValue = {
+            columns: [
+                { label: 'Name', key: 'name' },
+                { label: 'Severity', key: 'severity' },
+                { label: 'Monitor Condition', key: 'monitorcondition' },
+                { label: 'Alert State', key: 'alertstate' },
+                { label: 'Affected Resource', key: 'affectedresource' },
+                { label: 'Monitor Service', key: 'monitorservice' },
+                { label: 'Signal Type', key: 'signaltype' },
+                { label: 'Fired Time', key: 'firedtime' },
+                { label: 'Subscription', key: 'brcsubscription' },
+                { label: 'Suppression State', key: 'suppressionstate' },
+                { label: 'Action', key: 'action' },
+            ],
+            AlertData:[ 
+                {
+                    severity: "High",
+                    resourcegroup: "Compute",
+                    monitorservice: "Native AWS",
+                    signaltype: "Logs",
+                    resources: "Node",
+                    firedtime: "03/06/2020, 1596616397872",
+                    monitorcondition: "Fired",
+                    affectedresource: "Prod_DB_SYN14",
+                    brcsubscription: "Alert Management",
+                    suppressionstate: "Archive",
+                    name: "Network In",
+                    guid: "c7a8c429-a531-4729-9431-bbc5d6205947",
+                    alertstate: "InProgress",
+                    id: "66"
+                },
+                {
+                    severity: "Low",
+                    resourcegroup: "Compute",
+                    monitorservice: "Native AZURE",
+                    signaltype: "Metrics",
+                    resources: "App",
+                    firedtime: "03/06/2020, 1596616397872",
+                    monitorcondition: "Fired",
+                    affectedresource: "Prod_Service_20",
+                    brcsubscription: "Alert Management",
+                    suppressionstate: "DeDup",
+                    name: "Disk Read Bytes",
+                    guid: "9d9cba56-6ccd-4b27-916d-60c58e1cec02",
+                    alertstate: "Closed",
+                    id: "43"
+                },
+                {
+                    severity: "Urgent",
+                    resourcegroup: "Compute",
+                    monitorservice: "Native AZURE",
+                    signaltype: "Metrics",
+                    resources: "Storage",
+                    firedtime: "03/06/2020, 1596616397872",
+                    monitorcondition: "Fired",
+                    affectedresource: "Prod_DB_SYN14",
+                    brcsubscription: "Alert Management",
+                    suppressionstate: "Silence",
+                    name: "Disk Read Bytes",
+                    guid: "3825288c-d9e5-4cd1-928c-a132c471d58e",
+                    alertstate: "New",
+                    id: "44"
+                },
+                {
+                    severity: "Urgent",
+                    resourcegroup: "Compute",
+                    monitorservice: "Native AZURE",
+                    signaltype: "Metrics",
+                    resources: "Node",
+                    firedtime: "03/06/2020, 1596616397872",
+                    monitorcondition: "Fired",
+                    affectedresource: "Prod_Service_20",
+                    brcsubscription: "Alert Management",
+                    suppressionstate: "None",
+                    name: "Percentage CPU",
+                    guid: "3c4a824f-387e-44dd-98eb-b6f66e2d03ba",
+                    alertstate: "New",
+                    id: "89"
+                } 
+            ],
+        };
+        this.perPageLimit = 8,
         this.state = {
             isConfirmDialogOpen: false,
             confirmTitleMessage: null,
@@ -37,7 +121,72 @@ export class SearchAlert extends React.Component<any, any> {
             severity: "",
             isAlertOpen: false,
             
-            alertData: [],
+            alertData: [
+                {
+                    severity: "High",
+                    resourcegroup: "Compute",
+                    monitorservice: "Native AWS",
+                    signaltype: "Logs",
+                    resources: "Node",
+                    firedtime: "03/06/2020, 1596616397872",
+                    monitorcondition: "Fired",
+                    affectedresource: "Prod_DB_SYN14",
+                    brcsubscription: "Alert Management",
+                    suppressionstate: "Archive",
+                    name: "Network In",
+                    guid: "c7a8c429-a531-4729-9431-bbc5d6205947",
+                    alertstate: "InProgress",
+                    id: "66"
+                },
+                {
+                    severity: "Low",
+                    resourcegroup: "Compute",
+                    monitorservice: "Native AZURE",
+                    signaltype: "Metrics",
+                    resources: "App",
+                    firedtime: "03/06/2020, 1596616397872",
+                    monitorcondition: "Fired",
+                    affectedresource: "Prod_Service_20",
+                    brcsubscription: "Alert Management",
+                    suppressionstate: "DeDup",
+                    name: "Disk Read Bytes",
+                    guid: "9d9cba56-6ccd-4b27-916d-60c58e1cec02",
+                    alertstate: "Closed",
+                    id: "43"
+                },
+                {
+                    severity: "Urgent",
+                    resourcegroup: "Compute",
+                    monitorservice: "Native AZURE",
+                    signaltype: "Metrics",
+                    resources: "Storage",
+                    firedtime: "03/06/2020, 1596616397872",
+                    monitorcondition: "Fired",
+                    affectedresource: "Prod_DB_SYN14",
+                    brcsubscription: "Alert Management",
+                    suppressionstate: "Silence",
+                    name: "Disk Read Bytes",
+                    guid: "3825288c-d9e5-4cd1-928c-a132c471d58e",
+                    alertstate: "New",
+                    id: "44"
+                },
+                {
+                    severity: "Urgent",
+                    resourcegroup: "Compute",
+                    monitorservice: "Native AZURE",
+                    signaltype: "Metrics",
+                    resources: "Node",
+                    firedtime: "03/06/2020, 1596616397872",
+                    monitorcondition: "Fired",
+                    affectedresource: "Prod_Service_20",
+                    brcsubscription: "Alert Management",
+                    suppressionstate: "None",
+                    name: "Percentage CPU",
+                    guid: "3c4a824f-387e-44dd-98eb-b6f66e2d03ba",
+                    alertstate: "New",
+                    id: "89"
+                }
+            ],
             modal: false,
             resourceGroup: "",
             resource: "",
@@ -211,9 +360,6 @@ export class SearchAlert extends React.Component<any, any> {
         this.editAlertRef = React.createRef();
         this.clearAllFilters = this.clearAllFilters.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
-        this.createPaginationJSX = this.createPaginationJSX.bind(this);
-        this.onClickPrev = this.onClickPrev.bind(this);
-        this.onClickNext = this.onClickNext.bind(this);
         this.searchAlert = this.searchAlert.bind(this);
         this.calculateTotalPages = this.calculateTotalPages.bind(this);
         this.onCheckAlert = this.onCheckAlert.bind(this);
@@ -433,6 +579,7 @@ export class SearchAlert extends React.Component<any, any> {
         //     });
         // });
     }
+
     createAllAlertsTable = () => {
         const retData = [];
         let isDataPresent = true;
@@ -524,34 +671,34 @@ export class SearchAlert extends React.Component<any, any> {
         });
     }
 
-    createPaginationJSX() {
-        const { totalPages, currentPage } = this.state;
-        let retData = [];
-        for (let i = 0; i < totalPages; i++) {
-            retData.push(
-                <li className={(currentPage === i ? ' active' : '')}><a href="#" onClick={e => this.changeCurrentPage(i)}>{i + 1}</a></li>
-            )
-        }
-        return retData;
-    }
+    // createPaginationJSX() {
+    //     const { totalPages, currentPage } = this.state;
+    //     let retData = [];
+    //     for (let i = 0; i < totalPages; i++) {
+    //         retData.push(
+    //             <li className={(currentPage === i ? ' active' : '')}><a href="#" onClick={e => this.changeCurrentPage(i)}>{i + 1}</a></li>
+    //         )
+    //     }
+    //     return retData;
+    // }
 
-    onClickPrev() {
-        const { currentPage } = this.state;
-        if (currentPage - 1 >= 0) {
-            this.setState({
-                currentPage: currentPage - 1
-            });
-        }
-    }
+    // onClickPrev() {
+    //     const { currentPage } = this.state;
+    //     if (currentPage - 1 >= 0) {
+    //         this.setState({
+    //             currentPage: currentPage - 1
+    //         });
+    //     }
+    // }
 
-    onClickNext() {
-        const { currentPage, totalPages } = this.state;
-        if ((currentPage + 1) < totalPages) {
-            this.setState({
-                currentPage: currentPage + 1
-            });
-        }
-    }
+    // onClickNext() {
+    //     const { currentPage, totalPages } = this.state;
+    //     if ((currentPage + 1) < totalPages) {
+    //         this.setState({
+    //             currentPage: currentPage + 1
+    //         });
+    //     }
+    // }
 
     onCheckAlert(alert: any, e: any) {
         const { name, checked } = e.target;
@@ -629,7 +776,7 @@ export class SearchAlert extends React.Component<any, any> {
                 <div className="alert-page-container searchalert-container">
                     <div className="common-container border-bottom-0">
                         <div className="row">
-                            <div className="col-xs-12 col-sm-12 col-md-3">
+                            <div className="col-lg-3 col-md-4 col-sm-12">
                                 <div className="bg-white filters-box">
                                     <div className="heading">
                                         <label>Filters</label>
@@ -709,26 +856,16 @@ export class SearchAlert extends React.Component<any, any> {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-xs-12 col-sm-12 col-md-9">
-                                <div className="filter-container">
-                                    <div className="row">
-                                        <div className="col-md-3 col-sm-12">
-                                            <label htmlFor="Alerts" className="alerts">Alerts</label>
-                                        </div>
-                                        <div className="col-md-9 col-sm-12">
-                                            <div className="alerts-right-form">
-                                                <div className="form-group filter-control-group">
-                                                    <form>
-                                                        <input type="text" className="input-group-text" placeholder="Search Alerts" name="searchName" onChange={this.searchAlert} value={state.searchName} />
-                                                        <button><i className="fa fa-search"></i></button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div className="col-lg-9 col-md-8 col-sm-12">
+                                
                                 <div className="alert-data-table-container common-container border-bottom-0">
-                                    <div className="top-head">
+                                <div className="heading">
+                                    <h2>Alerts</h2>
+                                </div>
+                                <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit}
+                                tableClasses={{ alertsDataTable: "alerts-data-tabel", alertDataTable: "alert-data-tabel", allAlertData: "all-alert-data-table", severityClassHigh: "severity-high", severityClassLow: "severity-low", severityClassUrgent: "severity-urgent" }} />
+
+                                    {/* <div className="top-head">
                                         <div className="row">
                                             <div className="col-xs-12 col-sm-12 col-md-6 left">
                                                 <input type="checkbox" className="checkbox" name="AllCheck" onChange={this.checkAllAlerts} checked={this.state.isAllChecked} />
@@ -738,13 +875,7 @@ export class SearchAlert extends React.Component<any, any> {
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div className="col-xs-12 col-sm-12 col-md-6 right text-right">
-                                                <ul>
-                                                    <li><a href="#" onClick={this.onClickPrev}><i className="fa fa-chevron-left"></i> Prev</a></li>
-                                                    {this.createPaginationJSX()}
-                                                    <li><a href="#" onClick={this.onClickNext}>Next <i className="fa fa-chevron-right"></i></a></li>
-                                                </ul>
-                                            </div>
+
                                         </div>
                                     </div>
                                     <div className="container-inner">
@@ -769,6 +900,7 @@ export class SearchAlert extends React.Component<any, any> {
                                             </tbody>
                                         </table>
                                     </div>
+                                 */}
                                 </div>
                             </div>
                         </div>

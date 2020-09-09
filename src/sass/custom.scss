@@ -598,3 +598,232 @@ a {
     }
   }
 }
+
+
+
+.filter-search-control {
+  position: relative;
+  margin-bottom: 0;
+  .input-group-text {
+      max-width: 100%;
+      text-align: left;
+      padding-right: 15px;
+      padding-left: 30px;
+      width: 100%;
+      border: 1px solid #ced4da;
+      background-color: #ffffff;
+      border-radius: 3px;
+      &:focus{
+          outline: none;
+      }
+  }
+  button {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
+      width: 34px;
+      height: 32px;
+      &:hover {
+          color: #333333;
+      }
+  }
+}
+@media (max-width: 767px){
+  .filter-search-control{
+      float: left;
+      margin-top: 15px;
+  }
+}
+
+.alert-data-table-container{
+  &.common-container{
+    padding-left: 0;
+    margin-left: 0;
+  }
+
+  .heading{
+    display: block;
+    padding-bottom: 15px;
+    border-bottom: none;
+    margin-bottom: 0;
+    h2 {
+      font-size: 18px;
+      line-height: 24px;
+      color: #323c47;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+  }
+
+  .showby{
+    label{
+      font-size: 13px;
+      line-height: 34px;
+      font-weight: 500;
+      padding-right: 15px;
+    }
+    .form-control{
+        display: inline-block;
+        width: 75px;
+        border-radius: 3px;
+    }
+    span{
+      font-size: 13px;
+      line-height: 34px;
+      font-weight: 500;
+      padding-left: 15px;
+    }
+  }
+
+  .filter-container{
+    padding-right: 0;
+    .alerts-right-form {
+      float: right;
+      width: auto;
+      .filter-control-group{
+        position: relative;
+        margin-bottom: 0;
+        max-width: 250px;
+        .input-group-text{
+          max-width: 100%;
+          text-align: left;
+          padding-left: 30px;
+          width: 100%;
+          border: 1px solid #8392a7;
+          background-color: #ffffff;
+          line-height: 1.7;
+        }
+        button {
+          position: absolute;
+          left: 0;
+          top: 0;
+          z-index: 1;
+          cursor: pointer;
+          border: none;
+          background-color: transparent;
+          width: 34px;
+          height: 34px;
+        }
+      }
+    }
+  }
+
+  .top-head {
+    background-color: #3697ef;
+    padding: 5px 15px;
+    margin-top: 20px;
+    .left{
+      ul {
+        display: inline-block;
+        list-style: none;
+        vertical-align: top;
+        li {
+          display: inline-block;
+          color: #ffffff;
+          font-size: 12px;
+          padding-left: 10px;
+          line-height: 18px;
+          vertical-align: top;
+          cursor: pointer;
+        }
+      }
+    }
+    .pagination{
+      ul {
+        display: inline-block;
+        visibility: top;
+        li {
+          display: inline-block;
+          color: #ffffff;
+          font-size: 12px;
+          padding-left: 8px;
+          line-height: 18px;
+          vertical-align: top;
+          &.active{
+            a{
+              text-decoration: underline;
+            }
+          }
+          a {
+            color: #ffffff;
+            &:hover{
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .all-alert-data-table{
+    display: grid;
+    width: 100%;     
+    .alerts-data-tabel{
+      overflow-x: scroll;
+      .alert-data-tabel{
+        width: 1600px;
+        thead{
+          tr{
+            th{
+              color: #3b4859;
+              font-size: 13px;
+              line-height: 18px;
+              font-weight: 500;
+              padding: 8px 10px 8px 10px;
+              &:nth-child(1){
+                text-align: left;
+              }
+              &:nth-child(2){
+                text-align: left;
+              }
+            }
+          }
+        }
+        tbody{
+          tr{
+            &:nth-child(odd){
+              background-color: #f8f9fb;
+            }
+            td{
+              color: #323C47;
+              font-size: 13px;
+              line-height: 22px;
+              font-weight: 400;
+              padding: 8px 10px 8px 10px;
+              text-align: center;
+              &:nth-child(1){
+                text-align: left;
+              }
+              &:nth-child(2){
+                text-align: left;
+              }
+              .pointer-label {
+                position: relative;
+                padding-left: 22px;
+                .checkbox {
+                  position: absolute;
+                  left: 0;
+                  top: 3px;
+                }
+              }
+              .btn-link {
+                color: #3b7cff !important;
+                padding: 0 5px;
+                font-size: 18px;
+                line-height: 22px;
+                vertical-align: middle;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
