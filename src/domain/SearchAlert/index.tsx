@@ -57,7 +57,8 @@ export class SearchAlert extends React.Component<any, any> {
                     name: "Network In",
                     guid: "c7a8c429-a531-4729-9431-bbc5d6205947",
                     alertstate: "InProgress",
-                    id: "66"
+                    id: "66",
+                    checkStatus: false
                 },
                 {
                     severity: "Low",
@@ -73,7 +74,8 @@ export class SearchAlert extends React.Component<any, any> {
                     name: "Disk Read Bytes",
                     guid: "9d9cba56-6ccd-4b27-916d-60c58e1cec02",
                     alertstate: "Closed",
-                    id: "43"
+                    id: "43",
+                    checkStatus: false
                 },
                 {
                     severity: "Urgent",
@@ -89,7 +91,8 @@ export class SearchAlert extends React.Component<any, any> {
                     name: "Disk Read Bytes",
                     guid: "3825288c-d9e5-4cd1-928c-a132c471d58e",
                     alertstate: "New",
-                    id: "44"
+                    id: "44",
+                    checkStatus: false
                 },
                 {
                     severity: "Urgent",
@@ -105,7 +108,8 @@ export class SearchAlert extends React.Component<any, any> {
                     name: "Percentage CPU",
                     guid: "3c4a824f-387e-44dd-98eb-b6f66e2d03ba",
                     alertstate: "New",
-                    id: "89"
+                    id: "89",
+                    checkStatus: false
                 } 
             ],
         };

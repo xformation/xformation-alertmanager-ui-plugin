@@ -25,27 +25,25 @@ export class Table extends React.Component<any, any> {
             start_index: 1,
             searchKey: '',
             ending_index: this.props.perPageLimit,
-
+            isAllChecked: false,
             isConfirmDialogOpen: false,
             confirmTitleMessage: null,
             objectType: null,
             objectId: null,
             object: null,
-
             message: null,
             severity: "",
             isAlertOpen: false,
-
-            isAllChecked: false,
+            visibleCheckbox: true,
         }
         this.editAlertRef = React.createRef();
     };
 
     componentDidMount() {
         this.calculateTotalPages(this.state.displayData);
-        
+
     }
-    
+
     calculateTotalPages(displayData: any) {
         const { perPageLimit } = this.state;
         let indexOfLastData = Math.ceil(displayData.length / perPageLimit);
@@ -54,7 +52,7 @@ export class Table extends React.Component<any, any> {
         });
     }
     tableHeader() {
-        const { columns } = this.state;
+        const { columns, visibleCheckbox } = this.state;
         const { tableClasses } = this.props;
         const length = columns.length;
         const retData = [];
@@ -62,8 +60,8 @@ export class Table extends React.Component<any, any> {
             const item = columns[i];
             retData.push(
                 <th key={i}>
-                    {item.label == 'Name' && 
-                        <input type="checkbox" className="checkbox" name="AllCheck" onChange={this.checkAllAlerts} checked={this.state.isAllChecked} />
+                    {(item.label == 'Name' && visibleCheckbox == true) &&
+                        <input type="checkbox" checked={this.state.isAllChecked} onChange={this.checkAllAlerts} className="checkbox" />
                     }
                     {item.label}
                 </th>
@@ -71,27 +69,29 @@ export class Table extends React.Component<any, any> {
         }
         return retData;
     }
+
     tableBodyData() {
-        const { displayData, perPageLimit, currentPage, start_index, ending_index } = this.state;
+        const { displayData, perPageLimit, currentPage, start_index, ending_index, visibleCheckbox } = this.state;
         const { tableClasses } = this.props;
         const retuData = [];
         const length = displayData.length;
         if (length > 0) {
             for (let i = 0; i < length; i++) {
                 const row = displayData[i];
-                if ((i >= currentPage * perPageLimit && i <= (currentPage * perPageLimit + (perPageLimit - 1)))||(i >= start_index - 1 && i <= ending_index - 1)) {
+                if ((i >= currentPage * perPageLimit && i <= (currentPage * perPageLimit + (perPageLimit - 1))) || (i >= start_index - 1 && i <= ending_index - 1)) {
                     retuData.push(
                         <tr>
                             <td>
                                 <div className="pointer-label">
-                                    <input type="checkbox" className="checkbox" name={row.name} onChange={e => this.onCheckAlert(alert, e)} checked={row.isChecked}/> 
+                                    {visibleCheckbox == true && <input type="checkbox" checked={row.checkStatus} className="checkbox" onChange={(e) => { this.onChangeParentCheckbox(e, i) }} />}
+                                    {/* <input type="checkbox" className="checkbox" name={row.name} onChange={e => this.onCheckAlert(alert, e)} checked={row.isChecked} /> */}
                                     {row.name}
-                                </div> 
+                                </div>
                             </td>
-                            {(tableClasses.severityClassHigh != undefined && tableClasses.severityClassLow != undefined && tableClasses.severityClassUrgent != undefined) && 
-                            <td>
-                                <span className={row.severity == 'High' ? tableClasses.severityClassHigh : row.severity == 'Low' ? tableClasses.severityClassLow : tableClasses.severityClassUrgent}>{row.severity}</span>
-                            </td>}
+                            {(tableClasses.severityClassHigh != undefined && tableClasses.severityClassLow != undefined && tableClasses.severityClassUrgent != undefined) &&
+                                <td>
+                                    <span className={row.severity == 'High' ? tableClasses.severityClassHigh : row.severity == 'Low' ? tableClasses.severityClassLow : tableClasses.severityClassUrgent}>{row.severity}</span>
+                                </td>}
                             <td>{row.monitorcondition}</td>
                             <td>{row.alertstate}</td>
                             <td>{row.affectedresource}</td>
@@ -115,7 +115,7 @@ export class Table extends React.Component<any, any> {
                             </td>
                         </tr>
                     );
-                } 
+                }
             }
         } else {
             retuData.push(<tr><td className="there-no-data" colSpan={12}>There is no data</td></tr>);
@@ -284,7 +284,7 @@ export class Table extends React.Component<any, any> {
         console.log("Deleting alert. Alert object : ", object);
         let url = config.DELETE_ALERT + `/` + object.guid;
         this.callDeleteApi(url);
-        console.log("Alert data is ",this.state.alertData)
+        console.log("Alert data is ", this.state.alertData)
         this.setState({
             isConfirmDialogOpen: false
         })
@@ -301,28 +301,51 @@ export class Table extends React.Component<any, any> {
         });
     }
 
-    checkAllAlerts(e: any) {
-        const { checked } = e.target;
+    onChangeParentCheckbox = (e: any, index: any) => {
         const { displayData } = this.state;
-        this.setState({
-            isAllChecked: checked
-        });
-        let length = displayData.length;
-        for (let i = 0; i < length; i++) {
-            const alert = displayData[i];
-            alert.isChecked = checked;
+        const checked = e.target.checked;
+        let status = false;
+        let countCheckedCheckbox = 0;
+        displayData[index].checkStatus = checked;
+        for (let j = 0; j < displayData.length; j++) {
+            if (displayData[j].checkStatus == true) {
+                countCheckedCheckbox++;
+            } else {
+                countCheckedCheckbox--;
+            }
+        }
+        if (countCheckedCheckbox == displayData.length) {
+            status = true;
+        } else {
+            status = false;
         }
         this.setState({
-            displayData: displayData
+            displayData,
+            isAllChecked: status
+        })
+    }
+
+    checkAllAlerts = (e: any) => {
+        const checked = e.target.checked;
+        const { displayData } = this.state;
+        for (let j = 0; j < displayData.length; j++) {
+            displayData[j].checkStatus = checked;
+        }
+        this.setState({
+            displayData,
+            isAllChecked: checked
         });
     }
-    onCheckAlert(row: any, e: any) {
-        const { name, checked } = e.target;
-        row.isChecked = checked;
+    displaycheckbox = (e: any) => {
+        const { visibleCheckbox } = this.state;
+        let value = e.target.checked;
+        this.setState({
+            visibleCheckbox: value
+        })
     }
 
     render() {
-        const { displayData, start_index, ending_index, perPageLimit, objectType, object, isConfirmDialogOpen, confirmTitleMessage, message } = this.state;
+        const { displayData, start_index, ending_index, visibleCheckbox, perPageLimit, objectType, object, isConfirmDialogOpen, confirmTitleMessage, message } = this.state;
         const { tableClasses } = this.props;
         return (
             <div className={tableClasses.allAlertData}>
@@ -341,7 +364,7 @@ export class Table extends React.Component<any, any> {
                         <div className="col-lg-4 col-md-4 col-sm-12 text-right">
                             <div className="d-inline-block form-group filter-search-control">
                                 <form>
-                                    <input type="text" className="input-group-text" onChange={this.onSearchChange} value={this.state.searchKey} placeholder="Search Alerts"  />
+                                    <input type="text" className="input-group-text" onChange={this.onSearchChange} value={this.state.searchKey} placeholder="Search Alerts" />
                                     <button>
                                         <i className="fa fa-search"></i>
                                     </button>
@@ -353,7 +376,7 @@ export class Table extends React.Component<any, any> {
                 <div className="top-head">
                     <div className="row">
                         <div className="col-xs-12 col-sm-12 col-md-6 left">
-                            <input type="checkbox" className="checkbox" name="AllCheck" onChange={this.checkAllAlerts} checked={this.state.isAllChecked} />
+                            <input type="checkbox" checked={visibleCheckbox} className="checkbox" onChange={this.displaycheckbox} name="AllCheck" />
                             <ul>
                                 <li>
                                     <a className="fa fa-refresh" href="#"></a>
@@ -377,8 +400,8 @@ export class Table extends React.Component<any, any> {
                             {this.tableBodyData()}
                         </tbody>
                     </table>
-                </div>  
-                <EditAlertPopup ref={this.editAlertRef} />              
+                </div>
+                <EditAlertPopup ref={this.editAlertRef} />
             </div>
         );
     }
