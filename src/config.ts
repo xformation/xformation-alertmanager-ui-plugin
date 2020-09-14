@@ -10,6 +10,7 @@ export const config = {
   GET_ALL_ALERT_FROM_DB: `${alertSrvUrl}/api/listAlert`,
   UPDATE_ALERT: `${alertSrvUrl}/api/updateAlert`,
   DELETE_ALERT: `${alertSrvUrl}/api/deleteAlert`,
+  TOTAL_ALERTS: `${searchSrvUrl}/search/totalRecords`,
 
   SEVERITY_ERROR: "error",
   SEVERITY_SUCCESS: "success",

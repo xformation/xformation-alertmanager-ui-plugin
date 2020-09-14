@@ -5,6 +5,7 @@ import { config } from '../../config';
 import { CurrentAvrageWaitResponceTimeChart } from './CurrentAvrageWaitResponceTimeChart';
 import { AlertVolumeByStatusChart } from './AlertVolumeByStatusChart';
 import { AlertVolumeChart } from './AlertVolumeChart';
+import { RestService } from '../_service/RestService';
 
 export class MonitorAlerts extends React.Component<any, any> {
     topAlertsTodayData: any;
@@ -13,6 +14,7 @@ export class MonitorAlerts extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
+            totalAlerts: 0
         };
         this.breadCrumbs = [
             {
@@ -87,6 +89,26 @@ export class MonitorAlerts extends React.Component<any, any> {
         }
         return retData;
     }
+
+    componentDidMount(){
+        try {
+            this.fetchData();
+        } catch (err) {
+            console.log("MonitorAlert page. Loading total alerts from elastic failed. Error: ", err);
+        }
+    }
+
+    fetchData = () => {
+        RestService.getData(config.TOTAL_ALERTS+'?type=alert&index=alert', null, null).then(
+            (response: any) => {
+                this.setState({
+                    totalAlerts: response
+                })
+                console.log("Total alert data :::::: ", response);
+            }
+        );
+    }
+    
     createteamMetricsTable = () => {
         const retData = [];
         const teamMetrics = this.teamMetricsData.length;
@@ -104,6 +126,7 @@ export class MonitorAlerts extends React.Component<any, any> {
     }
 
     render() {
+        const {totalAlerts} = this.state;
         return (
             <div className="monitor-alerts-container">
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALERTS" />
@@ -129,11 +152,11 @@ export class MonitorAlerts extends React.Component<any, any> {
                                     Total alerts
                                 </div>
                                 <div className="alert-data">
-                                    26482
+                                    {totalAlerts}
                                 </div>
                                 <div className="alert-data-meta">
-                                    Since 16/03/2020, 07:00 PM
-                                </div>
+                                    &nbsp;
+                                </div> 
                             </Link>
                         </div>
                         <div className="alert-data-block col-lg-3 col-md-6 col-sm-12">
