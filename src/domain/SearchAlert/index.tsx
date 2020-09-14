@@ -43,7 +43,7 @@ export class SearchAlert extends React.Component<any, any> {
                 { label: 'Suppression State', key: 'suppressionstate' },
                 { label: 'Action', key: 'action' },
             ],
-            AlertData: [
+            AlertData:[ 
                 {
                     severity: "High",
                     resourcegroup: "Compute",
@@ -111,165 +111,165 @@ export class SearchAlert extends React.Component<any, any> {
                     alertstate: "New",
                     id: "89",
                     checkStatus: false
-                }
+                } 
             ],
         };
         this.perPageLimit = 10,
         this.checkboxValue = true,
         this.state = {
-                isConfirmDialogOpen: false,
-                confirmTitleMessage: null,
-                objectType: null,
-                objectId: null,
-                object: null,
+            isConfirmDialogOpen: false,
+            confirmTitleMessage: null,
+            objectType: null,
+            objectId: null,
+            object: null,
 
-                message: null,
-                severity: "",
-                isAlertOpen: false,
-
-                alertData: [
-                    {
-                        severity: "High",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AWS",
-                        signaltype: "Logs",
-                        resources: "Node",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_DB_SYN14",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "Archive",
-                        name: "Network In",
-                        guid: "c7a8c429-a531-4729-9431-bbc5d6205947",
-                        alertstate: "InProgress",
-                        id: "66"
-                    },
-                    {
-                        severity: "Low",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AZURE",
-                        signaltype: "Metrics",
-                        resources: "App",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_Service_20",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "DeDup",
-                        name: "Disk Read Bytes",
-                        guid: "9d9cba56-6ccd-4b27-916d-60c58e1cec02",
-                        alertstate: "Closed",
-                        id: "43"
-                    },
-                    {
-                        severity: "Urgent",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AZURE",
-                        signaltype: "Metrics",
-                        resources: "Storage",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_DB_SYN14",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "Silence",
-                        name: "Disk Read Bytes",
-                        guid: "3825288c-d9e5-4cd1-928c-a132c471d58e",
-                        alertstate: "New",
-                        id: "44"
-                    },
-                    {
-                        severity: "Urgent",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AZURE",
-                        signaltype: "Metrics",
-                        resources: "Node",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_Service_20",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "None",
-                        name: "Percentage CPU",
-                        guid: "3c4a824f-387e-44dd-98eb-b6f66e2d03ba",
-                        alertstate: "New",
-                        id: "89"
-                    }
-                ],
-                modal: false,
-                resourceGroup: "",
-                resource: "",
-                monitorService: "",
-                alertType: "",
-                alertState: "",
-                currentTime: 'Last 6 hours',
-                fromTime: 'now-6h',
-                toTime: 'now',
-                filterCheckbox: false,
-                TimeOption: [
-                    { from: 'now-5m', to: 'now', display: 'Last 5 minutes', section: 3 },
-                    { from: 'now-15m', to: 'now', display: 'Last 15 minutes', section: 3 },
-                    { from: 'now-30m', to: 'now', display: 'Last 30 minutes', section: 3 },
-                    { from: 'now-1h', to: 'now', display: 'Last 1 hour', section: 3 },
-                    { from: 'now-3h', to: 'now', display: 'Last 3 hours', section: 3 },
-                    { from: 'now-6h', to: 'now', display: 'Last 6 hours', section: 3 },
-                    { from: 'now-12h', to: 'now', display: 'Last 12 hours', section: 3 },
-                    { from: 'now-24h', to: 'now', display: 'Last 24 hours', section: 3 },
-                    { from: 'now-2d', to: 'now', display: 'Last 2 days', section: 3 },
-                    { from: 'now-7d', to: 'now', display: 'Last 7 days', section: 3 },
-                    { from: 'now-30d', to: 'now', display: 'Last 30 days', section: 3 },
-                    { from: 'now-90d', to: 'now', display: 'Last 90 days', section: 3 },
-                    { from: 'now-6M', to: 'now', display: 'Last 6 months', section: 3 },
-                    { from: 'now-1y', to: 'now', display: 'Last 1 year', section: 3 },
-                    { from: 'now-2y', to: 'now', display: 'Last 2 years', section: 3 },
-                    { from: 'now-5y', to: 'now', display: 'Last 5 years', section: 3 },
-                ],
-                otherOptions: [
-                    { from: 'now-1d/d', to: 'now-1d/d', display: 'Yesterday', section: 3 },
-                    { from: 'now-2d/d', to: 'now-2d/d', display: 'Day before yesterday', section: 3 },
-                    { from: 'now-7d/d', to: 'now-7d/d', display: 'This day last week', section: 3 },
-                    { from: 'now-1w/w', to: 'now-1w/w', display: 'Previous week', section: 3 },
-                    { from: 'now-1M/M', to: 'now-1M/M', display: 'Previous month', section: 3 },
-                    { from: 'now-1y/y', to: 'now-1y/y', display: 'Previous year', section: 3 },
-                    { from: 'now/d', to: 'now/d', display: 'Today', section: 3 },
-                    { from: 'now/d', to: 'now', display: 'Today so far', section: 3 },
-                    { from: 'now/w', to: 'now/w', display: 'This week', section: 3 },
-                    { from: 'now/w', to: 'now', display: 'This week so far', section: 3 },
-                    { from: 'now/M', to: 'now/M', display: 'This month', section: 3 },
-                    { from: 'now/M', to: 'now', display: 'This month so far', section: 3 },
-                    { from: 'now/y', to: 'now/y', display: 'This year', section: 3 },
-                    { from: 'now/y', to: 'now', display: 'This year so far', section: 3 },
-                ],
-
-
-                attendance: {
-                    min: "",
-                    max: ""
+            message: null,
+            severity: "",
+            isAlertOpen: false,
+            
+            alertData: [
+                {
+                    severity: "High",
+                    resourcegroup: "Compute",
+                    monitorservice: "Native AWS",
+                    signaltype: "Logs",
+                    resources: "Node",
+                    firedtime: "03/06/2020, 1596616397872",
+                    monitorcondition: "Fired",
+                    affectedresource: "Prod_DB_SYN14",
+                    brcsubscription: "Alert Management",
+                    suppressionstate: "Archive",
+                    name: "Network In",
+                    guid: "c7a8c429-a531-4729-9431-bbc5d6205947",
+                    alertstate: "InProgress",
+                    id: "66"
                 },
-                grades: {
-                    min: "",
-                    max: ""
+                {
+                    severity: "Low",
+                    resourcegroup: "Compute",
+                    monitorservice: "Native AZURE",
+                    signaltype: "Metrics",
+                    resources: "App",
+                    firedtime: "03/06/2020, 1596616397872",
+                    monitorcondition: "Fired",
+                    affectedresource: "Prod_Service_20",
+                    brcsubscription: "Alert Management",
+                    suppressionstate: "DeDup",
+                    name: "Disk Read Bytes",
+                    guid: "9d9cba56-6ccd-4b27-916d-60c58e1cec02",
+                    alertstate: "Closed",
+                    id: "43"
                 },
-                aggregate: {
-                    min: "",
-                    max: ""
+                {
+                    severity: "Urgent",
+                    resourcegroup: "Compute",
+                    monitorservice: "Native AZURE",
+                    signaltype: "Metrics",
+                    resources: "Storage",
+                    firedtime: "03/06/2020, 1596616397872",
+                    monitorcondition: "Fired",
+                    affectedresource: "Prod_DB_SYN14",
+                    brcsubscription: "Alert Management",
+                    suppressionstate: "Silence",
+                    name: "Disk Read Bytes",
+                    guid: "3825288c-d9e5-4cd1-928c-a132c471d58e",
+                    alertstate: "New",
+                    id: "44"
                 },
-                isApiCalled: false,
-                // studentsData: [],
-                allData: [],
-                itemsPerPage: 5,
-                totalPages: 1,
-                currentPage: 0,
-                searchName: "",
-                isAllChecked: false,
-                branchId: null,
-                academicYearId: null,
-                departmentId: null,
-                user: null,
-                departmentList: null,
-                batchList: null,
-                sectionList: null,
-                selectedDepartmentId: null,
-                selectedBatchId: null,
-                selectedSectionId: null,
-            };
+                {
+                    severity: "Urgent",
+                    resourcegroup: "Compute",
+                    monitorservice: "Native AZURE",
+                    signaltype: "Metrics",
+                    resources: "Node",
+                    firedtime: "03/06/2020, 1596616397872",
+                    monitorcondition: "Fired",
+                    affectedresource: "Prod_Service_20",
+                    brcsubscription: "Alert Management",
+                    suppressionstate: "None",
+                    name: "Percentage CPU",
+                    guid: "3c4a824f-387e-44dd-98eb-b6f66e2d03ba",
+                    alertstate: "New",
+                    id: "89"
+                }
+            ],
+            modal: false,
+            resourceGroup: "",
+            resource: "",
+            monitorService: "",
+            alertType: "",
+            alertState: "",
+            currentTime: 'Last 6 hours',
+            fromTime: 'now-6h',
+            toTime: 'now',
+            filterCheckbox:false,
+            TimeOption: [
+                { from: 'now-5m', to: 'now', display: 'Last 5 minutes', section: 3 },
+                { from: 'now-15m', to: 'now', display: 'Last 15 minutes', section: 3 },
+                { from: 'now-30m', to: 'now', display: 'Last 30 minutes', section: 3 },
+                { from: 'now-1h', to: 'now', display: 'Last 1 hour', section: 3 },
+                { from: 'now-3h', to: 'now', display: 'Last 3 hours', section: 3 },
+                { from: 'now-6h', to: 'now', display: 'Last 6 hours', section: 3 },
+                { from: 'now-12h', to: 'now', display: 'Last 12 hours', section: 3 },
+                { from: 'now-24h', to: 'now', display: 'Last 24 hours', section: 3 },
+                { from: 'now-2d', to: 'now', display: 'Last 2 days', section: 3 },
+                { from: 'now-7d', to: 'now', display: 'Last 7 days', section: 3 },
+                { from: 'now-30d', to: 'now', display: 'Last 30 days', section: 3 },
+                { from: 'now-90d', to: 'now', display: 'Last 90 days', section: 3 },
+                { from: 'now-6M', to: 'now', display: 'Last 6 months', section: 3 },
+                { from: 'now-1y', to: 'now', display: 'Last 1 year', section: 3 },
+                { from: 'now-2y', to: 'now', display: 'Last 2 years', section: 3 },
+                { from: 'now-5y', to: 'now', display: 'Last 5 years', section: 3 },
+            ],
+            otherOptions: [
+                { from: 'now-1d/d', to: 'now-1d/d', display: 'Yesterday', section: 3 },
+                { from: 'now-2d/d', to: 'now-2d/d', display: 'Day before yesterday', section: 3 },
+                { from: 'now-7d/d', to: 'now-7d/d', display: 'This day last week', section: 3 },
+                { from: 'now-1w/w', to: 'now-1w/w', display: 'Previous week', section: 3 },
+                { from: 'now-1M/M', to: 'now-1M/M', display: 'Previous month', section: 3 },
+                { from: 'now-1y/y', to: 'now-1y/y', display: 'Previous year', section: 3 },
+                { from: 'now/d', to: 'now/d', display: 'Today', section: 3 },
+                { from: 'now/d', to: 'now', display: 'Today so far', section: 3 },
+                { from: 'now/w', to: 'now/w', display: 'This week', section: 3 },
+                { from: 'now/w', to: 'now', display: 'This week so far', section: 3 },
+                { from: 'now/M', to: 'now/M', display: 'This month', section: 3 },
+                { from: 'now/M', to: 'now', display: 'This month so far', section: 3 },
+                { from: 'now/y', to: 'now/y', display: 'This year', section: 3 },
+                { from: 'now/y', to: 'now', display: 'This year so far', section: 3 },
+              ],
+
+            
+            attendance: {
+                min: "",
+                max: ""
+            },
+            grades: {
+                min: "",
+                max: ""
+            },
+            aggregate: {
+                min: "",
+                max: ""
+            },
+            isApiCalled: false,
+            // studentsData: [],
+            allData: [],
+            itemsPerPage: 5,
+            totalPages: 1,
+            currentPage: 0,
+            searchName: "",
+            isAllChecked: false,
+            branchId: null,
+            academicYearId: null,
+            departmentId: null,
+            user: null,
+            departmentList: null,
+            batchList: null,
+            sectionList: null,
+            selectedDepartmentId: null,
+            selectedBatchId: null,
+            selectedSectionId: null,
+        };
         this.breadCrumbs = [
             {
                 label: "Home",
@@ -393,8 +393,8 @@ export class SearchAlert extends React.Component<any, any> {
         RestService.getData(config.GET_ALL_ALERT_FROM_ELASTIC, null, null).then(
             (response: any) => {
                 let ary = [];
-                for (let i = 0; i < response.length; i++) {
-                    let j = JSON.parse(response[i]);
+                for(let i=0; i<response.length; i++){
+                    let j = JSON.parse(response[i]);   
                     ary.push(j);
                 }
                 this.setState({
@@ -421,10 +421,10 @@ export class SearchAlert extends React.Component<any, any> {
             if (allData && allData.length > 0) {
                 for (let i = 0; i < allData.length; i++) {
                     let alert = allData[i];
-                    let name = alert.name + " " + alert.severity + " " + alert.monitorcondition
-                        + " " + alert.alertstate + " " + alert.affectedresource + " " + alert.monitorservice
-                        + " " + alert.signaltype + " " + alert.firedtime + " " + alert.brcsubscription
-                        + " " + alert.suppressionstate;
+                    let name =  alert.name + " " + alert.severity + " " + alert.monitorcondition 
+                                + " " + alert.alertstate + " " + alert.affectedresource + " " + alert.monitorservice
+                                + " " + alert.signaltype + " " + alert.firedtime + " " + alert.brcsubscription 
+                                + " " + alert.suppressionstate;
                     name = name.toLowerCase();
                     if (name.indexOf(value.toLowerCase()) !== -1) {
                         result.push(alert);
@@ -443,7 +443,7 @@ export class SearchAlert extends React.Component<any, any> {
         }
     }
 
-    clearAllFilters = () => {
+    clearAllFilters= () => {
         this.setState(
             {
                 resourceGroup: "",
@@ -453,8 +453,8 @@ export class SearchAlert extends React.Component<any, any> {
                 severity: "",
                 alertState: "",
                 currentTime: 'Last 6 hours',
-                filterCheckbox: true
-
+                filterCheckbox:true
+                
             }
         )
     }
@@ -487,11 +487,11 @@ export class SearchAlert extends React.Component<any, any> {
     /*
         Alert code
     */
-    handleCloseAlert = (e: any) => {
-        this.setState({
-            isAlertOpen: false
-        })
-    }
+   handleCloseAlert = (e: any) => {
+    this.setState({
+        isAlertOpen: false
+    })
+}
 
     /*
         Alert code
@@ -515,7 +515,7 @@ export class SearchAlert extends React.Component<any, any> {
         console.log("Deleting alert. Alert object : ", object);
         let url = config.DELETE_ALERT + `/` + object.guid;
         this.callDeleteApi(url);
-        console.log("Alert data is ", this.state.alertData)
+        console.log("Alert data is ",this.state.alertData)
         this.setState({
             isConfirmDialogOpen: false
         })
@@ -536,7 +536,7 @@ export class SearchAlert extends React.Component<any, any> {
     //             message: 'Alert deleted successfully',
     //             isAlertOpen: true,
     //         });
-
+        
     //     }).catch(error => {
     //         console.log('Deletion error', error);
     //         this.setState({
@@ -559,23 +559,23 @@ export class SearchAlert extends React.Component<any, any> {
 
         // await RestService.deleteObject(url).then((response: any) => {
         //     console.log("AllAlert : Delete Response : ", response);
-        // response=eval(response);
-        /*  let ary = [];
-           for (let i = 0; i < response.length; i++) {
-               let j = JSON.parse(response[i]);
-               ary.push(j);
-           }
-           console.log("Array is=",ary)
-            */
-        //alertData: ary,
-        // this.setState({
-        //     severity: config.SEVERITY_SUCCESS,
-        //     message: 'Alert deleted successfully',
-        //     isAlertOpen: true,
-        // });
-
-        //this.refreshData();
-
+            // response=eval(response);
+         /*  let ary = [];
+            for (let i = 0; i < response.length; i++) {
+                let j = JSON.parse(response[i]);
+                ary.push(j);
+            }
+            console.log("Array is=",ary)
+             */
+            //alertData: ary,
+            // this.setState({
+            //     severity: config.SEVERITY_SUCCESS,
+            //     message: 'Alert deleted successfully',
+            //     isAlertOpen: true,
+            // });
+            
+            //this.refreshData();
+        
         // }).catch(error => {
         //     console.log('Deletion error', error);
         //     this.setState({
@@ -619,9 +619,9 @@ export class SearchAlert extends React.Component<any, any> {
                         retData.push(
                             <tr className="">
                                 <td className="">
-                                    <div className="pointer-label" onClick={this.toggle}><input type="checkbox" className="checkbox" name={alert.name} onChange={e => this.onCheckAlert(alert, e)} checked={alert.isChecked} /> {alert.name}</div>
+                                    <div className="pointer-label" onClick={this.toggle}><input type="checkbox" className="checkbox" name={alert.name} onChange={e => this.onCheckAlert(alert, e)} checked={alert.isChecked}/> {alert.name}</div>
                                 </td>
-                                <td><div className={"severity-" + alert.severity.toLowerCase()}>{alert.severity}</div></td>
+                                <td><div className={"severity-"+alert.severity.toLowerCase()}>{alert.severity}</div></td>
                                 <td>{alert.monitorcondition}</td>
                                 <td>{alert.alertstate}</td>
                                 <td>{alert.affectedresource}</td>
@@ -647,7 +647,7 @@ export class SearchAlert extends React.Component<any, any> {
                         );
                     }
                 }
-
+                
             }
             if (retData.length === 0) {
                 retData.push(
@@ -731,7 +731,7 @@ export class SearchAlert extends React.Component<any, any> {
         e.preventDefault();
         const { name, value } = e.nativeEvent.target;
         this.setState({
-            [name]: value
+                [name]: value
         });
     }
 
@@ -752,7 +752,7 @@ export class SearchAlert extends React.Component<any, any> {
         const { name, value } = e.target;
         this.setState({
             [name]: value,
-            filterCheckbox: false
+            filterCheckbox:false
         });
         if (name === "resourceGroup") {
             this.setState({
@@ -761,7 +761,7 @@ export class SearchAlert extends React.Component<any, any> {
         }
     };
 
-    refreshData() {
+    refreshData () {
         console.log("Refreshed.....");
         try {
             this.fetchData();
@@ -772,7 +772,7 @@ export class SearchAlert extends React.Component<any, any> {
 
     render() {
         const state = this.state;
-        const { isConfirmDialogOpen, objectType, isAlertOpen, message, object, confirmTitleMessage, resourceGroup, resource, openTimeRange, monitorService, alertType, severity, currentTime, alertState, fromTime, toTime, filterCheckbox } = this.state;
+        const { isConfirmDialogOpen,objectType,isAlertOpen,message,object,confirmTitleMessage,resourceGroup, resource, openTimeRange, monitorService, alertType, severity, currentTime, alertState, fromTime, toTime,filterCheckbox } = this.state;
         const alertTable = this.createAllAlertsTable();
         return (
             <div className="all-alerts-container">
@@ -858,7 +858,7 @@ export class SearchAlert extends React.Component<any, any> {
                                                 </div>
                                             </div>
                                         </div>
-
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -867,14 +867,14 @@ export class SearchAlert extends React.Component<any, any> {
                                     <div className="heading">
                                         <h2>Alerts</h2>
                                     </div>
-                                    <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue}
-                                        tableClasses={{ alertsDataTable: "alerts-data-tabel", alertDataTable: "alert-data-tabel", allAlertData: "all-alert-data-table", severityClassHigh: "severity-high", severityClassLow: "severity-low", severityClassUrgent: "severity-urgent" }} />
+                                    <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue} tableClasses={{ alertsDataTable: "alerts-data-tabel", alertDataTable: "alert-data-tabel", allAlertData: "all-alert-data-table", severityClassHigh: "severity-high", severityClassLow: "severity-low", severityClassUrgent: "severity-urgent" }} />
+                                 
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                
                 {alertTable.isDataPresent &&
                     <UncontrolledPopover trigger="legacy" placement="bottom" target="PopoverFocus">
                         <PopoverBody>

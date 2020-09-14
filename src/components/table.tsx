@@ -369,7 +369,7 @@ export class Table extends React.Component<any, any> {
                 <div className="top-head">
                     <div className="row">
                         <div className="col-xs-12 col-sm-12 col-md-6 left">
-                            <input type="checkbox" checked={visibleCheckbox} className="checkbox" name="AllCheck" />
+                            {/* <input type="checkbox" checked={visibleCheckbox} className="checkbox" name="AllCheck" /> */}
                             <ul>
                                 <li>
                                     <a className="fa fa-refresh" href="#"></a>
