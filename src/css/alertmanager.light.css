@@ -638,7 +638,7 @@ a:hover {
 .alert-data-table-container .heading h2 {
   font-size: 18px;
   line-height: 24px;
-  color: #323c47;
+  color: #3b4859;
   font-weight: 600;
   margin-bottom: 2px;
 }
@@ -754,6 +754,7 @@ a:hover {
 }
 .alert-data-table-container .all-alert-data-table .alerts-data-tabel {
   overflow-x: scroll;
+  background-color: #ffffff;
 }
 .alert-data-table-container
   .all-alert-data-table

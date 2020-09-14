@@ -861,50 +861,12 @@ export class SearchAlert extends React.Component<any, any> {
                                 </div>
                             </div>
                             <div className="col-lg-9 col-md-8 col-sm-12">
-                                
                                 <div className="alert-data-table-container common-container border-bottom-0">
-                                <div className="heading">
-                                    <h2>Alerts</h2>
-                                </div>
-                                <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit}
-                                tableClasses={{ alertsDataTable: "alerts-data-tabel", alertDataTable: "alert-data-tabel", allAlertData: "all-alert-data-table", severityClassHigh: "severity-high", severityClassLow: "severity-low", severityClassUrgent: "severity-urgent" }} />
-
-                                    {/* <div className="top-head">
-                                        <div className="row">
-                                            <div className="col-xs-12 col-sm-12 col-md-6 left">
-                                                <input type="checkbox" className="checkbox" name="AllCheck" onChange={this.checkAllAlerts} checked={this.state.isAllChecked} />
-                                                <ul>
-                                                    <li>
-                                                        <a className="fa fa-refresh" href="#" onClick={this.refreshData}></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
+                                    <div className="heading">
+                                        <h2>Alerts</h2>
                                     </div>
-                                    <div className="container-inner">
-                                        <table className="alert-data-table">
-                                            <tbody>
-                                                <tr className="alert-data-table-header">
-                                                    <th>
-                                                        <div className="pointer-label" onClick={this.toggle}><input type="checkbox" className="checkbox" onChange={this.checkAllAlerts} checked={this.state.isAllChecked} /> Name</div>
-                                                    </th>
-                                                    <th>Severity</th>
-                                                    <th>Monitor Condition</th>
-                                                    <th>Alert State</th>
-                                                    <th>Affected Resource</th>
-                                                    <th>Monitor Service</th>
-                                                    <th>Signal Type</th>
-                                                    <th>Fired Time</th>
-                                                    <th>Subscription</th>
-                                                    <th>Suppression State</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                                {alertTable.table}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                 */}
+                                    <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit}
+                                    tableClasses={{ alertsDataTable: "alerts-data-tabel", alertDataTable: "alert-data-tabel", allAlertData: "all-alert-data-table", severityClassHigh: "severity-high", severityClassLow: "severity-low", severityClassUrgent: "severity-urgent" }} />
                                 </div>
                             </div>
                         </div>
