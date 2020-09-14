@@ -34,7 +34,7 @@ export class Table extends React.Component<any, any> {
             message: null,
             severity: "",
             isAlertOpen: false,
-            visibleCheckbox: true,
+            visibleCheckbox: this.props.visiblecheckboxStatus,
         }
         this.editAlertRef = React.createRef();
     };
@@ -336,13 +336,6 @@ export class Table extends React.Component<any, any> {
             isAllChecked: checked
         });
     }
-    displaycheckbox = (e: any) => {
-        const { visibleCheckbox } = this.state;
-        let value = e.target.checked;
-        this.setState({
-            visibleCheckbox: value
-        })
-    }
 
     render() {
         const { displayData, start_index, ending_index, visibleCheckbox, perPageLimit, objectType, object, isConfirmDialogOpen, confirmTitleMessage, message } = this.state;
@@ -376,7 +369,7 @@ export class Table extends React.Component<any, any> {
                 <div className="top-head">
                     <div className="row">
                         <div className="col-xs-12 col-sm-12 col-md-6 left">
-                            <input type="checkbox" checked={visibleCheckbox} className="checkbox" onChange={this.displaycheckbox} name="AllCheck" />
+                            <input type="checkbox" checked={visibleCheckbox} className="checkbox" name="AllCheck" />
                             <ul>
                                 <li>
                                     <a className="fa fa-refresh" href="#"></a>
