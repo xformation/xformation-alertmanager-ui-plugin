@@ -11,6 +11,7 @@ import { TimePicker } from 'react-time-picker';
 import AlertMessage from '../../components/AlertMessage';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import { now } from 'lodash';
+import Table from './../../components/table';
 
 export class AllAlerts extends React.Component<any, any> {
     editAlertRef: any;
@@ -22,6 +23,9 @@ export class AllAlerts extends React.Component<any, any> {
     severity: any;
     alertStates: any;
     timeRangeRef: any;
+    tableValue: any;
+    perPageLimit: any;
+    checkboxValue: any;
     constructor(props: any) {
         super(props);
         this.state = {
@@ -30,18 +34,15 @@ export class AllAlerts extends React.Component<any, any> {
             objectType: null,
             objectId: null,
             object: null,
-
             message: null,
             severity: "",
             isAlertOpen: false,
-            
             alertData: [],
             modal: false,
             resourceGroup: "",
             resource: "",
             monitorService: "",
             alertType: "",
-            
             alertState: "",
             currentTime: 'Last 6 hours',
             fromTime: 'now-6h',
@@ -81,6 +82,102 @@ export class AllAlerts extends React.Component<any, any> {
                 { from: 'now/y', to: 'now/y', display: 'This year', section: 3 },
                 { from: 'now/y', to: 'now', display: 'This year so far', section: 3 },
             ],
+        };
+        this.perPageLimit = 3;
+        this.checkboxValue = true;
+        this.tableValue = {
+            columns: [
+                { label: 'Name', key: 'name' },
+                { label: 'Severity', key: 'severity' },
+                { label: 'Monitor Condition', key: 'monitorcondition' },
+                { label: 'Alert State', key: 'alertstate' },
+                { label: 'Affected Resource', key: 'affectedresource' },
+                { label: 'Monitor Service', key: 'monitorservice' },
+                { label: 'Signal Type', key: 'signaltype' },
+                { label: 'Fired Time', key: 'firedtime' },
+                { label: 'Subscription', key: 'brcsubscription' },
+                { label: 'Suppression State', key: 'suppressionstate' },
+                { label: 'Action', key: 'action' },
+            ],
+            AlertData: [
+                {
+                    name: 'Percentage CPU',
+                    severity: 'Urgent',
+                    monitorcondition: 'Fired',
+                    alertstate: 'New',
+                    affectedresource: 'Prod_DB_SYN14',
+                    monitorservice: 'Prometheus',
+                    signaltype: 'Metrics',
+                    firedTime: '17/03/2020, 11:29:00',
+                    brcsubscription: 'Alert Management',
+                    suppressionstate: 'None',
+                }, {
+                    name: 'CPU Credits',
+                    severity: 'Critical',
+                    monitorcondition: 'Fired',
+                    alertstate: 'New',
+                    affectedresource: 'Prod_DB_SYN14',
+                    monitorservice: 'Prometheus',
+                    signaltype: 'Metrics',
+                    firedtime: '17/03/2020, 11:29:00',
+                    brcsubscription: 'Alert Management',
+                    suppressionstate: 'None',
+                }, {
+                    name: 'Network In',
+                    severity: 'High',
+                    monitorcondition: 'Fired',
+                    alertstate: 'New',
+                    affectedresource: 'Prod_DB_SYN14',
+                    monitorservice: 'Prometheus',
+                    signaltype: 'Metrics',
+                    firedtime: '17/03/2020, 11:29:00',
+                    brcsubscription: 'Alert Management',
+                    suppressionstate: 'None',
+                }, {
+                    name: 'Disk Read Bytes',
+                    severity: 'Medium',
+                    monitorcondition: 'Fired',
+                    alertstate: 'New',
+                    affectedresource: 'Prod_DB_SYN14',
+                    monitorservice: 'Prometheus',
+                    signaltype: 'Metrics',
+                    firedtime: '17/03/2020, 11:29:00',
+                    brcsubscription: 'Alert Management',
+                    suppressionstate: 'None',
+                }, {
+                    name: 'Disk Write Bytes',
+                    severity: 'Medium',
+                    monitorcondition: 'Fired',
+                    alertstate: 'New',
+                    affectedresource: 'Prod_DB_SYN14',
+                    monitorservice: 'Prometheus',
+                    signaltype: 'Metrics',
+                    firedtime: '17/03/2020, 11:29:00',
+                    brcsubscription: 'Alert Management',
+                    suppressionstate: 'None',
+                }, {
+                    name: 'Power Off Machine',
+                    severity: 'Medium',
+                    monitorcondition: 'Fired',
+                    alertstate: 'New',
+                    affectedresource: 'Prod_DB_SYN14',
+                    monitorservice: 'Prometheus',
+                    signaltype: 'Metrics',
+                    firedtime: '17/03/2020, 11:29:00',
+                    brcsubscription: 'Alert Management',
+                    suppressionstate: 'None',
+                }, {
+                    name: 'Percentage CPU',
+                    severity: 'Urgent',
+                    monitorcondition: 'Fired',
+                    alertstate: 'New',
+                    affectedresource: 'Prod_DB_SYN14',
+                    monitorservice: 'Prometheus',
+                    signaltype: 'Metrics',
+                    firedtime: '17/03/2020, 11:29:00',
+                    brcsubscription: 'Alert Management',
+                    suppressionstate: 'None',
+                }]
         };
         this.breadCrumbs = [
             {
@@ -178,15 +275,14 @@ export class AllAlerts extends React.Component<any, any> {
         this.editAlertRef = React.createRef();
     }
 
-    refreshData =  () => {
-        
+    refreshData = () => {
         try {
             this.fetchData();
         } catch (err) {
             console.log("Alert data refresh failed. Error: ", err);
         }
     }
-    componentWillMount(){
+    componentWillMount() {
         this.refreshData();
     }
 
@@ -356,7 +452,7 @@ export class AllAlerts extends React.Component<any, any> {
     };
 
     onClickEditAlert = (e: any, selectedAlert: any) => {
-        console.log("Opening edit alert box. alert : ",selectedAlert);
+        console.log("Opening edit alert box. alert : ", selectedAlert);
         this.editAlertRef.current.toggle(selectedAlert);
     };
 
@@ -366,8 +462,6 @@ export class AllAlerts extends React.Component<any, any> {
             alertData: alertList
         });
     }
-
-    
 
     displayTimeRange = () => {
         const retuData = [];
@@ -442,12 +536,12 @@ export class AllAlerts extends React.Component<any, any> {
     handleConfirmDelete = (objectType: any, object: any) => {
         let url = config.DELETE_ALERT + `/` + object.guid;
         let res = this.callDeleteApi(url);
-        
+
         res.then((result: any) => {
-            try{
+            try {
                 let r = JSON.parse(result);
-                if(r.length > 0){
-                    console.log("Updating alert list : ",r);
+                if (r.length > 0) {
+                    console.log("Updating alert list : ", r);
                     let ary = [];
                     for (let i = 0; i < r.length; i++) {
                         let j = JSON.parse(r[i]);
@@ -456,12 +550,12 @@ export class AllAlerts extends React.Component<any, any> {
                     this.setState({
                         alertData: ary
                     });
-                }else{
+                } else {
                     this.setState({
                         alertData: []
                     });
                 }
-            }catch(e){
+            } catch (e) {
                 console.log("Some error in deleting alert data");
                 this.setState({
                     severity: config.SEVERITY_ERROR,
@@ -470,11 +564,11 @@ export class AllAlerts extends React.Component<any, any> {
                 });
             }
         })
-        
+
         this.setState({
             isConfirmDialogOpen: false,
         })
-        
+
         // setTimeout(
         //     () => this.setState({
         //         severity: config.SEVERITY_SUCCESS,
@@ -482,7 +576,7 @@ export class AllAlerts extends React.Component<any, any> {
         //         isAlertOpen: true,
         //     }), 2000
         // )
-        
+
     }
 
     async callDeleteApi(url: any) {
@@ -498,8 +592,8 @@ export class AllAlerts extends React.Component<any, any> {
             isAlertOpen: false
         })
     }
-    showData=()=>{
-        console.log("State Data=",this.state.alertData)
+    showData = () => {
+        console.log("State Data=", this.state.alertData)
     }
     onClickDeleteAlert = (e: any, alert: any) => {
         console.log("Alert : " + alert);
@@ -521,7 +615,7 @@ export class AllAlerts extends React.Component<any, any> {
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALL ALERTS" />
                 <ConfirmDialog objectType={objectType} objectId={object} handleCloseConfirmDialog={this.handleCloseConfirmDialog} handleConfirmDelete={this.handleConfirmDelete} open={isConfirmDialogOpen} titleMsg={confirmTitleMessage} msg={message}></ConfirmDialog>
                 <AlertMessage handleCloseAlert={this.handleCloseAlert} open={isAlertOpen} severity={severity} msg={message}></AlertMessage>
-                
+
                 <div className="alert-page-container">
                     <div className="common-container">
                         <Link to={`${config.basePath}/managealertrule`} className="alert-white-button">
@@ -710,8 +804,11 @@ export class AllAlerts extends React.Component<any, any> {
                             </div>
                         </div>
                     </div>
-                        
+
                     <div className="alert-data-table-container common-container">
+                        {/* <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue}
+                            tableClasses={{ alertsDataTable: "alerts-data-tabel", alertDataTable: "alert-data-tabel", allAlertData: "all-alert-data-table", severityClassHigh: "severity-high", severityClassLow: "severity-low", severityClassUrgent: "severity-urgent" }} /> */}
+
                         <div className="container-inner">
                             <table className="alert-data-table">
                                 <tbody>
