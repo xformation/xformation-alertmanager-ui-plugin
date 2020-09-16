@@ -833,12 +833,12 @@ export class AllAlerts extends React.Component<any, any> {
                         </div>
                     </div>
                 </div>
-                {/* <Modal isOpen={state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">
+                <Modal isOpen={this.state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">
                     <ModalHeader toggle={this.toggle}>Percentage CPU</ModalHeader>
                     <ModalBody style={{ height: 'calc(100vh - 210px)', overflowY: 'auto', overflowX: "hidden" }}>
                         <PopupContent />
                     </ModalBody>
-                </Modal> */}
+                </Modal>
                 {alertTable.isDataPresent &&
                     <UncontrolledPopover trigger="legacy" placement="bottom" target="PopoverFocus">
                         <PopoverBody>
