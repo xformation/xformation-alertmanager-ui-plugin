@@ -44,8 +44,8 @@ export class PopupContent extends React.Component<any, any> {
     render() {
         const state = this.state;
         return (
-            <div className="">
-                <iframe src="http://localhost:3002"></iframe>    
+            <div className="" style={{width: "100%", height: "100%"}}>
+                <iframe style={{width: "100%", height: "100%"}} src="http://localhost:3002/d/d9loIgNGz/test-dash?editPanel=6&orgId=1&removeOptions=1&tab=alert"></iframe>    
             </div>
         );
     }
