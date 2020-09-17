@@ -2297,11 +2297,8 @@ a:hover {
 .manage-container {
   padding-right: 45px;
   border-bottom: none;
-  padding-bottom: 40px;
-  padding-top: 0px;
-}
-.manage-container .row {
-  margin-bottom: 20px;
+  padding-bottom: 10px;
+  padding-top: 30px;
 }
 
 .manage-rules-search .manage-rules-search-text {
@@ -2340,6 +2337,9 @@ a:hover {
   width: 30px;
 }
 
+.manage-rules-btn .common-right-btn {
+  margin-bottom: 10px;
+}
 .manage-rules-btn .common-right-btn .alert-white-button {
   font-size: 14px;
   font-weight: 300;
