@@ -2,16 +2,110 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
-
+import Table from './../../components/table';
 
 export class ManageAlertRule extends React.Component<any, any> {
     alertsRulesData: any;
     alertsScriptsData: any;
     breadCrumbs: any;
+    tableValue: any;
+    perPageLimit: any;
+    checkboxValue: any;
+    scriptValue: any;
     constructor(props: any) {
         super(props);
-        this.state = {
+        this.tableValue = {
+            columns: [
+                {
+                    label: 'Name',
+                    key: 'name'
+                },
+                {
+                    label: 'Rule Type',
+                    key: 'ruleType'
+                },
+                {
+                    label: 'Message',
+                    key: 'message'
+                },
+                {
+                    label: 'Alert Handlers',
+                    key: 'alertHandlers'
+                },
+                {
+                    label: 'Action',
+                    key: 'action',
+                    renderCallback: () => {
+                        return <td>
+                            <div className="d-flex">
+                                <div className="enabled"></div>
+                                <button className="btn btn-link"><i className="fa fa-edit"></i></button>
+                                <button className="btn btn-link"><i className="fa fa-trash"></i></button>
+                            </div>
+                        </td>
+                    }
+                },
+            ],
+            data: [
+                {
+                    name: 'CPU Percentage',
+                    ruleType: 'Threshold',
+                    message: '{{.ID}} {{.Name}} {{.TaskName}} {{….',
+                    alertHandlers: 'Slack (default)'
+                }, {
+                    name: 'Disk Read Bytes	',
+                    ruleType: 'Threshold',
+                    message: '{{.ID}} {{.Name}} {{.TaskName}} {{….',
+                    alertHandlers: 'Slack (default)'
+                }, {
+                    name: 'Disk Write Bytes	',
+                    ruleType: 'Threshold',
+                    message: '{{.ID}} {{.Name}} {{.TaskName}} {{….',
+                    alertHandlers: 'Slack (default)'
+                }
+            ],
         };
+        this.scriptValue = {
+            columns: [
+                {
+                    label: 'Name',
+                    key: 'name'
+                },
+                {
+                    label: 'Type',
+                    key: 'type'
+                },
+                {
+                    label: 'Action',
+                    key: 'action',
+                    renderCallback: () => {
+                        return <td>
+                            <div className="d-flex">
+                                <div className="enabled"></div>
+                                <button className="btn btn-link"><i className="fa fa-edit"></i></button>
+                                <button className="btn btn-link"><i className="fa fa-trash"></i></button>
+                            </div>
+                        </td>
+                    }
+                },
+            ],
+            data: [
+                {
+                    name: 'CPU Percentage',
+                    type: 'Slack (default)',
+                }, {
+                    name: 'Disk Read Bytes	',
+                    type: 'Slack (default)',
+                }, {
+                    name: 'Disk Write Bytes	',
+                    type: 'Slack (default)',
+                }
+            ],
+        };
+        this.perPageLimit = 3,
+            this.checkboxValue = false,
+            this.state = {
+            };
         this.breadCrumbs = [
             {
                 label: "Home",
@@ -22,32 +116,32 @@ export class ManageAlertRule extends React.Component<any, any> {
                 isCurrentPage: true
             }
         ];
-        this.alertsRulesData = [{
-            name: 'CPU Percentage',
-            ruleType: 'Threshold',
-            message: '{{.ID}} {{.Name}} {{.TaskName}} {{….',
-            alertHandlers: 'Slack (default)'
-        }, {
-            name: 'Disk Read Bytes	',
-            ruleType: 'Threshold',
-            message: '{{.ID}} {{.Name}} {{.TaskName}} {{….',
-            alertHandlers: 'Slack (default)'
-        }, {
-            name: 'Disk Write Bytes	',
-            ruleType: 'Threshold',
-            message: '{{.ID}} {{.Name}} {{.TaskName}} {{….',
-            alertHandlers: 'Slack (default)'
-        }];
-        this.alertsScriptsData = [{
-            name: 'CPU Percentage',
-            type: 'Slack (default)',
-        }, {
-            name: 'Disk Read Bytes	',
-            type: 'Slack (default)',
-        }, {
-            name: 'Disk Write Bytes	',
-            type: 'Slack (default)',
-        }];
+        // this.alertsRulesData = [{
+        //     name: 'CPU Percentage',
+        //     ruleType: 'Threshold',
+        //     message: '{{.ID}} {{.Name}} {{.TaskName}} {{….',
+        //     alertHandlers: 'Slack (default)'
+        // }, {
+        //     name: 'Disk Read Bytes	',
+        //     ruleType: 'Threshold',
+        //     message: '{{.ID}} {{.Name}} {{.TaskName}} {{….',
+        //     alertHandlers: 'Slack (default)'
+        // }, {
+        //     name: 'Disk Write Bytes	',
+        //     ruleType: 'Threshold',
+        //     message: '{{.ID}} {{.Name}} {{.TaskName}} {{….',
+        //     alertHandlers: 'Slack (default)'
+        // }];
+        // this.alertsScriptsData = [{
+        //     name: 'CPU Percentage',
+        //     type: 'Slack (default)',
+        // }, {
+        //     name: 'Disk Read Bytes	',
+        //     type: 'Slack (default)',
+        // }, {
+        //     name: 'Disk Write Bytes	',
+        //     type: 'Slack (default)',
+        // }];
     }
     createAlertsRulesTable = () => {
         const retData = [];
@@ -141,25 +235,28 @@ export class ManageAlertRule extends React.Component<any, any> {
                                 </div>
                             </div>
                         </div>
-                        <div className="manage-data-table">
-                            <div className="manage-data-table-inner">
-                                <div className="table-scroll">
+                        <div className="">
+                            {/* <div className="manage-data-table-inner"> */}
+                            <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue}
+                                tableClasses={{ table: "manage-data-table", tableParent: "manage-data-table-inner" }} searchKey="name" />
+
+                            {/* <div className="table-scroll">
                                     <table className="table">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                            <td>Rule Type</td>
-                                            <td>Message</td>
-                                            <td>Alert Handlers</td>
-                                            <td>Actions</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {this.createAlertsRulesTable()}
-                                    </tbody>
-                                </table>
-                                </div>
-                            </div>
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Rule Type</td>
+                                                <td>Message</td>
+                                                <td>Alert Handlers</td>
+                                                <td>Actions</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {this.createAlertsRulesTable()}
+                                        </tbody>
+                                    </table>
+                                </div> */}
+                            {/* </div> */}
                         </div>
                     </div>
                     <div className="common-container manage-container">
@@ -181,7 +278,10 @@ export class ManageAlertRule extends React.Component<any, any> {
                         </div>
                         <div className="manage-data-table">
                             <div className="manage-data-table-inner">
-                                <table className="table">
+                                <Table valueFromData={this.scriptValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue}
+                                    tableClasses={{ table: "manage-data-table", tableParent: "manage-data-table-inner" }} searchKey="name" />
+
+                                {/* <table className="table">
                                     <thead>
                                         <tr>
                                             <td>Name</td>
@@ -237,10 +337,10 @@ export class ManageAlertRule extends React.Component<any, any> {
                                             </td>
                                         </tr>
                                     </tbody>
-                                </table>
-                            </div>
+                                </table>*/}
+                            </div> 
                         </div>
-                    </div> 
+                    </div>
                 </div>
             </div>
         );
