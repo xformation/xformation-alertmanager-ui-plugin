@@ -647,7 +647,7 @@ a {
 
   .heading{
     display: block;
-    padding-bottom: 15px;
+    padding-bottom: 30px;
     border-bottom: none;
     margin-bottom: 0;
     h2 {
@@ -720,7 +720,6 @@ a {
       background-color: #ffffff;
       margin-top: 20px;     
       .alert-data-tabel{
-        width: 2000px;
         thead{
           tr{
             th{
@@ -736,8 +735,11 @@ a {
               &:nth-child(2){
                 text-align: left;
               }
+              &:nth-child(3){
+                text-align: left;
+              }
               .checkbox{
-                margin: 3px 10px 0 0;
+                margin: 3px 0px 0 0;
                 vertical-align: top;
               }
             }
@@ -761,8 +763,13 @@ a {
               &:nth-child(2){
                 text-align: left;
               }
+              &:nth-child(3){
+                text-align: left;
+              }
               &.there-no-data{
                 text-align: center;
+                font-size: 18px;
+                font-weight: 600;
               }
               .pointer-label {
                 position: relative;

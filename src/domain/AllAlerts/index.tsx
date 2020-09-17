@@ -151,7 +151,7 @@ export class AllAlerts extends React.Component<any, any> {
                         key: 'action',
                         renderCallback: () => {
                             return <td>
-                                <div className="d-flex">
+                                <div className="d-inline-block">
                                     <button className="btn btn-link">
                                         <i onClick={e => this.onClickEditAlert(e, alert)} className="fa fa-edit"></i>
                                     </button>
@@ -1079,71 +1079,12 @@ export class AllAlerts extends React.Component<any, any> {
                             </div>
                         }
                     </div>
-                    <div className="filter-container form-row row common-container">
-                        <div className="col-md-3 col-sm-12">
-                            <label htmlFor="allallerts" className="all-alerts">
-                                All Alerts
-                            </label>
+                    <div className="alert-data-table-container allalert-data-table-container common-container border-bottom-0">
+                        <div className="heading">
+                            <h2>All Alerts</h2>
                         </div>
-                        {/* <div className="col-md-9 col-sm-12">
-                            <div className="alerts-right-form"> */}
-                        {/* <div className="row">
-                                    <div className="col-md-4 col-sm-12">
-                                        <div className="form-group filter-control-group">
-                                            <select className="form-control" id="bulkaction">
-                                                <option value="Delete">Delete</option>
-                                                <option value="Archive">Archive</option>
-                                                <option value="Processed">Processed</option>
-                                                <option value="Create Ticket">Create Ticket</option>
-                                                <option value="Execute Workflow">Execute Workflow</option>
-                                            </select>
-                                        </div>
-                                    </div> */}
-                        {/* <div className="col-md-8 col-sm-12">
-                                        <div className="form-group filter-control-group">
-                                            <form>
-                                                <input type="text" className="input-group-text" />
-                                                <button>
-                                                    <i className="fa fa-search"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div> */}
-                        {/* </div> */}
-                        {/* </div>
-                        </div> */}
-
-
-                        <div className="alert-data-table-container common-container">
-                            <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue}
-                                tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" />
-
-                            {/* <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue}
-                            tableClasses={{ alertsDataTable: "alerts-data-tabel", alertDataTable: "alert-data-tabel", allAlertData: "all-alert-data-table", severityClassHigh: "severity-high", severityClassLow: "severity-low", severityClassUrgent: "severity-urgent" }} /> */}
-
-                            {/* <div className="container-inner">
-                            <table className="alert-data-table">
-                                <tbody>
-                                    <tr className="alert-data-table-header">
-                                        <th>
-                                            <div className="pointer-label" onClick={this.toggle}><input type="checkbox" className="checkbox" /> Name</div>
-                                        </th>
-                                        <th>Severity</th>
-                                        <th>Monitor Condition</th>
-                                        <th>Alert State</th>
-                                        <th>Affected Resource</th>
-                                        <th>Monitor Service</th>
-                                        <th>Signal Type</th>
-                                        <th>Fired Time</th>
-                                        <th>Subscription</th>
-                                        <th>Suppression State</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    {alertTable.table}
-                                </tbody>
-                            </table>
-                        </div> */}
-                        </div>
+                        <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue}
+                            tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" />
                     </div>
                 </div>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">

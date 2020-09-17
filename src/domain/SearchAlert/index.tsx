@@ -87,7 +87,7 @@ export class SearchAlert extends React.Component<any, any> {
                     key: 'action',
                     renderCallback: () => {
                         return <td>
-                            <div className="d-flex">
+                            <div className="d-inline-block">
                                 <button className="btn btn-link">
                                     <i onClick={e => this.onClickEditAlert(e, alert)} className="fa fa-edit"></i>
                                 </button>
@@ -904,7 +904,7 @@ export class SearchAlert extends React.Component<any, any> {
                                 </div>
                             </div>
                             <div className="col-lg-9 col-md-8 col-sm-12">
-                                <div className="alert-data-table-container common-container border-bottom-0">
+                                <div className="alert-data-table-container searchalert-data-table-container common-container border-bottom-0">
                                     <div className="heading">
                                         <h2>Alerts</h2>
                                     </div>

@@ -37,7 +37,7 @@ export class ManageAlertRule extends React.Component<any, any> {
                     key: 'action',
                     renderCallback: () => {
                         return <td>
-                            <div className="d-flex">
+                            <div className="d-inline-block">
                                 <div className="enabled"></div>
                                 <button className="btn btn-link"><i className="fa fa-edit"></i></button>
                                 <button className="btn btn-link"><i className="fa fa-trash"></i></button>
@@ -80,7 +80,7 @@ export class ManageAlertRule extends React.Component<any, any> {
                     key: 'action',
                     renderCallback: () => {
                         return <td>
-                            <div className="d-flex">
+                            <div className="d-inline-block">
                                 <div className="enabled"></div>
                                 <button className="btn btn-link"><i className="fa fa-edit"></i></button>
                                 <button className="btn btn-link"><i className="fa fa-trash"></i></button>
@@ -103,9 +103,9 @@ export class ManageAlertRule extends React.Component<any, any> {
             ],
         };
         this.perPageLimit = 3,
-            this.checkboxValue = false,
-            this.state = {
-            };
+        this.checkboxValue = false,
+        this.state = {
+        };
         this.breadCrumbs = [
             {
                 label: "Home",
@@ -163,7 +163,7 @@ export class ManageAlertRule extends React.Component<any, any> {
                         </pre>
                     </td>
                     <td>
-                        <div className="d-flex">
+                        <div className="d-inline-block">
                             <div className="enabled"></div>
                             <button className="btn btn-link"><i className="fa fa-edit"></i></button>
                             <button className="btn btn-link"><i className="fa fa-trash"></i></button>
@@ -222,123 +222,46 @@ export class ManageAlertRule extends React.Component<any, any> {
                         <div className="row">
                             <div className="col-lg-8 col-md-12 col-sm-12 manage-rules-search">
                                 <div className="manage-rules-search-text">3 Alert Rules</div>
-                                <div className="manage-rules-search-box">
+                                {/* <div className="manage-rules-search-box">
                                     <form>
                                         <input type="text" className="input-group-text" placeholder="Search Rule" />
                                         <button><i className="fa fa-search"></i></button>
                                     </form>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="col-lg-4 col-md-12 col-sm-12 manage-rules-btn">
                                 <div className="float-right common-right-btn">
-                                    <Link to={`${config.basePath}/alertrulebuilder`} className="alert-blue-button create-rule-btn">Create Alert Rule</Link>
+                                    <Link to={`${config.basePath}/alertrulebuilder`} className="alert-blue-button m-r-0 create-rule-btn">Create Alert Rule</Link>
                                 </div>
                             </div>
                         </div>
-                        <div className="">
-                            {/* <div className="manage-data-table-inner"> */}
+                        <div className="alert-data-table-container managealertrules-data-table-container">
                             <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue}
-                                tableClasses={{ table: "manage-data-table", tableParent: "manage-data-table-inner" }} searchKey="name" />
+                                tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" />
 
-                            {/* <div className="table-scroll">
-                                    <table className="table">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>Rule Type</td>
-                                                <td>Message</td>
-                                                <td>Alert Handlers</td>
-                                                <td>Actions</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {this.createAlertsRulesTable()}
-                                        </tbody>
-                                    </table>
-                                </div> */}
-                            {/* </div> */}
                         </div>
                     </div>
                     <div className="common-container manage-container">
                         <div className="row">
                             <div className="col-lg-8 col-md-12 col-sm-12 manage-rules-search">
                                 <div className="manage-rules-search-text">3 Scripts</div>
-                                <div className="manage-rules-search-box">
+                                {/* <div className="manage-rules-search-box">
                                     <form>
                                         <input type="text" className="input-group-text" placeholder="Search Script" />
                                         <button><i className="fa fa-search"></i></button>
                                     </form>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="col-lg-4 col-md-12 col-sm-12 manage-rules-btn">
                                 <div className="float-right common-right-btn">
-                                    <Link to={`${config.basePath}/scripteditor`} className="alert-blue-button create-rule-btn">Write Script</Link>
+                                    <Link to={`${config.basePath}/scripteditor`} className="alert-blue-button m-r-0 create-rule-btn">Write Script</Link>
                                 </div>
                             </div>
                         </div>
-                        <div className="manage-data-table">
-                            <div className="manage-data-table-inner">
-                                <Table valueFromData={this.scriptValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue}
-                                    tableClasses={{ table: "manage-data-table", tableParent: "manage-data-table-inner" }} searchKey="name" />
+                        <div className="alert-data-table-container managealertrules-data-table-container">
+                            <Table valueFromData={this.scriptValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue}
+                                tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" />
 
-                                {/* <table className="table">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                            <td>Type</td>
-                                            <td>Actions</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {this.createAlertsScriptsTable()}
-                                        <tr>
-                                            <td>CPU Percentage</td>
-                                            <td>
-                                                <pre>
-                                                    <code>Slack (default)</code>
-                                                </pre>
-                                            </td>
-                                            <td>
-                                                <div className="d-flex">
-                                                    <div className="enabled"></div>
-                                                    <button className="btn btn-link"><i className="fa fa-edit"></i></button>
-                                                    <button className="btn btn-link"><i className="fa fa-trash"></i></button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Disk Read Bytes</td>
-                                            <td>
-                                                <pre>
-                                                    <code>Slack (default)</code>
-                                                </pre>
-                                            </td>
-                                            <td>
-                                                <div className="d-flex">
-                                                    <div className="enabled"></div>
-                                                    <button className="btn btn-link"><i className="fa fa-edit"></i></button>
-                                                    <button className="btn btn-link"><i className="fa fa-trash"></i></button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Disk Write Bytes</td>
-                                            <td>
-                                                <pre>
-                                                    <code>Slack (default)</code>
-                                                </pre>
-                                            </td>
-                                            <td>
-                                                <div className="d-flex">
-                                                    <div className="enabled"></div>
-                                                    <button className="btn btn-link"><i className="fa fa-edit"></i></button>
-                                                    <button className="btn btn-link"><i className="fa fa-trash"></i></button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>*/}
-                            </div> 
                         </div>
                     </div>
                 </div>

@@ -20,7 +20,7 @@
   padding-right: 45px;
   border-bottom: none;
   padding-bottom: 40px;
-  padding-top: 30px;
+  padding-top: 0px;
 
   .row {
     margin-bottom: 20px;
@@ -183,6 +183,36 @@
   .common-container {
     .kpi-btn, .log-btn {
       margin-bottom: 10px;
+    }
+  }
+}
+
+.managealertrules-data-table-container{
+  .all-alert-data-table{
+    .alerts-data-tabel{
+      .alert-data-tabel{
+        width: 975px;
+        .enabled {
+          width: 8px;
+          height: 8px;
+          background-color: #004fac;
+          display: inline-block;
+          position: relative;
+          margin: 10px 10px 0 0;
+          vertical-align: top;
+    
+          &:after {
+            position: absolute;
+            left: -4px;
+            top: -4px;
+            width: 16px;
+            height: 16px;
+            content: "";
+            border: 1px solid #004fac;
+            border-radius: 50%;
+          }
+        }
+      }
     }
   }
 }

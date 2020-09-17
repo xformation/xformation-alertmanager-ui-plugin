@@ -631,7 +631,7 @@ a:hover {
 
 .alert-data-table-container .heading {
   display: block;
-  padding-bottom: 15px;
+  padding-bottom: 30px;
   border-bottom: none;
   margin-bottom: 0;
 }
@@ -719,12 +719,6 @@ a:hover {
 .alert-data-table-container
   .all-alert-data-table
   .alerts-data-tabel
-  .alert-data-tabel {
-  width: 2000px;
-}
-.alert-data-table-container
-  .all-alert-data-table
-  .alerts-data-tabel
   .alert-data-tabel
   thead
   tr
@@ -760,9 +754,18 @@ a:hover {
   .alert-data-tabel
   thead
   tr
+  th:nth-child(3) {
+  text-align: left;
+}
+.alert-data-table-container
+  .all-alert-data-table
+  .alerts-data-tabel
+  .alert-data-tabel
+  thead
+  tr
   th
   .checkbox {
-  margin: 3px 10px 0 0;
+  margin: 3px 0px 0 0;
   vertical-align: top;
 }
 .alert-data-table-container
@@ -811,8 +814,19 @@ a:hover {
   .alert-data-tabel
   tbody
   tr
+  td:nth-child(3) {
+  text-align: left;
+}
+.alert-data-table-container
+  .all-alert-data-table
+  .alerts-data-tabel
+  .alert-data-tabel
+  tbody
+  tr
   td.there-no-data {
   text-align: center;
+  font-size: 18px;
+  font-weight: 600;
 }
 .alert-data-table-container
   .all-alert-data-table
@@ -2210,6 +2224,13 @@ a:hover {
   vertical-align: top;
 }
 
+.allalert-data-table-container
+  .all-alert-data-table
+  .alerts-data-tabel
+  .alert-data-tabel {
+  width: 2000px;
+}
+
 .create-rule-container .data-block {
   padding: 0px 30px;
 }
@@ -2277,7 +2298,7 @@ a:hover {
   padding-right: 45px;
   border-bottom: none;
   padding-bottom: 40px;
-  padding-top: 30px;
+  padding-top: 0px;
 }
 .manage-container .row {
   margin-bottom: 20px;
@@ -2422,6 +2443,40 @@ a:hover {
   .common-container .log-btn {
     margin-bottom: 10px;
   }
+}
+
+.managealertrules-data-table-container
+  .all-alert-data-table
+  .alerts-data-tabel
+  .alert-data-tabel {
+  width: 975px;
+}
+.managealertrules-data-table-container
+  .all-alert-data-table
+  .alerts-data-tabel
+  .alert-data-tabel
+  .enabled {
+  width: 8px;
+  height: 8px;
+  background-color: #004fac;
+  display: inline-block;
+  position: relative;
+  margin: 10px 10px 0 0;
+  vertical-align: top;
+}
+.managealertrules-data-table-container
+  .all-alert-data-table
+  .alerts-data-tabel
+  .alert-data-tabel
+  .enabled:after {
+  position: absolute;
+  left: -4px;
+  top: -4px;
+  width: 16px;
+  height: 16px;
+  content: "";
+  border: 1px solid #004fac;
+  border-radius: 50%;
 }
 
 /*********************************** Total Alerts Three Boxes *********************************/
@@ -2807,6 +2862,13 @@ a:hover {
   }
 }
 
+.rulesalert-data-table-container
+  .all-alert-data-table
+  .alerts-data-tabel
+  .alert-data-tabel {
+  width: 1024px;
+}
+
 .searchalert-container .filters-box {
   border: 1px solid #f5f6f5;
   padding: 0;
@@ -2847,6 +2909,14 @@ a:hover {
   display: block;
   margin-right: 0;
   width: 100%;
+}
+
+.searchalert-container
+  .searchalert-data-table-container
+  .all-alert-data-table
+  .alerts-data-tabel
+  .alert-data-tabel {
+  width: 2000px;
 }
 
 /*# sourceMappingURL=alertmanager.light.css.map */
