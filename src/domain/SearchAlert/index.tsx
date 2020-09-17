@@ -97,7 +97,7 @@ export class SearchAlert extends React.Component<any, any> {
                     firedtime: "03/06/2020, 1596616397872",
                     monitorcondition: "Fired",
                     affectedresource: "Prod_DB_SYN14",
-                    brcsubscription: "Alert Management",
+                    subscription: "Alert Management",
                     suppressionstate: "Archive",
                     name: "Network In",
                     guid: "c7a8c429-a531-4729-9431-bbc5d6205947",
@@ -114,7 +114,7 @@ export class SearchAlert extends React.Component<any, any> {
                     firedtime: "03/06/2020, 1596616397872",
                     monitorcondition: "Fired",
                     affectedresource: "Prod_Service_20",
-                    brcsubscription: "Alert Management",
+                    subscription: "Alert Management",
                     suppressionstate: "DeDup",
                     name: "Disk Read Bytes",
                     guid: "9d9cba56-6ccd-4b27-916d-60c58e1cec02",
@@ -131,7 +131,7 @@ export class SearchAlert extends React.Component<any, any> {
                     firedtime: "03/06/2020, 1596616397872",
                     monitorcondition: "Fired",
                     affectedresource: "Prod_DB_SYN14",
-                    brcsubscription: "Alert Management",
+                    subscription: "Alert Management",
                     suppressionstate: "Silence",
                     name: "Disk Read Bytes",
                     guid: "3825288c-d9e5-4cd1-928c-a132c471d58e",
@@ -148,7 +148,7 @@ export class SearchAlert extends React.Component<any, any> {
                     firedtime: "03/06/2020, 1596616397872",
                     monitorcondition: "Fired",
                     affectedresource: "Prod_Service_20",
-                    brcsubscription: "Alert Management",
+                    subscription: "Alert Management",
                     suppressionstate: "None",
                     name: "Percentage CPU",
                     guid: "3c4a824f-387e-44dd-98eb-b6f66e2d03ba",
@@ -894,7 +894,7 @@ export class SearchAlert extends React.Component<any, any> {
                                         <h2>Alerts</h2>
                                     </div>
                                     <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue}
-                                        tableClasses={{ table: "alert-data-tabel", tableParent: " alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" />
+                                        tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="subject" showingLine="Latest Alerts (Showing %start% to %end% of %total% Alerts)" />
 
                                     {/* <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue} */}
                                     {/* tableClasses={{ alertsDataTable: "alerts-data-tabel", alertDataTable: "alert-data-tabel", allAlertData: "all-alert-data-table" }} /> */}
