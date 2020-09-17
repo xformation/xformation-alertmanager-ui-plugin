@@ -84,7 +84,22 @@ export class SearchAlert extends React.Component<any, any> {
                 },
                 {
                     label: 'Action',
-                    key: 'action'
+                    key: 'action',
+                    renderCallback: () => {
+                        return <td>
+                            <div className="d-flex">
+                                <button className="btn btn-link">
+                                    <i onClick={e => this.onClickEditAlert(e, alert)} className="fa fa-edit"></i>
+                                </button>
+                                <button className="btn btn-link">
+                                    <i onClick={e => this.onClickDeleteAlert(e, alert)} className="fa fa-trash"></i>
+                                </button>
+                                <button className="btn btn-link" id="PopoverFocus">
+                                    <i className="fa fa-ellipsis-h"></i>
+                                </button>
+                            </div>
+                        </td>
+                    }
                 },
             ],
             data: [
@@ -893,8 +908,7 @@ export class SearchAlert extends React.Component<any, any> {
                                     <div className="heading">
                                         <h2>Alerts</h2>
                                     </div>
-                                    <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue}
-                                        tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="subject" showingLine="Latest Alerts (Showing %start% to %end% of %total% Alerts)" />
+                                    <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue} tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" />
 
                                     {/* <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue} */}
                                     {/* tableClasses={{ alertsDataTable: "alerts-data-tabel", alertDataTable: "alert-data-tabel", allAlertData: "all-alert-data-table" }} /> */}
@@ -905,14 +919,12 @@ export class SearchAlert extends React.Component<any, any> {
                     </div>
                 </div>
 
-                {/* {alertTable.isDataPresent &&
-                    <UncontrolledPopover trigger="legacy" placement="bottom" target="PopoverFocus">
-                        <PopoverBody>
-                            <Link className=" " to={`${config.basePath}/alltickets`}>Create Ticket</Link>
-                            <Link className=" " to="">Silence</Link>
-                        </PopoverBody>
-                    </UncontrolledPopover>
-                } */}
+                <UncontrolledPopover trigger="legacy" placement="bottom" target="PopoverFocus">
+                    <PopoverBody>
+                        <Link className=" " to={`${config.basePath}/alltickets`}>Create Ticket</Link>
+                        <Link className=" " to="">Silence</Link>
+                    </PopoverBody>
+                </UncontrolledPopover>
                 <EditAlertPopup ref={this.editAlertRef} />
             </div>
 
