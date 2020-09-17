@@ -894,7 +894,7 @@ export class SearchAlert extends React.Component<any, any> {
                                         <h2>Alerts</h2>
                                     </div>
                                     <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue}
-                                        tableClasses={{ table: "alerts-data-tabel", tableParent: "d-block p-t-5 alert-data-tabel", parentClass: "all-alert-data-table" }} searchKey="subject" showingLine="Latest Alerts (Showing %start% to %end% of %total% Alerts)" />
+                                        tableClasses={{ table: "alert-data-tabel", tableParent: " alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" />
 
                                     {/* <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue} */}
                                     {/* tableClasses={{ alertsDataTable: "alerts-data-tabel", alertDataTable: "alert-data-tabel", allAlertData: "all-alert-data-table" }} /> */}
