@@ -19,12 +19,8 @@
 .manage-container {
   padding-right: 45px;
   border-bottom: none;
-  padding-bottom: 40px;
-  padding-top: 0px;
-
-  .row {
-    margin-bottom: 20px;
-  }
+  padding-bottom: 10px;
+  padding-top: 30px;
 }
 
 .manage-rules-search {
@@ -67,10 +63,15 @@
   }
 }
 
-.manage-rules-btn .common-right-btn .alert-white-button {
-  font-size: 14px;
-  font-weight: 300;
-  margin-right: 0;
+.manage-rules-btn{
+ .common-right-btn {
+   margin-bottom: 10px;
+  .alert-white-button {
+    font-size: 14px;
+    font-weight: 300;
+    margin-right: 0;
+  }
+ }
 }
 
 .manage-data-table {
