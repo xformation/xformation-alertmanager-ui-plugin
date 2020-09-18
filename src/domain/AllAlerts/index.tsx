@@ -23,7 +23,6 @@ export class AllAlerts extends React.Component<any, any> {
     severity: any;
     alertStates: any;
     timeRangeRef: any;
-    tableValue: any;
     perPageLimit: any;
     checkboxValue: any;
     constructor(props: any) {
