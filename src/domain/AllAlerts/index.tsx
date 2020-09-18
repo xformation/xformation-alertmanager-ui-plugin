@@ -82,419 +82,96 @@ export class AllAlerts extends React.Component<any, any> {
                 { from: 'now/y', to: 'now/y', display: 'This year', section: 3 },
                 { from: 'now/y', to: 'now', display: 'This year so far', section: 3 },
             ],
-        };
-        this.perPageLimit = 6,
-            this.checkboxValue = true,
-            this.tableValue = {
-                columns: [
-                    {
-                        label: 'Name',
-                        key: 'name',
-                        renderCallback: (value: any) => {
-                            return (
-                                <td>
-                                    <div className="pointer-label" onClick={this.toggle}>{value}</div>
-                                </td>
-                            );
-                        }
-                    },
-                    {
-                        label: 'Severity',
-                        key: 'severity',
-                        renderCallback: (value: any) => {
-                            let strClass = "";
-                            if (value === "High") {
-                                strClass = "severity-high";
-                            } else if (value === "Low") {
-                                strClass = "severity-low";
-                            } else if (value === "Urgent") {
-                                strClass = "severity-urgent";
-                            } else if (value === "Critical") {
-                                strClass = "severity-critical";
-                            } else if (value === "Medium") {
-                                strClass = "severity-medium";
-                            }
-                            return <td><span className={strClass}>{value}</span></td>
-                        }
-                    },
-                    {
-                        label: 'Monitor Condition',
-                        key: 'monitorcondition'
-                    },
-                    {
-                        label: 'Alert State',
-                        key: 'alertstate'
-                    },
-                    {
-                        label: 'Affected Resource',
-                        key: 'affectedresource'
-                    },
-                    {
-                        label: 'Monitor Service',
-                        key: 'monitorservice'
-                    },
-                    {
-                        label: 'Signal Type',
-                        key: 'signaltype'
-                    },
-                    {
-                        label: 'Fired Time',
-                        key: 'firedtime'
-                    },
-                    {
-                        label: 'Subscription',
-                        key: 'brcsubscription'
-                    },
-                    {
-                        label: 'Suppression State',
-                        key: 'suppressionstate'
-                    },
-                    {
-                        label: 'Resources',
-                        key: 'resources'
-                    },
-                    {
-                        label: 'Action',
-                        key: 'action',
-                        renderCallback: () => {
-                            return <td>
-                                <div className="d-inline-block">
-                                    <button className="btn btn-link">
-                                        <i onClick={e => this.onClickEditAlert(e, alert)} className="fa fa-edit"></i>
-                                    </button>
-                                    <button className="btn btn-link">
-                                        <i onClick={e => this.onClickDeleteAlert(e, alert)} className="fa fa-trash"></i>
-                                    </button>
-                                    <button className="btn btn-link" id="PopoverFocus">
-                                        <i className="fa fa-ellipsis-h"></i>
-                                    </button>
-                                </div>
+            columns: [
+                {
+                    label: 'Name',
+                    key: 'name',
+                    renderCallback: (value: any) => {
+                        return (
+                            <td>
+                                <div className="pointer-label" onClick={this.toggle}>{value}</div>
                             </td>
-                        }
-                    },
-                ],
-                data: [
-                    {
-                        severity: "Medium",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AWS",
-                        signaltype: "Metrics",
-                        resources: "Node",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_DB_SYN14",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "None",
-                        name: "Percentage CPU",
-                        guid: "b718bd4d-a2c0-4844-a914-f47733d2f811",
-                        alertstate: "Closed",
-                        id: "68"
-                    },
-                    {
-                        severity: "Critical",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AZURE",
-                        signaltype: "Metrics",
-                        resources: "App",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_DB_SYN14",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "None",
-                        name: "Disk Read Bytes",
-                        guid: "53e1f87f-26af-4436-a062-7499f87a22ab",
-                        alertstate: "InProgress",
-                        id: "22"
-                    },
-                    {
-                        severity: "High",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AWS",
-                        signaltype: "Metrics",
-                        resources: "Storage",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_DB_SYN14",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "None",
-                        name: "Percentage CPU",
-                        guid: "c3441541-7305-4c42-bf75-e188f8badae2",
-                        alertstate: "InProgress",
-                        id: "50"
-                    },
-                    {
-                        severity: "High",
-                        resourcegroup: "Compute", monitorservice: "Native AWS",
-                        signaltype: "Logs",
-                        resources: "Node",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_DB_SYN14",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "Archive",
-                        name: "Network In",
-                        guid: "c7a8c429-a531-4729-9431-bbc5d6205947",
-                        alertstate: "InProgress",
-                        id: "66"
-                    },
-                    {
-                        severity: "Low",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AWS",
-                        signaltype: "Logs",
-                        resources: "App",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_Service_20",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "None",
-                        name: "Power Off Machine",
-                        guid: "2f38ccd5-e304-411a-b1d8-832aaae789ed",
-                        alertstate: "New",
-                        id: "27"
-                    },
-                    {
-                        severity: "High",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AWS",
-                        signaltype: "Metrics",
-                        resources: "Database",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_Service_20",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "None",
-                        name: "Percentage CPU",
-                        guid: "20a6e042-eb40-4642-9f2a-c317c2a411cf",
-                        alertstate: "New",
-                        id: "77"
-                    },
-                    {
-                        severity: "Low",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AZURE",
-                        signaltype: "Logs",
-                        resources: "Node",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_DB_SYN14",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "None",
-                        name: "Power Off Machine",
-                        guid: "a02aa309-2bc4-4059-a0b4-dc0dfc579545",
-                        alertstate: "InProgress",
-                        id: "68"
-                    },
-                    {
-                        severity: "Low",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AZURE",
-                        signaltype: "Metrics",
-                        resources: "App",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_Service_20",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "DeDup",
-                        name: "Disk Read Bytes",
-                        guid: "9d9cba56-6ccd-4b27-916d-60c58e1cec02",
-                        alertstate: "Closed",
-                        id: "43"
-                    },
-                    {
-                        severity: "Urgent",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AZURE",
-                        signaltype: "Metrics",
-                        resources: "Storage",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_DB_SYN14",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "Silence",
-                        name: "Disk Read Bytes",
-                        guid: "3825288c-d9e5-4cd1-928c-a132c471d58e",
-                        alertstate: "New",
-                        id: "44"
-                    },
-                    {
-                        severity: "Critical",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AZURE",
-                        signaltype: "Metrics",
-                        resources: "Database",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_Service_20",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "DeDup",
-                        name: "Network In",
-                        guid: "032ea364-4595-45d0-adbf-860707364116",
-                        alertstate: "InProgress",
-                        id: "46"
-                    },
-                    {
-                        severity: "Urgent",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AWS",
-                        signaltype: "Metrics",
-                        resources: "Node",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_Service_20",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "Archive",
-                        name: "Power Off Machine",
-                        guid: "91cea5f8-8c8b-40dd-9b1e-13374737a4bb",
-                        alertstate: "Closed",
-                        id: "48"
-                    },
-                    {
-                        severity: "Low",
-                        resourcegroup: "Compute",
-                        monitorservice: "Synectiks",
-                        signaltype: "Metrics",
-                        resources: "Storage",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_Service_20",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "Archive",
-                        name: "CPU Credits",
-                        guid: "555a211d-df92-49e6-b24c-a497cbf1e5ca",
-                        alertstate: "InProgress",
-                        id: "13"
-                    },
-                    {
-                        severity: "Medium",
-                        resourcegroup: "Compute",
-                        monitorservice: "Synectiks",
-                        signaltype: "Logs",
-                        resources: "Node",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_Service_20",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "Archive",
-                        name: "Percentage CPU",
-                        guid: "334054d8-298a-4219-9377-3063beede9c4",
-                        alertstate: "InProgress",
-                        id: "80"
-                    },
-                    {
-                        severity: "Urgent",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AWS",
-                        signaltype: "Logs",
-                        resources: "Storage",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_DB_SYN14",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "DeDup",
-                        name: "Percentage CPU",
-                        guid: "7093e6c8-d13d-4d3b-9756-f05f2d1496ab",
-                        alertstate: "New",
-                        id: "66"
-                    },
-                    {
-                        severity: "Low",
-                        resourcegroup: "Compute",
-                        monitorservice: "Synectiks",
-                        signaltype: "Logs",
-                        resources: "Database",
-                        firedtime: "03 / 06 / 2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_Service_20",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "Archive",
-                        name: "Power Off Machine",
-                        guid: "d4c3a5c5 - 52c7- 4058 - abd7 - 3973048a2fce",
-                        alertstate: "New",
-                        id: "4"
-                    },
-                    {
-                        severity: "Medium",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AZURE",
-                        signaltype: "Metrics",
-                        resources: "Node",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_Service_20",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "Silence",
-                        name: "Network In",
-                        guid: "86df3da5-dda9-478a-952c-2c738c672524",
-                        alertstate: "Closed",
-                        id: "70"
-                    },
-                    {
-                        severity: "Urgent",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AZURE",
-                        signaltype: "Metrics",
-                        resources: "Node",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_Service_20",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "None",
-                        name: "Percentage CPU",
-                        guid: "3c4a824f-387e-44dd-98eb-b6f66e2d03ba",
-                        alertstate: "New",
-                        id: "89"
-                    },
-                    {
-                        severity: "High",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AWS",
-                        signaltype: "Logs",
-                        resources: "Storage",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_DB_SYN14",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "None",
-                        name: "Percentage CPU",
-                        guid: "2e3a81e9-8337-472f-a19c-15df5633dc59",
-                        alertstate: "InProgress",
-                        id: "27"
-                    },
-                    {
-                        severity: "Urgent",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AZURE",
-                        signaltype: "Logs",
-                        resources: "Database",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_Service_20",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "Silence",
-                        name: "Disk Read Bytes",
-                        guid: "b13aeed0-9ca9-4314-9bcd-166c3b909496",
-                        alertstate: "New",
-                        id: "45"
-                    },
-                    {
-                        severity: "Low",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AZURE",
-                        signaltype: "Logs",
-                        resources: "Node",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_Service_20",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "Archive",
-                        name: "Network In",
-                        guid: "dc67a645-5358-42dc-ac48-8c2752cd5891",
-                        alertstate: "InProgress",
-                        id: "20"
+                        );
                     }
-                ]
-            };
+                },
+                {
+                    label: 'Severity',
+                    key: 'severity',
+                    renderCallback: (value: any) => {
+                        let strClass = "";
+                        if (value === "High") {
+                            strClass = "severity-high";
+                        } else if (value === "Low") {
+                            strClass = "severity-low";
+                        } else if (value === "Urgent") {
+                            strClass = "severity-urgent";
+                        } else if (value === "Critical") {
+                            strClass = "severity-critical";
+                        } else if (value === "Medium") {
+                            strClass = "severity-medium";
+                        }
+                        return <td><span className={strClass}>{value}</span></td>
+                    }
+                },
+                {
+                    label: 'Monitor Condition',
+                    key: 'monitorcondition'
+                },
+                {
+                    label: 'Alert State',
+                    key: 'alertstate'
+                },
+                {
+                    label: 'Affected Resource',
+                    key: 'affectedresource'
+                },
+                {
+                    label: 'Monitor Service',
+                    key: 'monitorservice'
+                },
+                {
+                    label: 'Signal Type',
+                    key: 'signaltype'
+                },
+                {
+                    label: 'Fired Time',
+                    key: 'firedtime'
+                },
+                {
+                    label: 'Subscription',
+                    key: 'brcsubscription'
+                },
+                {
+                    label: 'Suppression State',
+                    key: 'suppressionstate'
+                },
+                {
+                    label: 'Resources',
+                    key: 'resources'
+                },
+                {
+                    label: 'Action',
+                    key: 'action',
+                    renderCallback: () => {
+                        return <td>
+                            <div className="d-inline-block">
+                                <button className="btn btn-link">
+                                    <i onClick={e => this.onClickEditAlert(e, alert)} className="fa fa-edit"></i>
+                                </button>
+                                <button className="btn btn-link">
+                                    <i onClick={e => this.onClickDeleteAlert(e, alert)} className="fa fa-trash"></i>
+                                </button>
+                                <button className="btn btn-link" id="PopoverFocus">
+                                    <i className="fa fa-ellipsis-h"></i>
+                                </button>
+                            </div>
+                        </td>
+                    }
+                },
+            ],
+        };
+        this.perPageLimit = 6;
+        this.checkboxValue = true;
         this.breadCrumbs = [
             {
                 label: "Home",
@@ -822,7 +499,7 @@ export class AllAlerts extends React.Component<any, any> {
 
     render() {
         const { resourceGroup, resource, openTimeRange, monitorService, alertType, severity, currentTime, alertState, fromTime, toTime, filterCheckbox, objectType, object,
-            isConfirmDialogOpen, confirmTitleMessage, message, isAlertOpen } = this.state;
+            isConfirmDialogOpen, confirmTitleMessage, message, isAlertOpen, columns, alertData } = this.state;
         return (
             <div className="all-alerts-container">
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALL ALERTS" />
@@ -987,7 +664,7 @@ export class AllAlerts extends React.Component<any, any> {
                         <div className="heading">
                             <h2>All Alerts</h2>
                         </div>
-                        <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue}
+                        <Table valueFromData={{ columns: columns, data: alertData }} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue}
                             tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" />
                     </div>
                 </div>
