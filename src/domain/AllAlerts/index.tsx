@@ -89,7 +89,14 @@ export class AllAlerts extends React.Component<any, any> {
                 columns: [
                     {
                         label: 'Name',
-                        key: 'name'
+                        key: 'name',
+                        renderCallback: (value: any) => {
+                            return (
+                                <td>
+                                    <div className="pointer-label" onClick={this.toggle}>{value}</div>
+                                </td>
+                            );
+                        }
                     },
                     {
                         label: 'Severity',
@@ -626,108 +633,6 @@ export class AllAlerts extends React.Component<any, any> {
         })
     };
 
-    createAllAlertsTable = () => {
-        const retData = [];
-        let isDataPresent = true;
-        const { alertData, resourceGroup, resource, monitorService, alertType, severity, alertState } = this.state;
-        if (alertData && alertData.length > 0) {
-            const length = alertData.length;
-            for (let i = 0; i < length; i++) {
-                const alert = alertData[i];
-                let isMatched = true;
-                if (resourceGroup) {
-                    isMatched = resourceGroup === alert.resourcegroup;
-                }
-                if (isMatched && resource) {
-                    isMatched = resource === alert.resources;
-                }
-                if (isMatched && monitorService) {
-                    isMatched = monitorService === alert.monitorservice;
-                }
-                if (isMatched && alertType) {
-                    isMatched = alertType === alert.signaltype;
-                }
-                if (isMatched && severity) {
-                    isMatched = severity === alert.severity;
-                }
-                if (isMatched && alertState) {
-                    isMatched = alertState === alert.alertstate;
-                }
-                if (isMatched) {
-                    retData.push(
-                        <tr className="">
-                            <td className="">
-                                <div className="pointer-label" onClick={this.toggle}><input type="checkbox" className="checkbox" /> {alert.name}</div>
-                            </td>
-                            <td>
-                                {
-                                    alert.severity === severityDS.URGENT &&
-                                    <div className="severity-urgent">Urgent</div>
-                                }
-                                {
-                                    alert.severity === severityDS.CRITICAL &&
-                                    <div className="severity-critical">Critical</div>
-                                }
-                                {
-                                    alert.severity === severityDS.HIGH &&
-                                    <div className="severity-high">High</div>
-                                }
-                                {
-                                    alert.severity === severityDS.MEDIUM &&
-                                    <div className="severity-medium">Medium</div>
-                                }
-                                {
-                                    alert.severity === severityDS.LOW &&
-                                    <div className="severity-medium">Low</div>
-                                }
-                            </td>
-                            <td>{alert.monitorcondition}</td>
-                            <td>{alert.alertstate}</td>
-                            <td>{alert.affectedresource}</td>
-                            <td>{alert.monitorservice}</td>
-                            <td>{alert.signaltype}</td>
-                            <td>{alert.firedtime}</td>
-                            <td>{alert.brcsubscription}</td>
-                            <td>{alert.suppressionstate}</td>
-                            <td>
-                                <div className="d-flex">
-                                    <button className="btn btn-link">
-                                        <i onClick={e => this.onClickEditAlert(e, alert)} className="fa fa-edit"></i>
-                                    </button>
-                                    <button className="btn btn-link">
-                                        <i onClick={e => this.onClickDeleteAlert(e, alert)} className="fa fa-trash"></i>
-                                    </button>
-                                    <button className="btn btn-link" id="PopoverFocus">
-                                        <i className="fa fa-ellipsis-h"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    );
-                }
-            }
-            if (retData.length === 0) {
-                retData.push(
-                    <tr>
-                        <td colSpan={12} style={{ textAlign: "center" }}>There is no data.</td>
-                    </tr>
-                );
-                isDataPresent = false;
-            }
-        } else {
-            retData.push(
-                <tr>
-                    <td colSpan={12} style={{ textAlign: "center" }}>There is no data.</td>
-                </tr>
-            );
-            isDataPresent = false;
-        }
-        return {
-            table: retData,
-            isDataPresent
-        };
-    }
-
     toggle = () => {
         this.setState({
             modal: !this.state.modal
@@ -918,7 +823,6 @@ export class AllAlerts extends React.Component<any, any> {
     render() {
         const { resourceGroup, resource, openTimeRange, monitorService, alertType, severity, currentTime, alertState, fromTime, toTime, filterCheckbox, objectType, object,
             isConfirmDialogOpen, confirmTitleMessage, message, isAlertOpen } = this.state;
-        const alertTable = this.createAllAlertsTable();
         return (
             <div className="all-alerts-container">
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALL ALERTS" />
@@ -1093,14 +997,14 @@ export class AllAlerts extends React.Component<any, any> {
                         <PopupContent />
                     </ModalBody>
                 </Modal>
-                {alertTable.isDataPresent &&
+                {/* {alertTable.isDataPresent &&
                     <UncontrolledPopover trigger="legacy" placement="bottom" target="PopoverFocus">
                         <PopoverBody>
                             <Link className=" " to={`${config.basePath}/alltickets`}>Create Ticket</Link>
                             <Link className=" " to="">Silence</Link>
                         </PopoverBody>
                     </UncontrolledPopover>
-                }
+                } */}
                 <EditAlertPopup onSaveUpdate={this.updateAlertList} ref={this.editAlertRef} />
             </div>
         );

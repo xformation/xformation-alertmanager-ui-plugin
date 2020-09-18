@@ -4,11 +4,13 @@
   vertical-align: middle;
   cursor: pointer;
 }
+
 .custom-table .checkbox {
   margin-top: -4px;
   margin-right: 0px;
   vertical-align: middle;
 }
+
 .custom-table .sort-icon.sort-none:before {
   display: block;
   content: "";
@@ -51,4 +53,35 @@
   border-width: 0 4px 8px 4px;
   border-color: transparent transparent #dddddd transparent;
   margin-bottom: 0px;
+}
+
+.custom-table .multiselect{
+  width: 200px;
+  margin-bottom: 5px;
+}
+
+.custom-table .multiselect .options {
+  background: white;
+  color: black;
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ababab;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  margin-top: 7px;
+}
+
+.custom-table .multiselect .select-label{
+  margin-bottom: 7px;
+  cursor: pointer;
+}
+
+.custom-table .multiselect .options .option {
+  display: block;
+  padding: 4px 0px;
+}
+
+.custom-table .multiselect .options .option input{
+  margin-right: 10px;
 }
