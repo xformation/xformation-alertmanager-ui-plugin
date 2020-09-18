@@ -67,6 +67,26 @@ export class Table extends React.Component<any, any> {
         this.calculateTotalPages(this.state.displayData);
     }
 
+    componentDidUpdate(prevProps: any, prevState: any) {
+        if (JSON.stringify(prevProps.valueFromData) !== JSON.stringify(this.props.valueFromData)) {
+            this.setState({
+                data: this.props.valueFromData.data,
+                displayData: this.props.valueFromData.data,
+                perPageLimit: this.props.perPageLimit,
+                noOfRecordPerPage: this.props.perPageLimit,
+                columns: this.props.valueFromData.columns,
+                totalPages: '',
+                currentPage: 0,
+                searchKey: '',
+                sortType: sortEnum.NONE,
+                sortKey: '',
+                isAllChecked: false,
+                visibleCheckbox: this.props.visiblecheckboxStatus,
+                showSelect: false
+            });
+        }
+    }
+
     calculateTotalPages(displayData: any) {
         const { perPageLimit } = this.state;
         let indexOfLastData = Math.ceil(displayData.length / perPageLimit);
