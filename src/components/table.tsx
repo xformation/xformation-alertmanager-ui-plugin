@@ -22,6 +22,7 @@ export class Table extends React.Component<any, any> {
             sortKey: '',
             isAllChecked: false,
             visibleCheckbox: this.props.visiblecheckboxStatus,
+            showSelect: false
         }
     };
 
@@ -44,11 +45,13 @@ export class Table extends React.Component<any, any> {
                     const row = displayData[i];
                     for (let j = 0; j < cLength; j++) {
                         const column = columns[j];
-                        if (column.renderCallback) {
-                            const jsx = column.renderCallback(row[column.key]);
-                            tdJSX.push(jsx);
-                        } else {
-                            tdJSX.push(<td>{row[column.key]}</td>);
+                        if (!column.isRemoved) {
+                            if (column.renderCallback) {
+                                const jsx = column.renderCallback(row[column.key]);
+                                tdJSX.push(jsx);
+                            } else {
+                                tdJSX.push(<td>{row[column.key]}</td>);
+                            }
                         }
                     }
                     retData.push(<tr key={i}>{tdJSX}</tr>);
@@ -90,12 +93,14 @@ export class Table extends React.Component<any, any> {
                 icon = "sort-descending";
                 onClickSortType = sortEnum.ASCENDING;
             }
-            retData.push(
-                <th key={i}>
-                    {item.label}
-                    <span onClick={(e) => { this.sortTable(item.key, e, onClickSortType) }} className={`sort-icon ${icon}`}></span>
-                </th>
-            );
+            if (!item.isRemoved) {
+                retData.push(
+                    <th key={i}>
+                        {item.label}
+                        <span onClick={(e) => { this.sortTable(item.key, e, onClickSortType) }} className={`sort-icon ${icon}`}></span>
+                    </th>
+                );
+            }
         }
 
         return retData;
@@ -215,13 +220,11 @@ export class Table extends React.Component<any, any> {
         });
         const { data } = this.state;
         const { searchKey } = this.props;
-        console.log(searchKey);
         var queryResult = [];
-        console.log(data);
         for (let i = 0; i < data.length; i++) {
             if (data[i][searchKey].indexOf(value) !== -1 || value === '') {
                 queryResult.push(data[i]);
-            }else if(data[i][searchKey].toLowerCase().indexOf(value) !== -1 || value === ''){
+            } else if (data[i][searchKey].toLowerCase().indexOf(value) !== -1 || value === '') {
                 queryResult.push(data[i]);
             }
         }
@@ -264,8 +267,40 @@ export class Table extends React.Component<any, any> {
         })
     }
 
+    renderColumns = () => {
+        const { columns } = this.state;
+        const retData = [];
+        if (columns) {
+            for (let i = 0; i < columns.length; i++) {
+                const item = columns[i];
+                retData.push(
+                    <label className="option" htmlFor={item.key}>
+                        <input id={item.key} checked={!item.isRemoved} type="checkbox" onChange={(e) => this.handleChecked(e, i)} />
+                        {item.label}
+                    </label>
+                );
+            }
+        }
+        return retData;
+    };
+
+    handleChecked = (e: any, index: any) => {
+        const { columns } = this.state;
+        const { checked } = e.target;
+        columns[index].isRemoved = !checked;
+        this.setState({
+            columns
+        });
+    };
+
+    toggleColumnSelect = () => {
+        this.setState({
+            showSelect: !this.state.showSelect
+        });
+    };
+
     render() {
-        const { displayData, perPageLimit, currentPage } = this.state;
+        const { displayData, perPageLimit, currentPage, showSelect } = this.state;
         let { tableClasses, showingLine } = this.props;
         let startIndex = perPageLimit * currentPage + 1;
         let endIndex = perPageLimit * (currentPage + 1);
@@ -279,6 +314,14 @@ export class Table extends React.Component<any, any> {
         }
         return (
             <div className={`${tableClasses.parentClass} custom-table`}>
+                <div className="multiselect">
+                    <div className="select-label" onClick={this.toggleColumnSelect}>
+                        Select columns
+                    </div>
+                    <div style={{ display: showSelect ? "" : "none" }} className="options">
+                        {this.renderColumns()}
+                    </div>
+                </div>
                 <div className="row">
                     <div className="col-lg-8 col-md-8 col-sm-12">
                         <div className="d-inline-block showing">{showingLine}</div>
