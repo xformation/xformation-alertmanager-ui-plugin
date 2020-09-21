@@ -103,7 +103,7 @@ export class ManageAlertRule extends React.Component<any, any> {
             ],
         };
         this.perPageLimit = 3,
-        this.checkboxValue = false,
+        this.checkboxValue = true,
         this.state = {
         };
         this.breadCrumbs = [
@@ -237,7 +237,7 @@ export class ManageAlertRule extends React.Component<any, any> {
                         </div>
                         <div className="alert-data-table-container managealertrules-data-table-container">
                             <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue}
-                                tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" />
+                                tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" showingLine="Showing %start% to %end% of %total%" />
 
                         </div>
                     </div>
@@ -260,7 +260,7 @@ export class ManageAlertRule extends React.Component<any, any> {
                         </div>
                         <div className="alert-data-table-container managealertrules-data-table-container">
                             <Table valueFromData={this.scriptValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue}
-                                tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" />
+                                tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" showingLine="Showing %start% to %end% of %total%" />
 
                         </div>
                     </div>
