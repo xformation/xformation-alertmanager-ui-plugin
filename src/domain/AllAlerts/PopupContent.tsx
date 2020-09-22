@@ -31,7 +31,43 @@ export class PopupContent extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            activeTab: 0
+            activeTab: 0,
+            historyTableArray: [
+                {
+                    name: 'Action group email to Siddhesh executed (configured on alert rule)',
+                    user: 'Automated',
+                    dateAndTime: '17/03/2020, 11:28:02'
+                },
+                {
+                    name: 'Alert fired',
+                    user: 'Automated',
+                    dateAndTime: '17/03/2020, 11:29:56'
+                },
+                {
+                    name: 'Ticked generated Ticket ID 144',
+                    user: 'Papu',
+                    dateAndTime: '01/04/2020, 13:28:05'
+                },
+                {
+                    name: 'Start EC2 Instance',
+                    user: 'Papu',
+                    dateAndTime: '01/04/2020, 12:34:30'
+                },
+                {
+                    name: 'Close ticket',
+                    user: 'Papu',
+                    dateAndTime: '01/04/2020, 12:58:34'
+                }
+            ],
+            diagnosticsTableArray: [
+                {
+                    name:'Percentage CPU',
+                    severity: 'Urgent',
+                    monitorCondition: 'Fired',
+                    alertState: 'New',
+                    affectedResource: 'Prod_DB_SYN14'
+                }
+            ]
         };
     }
 
@@ -41,6 +77,42 @@ export class PopupContent extends React.Component<any, any> {
         });
     };
 
+    historyTable = () => {
+        const retData = [];
+        const { historyTableArray } = this.state;
+        for (let i = 0; i < historyTableArray.length; i++) {
+            const historyTable = historyTableArray[i];
+            retData.push(
+                <tr>
+                    <td>{historyTable.name}</td>
+                    <td>{historyTable.user}</td>
+                    <td>{historyTable.dateAndTime}</td>
+                </tr>
+            )
+        }
+        return retData;
+    }
+
+    diagnosticsTable = () => {
+        const retData = [];
+        const { diagnosticsTableArray } = this.state;
+        for (let i = 0; i < diagnosticsTableArray.length; i++) {
+            const diagnosticsTable = diagnosticsTableArray[i];
+            retData.push(
+                <tr>
+                    <td><span>{diagnosticsTable.name}</span></td>
+                    <td>
+                        <span className="urgent">{diagnosticsTable.severity}</span>
+                    </td>
+                    <td><i className="fa fa-exclamation-triangle"></i> {diagnosticsTable.monitorCondition}</td>
+                    <td>{diagnosticsTable.alertState}</td>
+                    <td>{diagnosticsTable.affectedResource}</td>
+                </tr>
+            )
+        }
+        return retData;
+    }
+
     render() {
         const state = this.state;
         const { activeTab } = this.state;
@@ -48,10 +120,13 @@ export class PopupContent extends React.Component<any, any> {
             <div className="percentage-tabs">
                 <ul>
                     <li className={activeTab === 0?"active-tab":''} onClick={e=>this.setActiveTab(0)}>
-                        <a href="#">Percentage CPU</a>
+                        <a href="#">Summary</a>
                     </li>
                     <li className={activeTab === 1?"active-tab":''} onClick={e=>this.setActiveTab(1)}>
-                        <a href="#">Percentage Text</a>
+                        <a href="#">History</a>
+                    </li>
+                    <li className={activeTab === 2?"active-tab":''} onClick={e=>this.setActiveTab(2)}>
+                        <a href="#">Diagnostics</a>
                     </li>
                 </ul>
                 <div className="tab-container">
@@ -62,7 +137,36 @@ export class PopupContent extends React.Component<any, any> {
                     }
                     { activeTab === 1 &&
                         <div>
-                            testing testing testing
+                            <table width="100%" className="table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>User</th>
+                                        <th>Date/Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {this.historyTable()}
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    { activeTab === 2 &&
+                        <div>
+                            <table width="100%" className="table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Severity</th>
+                                        <th>Monitor Condition</th>
+                                        <th>Alert State</th>
+                                        <th>Affected Resource</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {this.diagnosticsTable()}
+                                </tbody>
+                            </table>
                         </div>
                     }
 
