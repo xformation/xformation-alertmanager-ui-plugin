@@ -857,7 +857,7 @@ a:hover {
 .alert-modal-container .modal-header button {
   float: right;
   font-size: 33px;
-  top: -15px;
+  top: -5px;
   position: relative;
   color: red;
   opacity: 1;
@@ -2107,6 +2107,44 @@ a:hover {
   .alerts-data-tabel
   .alert-data-tabel {
   width: 2000px;
+}
+
+.alert-modal-container .modal-header {
+  border-bottom: none;
+}
+
+.percentage-tabs {
+  margin-top: 0px;
+}
+.percentage-tabs li {
+  display: inline-block;
+  padding: 0 0 0 15px;
+}
+.percentage-tabs li.active-tab a {
+  background-color: #f0f3f7;
+  border: 1px solid #f0f3f7;
+  border-bottom: none;
+}
+.percentage-tabs li a {
+  display: block;
+  background-color: #ffffff;
+  border: 1px solid #f0f3f7;
+  border-bottom: none;
+  color: #2662f0;
+  font-size: 14px;
+  line-height: 40px;
+  font-weight: 500;
+  padding: 0 20px;
+  -webkit-border-top-left-radius: 8px;
+  -webkit-border-top-right-radius: 8px;
+  -moz-border-radius-topleft: 8px;
+  -moz-border-radius-topright: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.percentage-tabs .tab-container {
+  border: 1px solid #f0f3f7;
+  padding: 15px;
 }
 
 .create-rule-container .data-block {

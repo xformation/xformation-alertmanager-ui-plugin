@@ -43,9 +43,32 @@ export class PopupContent extends React.Component<any, any> {
 
     render() {
         const state = this.state;
+        const { activeTab } = this.state;
         return (
-            <div className="" style={{width: "100%", height: "1000px"}}>
-                <iframe style={{width: "100%", height: "100%"}} src="http://localhost:3002/d/d9loIgNGz/test-dash?editPanel=6&orgId=1&removeOptions=1&tab=alert"></iframe>    
+            <div className="percentage-tabs">
+                <ul>
+                    <li className={activeTab === 0?"active-tab":''} onClick={e=>this.setActiveTab(0)}>
+                        <a href="#">Percentage CPU</a>
+                    </li>
+                    <li className={activeTab === 1?"active-tab":''} onClick={e=>this.setActiveTab(1)}>
+                        <a href="#">Percentage Text</a>
+                    </li>
+                </ul>
+                <div className="tab-container">
+                    { activeTab === 0 &&
+                        <div>
+                            <iframe style={{width: "100%", height: "450px", border: "none"}} src="http://localhost:3002/d/d9loIgNGz/test-dash?editPanel=6&orgId=1&removeOptions=1&tab=alert"></iframe>
+                        </div>
+                    }
+                    { activeTab === 1 &&
+                        <div>
+                            testing testing testing
+                        </div>
+                    }
+
+                </div>
+                 
+                   
             </div>
         );
     }
