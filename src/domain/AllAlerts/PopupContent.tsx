@@ -137,7 +137,7 @@ export class PopupContent extends React.Component<any, any> {
                     }
                     { activeTab === 1 &&
                         <div>
-                            <table width="100%" className="table">
+                            <table style={{width: "100%"}} className="table">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -153,7 +153,7 @@ export class PopupContent extends React.Component<any, any> {
                     }
                     { activeTab === 2 &&
                         <div>
-                            <table width="100%" className="table">
+                            <table style={{width: "100%"}} className="table">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
