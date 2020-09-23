@@ -699,7 +699,7 @@ export class AllAlerts extends React.Component<any, any> {
                         <div className="heading">
                             <h2>All Alerts</h2>
                         </div>
-                        <Table valueFromData={{ columns: columns, data: alertData }} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue} tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" />
+                        <Table valueFromData={{ columns: columns, data: alertData }} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue} tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" showingLine="Showing %start% to %end% of %total%"/>
                     </div>
                 </div>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">
