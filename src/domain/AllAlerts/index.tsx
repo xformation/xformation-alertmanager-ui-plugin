@@ -288,54 +288,17 @@ export class AllAlerts extends React.Component<any, any> {
     }
 
     fetchData = () => {
-        // RestService.getData(config.GET_ALL_ALERT_FROM_ELASTIC, null, null).then(
-        //     (response: any) => {
-        //         let ary = [];
-        //         for (let i = 0; i < response.length; i++) {
-        //             let j = JSON.parse(response[i]);
-        //             ary.push(j);
-        //         }
+        RestService.getData(config.GET_ALL_ALERT_FROM_ELASTIC, null, null).then(
+            (response: any) => {
+                let ary = [];
+                for (let i = 0; i < response.length; i++) {
+                    let j = JSON.parse(response[i]);
+                    ary.push(j);
+                }
 
-        //         console.log("alert data : ", response);
-        //     }
-        // );
-        setTimeout(() => {
-            this.setState({
-                alertData: [
-                    {
-                        severity: "Medium",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AWS",
-                        signaltype: "Metrics",
-                        resources: "Node",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_DB_SYN14",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "None",
-                        name: "Percentage CPU",
-                        guid: "b718bd4d-a2c0-4844-a914-f47733d2f811",
-                        alertstate: "Closed",
-                        id: "68"
-                    },
-                    {
-                        severity: "Critical",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AZURE",
-                        signaltype: "Metrics",
-                        resources: "App",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_DB_SYN14",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "None",
-                        name: "Disk Read Bytes",
-                        guid: "53e1f87f-26af-4436-a062-7499f87a22ab",
-                        alertstate: "InProgress",
-                        id: "22"
-                    },]
-            });
-        }, 1000);
+                console.log("alert data : ", response);
+            }
+        );
     }
 
     onClickopenTimeRangePopup = (e: any) => {
@@ -699,7 +662,7 @@ export class AllAlerts extends React.Component<any, any> {
                         <div className="heading">
                             <h2>All Alerts</h2>
                         </div>
-                        <Table valueFromData={{ columns: columns, data: alertData }} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue} tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" showingLine="Showing %start% to %end% of %total%"/>
+                        <Table valueFromData={{ columns: columns, data: alertData }} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue} tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" showingLine="Showing %start% to %end% of %total%" />
                     </div>
                 </div>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">
