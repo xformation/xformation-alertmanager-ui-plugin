@@ -275,9 +275,6 @@ export class AllAlerts extends React.Component<any, any> {
             console.log("Alert data refresh failed. Error: ", err);
         }
     }
-    componentWillMount() {
-        this.refreshData();
-    }
 
     componentDidMount() {
         try {
@@ -295,7 +292,9 @@ export class AllAlerts extends React.Component<any, any> {
                     let j = JSON.parse(response[i]);
                     ary.push(j);
                 }
-
+                this.setState({
+                    alertData: ary
+                });
                 console.log("alert data : ", response);
             }
         );
