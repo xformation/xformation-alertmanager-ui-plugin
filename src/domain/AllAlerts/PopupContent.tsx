@@ -32,6 +32,7 @@ export class PopupContent extends React.Component<any, any> {
         super(props);
         this.state = {
             activeTab: 0,
+            client_url: this.props.popupcontentData.url,
             historyTableArray: [
                 {
                     name: 'Action group email to Siddhesh executed (configured on alert rule)',
@@ -61,7 +62,7 @@ export class PopupContent extends React.Component<any, any> {
             ],
             diagnosticsTableArray: [
                 {
-                    name:'Percentage CPU',
+                    name: 'Percentage CPU',
                     severity: 'Urgent',
                     monitorCondition: 'Fired',
                     alertState: 'New',
@@ -119,25 +120,25 @@ export class PopupContent extends React.Component<any, any> {
         return (
             <div className="percentage-tabs">
                 <ul>
-                    <li className={activeTab === 0?"active-tab":''} onClick={e=>this.setActiveTab(0)}>
+                    <li className={activeTab === 0 ? "active-tab" : ''} onClick={e => this.setActiveTab(0)}>
                         <a href="#">Summary</a>
                     </li>
-                    <li className={activeTab === 1?"active-tab":''} onClick={e=>this.setActiveTab(1)}>
+                    <li className={activeTab === 1 ? "active-tab" : ''} onClick={e => this.setActiveTab(1)}>
                         <a href="#">History</a>
                     </li>
-                    <li className={activeTab === 2?"active-tab":''} onClick={e=>this.setActiveTab(2)}>
+                    <li className={activeTab === 2 ? "active-tab" : ''} onClick={e => this.setActiveTab(2)}>
                         <a href="#">Diagnostics</a>
                     </li>
                 </ul>
                 <div className="tab-container">
-                    { activeTab === 0 &&
+                    {activeTab === 0 &&
                         <div>
-                            <iframe style={{width: "100%", height: "450px", border: "none"}} src="http://localhost:3002/d/d9loIgNGz/test-dash?editPanel=6&orgId=1&removeOptions=1&tab=alert"></iframe>
+                            <iframe style={{ width: "100%", height: "450px", border: "none" }} src={this.state.client_url}></iframe>
                         </div>
                     }
-                    { activeTab === 1 &&
+                    {activeTab === 1 &&
                         <div>
-                            <table style={{width: "100%"}} className="table">
+                            <table style={{ width: "100%" }} className="table">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -151,9 +152,9 @@ export class PopupContent extends React.Component<any, any> {
                             </table>
                         </div>
                     }
-                    { activeTab === 2 &&
+                    {activeTab === 2 &&
                         <div>
-                            <table style={{width: "100%"}} className="table">
+                            <table style={{ width: "100%" }} className="table">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -171,8 +172,8 @@ export class PopupContent extends React.Component<any, any> {
                     }
 
                 </div>
-                 
-                   
+
+
             </div>
         );
     }

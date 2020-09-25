@@ -48,6 +48,8 @@ export class AllAlerts extends React.Component<any, any> {
             fromTime: 'now-6h',
             toTime: 'now',
             filterCheckbox: false,
+            alertName: '',
+            client_url: '',
             TimeOption: [
                 { from: 'now-5m', to: 'now', display: 'Last 5 minutes', section: 3 },
                 { from: 'now-15m', to: 'now', display: 'Last 15 minutes', section: 3 },
@@ -89,17 +91,17 @@ export class AllAlerts extends React.Component<any, any> {
                     renderCallback: (value: any) => {
                         return (
                             <td>
-                                <div className="pointer-label" onClick={this.toggle}>{value}</div>
+                                <div className="pointer-label" onClick={() => this.toggleModal(value)}>{value}</div>
                             </td>
                         );
                     }
                 },
                 {
                     label: 'Severity',
-                    key: 'severity',
+                    key: 'Severity',
                     renderCallback: (value: any) => {
                         let strClass = "";
-                        if (value === "High") {
+                        if (value === "high") {
                             strClass = "severity-high";
                         } else if (value === "Low") {
                             strClass = "severity-low";
@@ -119,7 +121,7 @@ export class AllAlerts extends React.Component<any, any> {
                 },
                 {
                     label: 'Alert State',
-                    key: 'alertstate'
+                    key: 'alert_state'
                 },
                 {
                     label: 'Affected Resource',
@@ -268,6 +270,21 @@ export class AllAlerts extends React.Component<any, any> {
         this.editAlertRef = React.createRef();
     }
 
+    toggleModal = (value: any) => {
+        let data = '';
+        for (let i = 0; i < this.state.alertData.length; i++) {
+            let row = this.state.alertData[i];
+            if (row.name == value) {
+                data = row.client_url;
+            }
+        }
+        this.setState({
+            modal: !this.state.modal,
+            alertName: value,
+            client_url: data
+        });
+    }
+
     refreshData = () => {
         try {
             this.fetchData();
@@ -285,19 +302,65 @@ export class AllAlerts extends React.Component<any, any> {
     }
 
     fetchData = () => {
-        RestService.getData(config.GET_ALL_ALERT_FROM_ELASTIC, null, null).then(
-            (response: any) => {
-                let ary = [];
-                for (let i = 0; i < response.length; i++) {
-                    let j = JSON.parse(response[i]);
-                    ary.push(j);
-                }
-                this.setState({
-                    alertData: ary
-                });
-                console.log("alert data : ", response);
-            }
-        );
+        // RestService.getData(config.GET_ALL_ALERT_FROM_ELASTIC, null, null).then(
+        //     (response: any) => {
+        //         let ary = [];
+        //         for (let i = 0; i < response.length; i++) {
+        //             let j = JSON.parse(response[i]);
+        //             ary.push(j);
+        //         }
+
+        //         console.log("alert data : ", response);
+        //         this.setState({
+        //             alertData: ary
+        //         });
+        //     }
+        // );
+
+        this.setState({
+            alertData: [
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501801","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501802","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501803","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501804","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501805","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501806","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501807","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501807","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501808","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501809","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501810","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501811","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501812","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501813","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501814","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501815","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501816","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501817","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501818","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501819","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501820","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501821","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501822","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501823","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501824","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501825","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501826","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501827","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501828","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501829","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501830","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501831","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501832","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501833","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501834","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501835","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501836","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501837","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501838","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+                {client_url:"http://100.64.108.25:3000/d/6hVzaKOMk/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1","name":"jasminpanelalert","client":"Grafana","description":"jasminpanelalert - jasmin panel alert","guid":"6hVzaKOMk57989501839","Severity":"high","details":"Triggered metrics:nnA-series: 59.818n","incident_key":"alertId-1","alert_state":"New","Criticality":"sssss"},
+            ]
+        });
     }
 
     onClickopenTimeRangePopup = (e: any) => {
@@ -665,9 +728,9 @@ export class AllAlerts extends React.Component<any, any> {
                     </div>
                 </div>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">
-                    <ModalHeader toggle={this.toggle}>Percentage CPU</ModalHeader>
+                    <ModalHeader toggle={this.toggle}>{this.state.alertName}</ModalHeader>
                     <ModalBody style={{ height: 'calc(100vh - 210px)', overflowY: 'auto', overflowX: "hidden" }}>
-                        <PopupContent />
+                        <PopupContent popupcontentData={{ url: this.state.client_url }} />
                     </ModalBody>
                 </Modal>
                 {/* {alertTable.isDataPresent &&

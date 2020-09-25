@@ -101,7 +101,7 @@ export class Table extends React.Component<any, any> {
         const length = columns.length;
         const retData = [];
         if (visibleCheckbox == true && displayData.length > 0) {
-            retData.push(<th><input type="checkbox" checked={this.state.isAllChecked} onChange={this.checkAllAlerts} className="checkbox" /></th>);
+            retData.push(<th><input type="checkbox" checked={this.state.isAllChecked} onChange={this.checkAllBoxes} className="checkbox" /></th>);
         }
         for (let i = 0; i < length; i++) {
             const item = columns[i];
@@ -127,7 +127,7 @@ export class Table extends React.Component<any, any> {
         return retData;
     }
 
-    checkAllAlerts = (e: any) => {
+    checkAllBoxes = (e: any) => {
         const checked = e.target.checked;
         const { displayData } = this.state;
         for (let j = 0; j < displayData.length; j++) {
@@ -233,8 +233,7 @@ export class Table extends React.Component<any, any> {
     }
 
     onSearchChange = (e: any) => {
-        const { value } = e.target;
-        console.log(value);
+        let { value } = e.target;
         this.setState({
             searchKey: value,
             currentPage: 0,
@@ -244,10 +243,10 @@ export class Table extends React.Component<any, any> {
         const { data } = this.state;
         const { searchKey } = this.props;
         var queryResult = [];
+        value = value ? value.toLowerCase() : "";
         for (let i = 0; i < data.length; i++) {
-            if (data[i][searchKey].indexOf(value) !== -1 || value === '') {
-                queryResult.push(data[i]);
-            } else if (data[i][searchKey].toLowerCase().indexOf(value) !== -1 || value === '') {
+            const searchKeyValue = data[i][searchKey];
+            if ((searchKeyValue && searchKeyValue.toLowerCase().indexOf(value) !== -1) || value === '') {
                 queryResult.push(data[i]);
             }
         }
@@ -281,9 +280,19 @@ export class Table extends React.Component<any, any> {
         e.preventDefault();
         const data = this.state.data;
         if (sortVal === sortEnum.ASCENDING) {
-            data.sort((a: any, b: any) => a[sortkey].localeCompare(b[sortkey]))
+            data.sort((a: any, b: any) => {
+                if (a[sortkey] && b[sortkey]) {
+                    return a[sortkey].localeCompare(b[sortkey]);
+                }
+                return 0;
+            });
         } else if (sortVal === sortEnum.DESCENDING) {
-            data.sort((a: any, b: any) => a[sortkey].localeCompare(b[sortkey])).reverse()
+            data.sort((a: any, b: any) => {
+                if (a[sortkey] && b[sortkey]) {
+                    return a[sortkey].localeCompare(b[sortkey]);
+                }
+                return 0;
+            }).reverse()
         }
         this.setState({
             displayData: data,
