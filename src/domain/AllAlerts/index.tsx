@@ -101,7 +101,9 @@ export class AllAlerts extends React.Component<any, any> {
                     key: 'Severity',
                     renderCallback: (value: any) => {
                         let strClass = "";
-                        value = value.toLowerCase();
+                        if (value) {
+                            value = value.toLowerCase();
+                        }
                         if (value === "high") {
                             strClass = "severity-high";
                         } else if (value === "Low") {
@@ -377,7 +379,7 @@ export class AllAlerts extends React.Component<any, any> {
                 if (isMatched && alertType) {
                     isMatched = alertType === alert.signalType;
                 }
-                if (isMatched && severity) {
+                if (isMatched && severity && alert.Severity) {
                     isMatched = severity.toLowerCase() === alert.Severity.toLowerCase();
                 }
                 if (isMatched && alertState) {
