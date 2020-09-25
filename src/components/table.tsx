@@ -47,7 +47,7 @@ export class Table extends React.Component<any, any> {
                         const column = columns[j];
                         if (!column.isRemoved) {
                             if (column.renderCallback) {
-                                const jsx = column.renderCallback(row[column.key]);
+                                const jsx = column.renderCallback(row[column.key], row);
                                 tdJSX.push(jsx);
                             } else {
                                 tdJSX.push(<td>{row[column.key]}</td>);

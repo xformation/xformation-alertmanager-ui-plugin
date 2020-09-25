@@ -157,7 +157,7 @@ export class AllAlerts extends React.Component<any, any> {
                 {
                     label: 'Action',
                     key: 'action',
-                    renderCallback: () => {
+                    renderCallback: (value: any, alert: any) => {
                         return <td>
                             <div className="d-inline-block">
                                 <button className="btn btn-link">
