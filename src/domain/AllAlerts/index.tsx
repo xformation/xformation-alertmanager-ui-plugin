@@ -101,6 +101,7 @@ export class AllAlerts extends React.Component<any, any> {
                     key: 'Severity',
                     renderCallback: (value: any) => {
                         let strClass = "";
+                        value = value.toLowerCase();
                         if (value === "high") {
                             strClass = "severity-high";
                         } else if (value === "Low") {
@@ -309,10 +310,9 @@ export class AllAlerts extends React.Component<any, any> {
                     let j = JSON.parse(response[i]);
                     ary.push(j);
                 }
-
                 console.log("alert data : ", response);
                 this.setState({
-                    alertData: ary
+                    alertData: ary,
                 });
             }
         );
@@ -355,6 +355,42 @@ export class AllAlerts extends React.Component<any, any> {
                 resource: ""
             });
         }
+    };
+
+    applyFilters = () => {
+        const retData = [];
+        const { alertData, resourceGroup, resource, monitorService, alertType, severity, alertState } = this.state;
+        if (alertData && alertData.length > 0) {
+            const length = alertData.length;
+            for (let i = 0; i < length; i++) {
+                const alert = alertData[i];
+                let isMatched = true;
+                if (resourceGroup) {
+                    isMatched = resourceGroup === alert.resourceGroup;
+                }
+                if (isMatched && resource) {
+                    isMatched = resource === alert.resources;
+                }
+                if (isMatched && monitorService) {
+                    isMatched = monitorService === alert.monitorService;
+                }
+                if (isMatched && alertType) {
+                    isMatched = alertType === alert.signalType;
+                }
+                if (isMatched && severity) {
+                    isMatched = severity.toLowerCase() === alert.Severity.toLowerCase();
+                }
+                if (isMatched && alertState) {
+                    isMatched = alertState === alert.alertState;
+                }
+                if (isMatched) {
+                    retData.push(
+                        alert
+                    );
+                }
+            }
+        }
+        return retData;
     };
 
     onClickEditAlert = (e: any, selectedAlert: any) => {
@@ -515,6 +551,7 @@ export class AllAlerts extends React.Component<any, any> {
     render() {
         const { resourceGroup, resource, openTimeRange, monitorService, alertType, severity, currentTime, alertState, fromTime, toTime, filterCheckbox, objectType, object,
             isConfirmDialogOpen, confirmTitleMessage, message, isAlertOpen, columns, alertData } = this.state;
+        const tableData = this.applyFilters();
         return (
             <div className="all-alerts-container">
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALL ALERTS" />
@@ -679,7 +716,7 @@ export class AllAlerts extends React.Component<any, any> {
                         <div className="heading">
                             <h2>All Alerts</h2>
                         </div>
-                        <Table valueFromData={{ columns: columns, data: alertData }} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue} tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" showingLine="Showing %start% to %end% of %total%" />
+                        <Table valueFromData={{ columns: columns, data: tableData }} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue} tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" showingLine="Showing %start% to %end% of %total%" />
                     </div>
                 </div>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">
