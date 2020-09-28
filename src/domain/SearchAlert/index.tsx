@@ -29,150 +29,6 @@ export class SearchAlert extends React.Component<any, any> {
     checkboxValue: any;
     constructor(props: any) {
         super(props);
-        this.tableValue = {
-            columns: [
-                {
-                    label: 'Name',
-                    key: 'name'
-                },
-                {
-                    label: 'Severity',
-                    key: 'severity',
-                    renderCallback: (value: any) => {
-                        let strClass = "";
-                        if (value === "High") {
-                            strClass = "severity-high";
-                        } else if (value === "Low") {
-                            strClass = "severity-low";
-                        } else if (value === "Urgent") {
-                            strClass = "severity-urgent";
-                        }
-                        return <td><span className={strClass}>{value}</span></td>
-                    }
-                },
-                {
-                    label: 'Monitor Condition',
-                    key: 'monitorcondition'
-                },
-                {
-                    label: 'Alert State',
-                    key: 'alertstate',
-                },
-                {
-                    label: 'Affected Resource',
-                    key: 'affectedresource'
-                },
-                {
-                    label: 'Monitor Service',
-                    key: 'monitorservice'
-                },
-                {
-                    label: 'Signal Type',
-                    key: 'signaltype'
-                },
-                {
-                    label: 'Fired Time',
-                    key: 'firedtime'
-                },
-                {
-                    label: 'Subscription',
-                    key: 'subscription'
-                },
-                {
-                    label: 'Suppression State',
-                    key: 'suppressionstate'
-                },
-                {
-                    label: 'Action',
-                    key: 'action',
-                    renderCallback: () => {
-                        return <td>
-                            <div className="d-inline-block">
-                                <button className="btn btn-link">
-                                    <i onClick={e => this.onClickEditAlert(e, alert)} className="fa fa-edit"></i>
-                                </button>
-                                <button className="btn btn-link">
-                                    <i onClick={e => this.onClickDeleteAlert(e, alert)} className="fa fa-trash"></i>
-                                </button>
-                                <button className="btn btn-link" id="PopoverFocus">
-                                    <i className="fa fa-ellipsis-h"></i>
-                                </button>
-                            </div>
-                        </td>
-                    }
-                },
-            ],
-            data: [
-                {
-                    severity: "High",
-                    resourcegroup: "Compute",
-                    monitorservice: "Native AWS",
-                    signaltype: "Logs",
-                    resources: "Node",
-                    firedtime: "03/06/2020, 1596616397872",
-                    monitorcondition: "Fired",
-                    affectedresource: "Prod_DB_SYN14",
-                    subscription: "Alert Management",
-                    suppressionstate: "Archive",
-                    name: "Network In",
-                    guid: "c7a8c429-a531-4729-9431-bbc5d6205947",
-                    alertstate: "InProgress",
-                    id: "66",
-                    checkStatus: false
-                },
-                {
-                    severity: "Low",
-                    resourcegroup: "Compute",
-                    monitorservice: "Native AZURE",
-                    signaltype: "Metrics",
-                    resources: "App",
-                    firedtime: "03/06/2020, 1596616397872",
-                    monitorcondition: "Fired",
-                    affectedresource: "Prod_Service_20",
-                    subscription: "Alert Management",
-                    suppressionstate: "DeDup",
-                    name: "Disk Read Bytes",
-                    guid: "9d9cba56-6ccd-4b27-916d-60c58e1cec02",
-                    alertstate: "Closed",
-                    id: "43",
-                    checkStatus: false
-                },
-                {
-                    severity: "Urgent",
-                    resourcegroup: "Compute",
-                    monitorservice: "Native AZURE",
-                    signaltype: "Metrics",
-                    resources: "Storage",
-                    firedtime: "03/06/2020, 1596616397872",
-                    monitorcondition: "Fired",
-                    affectedresource: "Prod_DB_SYN14",
-                    subscription: "Alert Management",
-                    suppressionstate: "Silence",
-                    name: "Disk Read Bytes",
-                    guid: "3825288c-d9e5-4cd1-928c-a132c471d58e",
-                    alertstate: "New",
-                    id: "44",
-                    checkStatus: false
-                },
-                {
-                    severity: "Urgent",
-                    resourcegroup: "Compute",
-                    monitorservice: "Native AZURE",
-                    signaltype: "Metrics",
-                    resources: "Node",
-                    firedtime: "03/06/2020, 1596616397872",
-                    monitorcondition: "Fired",
-                    affectedresource: "Prod_Service_20",
-                    subscription: "Alert Management",
-                    suppressionstate: "None",
-                    name: "Percentage CPU",
-                    guid: "3c4a824f-387e-44dd-98eb-b6f66e2d03ba",
-                    alertstate: "New",
-                    id: "89",
-                    checkStatus: false
-                }
-            ],
-        };
         this.perPageLimit = 2,
             this.checkboxValue = true,
             this.state = {
@@ -184,72 +40,7 @@ export class SearchAlert extends React.Component<any, any> {
                 message: null,
                 severity: "",
                 isAlertOpen: false,
-                alertData: [
-                    {
-                        severity: "High",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AWS",
-                        signaltype: "Logs",
-                        resources: "Node",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_DB_SYN14",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "Archive",
-                        name: "Network In",
-                        guid: "c7a8c429-a531-4729-9431-bbc5d6205947",
-                        alertstate: "InProgress",
-                        id: "66"
-                    },
-                    {
-                        severity: "Low",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AZURE",
-                        signaltype: "Metrics",
-                        resources: "App",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_Service_20",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "DeDup",
-                        name: "Disk Read Bytes",
-                        guid: "9d9cba56-6ccd-4b27-916d-60c58e1cec02",
-                        alertstate: "Closed",
-                        id: "43"
-                    },
-                    {
-                        severity: "Urgent",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AZURE",
-                        signaltype: "Metrics",
-                        resources: "Storage",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_DB_SYN14",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "Silence",
-                        name: "Disk Read Bytes",
-                        guid: "3825288c-d9e5-4cd1-928c-a132c471d58e",
-                        alertstate: "New",
-                        id: "44"
-                    },
-                    {
-                        severity: "Urgent",
-                        resourcegroup: "Compute",
-                        monitorservice: "Native AZURE",
-                        signaltype: "Metrics",
-                        resources: "Node",
-                        firedtime: "03/06/2020, 1596616397872",
-                        monitorcondition: "Fired",
-                        affectedresource: "Prod_Service_20",
-                        brcsubscription: "Alert Management",
-                        suppressionstate: "None",
-                        name: "Percentage CPU",
-                        guid: "3c4a824f-387e-44dd-98eb-b6f66e2d03ba",
-                        alertstate: "New",
-                        id: "89"
-                    }
-                ],
+                alertData: [],
                 modal: false,
                 resourceGroup: "",
                 resource: "",
@@ -309,8 +100,6 @@ export class SearchAlert extends React.Component<any, any> {
                     max: ""
                 },
                 isApiCalled: false,
-                // studentsData: [],
-                allData: [],
                 itemsPerPage: 5,
                 totalPages: 1,
                 currentPage: 0,
@@ -326,6 +115,102 @@ export class SearchAlert extends React.Component<any, any> {
                 selectedDepartmentId: null,
                 selectedBatchId: null,
                 selectedSectionId: null,
+                columns: [
+                    {
+                        label: 'Name',
+                        key: 'name',
+                        renderCallback: (value: any) => {
+                            return (
+                                <td>
+                                    <div className="pointer-label">{value}</div>
+                                </td>
+                            );
+                        }
+                    },
+                    {
+                        label: 'Severity',
+                        key: 'Severity',
+                        renderCallback: (value: any) => {
+                            let strClass = "";
+                            if (value) {
+                                value = value.toLowerCase();
+                            }
+                            if (value === "high") {
+                                strClass = "severity-high";
+                            } else if (value === "Low") {
+                                strClass = "severity-low";
+                            } else if (value === "Urgent") {
+                                strClass = "severity-urgent";
+                            } else if (value === "Critical") {
+                                strClass = "severity-critical";
+                            } else if (value === "Medium") {
+                                strClass = "severity-medium";
+                            }
+                            return <td><span className={strClass}>{value}</span></td>
+                        }
+                    },
+                    {
+                        label: 'Monitor Condition',
+                        key: 'monitorcondition'
+                    },
+                    {
+                        label: 'Alert State',
+                        key: 'alert_state'
+                    },
+                    {
+                        label: 'Affected Resource',
+                        key: 'affectedresource'
+                    },
+                    {
+                        label: 'Monitor Service',
+                        key: 'monitorservice'
+                    },
+                    {
+                        label: 'Signal Type',
+                        key: 'signaltype'
+                    },
+                    {
+                        label: 'Fired Time',
+                        key: 'firedtime'
+                    },
+                    {
+                        label: 'Subscription',
+                        key: 'brcsubscription'
+                    },
+                    {
+                        label: 'Suppression State',
+                        key: 'suppressionstate'
+                    },
+                    {
+                        label: 'Resources',
+                        key: 'resources'
+                    },
+                    {
+                        label: 'Action',
+                        key: 'action',
+                        renderCallback: (value: any, alert: any) => {
+                            return <td>
+                                <div className="d-inline-block">
+                                    <button className="btn btn-link">
+                                        <i onClick={e => this.onClickEditAlert(e, alert)} className="fa fa-edit"></i>
+                                    </button>
+                                    <button className="btn btn-link">
+                                        <i onClick={e => this.onClickDeleteAlert(e, alert)} className="fa fa-trash"></i>
+                                    </button>
+                                    <button className="btn btn-link" id={`PopoverFocus-${alert.guid}`}>
+                                        <i className="fa fa-ellipsis-h"></i>
+                                    </button>
+                                    <UncontrolledPopover trigger="legacy" placement="bottom" target={`PopoverFocus-${alert.guid}`}>
+                                        <PopoverBody>
+                                            <Link className=" " to={`${config.basePath}/alltickets`}>Create Ticket</Link>
+                                            <Link className=" " to="">Silence</Link>
+                                        </PopoverBody>
+                                    </UncontrolledPopover>
+                                </div>
+                            </td>
+                        }
+                    },
+                ],
             };
         this.breadCrumbs = [
             {
@@ -422,12 +307,7 @@ export class SearchAlert extends React.Component<any, any> {
         }];
         this.editAlertRef = React.createRef();
         this.clearAllFilters = this.clearAllFilters.bind(this);
-        this.componentDidMount = this.componentDidMount.bind(this);
-        this.searchAlert = this.searchAlert.bind(this);
-        this.calculateTotalPages = this.calculateTotalPages.bind(this);
-        this.onCheckAlert = this.onCheckAlert.bind(this);
         this.createSelectbox = this.createSelectbox.bind(this);
-        this.onChangeSelectDropDown = this.onChangeSelectDropDown.bind(this);
         this.refreshData = this.refreshData.bind(this);
     }
 
@@ -455,48 +335,13 @@ export class SearchAlert extends React.Component<any, any> {
                 }
                 this.setState({
                     alertData: ary,
-                    allData: ary
                 });
-                this.calculateTotalPages(ary);
                 this.setState({
                     isApiCalled: false
                 });
                 console.log("Alerts: ", response);
             }
         );
-    }
-
-    searchAlert(e: any) {
-        const { name, value } = e.target;
-        this.setState({
-            [name]: value
-        });
-        let result = [];
-        const { allData } = this.state;
-        if (value !== "") {
-            if (allData && allData.length > 0) {
-                for (let i = 0; i < allData.length; i++) {
-                    let alert = allData[i];
-                    let name = alert.name + " " + alert.severity + " " + alert.monitorcondition
-                        + " " + alert.alertstate + " " + alert.affectedresource + " " + alert.monitorservice
-                        + " " + alert.signaltype + " " + alert.firedtime + " " + alert.brcsubscription
-                        + " " + alert.suppressionstate;
-                    name = name.toLowerCase();
-                    if (name.indexOf(value.toLowerCase()) !== -1) {
-                        result.push(alert);
-                    }
-                }
-                this.setState({
-                    alertData: result
-                });
-                this.calculateTotalPages(result);
-            }
-        } else {
-            this.setState({
-                alertData: allData
-            });
-            this.calculateTotalPages(allData);
-        }
     }
 
     clearAllFilters = () => {
@@ -513,22 +358,6 @@ export class SearchAlert extends React.Component<any, any> {
 
             }
         )
-    }
-
-    calculateTotalPages(students: any) {
-        const { itemsPerPage } = this.state;
-        if (students && students.length > 0) {
-            let totalPages = Math.ceil(students.length / itemsPerPage);
-            this.setState({
-                totalPages: totalPages,
-                currentPage: 0
-            });
-        } else {
-            this.setState({
-                totalPages: 1,
-                currentPage: 0
-            });
-        }
     }
 
     toggle = () => {
@@ -642,140 +471,6 @@ export class SearchAlert extends React.Component<any, any> {
         // });
     }
 
-    createAllAlertsTable = () => {
-        const retData = [];
-        let isDataPresent = true;
-        const { alertData, resourceGroup, resource, monitorService, alertType, severity, alertState, isApiCalled, currentPage, itemsPerPage } = this.state;
-        if (alertData && alertData.length > 0) {
-            const length = alertData.length;
-            for (let i = 0; i < length; i++) {
-                const alert = alertData[i];
-                const pageFactor = Math.floor(i / itemsPerPage);
-                if (pageFactor === currentPage) {
-                    let isMatched = true;
-                    if (resourceGroup) {
-                        isMatched = resourceGroup === alert.resourcegroup;
-                    }
-                    if (isMatched && resource) {
-                        isMatched = resource === alert.resources;
-                    }
-                    if (isMatched && monitorService) {
-                        isMatched = monitorService === alert.monitorservice;
-                    }
-                    if (isMatched && alertType) {
-                        isMatched = alertType === alert.signaltype;
-                    }
-                    if (isMatched && severity) {
-                        isMatched = severity === alert.severity;
-                    }
-                    if (isMatched && alertState) {
-                        isMatched = alertState === alert.alertstate;
-                    }
-                    if (isMatched) {
-                        retData.push(
-                            <tr className="">
-                                <td className="">
-                                    <div className="pointer-label" onClick={this.toggle}><input type="checkbox" className="checkbox" name={alert.name} onChange={e => this.onCheckAlert(alert, e)} checked={alert.isChecked} /> {alert.name}</div>
-                                </td>
-                                <td><div className={"severity-" + alert.severity.toLowerCase()}>{alert.severity}</div></td>
-                                <td>{alert.monitorcondition}</td>
-                                <td>{alert.alertstate}</td>
-                                <td>{alert.affectedresource}</td>
-                                <td>{alert.monitorservice}</td>
-                                <td>{alert.signaltype}</td>
-                                <td>{alert.firedtime}</td>
-                                <td>{alert.brcsubscription}</td>
-                                <td>{alert.suppressionstate}</td>
-                                <td>
-                                    <div className="d-flex">
-                                        <button className="btn btn-link">
-                                            <i onClick={e => this.onClickEditAlert(e, alert)} className="fa fa-edit"></i>
-                                        </button>
-                                        <button className="btn btn-link">
-                                            <i onClick={e => this.onClickDeleteAlert(e, alert)} className="fa fa-trash"></i>
-                                        </button>
-                                        <button className="btn btn-link" id="PopoverFocus">
-                                            <i className="fa fa-ellipsis-h"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        );
-                    }
-                }
-
-            }
-            if (retData.length === 0) {
-                retData.push(
-                    <tr>
-                        <td colSpan={12} style={{ textAlign: "center" }}>There is no data.</td>
-                    </tr>
-                );
-                isDataPresent = false;
-            }
-        } else {
-            retData.push(
-                <tr>
-                    <td colSpan={12} style={{ textAlign: "center" }}>There is no data.</td>
-                </tr>
-            );
-            isDataPresent = false;
-        }
-        return {
-            table: retData,
-            isDataPresent
-        };
-    }
-
-    changeCurrentPage(currentPage: any) {
-        this.setState({
-            currentPage: currentPage
-        });
-    }
-
-    // createPaginationJSX() {
-    //     const { totalPages, currentPage } = this.state;
-    //     let retData = [];
-    //     for (let i = 0; i < totalPages; i++) {
-    //         retData.push(
-    //             <li className={(currentPage === i ? ' active' : '')}><a href="#" onClick={e => this.changeCurrentPage(i)}>{i + 1}</a></li>
-    //         )
-    //     }
-    //     return retData;
-    // }
-
-    // onClickPrev() {
-    //     const { currentPage } = this.state;
-    //     if (currentPage - 1 >= 0) {
-    //         this.setState({
-    //             currentPage: currentPage - 1
-    //         });
-    //     }
-    // }
-
-    // onClickNext() {
-    //     const { currentPage, totalPages } = this.state;
-    //     if ((currentPage + 1) < totalPages) {
-    //         this.setState({
-    //             currentPage: currentPage + 1
-    //         });
-    //     }
-    // }
-
-    onCheckAlert(alert: any, e: any) {
-        const { name, checked } = e.target;
-        alert.isChecked = checked;
-    }
-
-
-    onChangeSelectDropDown = (e: any) => {
-        e.preventDefault();
-        const { name, value } = e.nativeEvent.target;
-        this.setState({
-            [name]: value
-        });
-    }
-
     createSelectbox = (data: any) => {
         const retData = [];
         if (data) {
@@ -811,10 +506,46 @@ export class SearchAlert extends React.Component<any, any> {
         }
     }
 
+    applyFilters = () => {
+        const retData = [];
+        const { alertData, resourceGroup, resource, monitorService, alertType, severity, alertState } = this.state;
+        if (alertData && alertData.length > 0) {
+            const length = alertData.length;
+            for (let i = 0; i < length; i++) {
+                const alert = alertData[i];
+                let isMatched = true;
+                if (resourceGroup) {
+                    isMatched = resourceGroup === alert.resourceGroup;
+                }
+                if (isMatched && resource) {
+                    isMatched = resource === alert.resources;
+                }
+                if (isMatched && monitorService) {
+                    isMatched = monitorService === alert.monitorService;
+                }
+                if (isMatched && alertType) {
+                    isMatched = alertType === alert.signalType;
+                }
+                if (isMatched && severity && alert.Severity) {
+                    isMatched = severity.toLowerCase() === alert.Severity.toLowerCase();
+                }
+                if (isMatched && alertState) {
+                    isMatched = alertState === alert.alertState;
+                }
+                if (isMatched) {
+                    retData.push(
+                        alert
+                    );
+                }
+            }
+        }
+        return retData;
+    };
+
     render() {
         const state = this.state;
-        const { isConfirmDialogOpen, objectType, isAlertOpen, message, object, confirmTitleMessage, resourceGroup, resource, openTimeRange, monitorService, alertType, severity, currentTime, alertState, fromTime, toTime, filterCheckbox } = this.state;
-        // const alertTable = this.createAllAlertsTable();
+        const { isConfirmDialogOpen, objectType, isAlertOpen, message, object, confirmTitleMessage, resourceGroup, resource, openTimeRange, monitorService, alertType, severity, currentTime, alertState, fromTime, toTime, filterCheckbox, columns } = this.state;
+        const tableData = this.applyFilters();
         return (
             <div className="all-alerts-container">
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALL ALERTS" />
@@ -908,23 +639,13 @@ export class SearchAlert extends React.Component<any, any> {
                                     <div className="heading">
                                         <h2>Alerts</h2>
                                     </div>
-                                    <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue} tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" />
 
-                                    {/* <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue} */}
-                                    {/* tableClasses={{ alertsDataTable: "alerts-data-tabel", alertDataTable: "alert-data-tabel", allAlertData: "all-alert-data-table" }} /> */}
-
+                                    <Table valueFromData={{ columns: columns, data: tableData }} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue} tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" showingLine="Showing %start% to %end% of %total%" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <UncontrolledPopover trigger="legacy" placement="bottom" target="PopoverFocus">
-                    <PopoverBody>
-                        <Link className=" " to={`${config.basePath}/alltickets`}>Create Ticket</Link>
-                        <Link className=" " to="">Silence</Link>
-                    </PopoverBody>
-                </UncontrolledPopover>
                 <EditAlertPopup ref={this.editAlertRef} />
             </div>
 
