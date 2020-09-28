@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { severityDS } from '../_utilities/commonDS';
-// import { parse } from 'query-string';
 import { config } from '../../config';
 import { RestService } from '../_service/RestService';
 import { Link } from 'react-router-dom';
@@ -8,8 +7,6 @@ import { Modal, ModalHeader, ModalBody, UncontrolledPopover, PopoverBody } from 
 import { Breadcrumbs } from '../Breadcrumbs';
 import { EditAlertPopup } from '../AllAlerts/EditAlertPopup';
 import '../../css/alertmanager.search.css';
-// import { studentServices } from '../_services/students.service';
-// import wsCmsBackendServiceClient from '../../../wsCmsBackendServiceClient';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import AlertMessage from '../../components/AlertMessage';
 import Table from './../../components/table';
@@ -23,7 +20,6 @@ export class SearchAlert extends React.Component<any, any> {
     alertTypes: any;
     severity: any;
     alertStates: any;
-    timeRangeRef: any;
     tableValue: any;
     perPageLimit: any;
     checkboxValue: any;
@@ -47,74 +43,8 @@ export class SearchAlert extends React.Component<any, any> {
                 monitorService: "",
                 alertType: "",
                 alertState: "",
-                currentTime: 'Last 6 hours',
-                fromTime: 'now-6h',
-                toTime: 'now',
                 filterCheckbox: false,
-                TimeOption: [
-                    { from: 'now-5m', to: 'now', display: 'Last 5 minutes', section: 3 },
-                    { from: 'now-15m', to: 'now', display: 'Last 15 minutes', section: 3 },
-                    { from: 'now-30m', to: 'now', display: 'Last 30 minutes', section: 3 },
-                    { from: 'now-1h', to: 'now', display: 'Last 1 hour', section: 3 },
-                    { from: 'now-3h', to: 'now', display: 'Last 3 hours', section: 3 },
-                    { from: 'now-6h', to: 'now', display: 'Last 6 hours', section: 3 },
-                    { from: 'now-12h', to: 'now', display: 'Last 12 hours', section: 3 },
-                    { from: 'now-24h', to: 'now', display: 'Last 24 hours', section: 3 },
-                    { from: 'now-2d', to: 'now', display: 'Last 2 days', section: 3 },
-                    { from: 'now-7d', to: 'now', display: 'Last 7 days', section: 3 },
-                    { from: 'now-30d', to: 'now', display: 'Last 30 days', section: 3 },
-                    { from: 'now-90d', to: 'now', display: 'Last 90 days', section: 3 },
-                    { from: 'now-6M', to: 'now', display: 'Last 6 months', section: 3 },
-                    { from: 'now-1y', to: 'now', display: 'Last 1 year', section: 3 },
-                    { from: 'now-2y', to: 'now', display: 'Last 2 years', section: 3 },
-                    { from: 'now-5y', to: 'now', display: 'Last 5 years', section: 3 },
-                ],
-                otherOptions: [
-                    { from: 'now-1d/d', to: 'now-1d/d', display: 'Yesterday', section: 3 },
-                    { from: 'now-2d/d', to: 'now-2d/d', display: 'Day before yesterday', section: 3 },
-                    { from: 'now-7d/d', to: 'now-7d/d', display: 'This day last week', section: 3 },
-                    { from: 'now-1w/w', to: 'now-1w/w', display: 'Previous week', section: 3 },
-                    { from: 'now-1M/M', to: 'now-1M/M', display: 'Previous month', section: 3 },
-                    { from: 'now-1y/y', to: 'now-1y/y', display: 'Previous year', section: 3 },
-                    { from: 'now/d', to: 'now/d', display: 'Today', section: 3 },
-                    { from: 'now/d', to: 'now', display: 'Today so far', section: 3 },
-                    { from: 'now/w', to: 'now/w', display: 'This week', section: 3 },
-                    { from: 'now/w', to: 'now', display: 'This week so far', section: 3 },
-                    { from: 'now/M', to: 'now/M', display: 'This month', section: 3 },
-                    { from: 'now/M', to: 'now', display: 'This month so far', section: 3 },
-                    { from: 'now/y', to: 'now/y', display: 'This year', section: 3 },
-                    { from: 'now/y', to: 'now', display: 'This year so far', section: 3 },
-                ],
-
-
-                attendance: {
-                    min: "",
-                    max: ""
-                },
-                grades: {
-                    min: "",
-                    max: ""
-                },
-                aggregate: {
-                    min: "",
-                    max: ""
-                },
                 isApiCalled: false,
-                itemsPerPage: 5,
-                totalPages: 1,
-                currentPage: 0,
-                searchName: "",
-                isAllChecked: false,
-                branchId: null,
-                academicYearId: null,
-                departmentId: null,
-                user: null,
-                departmentList: null,
-                batchList: null,
-                sectionList: null,
-                selectedDepartmentId: null,
-                selectedBatchId: null,
-                selectedSectionId: null,
                 columns: [
                     {
                         label: 'Name',
@@ -353,9 +283,7 @@ export class SearchAlert extends React.Component<any, any> {
                 alertType: "",
                 severity: "",
                 alertState: "",
-                currentTime: 'Last 6 hours',
                 filterCheckbox: true
-
             }
         )
     }
@@ -369,18 +297,13 @@ export class SearchAlert extends React.Component<any, any> {
     onClickEditAlert = (e: any, selectedAlert: any) => {
         this.editAlertRef.current.toggle(selectedAlert);
     };
-    /*
-        Alert code
-    */
+   
     handleCloseAlert = (e: any) => {
         this.setState({
             isAlertOpen: false
         })
     }
 
-    /*
-        Alert code
-    */
     onClickDeleteAlert = (e: any, alert: any) => {
         console.log("Alert : " + alert);
         this.setState({
@@ -544,7 +467,7 @@ export class SearchAlert extends React.Component<any, any> {
 
     render() {
         const state = this.state;
-        const { isConfirmDialogOpen, objectType, isAlertOpen, message, object, confirmTitleMessage, resourceGroup, resource, openTimeRange, monitorService, alertType, severity, currentTime, alertState, fromTime, toTime, filterCheckbox, columns } = this.state;
+        const { isConfirmDialogOpen, objectType, isAlertOpen, message, object, confirmTitleMessage, resourceGroup, resource, monitorService, alertType, severity, alertState, filterCheckbox, columns } = this.state;
         const tableData = this.applyFilters();
         return (
             <div className="all-alerts-container">
