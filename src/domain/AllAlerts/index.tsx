@@ -490,99 +490,83 @@ export class AllAlerts extends React.Component<any, any> {
                             Back
                         </Link>
                     </div>
-                    <div className="filter-container row common-container">
-                        <div className="col-lg-2 col-md-3 col-sm-12">
-                            <div className="form-group filter-control-group">
-                                <label htmlFor="resourceGroup">
-                                    Resource Group&nbsp;&nbsp;&nbsp;
-                                <i className="fa fa-info-circle"></i>
-                                </label>
-                                <select className="form-control" name="resourceGroup" value={resourceGroup} onChange={this.handleStateChange}>
-                                    <option value="">Select Resource Group</option>
-                                    {this.createSelectbox(this.resourceGroup)}
-                                </select>
-                            </div>
+                    <div className="filter-container common-container">
+                        <div className="form-group filter-control-group">
+                            <label htmlFor="resourceGroup">
+                                Resource Group&nbsp;&nbsp;&nbsp;
+                            <i className="fa fa-info-circle"></i>
+                            </label>
+                            <select className="form-control" name="resourceGroup" value={resourceGroup} onChange={this.handleStateChange}>
+                                <option value="">Select Resource Group</option>
+                                {this.createSelectbox(this.resourceGroup)}
+                            </select>
                         </div>
-                        <div className="col-lg-2 col-md-3 col-sm-12">
-                            <div className="form-group filter-control-group">
-                                <label htmlFor="resources">
-                                    Resources&nbsp;&nbsp;&nbsp;
-                                <i className="fa fa-info-circle"></i>
-                                </label>
-                                <select className="form-control" name="resource" value={resource} onChange={this.handleStateChange}>
-                                    <option value="">Select Resources</option>
-                                    {this.createSelectbox(this.resources[resourceGroup])}
-                                </select>
-                            </div>
+                        <div className="form-group filter-control-group">
+                            <label htmlFor="resources">
+                                Resources&nbsp;&nbsp;&nbsp;
+                            <i className="fa fa-info-circle"></i>
+                            </label>
+                            <select className="form-control" name="resource" value={resource} onChange={this.handleStateChange}>
+                                <option value="">Select Resources</option>
+                                {this.createSelectbox(this.resources[resourceGroup])}
+                            </select>
                         </div>
-                        <div className="col-lg-2 col-md-3 col-sm-12">
+                        <div className="form-group filter-control-group">
                             <TimeRange />
                         </div>
-                        <div className="col-lg-2 col-md-3 col-sm-12">
-                            <div className="form-group filter-control-group">
-                                <label htmlFor="monitorservices">
-                                    Monitor services&nbsp;&nbsp;&nbsp;
-                                <i className="fa fa-info-circle"></i>
-                                </label>
-                                <select className="form-control" name="monitorService" value={monitorService} onChange={this.handleStateChange}>
-                                    <option value="">Select Monitor Services</option>
-                                    {this.createSelectbox(this.monitoringServices)}
-                                </select>
-                            </div>
+                        <div className="form-group filter-control-group">
+                            <label htmlFor="monitorservices">
+                                Monitor services&nbsp;&nbsp;&nbsp;
+                            <i className="fa fa-info-circle"></i>
+                            </label>
+                            <select className="form-control" name="monitorService" value={monitorService} onChange={this.handleStateChange}>
+                                <option value="">Select Monitor Services</option>
+                                {this.createSelectbox(this.monitoringServices)}
+                            </select>
                         </div>
-                        <div className="col-lg-2 col-md-3 col-sm-12">
-                            <div className="form-group filter-control-group">
-                                <label htmlFor="alertType">
-                                    Alert Type&nbsp;&nbsp;&nbsp;
-                                <i className="fa fa-info-circle"></i>
-                                </label>
-                                <select className="form-control" name="alertType" value={alertType} onChange={this.handleStateChange}>
-                                    <option value="">Select Alert Type</option>
-                                    {this.createSelectbox(this.alertTypes)}
-                                </select>
-                            </div>
+                        <div className="form-group filter-control-group">
+                            <label htmlFor="alertType">
+                                Alert Type&nbsp;&nbsp;&nbsp;
+                            <i className="fa fa-info-circle"></i>
+                            </label>
+                            <select className="form-control" name="alertType" value={alertType} onChange={this.handleStateChange}>
+                                <option value="">Select Alert Type</option>
+                                {this.createSelectbox(this.alertTypes)}
+                            </select>
                         </div>
-                        <div className="col-lg-2 col-md-3 col-sm-12">
-                            <div className="form-group filter-control-group">
-                                <label htmlFor="serverity">
-                                    Serverity&nbsp;&nbsp;&nbsp;
-                                <i className="fa fa-info-circle"></i>
-                                </label>
-                                <select className="form-control" name="severity" value={severity} onChange={this.handleStateChange}>
-                                    <option value="">Select Severity</option>
-                                    {this.createSelectbox(this.severity)}
-                                </select>
-                            </div>
+                        <div className="form-group filter-control-group">
+                            <label htmlFor="serverity">
+                                Serverity&nbsp;&nbsp;&nbsp;
+                            <i className="fa fa-info-circle"></i>
+                            </label>
+                            <select className="form-control" name="severity" value={severity} onChange={this.handleStateChange}>
+                                <option value="">Select Severity</option>
+                                {this.createSelectbox(this.severity)}
+                            </select>
                         </div>
-                        <div className="col-lg-2 col-md-3 col-sm-12">
-                            <div className="form-group filter-control-group">
-                                <label htmlFor="alertState">
-                                    Alert state&nbsp;&nbsp;&nbsp;
-                                <i className="fa fa-info-circle"></i>
-                                </label>
-                                <select className="form-control" name="alertState" value={alertState} onChange={this.handleStateChange}>
-                                    <option value="Select Alert State">Select Alert State</option>
-                                    {this.createSelectbox(this.alertStates)}
-                                </select>
-                            </div>
+                        <div className="form-group filter-control-group">
+                            <label htmlFor="alertState">
+                                Alert state&nbsp;&nbsp;&nbsp;
+                            <i className="fa fa-info-circle"></i>
+                            </label>
+                            <select className="form-control" name="alertState" value={alertState} onChange={this.handleStateChange}>
+                                <option value="Select Alert State">Select Alert State</option>
+                                {this.createSelectbox(this.alertStates)}
+                            </select>
                         </div>
-                        <div className="col-lg-2 col-md-3 col-sm-12">
-                            <div className="form-group filter-control-group archive">
-                                <label htmlFor="archive">
-                                    <input type="checkbox" className="form-control" checked />
-                                    <span>Archive</span>
-                                </label>
-                            </div>
+                        <div className="form-group filter-control-group archive">
+                            <label htmlFor="archive">
+                                <input type="checkbox" className="form-control" checked />
+                                <span>Archive</span>
+                            </label>
                         </div>
                         {
                             filterCheckbox &&
-                            <div className="col-lg-2 col-md-3 col-sm-12">
-                                <div className="form-check filter-control-group clear-filters">
-                                    <input className="form-check-input clear-all-filter" value={filterCheckbox} type="checkbox" checked={filterCheckbox} name="clearAllFilter" onChange={this.clearAllFilters} />
-                                    <label className="form-check-label" htmlFor="clearFilter">
-                                        <span>Clear All Filters</span>
-                                    </label>
-                                </div>
+                            <div className="form-check filter-control-group clear-filters">
+                                <input className="form-check-input clear-all-filter" value={filterCheckbox} type="checkbox" checked={filterCheckbox} name="clearAllFilter" onChange={this.clearAllFilters} />
+                                <label className="form-check-label" htmlFor="clearFilter">
+                                    <span>Clear All Filters</span>
+                                </label>
                             </div>
                         }
                     </div>

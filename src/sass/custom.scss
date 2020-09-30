@@ -409,9 +409,12 @@ a {
   }
 
   .filter-control-group {
-    max-width: 250px;
-    padding-left: 0px;
-
+    max-width: 190px;
+    padding-left: 0;
+    display: inline-block;
+    position: relative;
+    margin-right: 15px;
+    width: 190px;
     .form-control {
       background-color: #f0f3f7 !important;
       border: none !important;
@@ -744,3 +747,10 @@ a {
 }
 
 
+@media (max-width: 992px){
+  .common-container {
+    .alert-white-button{
+      min-width: inherit;
+    }
+  }
+}
