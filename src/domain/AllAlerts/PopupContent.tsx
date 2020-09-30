@@ -68,7 +68,8 @@ export class PopupContent extends React.Component<any, any> {
                     alertState: 'New',
                     affectedResource: 'Prod_DB_SYN14'
                 }
-            ]
+            ],
+            iFrameLoaded: false
         };
     }
 
@@ -114,9 +115,16 @@ export class PopupContent extends React.Component<any, any> {
         return retData;
     }
 
+    onIframeLoaded = () => {
+        setTimeout(() => {
+            this.setState({
+                iFrameLoaded: true
+            });
+        }, 500);
+    };
+
     render() {
-        const state = this.state;
-        const { activeTab } = this.state;
+        const { activeTab, iFrameLoaded } = this.state;
         return (
             <div className="percentage-tabs">
                 <ul>
@@ -133,7 +141,12 @@ export class PopupContent extends React.Component<any, any> {
                 <div className="tab-container">
                     {activeTab === 0 &&
                         <div>
-                            <iframe style={{ width: "100%", height: "450px", border: "none" }} src={this.state.client_url}></iframe>
+                            <div style={{ display: iFrameLoaded ? '' : 'none' }}>
+                                <iframe style={{ width: "100%", height: "450px", border: "none" }} src={this.state.client_url} onLoad={this.onIframeLoaded}></iframe>
+                            </div>
+                            <div style={{ textAlign: "center", display: iFrameLoaded ? 'none' : '' }}>
+                                Data is loading...
+                            </div>
                         </div>
                     }
                     {activeTab === 1 &&
