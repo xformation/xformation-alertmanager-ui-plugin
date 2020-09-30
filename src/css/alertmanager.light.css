@@ -2102,13 +2102,6 @@ a:hover {
   vertical-align: top;
 }
 
-.allalert-data-table-container
-  .all-alert-data-table
-  .alerts-data-tabel
-  .alert-data-tabel {
-  width: 2000px;
-}
-
 .percentage-tabs {
   margin-top: 30px;
 }
@@ -2389,12 +2382,6 @@ a:hover {
   }
 }
 
-.managealertrules-data-table-container
-  .all-alert-data-table
-  .alerts-data-tabel
-  .alert-data-tabel {
-  width: 975px;
-}
 .managealertrules-data-table-container
   .all-alert-data-table
   .alerts-data-tabel
@@ -2779,16 +2766,6 @@ a:hover {
   padding-left: 5px;
 }
 
-.alert-data-table-container.common-container
-  .alert-data-table.rules-data-table {
-  width: 1100px;
-}
-
-.alert-data-table-container .alert-data-table.rules-data-table tr th,
-.alert-data-table-container .alert-data-table.rules-data-table tr td {
-  text-align: left;
-}
-
 @media (max-width: 767px) {
   .common-container .alert-white-button {
     min-width: inherit;
@@ -2804,13 +2781,6 @@ a:hover {
   .filter-container .filter-control-group {
     max-width: 100%;
   }
-}
-
-.rulesalert-data-table-container
-  .all-alert-data-table
-  .alerts-data-tabel
-  .alert-data-tabel {
-  width: 1024px;
 }
 
 .searchalert-container .filters-box {
@@ -2853,14 +2823,6 @@ a:hover {
   display: block;
   margin-right: 0;
   width: 100%;
-}
-
-.searchalert-container
-  .searchalert-data-table-container
-  .all-alert-data-table
-  .alerts-data-tabel
-  .alert-data-tabel {
-  width: 2000px;
 }
 
 /*# sourceMappingURL=alertmanager.light.css.map */

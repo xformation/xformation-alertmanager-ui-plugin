@@ -71,17 +71,6 @@
   }
 }
 
-.alert-data-table-container {
-  &.common-container .alert-data-table.rules-data-table {
-    width: 1100px;
-  }
-
-  .alert-data-table.rules-data-table tr {
-    th, td {
-      text-align: left;
-    }
-  }
-}
 
 @media (max-width: 767px) {
   .common-container .alert-white-button {
@@ -100,15 +89,5 @@
 
   .filter-container .filter-control-group {
     max-width: 100%;
-  }
-}
-
-.rulesalert-data-table-container{
-  .all-alert-data-table{
-    .alerts-data-tabel{
-      .alert-data-tabel{
-        width: 1024px;
-      }
-    }
   }
 }
