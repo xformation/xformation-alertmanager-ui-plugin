@@ -46,11 +46,15 @@ export class Table extends React.Component<any, any> {
                     for (let j = 0; j < cLength; j++) {
                         const column = columns[j];
                         if (!column.isRemoved) {
+                            let key = column.key;
+                            if (column.isCaseInsensitive) {
+                                key = key.toLowerCase();
+                            }
                             if (column.renderCallback) {
-                                const jsx = column.renderCallback(row[column.key], row);
+                                const jsx = column.renderCallback(row[key], row);
                                 tdJSX.push(jsx);
                             } else {
-                                tdJSX.push(<td>{row[column.key]}</td>);
+                                tdJSX.push(<td>{row[key]}</td>);
                             }
                         }
                     }

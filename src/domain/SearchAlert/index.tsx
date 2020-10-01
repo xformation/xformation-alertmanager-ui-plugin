@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { severityDS } from '../_utilities/commonDS';
 import { config } from '../../config';
 import { RestService } from '../_service/RestService';
 import { Link } from 'react-router-dom';
@@ -55,11 +54,12 @@ export class SearchAlert extends React.Component<any, any> {
                                     <div className="pointer-label">{value}</div>
                                 </td>
                             );
-                        }
+                        },
+                        isCaseInsensitive: true
                     },
                     {
                         label: 'Severity',
-                        key: 'Severity',
+                        key: 'severity',
                         renderCallback: (value: any) => {
                             let strClass = "";
                             if (value) {
@@ -67,53 +67,63 @@ export class SearchAlert extends React.Component<any, any> {
                             }
                             if (value === "high") {
                                 strClass = "severity-high";
-                            } else if (value === "Low") {
+                            } else if (value === "low") {
                                 strClass = "severity-low";
-                            } else if (value === "Urgent") {
+                            } else if (value === "urgent") {
                                 strClass = "severity-urgent";
-                            } else if (value === "Critical") {
+                            } else if (value === "critical") {
                                 strClass = "severity-critical";
-                            } else if (value === "Medium") {
+                            } else if (value === "medium") {
                                 strClass = "severity-medium";
                             }
                             return <td><span className={strClass}>{value}</span></td>
-                        }
+                        },
+                        isCaseInsensitive: true
                     },
                     {
                         label: 'Monitor Condition',
-                        key: 'monitorcondition'
+                        key: 'monitorcondition',
+                        isCaseInsensitive: true
                     },
                     {
                         label: 'Alert State',
-                        key: 'alert_state'
+                        key: 'alert_state',
+                        isCaseInsensitive: true
                     },
                     {
                         label: 'Affected Resource',
-                        key: 'affectedresource'
+                        key: 'affectedresource',
+                        isCaseInsensitive: true
                     },
                     {
                         label: 'Monitor Service',
-                        key: 'monitorservice'
+                        key: 'monitorservice',
+                        isCaseInsensitive: true
                     },
                     {
                         label: 'Signal Type',
-                        key: 'signaltype'
+                        key: 'signaltype',
+                        isCaseInsensitive: true
                     },
                     {
                         label: 'Fired Time',
-                        key: 'firedtime'
+                        key: 'firedtime',
+                        isCaseInsensitive: true
                     },
                     {
                         label: 'Subscription',
-                        key: 'brcsubscription'
+                        key: 'brcsubscription',
+                        isCaseInsensitive: true
                     },
                     {
                         label: 'Suppression State',
-                        key: 'suppressionstate'
+                        key: 'suppressionstate',
+                        isCaseInsensitive: true
                     },
                     {
                         label: 'Resources',
-                        key: 'resources'
+                        key: 'resources',
+                        isCaseInsensitive: true
                     },
                     {
                         label: 'Action',
@@ -138,7 +148,8 @@ export class SearchAlert extends React.Component<any, any> {
                                     </UncontrolledPopover>
                                 </div>
                             </td>
-                        }
+                        },
+                        isCaseInsensitive: true
                     },
                 ],
             };
@@ -158,82 +169,82 @@ export class SearchAlert extends React.Component<any, any> {
         ];
         this.resourceGroup = [{
             label: "Compute",
-            value: "Compute"
+            value: "compute"
         }, {
             label: "Jobs",
-            value: "Jobs"
+            value: "jobs"
         }, {
             label: "Network",
-            value: "Network"
+            value: "network"
         }];
         this.resources = {
             "Compute": [{
                 label: "Node",
-                value: "Node"
+                value: "node"
             }, {
                 label: "Database",
-                value: "Database"
+                value: "database"
             }, {
                 label: "Storage",
-                value: "Storage"
+                value: "storage"
             }, {
                 label: "App",
-                value: "App"
+                value: "app"
             }],
             "Jobs": [{
                 label: "SHELL JOBS",
-                value: "SHELL JOBS"
+                value: "shell jobs"
             }, {
                 label: "ETL JOBS",
-                value: "ETL JOBS"
+                value: "etl jobs"
             }],
             "Network": [{
                 label: "VPC",
-                value: "VPC"
+                value: "vpc"
             }, {
                 label: "VPN",
-                value: "VPN"
+                value: "vpn"
             }]
         };
         this.monitoringServices = [{
             label: "Native AWS",
-            value: "Native AWS"
+            value: "native aws"
         }, {
             label: "Native AZURE",
-            value: "Native AZURE"
+            value: "native azure"
         }];
         this.alertTypes = [{
             label: "Metrics",
-            value: "Metrics"
+            value: "metrics"
         }, {
             label: "Logs",
-            value: "Logs"
+            value: "logs"
         }];
         this.severity = [{
             label: "Urgent",
-            value: severityDS.URGENT
+            value: 'urgent'
         }, {
             label: "Critical",
-            value: severityDS.CRITICAL
+            value: 'critical'
         }, {
             label: "High",
-            value: severityDS.HIGH
+            value: 'high'
         }, {
             label: "Medium",
-            value: severityDS.MEDIUM
+            value: 'medium'
         }, {
             label: "Low",
-            value: severityDS.LOW
+            value: 'low'
         }];
         this.alertStates = [{
             label: "New",
-            value: "New"
+            value: "new"
         }, {
             label: "InProgress",
-            value: "InProgress"
+            value: "inprogress"
         }, {
             label: "Closed",
-            value: "Closed"
+            value: "closed"
         }];
         this.editAlertRef = React.createRef();
         this.clearAllFilters = this.clearAllFilters.bind(this);
@@ -297,7 +308,7 @@ export class SearchAlert extends React.Component<any, any> {
     onClickEditAlert = (e: any, selectedAlert: any) => {
         this.editAlertRef.current.toggle(selectedAlert);
     };
-   
+
     handleCloseAlert = (e: any) => {
         this.setState({
             isAlertOpen: false
@@ -436,24 +447,92 @@ export class SearchAlert extends React.Component<any, any> {
             const length = alertData.length;
             for (let i = 0; i < length; i++) {
                 const alert = alertData[i];
+                const alertKeys = Object.keys(alert);
+                const lowerCaseKeys = alertKeys.map((key) => key.toLocaleLowerCase());
                 let isMatched = true;
                 if (resourceGroup) {
-                    isMatched = resourceGroup === alert.resourceGroup;
+                    let index = lowerCaseKeys.indexOf("resourcegroup");
+                    if (index !== -1) {
+                        let key = alertKeys[index];
+                        let data = alert[key];
+                        if (data) {
+                            isMatched = resourceGroup === data.toLowerCase();
+                        } else {
+                            isMatched = false;
+                        }
+                    } else {
+                        isMatched = false;
+                    }
                 }
                 if (isMatched && resource) {
-                    isMatched = resource === alert.resources;
+                    let index = lowerCaseKeys.indexOf("resources");
+                    if (index !== -1) {
+                        let key = alertKeys[index];
+                        let data = alert[key];
+                        if (data) {
+                            isMatched = resource === data.toLowerCase();
+                        } else {
+                            isMatched = false;
+                        }
+                    } else {
+                        isMatched = false;
+                    }
                 }
                 if (isMatched && monitorService) {
-                    isMatched = monitorService === alert.monitorService;
+                    let index = lowerCaseKeys.indexOf("monitorservice");
+                    if (index !== -1) {
+                        let key = alertKeys[index];
+                        let data = alert[key];
+                        if (data) {
+                            isMatched = monitorService === data.toLowerCase();
+                        } else {
+                            isMatched = false;
+                        }
+                    } else {
+                        isMatched = false;
+                    }
                 }
                 if (isMatched && alertType) {
-                    isMatched = alertType === alert.signalType;
+                    let index = lowerCaseKeys.indexOf("signaltype");
+                    if (index !== -1) {
+                        let key = alertKeys[index];
+                        let data = alert[key];
+                        if (data) {
+                            isMatched = alertType === data.toLowerCase();
+                        } else {
+                            isMatched = false;
+                        }
+                    } else {
+                        isMatched = false;
+                    }
                 }
-                if (isMatched && severity && alert.Severity) {
-                    isMatched = severity.toLowerCase() === alert.Severity.toLowerCase();
+                if (isMatched && severity) {
+                    let index = lowerCaseKeys.indexOf("severity");
+                    if (index !== -1) {
+                        let key = alertKeys[index];
+                        let data = alert[key];
+                        if (data) {
+                            isMatched = severity === data.toLowerCase();
+                        } else {
+                            isMatched = false;
+                        }
+                    } else {
+                        isMatched = false;
+                    }
                 }
                 if (isMatched && alertState) {
-                    isMatched = alertState === alert.alertState;
+                    let index = lowerCaseKeys.indexOf("alertstate");
+                    if (index !== -1) {
+                        let key = alertKeys[index];
+                        let data = alert[key];
+                        if (data) {
+                            isMatched = alertState === data.toLowerCase();
+                        } else {
+                            isMatched = false;
+                        }
+                    } else {
+                        isMatched = false;
+                    }
                 }
                 if (isMatched) {
                     retData.push(
