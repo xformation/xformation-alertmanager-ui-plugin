@@ -27,11 +27,21 @@ export class EditAlertPopup extends React.Component<any, any> {
     }
 
     toggle = (selectedAlert: any) => {
+        let alertState = "";
+        const keys = Object.keys(selectedAlert);
+        const lowerCaseKeys = keys.map((key)=>key.toLowerCase());
+        const index = lowerCaseKeys.indexOf("alert_state");
+        if(index !== -1){
+            const key = keys[index];
+            if(selectedAlert[key]){
+                alertState = selectedAlert[key].toLowerCase();
+            }
+        }
         this.setState({
             modal: !this.state.modal,
             guid: selectedAlert.guid,
             id: selectedAlert.id,
-            alertState: selectedAlert.alertstate,
+            alertState: alertState,
         });
     };
 
@@ -111,9 +121,9 @@ export class EditAlertPopup extends React.Component<any, any> {
                                 <label htmlFor="selectAlertState">Select Alert State</label>
                                 <select className="form-control" name="alertState" value={state.alertState} onChange={this.onChange}>
                                     <option key="" value="">Select Alert State</option>
-                                    <option key="New" value="New">New</option>
-                                    <option key="InProgress" value="InProgress">InProgress</option>
-                                    <option key="Closed" value="Closed">Closed</option>
+                                    <option key="New" value="new">New</option>
+                                    <option key="InProgress" value="inprogress">InProgress</option>
+                                    <option key="Closed" value="closed">Closed</option>
                                 </select>
                             </div>
                         </div>

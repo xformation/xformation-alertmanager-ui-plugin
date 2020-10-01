@@ -183,7 +183,7 @@ export class AllAlerts extends React.Component<any, any> {
             value: "network"
         }];
         this.resources = {
-            "Compute": [{
+            "compute": [{
                 label: "Node",
                 value: "node"
             }, {
@@ -196,14 +196,14 @@ export class AllAlerts extends React.Component<any, any> {
                 label: "App",
                 value: "app"
             }],
-            "Jobs": [{
+            "jobs": [{
                 label: "SHELL JOBS",
                 value: "shell jobs"
             }, {
                 label: "ETL JOBS",
                 value: "etl jobs"
             }],
-            "Network": [{
+            "network": [{
                 label: "VPC",
                 value: "vpc"
             }, {
