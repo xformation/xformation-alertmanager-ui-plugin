@@ -413,7 +413,7 @@ export class AllAlerts extends React.Component<any, any> {
                     }
                 }
                 if (isMatched && alertState) {
-                    let index = lowerCaseKeys.indexOf("alertstate");
+                    let index = lowerCaseKeys.indexOf("alert_state");
                     if (index !== -1) {
                         let key = alertKeys[index];
                         let data = alert[key];
