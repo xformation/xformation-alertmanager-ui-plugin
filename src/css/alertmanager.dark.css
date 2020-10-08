@@ -412,12 +412,18 @@ a:hover {
 }
 
 .filter-container .filter-control-group {
-  max-width: 190px;
+  width: 170px;
+  max-width: 170px;
   padding-left: 0;
   display: inline-block;
   position: relative;
   margin-right: 15px;
-  width: 190px;
+  margin-left: 15px;
+}
+.filter-container .filter-control-group.date-time-range-picker {
+  width: 410px;
+  max-width: 410px;
+  margin-top: 27px;
 }
 .filter-container .filter-control-group .form-control {
   background-color: #f0f3f7 !important;
@@ -1849,12 +1855,12 @@ a:hover {
   padding-left: 30px;
   color: #ffffff;
   vertical-align: middle;
-  padding-top: 0px;
+  padding-top: 5px;
   cursor: pointer;
   position: relative;
 }
 .filter-container .filter-control-group.archive span:after {
-  top: 1px;
+  top: 6px;
   left: 0;
   width: 20px;
   height: 20px;
@@ -1868,7 +1874,7 @@ a:hover {
   width: 10px;
   height: 6px;
   position: absolute;
-  top: 6px;
+  top: 11px;
   left: 5px;
   border: 1px solid #333;
   border-top: none;
@@ -2144,6 +2150,26 @@ a:hover {
 .percentage-tabs .tab-container .table tr td .fa-exclamation-triangle {
   color: #ff9800;
   padding-right: 10px;
+}
+
+.all-alerts-container .react-datetimerange-picker__wrapper {
+  border: none;
+  background-color: #f0f3f7 !important;
+  height: calc(1.5em + 0.75rem + 2px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  padding: 0 15px;
+  font-size: 12px;
+  border-radius: 3px;
+}
+
+.all-alerts-container .react-datetimerange-picker__inputGroup__input {
+  width: auto;
+}
+
+.all-alerts-container .react-datetimerange-picker {
+  z-index: 100;
 }
 
 .create-rule-container .data-block {
