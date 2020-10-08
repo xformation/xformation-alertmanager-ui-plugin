@@ -4,14 +4,19 @@ import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
 import { StartECPopup } from './StartECPopup';
 import { InstancePopup } from './InstancePopup';
-
+import { OpenNewTicketPopup } from '../../../../xformation-servicedesk-ui-plugin/src/components/OpenNewTicketPopup';
+import { RestService } from '../_service/RestService';
 export class AllTickets extends React.Component<any, any> {
     breadCrumbs: any;
     startECRef: any;
     instanceRef: any;
+    openNewTicketRef: any;
     constructor(props: any) {
         super(props);
+        this.openNewTicketRef = React.createRef();
         this.state = {
+            guid: '',
+            ticketDataList: [],
         };
         this.breadCrumbs = [
             {
@@ -30,7 +35,56 @@ export class AllTickets extends React.Component<any, any> {
         this.startECRef = React.createRef();
         this.instanceRef = React.createRef();
     }
+    async componentDidMount() {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const guid = urlParams.get('guid');
+        this.setState({
+            guid: guid,
+        });
+        try {
+            await RestService.getData(config.GET_TICKETS_BY_GUID_URL + "/" + guid, null, null).then(
+                (response: any) => {
 
+                    this.setState({
+                        ticketDataList: response,
+                    });
+                })
+        } catch (err) {
+            console.log("Loading ticket data failed. Error: ", err);
+        }
+    }
+    ticketsTable = () => {
+        const retData = [];
+        const { ticketDataList } = this.state;
+        console.log("final ticket data : ", ticketDataList);
+        for (let i = 0; i < ticketDataList.length; i++) {
+            const ticketData = ticketDataList[i];
+            retData.push(
+                <tr className="gray-label">
+                    <td className="gray-label bold-label">
+                        <div className="pointer-label">{ticketData.id}</div>
+                    </td>
+                    <td>
+                        {ticketData.subject}
+                    </td>
+                    <td>
+                        <div className="severity-critical bold-label colored-label">{ticketData.priority}</div>
+                    </td>
+                    <td>{ticketData.createdAt}</td>
+                    <td>{ticketData.assignedToName}</td>
+                    <td>
+                        <button className="btn btn-link" id="PopoverFocus">
+                            <i className="fa fa-ellipsis-h"></i>
+                        </button>
+                    </td>
+                    <td></td>
+                </tr>
+            )
+        }
+        console.log("Ui data : ", retData)
+        return retData;
+    }
     onClickStartEC2 = (e: any) => {
         e.preventDefault();
         this.startECRef.current.toggle();
@@ -40,6 +94,10 @@ export class AllTickets extends React.Component<any, any> {
         e.preventDefault();
         this.instanceRef.current.toggle();
     };
+    onClickOpenNewTicket = (e: any) => {
+        console.log("on click event fired")
+        this.openNewTicketRef.current.toggle();
+    };
 
     render() {
         const state = this.state;
@@ -48,7 +106,7 @@ export class AllTickets extends React.Component<any, any> {
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} />
                 <div className="page-header-container">
                     <span className="page-header">All Tickets</span>
-                    <button className="header-button">
+                    <button className="header-button" onClick={this.onClickOpenNewTicket} >
                         <i className="fa fa-plus"></i>
                         Create Ticket
                     </button>
@@ -91,7 +149,7 @@ export class AllTickets extends React.Component<any, any> {
                 </div>
                 <div className="alert-data-table-container">
                     <table className="alert-data-table">
-                        <tbody>
+                        <thead>
                             <tr>
                                 <th>Ticket</th>
                                 <th>Resource</th>
@@ -101,6 +159,9 @@ export class AllTickets extends React.Component<any, any> {
                                 <th>Action</th>
                                 <th>Result</th>
                             </tr>
+                        </thead>
+                        <tbody>
+                            {this.ticketsTable()}
                             <tr className="gray-label">
                                 <td className="gray-label bold-label">
                                     <div className="pointer-label" onClick={this.onClickInstance}>144</div>
@@ -208,6 +269,7 @@ export class AllTickets extends React.Component<any, any> {
                 </UncontrolledPopover>
                 <StartECPopup ref={this.startECRef} />
                 <InstancePopup ref={this.instanceRef} />
+                <OpenNewTicketPopup guid={state.guid} ref={this.openNewTicketRef} />
             </div>
         );
     }

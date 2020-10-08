@@ -51,14 +51,15 @@ export class AllAlerts extends React.Component<any, any> {
             filterCheckbox: false,
             alertName: '',
             client_url: '',
+            alertObjAry: null,
             columns: [
                 {
                     label: 'Name',
                     key: 'name',
-                    renderCallback: (value: any) => {
+                    renderCallback: (value: any, alert: any) => {
                         return (
                             <td>
-                                <div className="pointer-label" onClick={() => this.toggleModal(value)}>{value}</div>
+                                <div className="pointer-label" onClick={() => this.toggleModal(value, alert)}>{value}</div>
                             </td>
                         );
                     }
@@ -138,7 +139,7 @@ export class AllAlerts extends React.Component<any, any> {
                                 </button>
                                 <UncontrolledPopover trigger="legacy" placement="bottom" target={`PopoverFocus-${alert.guid}`}>
                                     <PopoverBody>
-                                        <Link className=" " to={`${config.basePath}/alltickets`}>Create Ticket</Link>
+                                        <Link className=" " to={`${config.basePath}/alltickets?guid=` + alert.guid}>Create Ticket</Link>
                                         <Link className=" " to="">Silence</Link>
                                     </PopoverBody>
                                 </UncontrolledPopover>
@@ -246,7 +247,7 @@ export class AllAlerts extends React.Component<any, any> {
         this.editAlertRef = React.createRef();
     }
 
-    toggleModal = (value: any) => {
+    toggleModal = (value: any, alert: any) => {
         let data = '';
         for (let i = 0; i < this.state.alertData.length; i++) {
             let row = this.state.alertData[i];
@@ -254,10 +255,14 @@ export class AllAlerts extends React.Component<any, any> {
                 data = row.client_url;
             }
         }
+        console.log("Alert : ",alert)
+        let alertObjAry=[];
+        alertObjAry.push(alert);
         this.setState({
             modal: !this.state.modal,
             alertName: value,
-            client_url: data
+            client_url: data,
+            alertObjAry: alertObjAry,
         });
     }
 
@@ -610,7 +615,7 @@ export class AllAlerts extends React.Component<any, any> {
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">
                     <ModalHeader toggle={this.toggle}>{this.state.alertName}</ModalHeader>
                     <ModalBody style={{ height: 'calc(100vh - 210px)', overflowY: 'auto', overflowX: "hidden" }}>
-                        <PopupContent popupcontentData={{ url: this.state.client_url }} />
+                        <PopupContent popupcontentData={{ url: this.state.client_url, alertObjAry: this.state.alertObjAry }} />
                     </ModalBody>
                 </Modal>
                 {/* {alertTable.isDataPresent &&
