@@ -60,15 +60,7 @@ export class PopupContent extends React.Component<any, any> {
                     dateAndTime: '01/04/2020, 12:58:34'
                 }
             ],
-            diagnosticsTableArray: [
-                {
-                    name: 'Percentage CPU',
-                    severity: 'Urgent',
-                    monitorCondition: 'Fired',
-                    alertState: 'New',
-                    affectedResource: 'Prod_DB_SYN14'
-                }
-            ],
+            diagnosticsTableArray:this.props.popupcontentData.alertObjAry,
             iFrameLoaded: false
         };
     }
@@ -106,9 +98,9 @@ export class PopupContent extends React.Component<any, any> {
                     <td>
                         <span className="urgent">{diagnosticsTable.severity}</span>
                     </td>
-                    <td><i className="fa fa-exclamation-triangle"></i> {diagnosticsTable.monitorCondition}</td>
-                    <td>{diagnosticsTable.alertState}</td>
-                    <td>{diagnosticsTable.affectedResource}</td>
+                    <td><i className="fa fa-exclamation-triangle"></i> {diagnosticsTable.monitorcondition}</td>
+                    <td>{diagnosticsTable.alert_state}</td>
+                    <td>{diagnosticsTable.affectedresource}</td>
                 </tr>
             )
         }

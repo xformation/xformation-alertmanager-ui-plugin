@@ -1,8 +1,9 @@
 const ALERT_URL = "alert.service.com";
 const SEARCH_URL = "search.service.com";
 
-const searchSrvUrl = `http://100.64.108.25:8092`;
-const alertSrvUrl = `http://100.64.108.25:5060`;
+const searchSrvUrl = `http://localhost:8092`;
+const alertSrvUrl = `http://localhost:5060`;
+const ticketSrvUrl = `http://localhost:7100/api`;
 
 export const config = {
   basePath: "/plugins/xformation-alertmanager-ui-plugin/page",
@@ -11,6 +12,7 @@ export const config = {
   UPDATE_ALERT: `${alertSrvUrl}/api/updateAlert`,
   DELETE_ALERT: `${alertSrvUrl}/api/deleteAlert`,
   TOTAL_ALERTS: `${searchSrvUrl}/search/totalRecords`,
+  GET_TICKETS_BY_GUID_URL: `${ticketSrvUrl}/alertTicketsByGuid`,
 
   SEVERITY_ERROR: "error",
   SEVERITY_SUCCESS: "success",
