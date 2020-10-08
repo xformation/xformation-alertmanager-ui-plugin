@@ -523,11 +523,18 @@ export class AllAlerts extends React.Component<any, any> {
                                 {this.createSelectbox(this.resources[resourceGroup])}
                             </select>
                         </div>
-                        <div className="form-group filter-control-group date-time-range-picker">
-                            <DateTimeRangePicker
-                                onChange={this.onChange}
-                                value={datevalue}
-                            />
+                        <div className="form-group filter-control-group ">
+                            <label htmlFor="timerange">
+                                Time Range&nbsp;&nbsp;&nbsp;
+                                <i className="fa fa-info-circle"></i>
+                            </label>
+                            <div className="date-time-range-picker">
+                                <DateTimeRangePicker
+                                    onChange={this.onChange}
+                                    value={datevalue}
+                                    rangeDivider= "to"
+                                />
+                            </div>
                         </div>
                         {/* <TimeRange /> */}
                         {/* <div className="col-lg-2 col-md-3 col-sm-12">
