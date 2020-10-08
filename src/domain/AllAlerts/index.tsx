@@ -5,6 +5,7 @@ import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
 import { PopupContent } from './PopupContent';
 import { EditAlertPopup } from './EditAlertPopup';
+import { severityDS } from '../_utilities/commonDS';
 import { RestService } from '../_service/RestService';
 import { TimePicker } from 'react-time-picker';
 import AlertMessage from '../../components/AlertMessage';
@@ -12,6 +13,8 @@ import ConfirmDialog from '../../components/ConfirmDialog';
 import { now } from 'lodash';
 import Table from './../../components/table';
 import TimeRange from './../../components/TimeRange';
+import { useState } from 'react';
+import DateTimeRangePicker from '@wojtekmaj/react-datetimerange-picker';
 
 export class AllAlerts extends React.Component<any, any> {
     editAlertRef: any;
@@ -29,6 +32,7 @@ export class AllAlerts extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
+            datevalue: new Date(),
             isConfirmDialogOpen: false,
             confirmTitleMessage: null,
             objectType: null,
@@ -57,12 +61,11 @@ export class AllAlerts extends React.Component<any, any> {
                                 <div className="pointer-label" onClick={() => this.toggleModal(value)}>{value}</div>
                             </td>
                         );
-                    },
-                    isCaseInsensitive: true
+                    }
                 },
                 {
                     label: 'Severity',
-                    key: 'severity',
+                    key: 'Severity',
                     renderCallback: (value: any) => {
                         let strClass = "";
                         if (value) {
@@ -70,63 +73,53 @@ export class AllAlerts extends React.Component<any, any> {
                         }
                         if (value === "high") {
                             strClass = "severity-high";
-                        } else if (value === "low") {
+                        } else if (value === "Low") {
                             strClass = "severity-low";
-                        } else if (value === "urgent") {
+                        } else if (value === "Urgent") {
                             strClass = "severity-urgent";
-                        } else if (value === "critical") {
+                        } else if (value === "Critical") {
                             strClass = "severity-critical";
-                        } else if (value === "medium") {
+                        } else if (value === "Medium") {
                             strClass = "severity-medium";
                         }
                         return <td><span className={strClass}>{value}</span></td>
-                    },
-                    isCaseInsensitive: true
+                    }
                 },
                 {
                     label: 'Monitor Condition',
-                    key: 'monitorcondition',
-                    isCaseInsensitive: true
+                    key: 'monitorcondition'
                 },
                 {
                     label: 'Alert State',
-                    key: 'alert_state',
-                    isCaseInsensitive: true
+                    key: 'alert_state'
                 },
                 {
                     label: 'Affected Resource',
-                    key: 'affectedresource',
-                    isCaseInsensitive: true
+                    key: 'affectedresource'
                 },
                 {
                     label: 'Monitor Service',
-                    key: 'monitorservice',
-                    isCaseInsensitive: true
+                    key: 'monitorservice'
                 },
                 {
                     label: 'Signal Type',
-                    key: 'signaltype',
-                    isCaseInsensitive: true
+                    key: 'signaltype'
                 },
                 {
                     label: 'Fired Time',
-                    key: 'firedtime',
-                    isCaseInsensitive: true
+                    key: 'firedtime'
                 },
                 {
                     label: 'Subscription',
-                    key: 'brcsubscription',
-                    isCaseInsensitive: true
+                    key: 'brcsubscription'
                 },
                 {
                     label: 'Suppression State',
-                    key: 'suppressionstate',
-                    isCaseInsensitive: true
+                    key: 'suppressionstate'
                 },
                 {
                     label: 'Resources',
-                    key: 'resources',
-                    isCaseInsensitive: true
+                    key: 'resources'
                 },
                 {
                     label: 'Action',
@@ -151,8 +144,7 @@ export class AllAlerts extends React.Component<any, any> {
                                 </UncontrolledPopover>
                             </div>
                         </td>
-                    },
-                    isCaseInsensitive: true
+                    }
                 },
             ],
         };
@@ -174,82 +166,82 @@ export class AllAlerts extends React.Component<any, any> {
         ];
         this.resourceGroup = [{
             label: "Compute",
-            value: "compute"
+            value: "Compute"
         }, {
             label: "Jobs",
-            value: "jobs"
+            value: "Jobs"
         }, {
             label: "Network",
-            value: "network"
+            value: "Network"
         }];
         this.resources = {
-            "compute": [{
+            "Compute": [{
                 label: "Node",
-                value: "node"
+                value: "Node"
             }, {
                 label: "Database",
-                value: "database"
+                value: "Database"
             }, {
                 label: "Storage",
-                value: "storage"
+                value: "Storage"
             }, {
                 label: "App",
-                value: "app"
+                value: "App"
             }],
-            "jobs": [{
+            "Jobs": [{
                 label: "SHELL JOBS",
-                value: "shell jobs"
+                value: "SHELL JOBS"
             }, {
                 label: "ETL JOBS",
-                value: "etl jobs"
+                value: "ETL JOBS"
             }],
-            "network": [{
+            "Network": [{
                 label: "VPC",
-                value: "vpc"
+                value: "VPC"
             }, {
                 label: "VPN",
-                value: "vpn"
+                value: "VPN"
             }]
         };
         this.monitoringServices = [{
             label: "Native AWS",
-            value: "native aws"
+            value: "Native AWS"
         }, {
             label: "Native AZURE",
-            value: "native azure"
+            value: "Native AZURE"
         }];
         this.alertTypes = [{
             label: "Metrics",
-            value: "metrics"
+            value: "Metrics"
         }, {
             label: "Logs",
-            value: "logs"
+            value: "Logs"
         }];
         this.severity = [{
             label: "Urgent",
-            value: 'urgent'
+            value: severityDS.URGENT
         }, {
             label: "Critical",
-            value: 'critical'
+            value: severityDS.CRITICAL
         }, {
             label: "High",
-            value: 'high'
+            value: severityDS.HIGH
         }, {
             label: "Medium",
-            value: 'medium'
+            value: severityDS.MEDIUM
         }, {
             label: "Low",
-            value: 'low'
+            value: severityDS.LOW
         }];
         this.alertStates = [{
             label: "New",
-            value: "new"
+            value: "New"
         }, {
             label: "InProgress",
-            value: "inprogress"
+            value: "InProgress"
         }, {
             label: "Closed",
-            value: "closed"
+            value: "Closed"
         }];
         this.editAlertRef = React.createRef();
     }
@@ -339,92 +331,24 @@ export class AllAlerts extends React.Component<any, any> {
             const length = alertData.length;
             for (let i = 0; i < length; i++) {
                 const alert = alertData[i];
-                const alertKeys = Object.keys(alert);
-                const lowerCaseKeys = alertKeys.map((key) => key.toLocaleLowerCase());
                 let isMatched = true;
                 if (resourceGroup) {
-                    let index = lowerCaseKeys.indexOf("resourcegroup");
-                    if (index !== -1) {
-                        let key = alertKeys[index];
-                        let data = alert[key];
-                        if (data) {
-                            isMatched = resourceGroup === data.toLowerCase();
-                        } else {
-                            isMatched = false;
-                        }
-                    } else {
-                        isMatched = false;
-                    }
+                    isMatched = resourceGroup === alert.resourceGroup;
                 }
                 if (isMatched && resource) {
-                    let index = lowerCaseKeys.indexOf("resources");
-                    if (index !== -1) {
-                        let key = alertKeys[index];
-                        let data = alert[key];
-                        if (data) {
-                            isMatched = resource === data.toLowerCase();
-                        } else {
-                            isMatched = false;
-                        }
-                    } else {
-                        isMatched = false;
-                    }
+                    isMatched = resource === alert.resources;
                 }
                 if (isMatched && monitorService) {
-                    let index = lowerCaseKeys.indexOf("monitorservice");
-                    if (index !== -1) {
-                        let key = alertKeys[index];
-                        let data = alert[key];
-                        if (data) {
-                            isMatched = monitorService === data.toLowerCase();
-                        } else {
-                            isMatched = false;
-                        }
-                    } else {
-                        isMatched = false;
-                    }
+                    isMatched = monitorService === alert.monitorService;
                 }
                 if (isMatched && alertType) {
-                    let index = lowerCaseKeys.indexOf("signaltype");
-                    if (index !== -1) {
-                        let key = alertKeys[index];
-                        let data = alert[key];
-                        if (data) {
-                            isMatched = alertType === data.toLowerCase();
-                        } else {
-                            isMatched = false;
-                        }
-                    } else {
-                        isMatched = false;
-                    }
+                    isMatched = alertType === alert.signalType;
                 }
-                if (isMatched && severity) {
-                    let index = lowerCaseKeys.indexOf("severity");
-                    if (index !== -1) {
-                        let key = alertKeys[index];
-                        let data = alert[key];
-                        if (data) {
-                            isMatched = severity === data.toLowerCase();
-                        } else {
-                            isMatched = false;
-                        }
-                    } else {
-                        isMatched = false;
-                    }
+                if (isMatched && severity && alert.Severity) {
+                    isMatched = severity.toLowerCase() === alert.Severity.toLowerCase();
                 }
                 if (isMatched && alertState) {
-                    let index = lowerCaseKeys.indexOf("alert_state");
-                    if (index !== -1) {
-                        let key = alertKeys[index];
-                        let data = alert[key];
-                        if (data) {
-                            isMatched = alertState === data.toLowerCase();
-                        } else {
-                            isMatched = false;
-                        }
-                    } else {
-                        isMatched = false;
-                    }
+                    isMatched = alertState === alert.alertState;
                 }
                 if (isMatched) {
                     retData.push(
@@ -544,9 +468,18 @@ export class AllAlerts extends React.Component<any, any> {
         });
     };
 
+    onChange = (value: any) => {
+        console.log('New date is: ', value);
+        this.setState({
+            datevalue: value,
+        })
+    }
+
     render() {
+        // const [value, onChange] = useState([new Date(), new Date()]);
+
         const { resourceGroup, resource, openTimeRange, monitorService, alertType, severity, alertState, filterCheckbox, objectType, object,
-            isConfirmDialogOpen, confirmTitleMessage, message, isAlertOpen, columns, alertData } = this.state;
+            isConfirmDialogOpen, confirmTitleMessage, message, isAlertOpen, columns, datevalue } = this.state;
         const tableData = this.applyFilters();
         return (
             <div className="all-alerts-container">
@@ -569,83 +502,110 @@ export class AllAlerts extends React.Component<any, any> {
                             Back
                         </Link>
                     </div>
-                    <div className="filter-container common-container">
-                        <div className="form-group filter-control-group">
-                            <label htmlFor="resourceGroup">
-                                Resource Group&nbsp;&nbsp;&nbsp;
-                            <i className="fa fa-info-circle"></i>
-                            </label>
-                            <select className="form-control" name="resourceGroup" value={resourceGroup} onChange={this.handleStateChange}>
-                                <option value="">Select Resource Group</option>
-                                {this.createSelectbox(this.resourceGroup)}
-                            </select>
+                    <div className="filter-container row common-container">
+                        <div className="col-lg-2 col-md-3 col-sm-12">
+                            <div className="form-group filter-control-group">
+                                <label htmlFor="resourceGroup">
+                                    Resource Group&nbsp;&nbsp;&nbsp;
+                                <i className="fa fa-info-circle"></i>
+                                </label>
+                                <select className="form-control" name="resourceGroup" value={resourceGroup} onChange={this.handleStateChange}>
+                                    <option value="">Select Resource Group</option>
+                                    {this.createSelectbox(this.resourceGroup)}
+                                </select>
+                            </div>
                         </div>
-                        <div className="form-group filter-control-group">
-                            <label htmlFor="resources">
-                                Resources&nbsp;&nbsp;&nbsp;
-                            <i className="fa fa-info-circle"></i>
-                            </label>
-                            <select className="form-control" name="resource" value={resource} onChange={this.handleStateChange}>
-                                <option value="">Select Resources</option>
-                                {this.createSelectbox(this.resources[resourceGroup])}
-                            </select>
+                        <div className="col-lg-2 col-md-3 col-sm-12">
+                            <div className="form-group filter-control-group">
+                                <label htmlFor="resources">
+                                    Resources&nbsp;&nbsp;&nbsp;
+                                <i className="fa fa-info-circle"></i>
+                                </label>
+                                <select className="form-control" name="resource" value={resource} onChange={this.handleStateChange}>
+                                    <option value="">Select Resources</option>
+                                    {this.createSelectbox(this.resources[resourceGroup])}
+                                </select>
+                            </div>
                         </div>
-                        <div className="form-group filter-control-group">
-                            <TimeRange />
+                        <div className="col-lg-8 col-md-8 col-sm-12">
+                            <DateTimeRangePicker
+                                onChange={this.onChange}
+                                value={datevalue}
+                            />
+                            {/* <TimeRange /> */}
                         </div>
-                        <div className="form-group filter-control-group">
-                            <label htmlFor="monitorservices">
-                                Monitor services&nbsp;&nbsp;&nbsp;
-                            <i className="fa fa-info-circle"></i>
-                            </label>
-                            <select className="form-control" name="monitorService" value={monitorService} onChange={this.handleStateChange}>
-                                <option value="">Select Monitor Services</option>
-                                {this.createSelectbox(this.monitoringServices)}
-                            </select>
+                        {/* <div className="col-lg-2 col-md-3 col-sm-12">
+                            <DateTimeRangePicker
+                                onChange={this.onChange}
+                                value={value}
+                            />
+                            <TimeRange /> 
+                        </div> */}
+                        <div className="col-lg-2 col-md-3 col-sm-12">
+                            <div className="form-group filter-control-group">
+                                <label htmlFor="monitorservices">
+                                    Monitor services&nbsp;&nbsp;&nbsp;
+                                <i className="fa fa-info-circle"></i>
+                                </label>
+                                <select className="form-control" name="monitorService" value={monitorService} onChange={this.handleStateChange}>
+                                    <option value="">Select Monitor Services</option>
+                                    {this.createSelectbox(this.monitoringServices)}
+                                </select>
+                            </div>
                         </div>
-                        <div className="form-group filter-control-group">
-                            <label htmlFor="alertType">
-                                Alert Type&nbsp;&nbsp;&nbsp;
-                            <i className="fa fa-info-circle"></i>
-                            </label>
-                            <select className="form-control" name="alertType" value={alertType} onChange={this.handleStateChange}>
-                                <option value="">Select Alert Type</option>
-                                {this.createSelectbox(this.alertTypes)}
-                            </select>
+                        <div className="col-lg-2 col-md-3 col-sm-12">
+                            <div className="form-group filter-control-group">
+                                <label htmlFor="alertType">
+                                    Alert Type&nbsp;&nbsp;&nbsp;
+                                <i className="fa fa-info-circle"></i>
+                                </label>
+                                <select className="form-control" name="alertType" value={alertType} onChange={this.handleStateChange}>
+                                    <option value="">Select Alert Type</option>
+                                    {this.createSelectbox(this.alertTypes)}
+                                </select>
+                            </div>
                         </div>
-                        <div className="form-group filter-control-group">
-                            <label htmlFor="serverity">
-                                Serverity&nbsp;&nbsp;&nbsp;
-                            <i className="fa fa-info-circle"></i>
-                            </label>
-                            <select className="form-control" name="severity" value={severity} onChange={this.handleStateChange}>
-                                <option value="">Select Severity</option>
-                                {this.createSelectbox(this.severity)}
-                            </select>
+                        <div className="col-lg-2 col-md-3 col-sm-12">
+                            <div className="form-group filter-control-group">
+                                <label htmlFor="serverity">
+                                    Serverity&nbsp;&nbsp;&nbsp;
+                                <i className="fa fa-info-circle"></i>
+                                </label>
+                                <select className="form-control" name="severity" value={severity} onChange={this.handleStateChange}>
+                                    <option value="">Select Severity</option>
+                                    {this.createSelectbox(this.severity)}
+                                </select>
+                            </div>
                         </div>
-                        <div className="form-group filter-control-group">
-                            <label htmlFor="alertState">
-                                Alert state&nbsp;&nbsp;&nbsp;
-                            <i className="fa fa-info-circle"></i>
-                            </label>
-                            <select className="form-control" name="alertState" value={alertState} onChange={this.handleStateChange}>
-                                <option value="Select Alert State">Select Alert State</option>
-                                {this.createSelectbox(this.alertStates)}
-                            </select>
+                        <div className="col-lg-2 col-md-3 col-sm-12">
+                            <div className="form-group filter-control-group">
+                                <label htmlFor="alertState">
+                                    Alert state&nbsp;&nbsp;&nbsp;
+                                <i className="fa fa-info-circle"></i>
+                                </label>
+                                <select className="form-control" name="alertState" value={alertState} onChange={this.handleStateChange}>
+                                    <option value="Select Alert State">Select Alert State</option>
+                                    {this.createSelectbox(this.alertStates)}
+                                </select>
+                            </div>
                         </div>
-                        <div className="form-group filter-control-group archive">
-                            <label htmlFor="archive">
-                                <input type="checkbox" className="form-control" checked />
-                                <span>Archive</span>
-                            </label>
+                        <div className="col-lg-2 col-md-3 col-sm-12">
+                            <div className="form-group filter-control-group archive">
+                                <label htmlFor="archive">
+                                    <input type="checkbox" className="form-control" checked />
+                                    <span>Archive</span>
+                                </label>
+                            </div>
                         </div>
                         {
                             filterCheckbox &&
-                            <div className="form-check filter-control-group clear-filters">
-                                <input className="form-check-input clear-all-filter" value={filterCheckbox} type="checkbox" checked={filterCheckbox} name="clearAllFilter" onChange={this.clearAllFilters} />
-                                <label className="form-check-label" htmlFor="clearFilter">
-                                    <span>Clear All Filters</span>
-                                </label>
+                            <div className="col-lg-2 col-md-3 col-sm-12">
+                                <div className="form-check filter-control-group clear-filters">
+                                    <input className="form-check-input clear-all-filter" value={filterCheckbox} type="checkbox" checked={filterCheckbox} name="clearAllFilter" onChange={this.clearAllFilters} />
+                                    <label className="form-check-label" htmlFor="clearFilter">
+                                        <span>Clear All Filters</span>
+                                    </label>
+                                </div>
                             </div>
                         }
                     </div>
