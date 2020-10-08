@@ -26,6 +26,10 @@ export class AlertRuleBuilder extends React.Component<any, any> {
                 route: `/`
             },
             {
+                label: "Monitor | Alerts",
+                route: `${config.basePath}/monitoralerts`
+            },
+            {
                 label: "Alert Rule Builder",
                 isCurrentPage: true
             }

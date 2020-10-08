@@ -2170,6 +2170,7 @@ a:hover {
 
 .all-alerts-container .react-datetimerange-picker {
   z-index: 100;
+  width: 100%;
 }
 
 .create-rule-container .data-block {

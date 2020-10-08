@@ -113,6 +113,10 @@ export class ManageAlertRule extends React.Component<any, any> {
             },
             {
                 label: "Monitor | Alerts",
+                route: `${config.basePath}/monitoralerts`
+            },
+            {
+                label: "Manage Alert Rule",
                 isCurrentPage: true
             }
         ];

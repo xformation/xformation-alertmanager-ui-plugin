@@ -21,6 +21,10 @@ export class ScriptEditor extends React.Component<any, any> {
             },
             {
                 label: "Monitor | Alerts",
+                route: `${config.basePath}/monitoralerts`
+            },
+            {
+                label: "Script Editor",
                 isCurrentPage: true
             }
         ];
@@ -78,7 +82,7 @@ export class ScriptEditor extends React.Component<any, any> {
                             onChange={(editor, data, value) => {
                             }}
                         />
-                        <div className="validate-bottom-text"> > You have unsaved changes, save to validate TICKscript</div>
+                        <div className="validate-bottom-text"> &gt; You have unsaved changes, save to validate TICKscript</div>
                     </div>
 
                 </div>

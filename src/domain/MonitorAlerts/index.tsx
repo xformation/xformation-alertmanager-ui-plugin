@@ -23,6 +23,10 @@ export class MonitorAlerts extends React.Component<any, any> {
             },
             {
                 label: "Monitor | Alerts",
+                route: `${config.basePath}/monitoralerts`
+            },
+            {
+                label: "Monitor Alerts",
                 isCurrentPage: true
             }
         ];
