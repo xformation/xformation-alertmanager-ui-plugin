@@ -13,7 +13,6 @@ import { now } from 'lodash';
 import Table from './../../components/table';
 import TimeRange from './../../components/TimeRange';
 import DateTimeRangePicker from '@wojtekmaj/react-datetimerange-picker';
-import { dummyData } from './dummyData';
 
 export class AllAlerts extends React.Component<any, any> {
     editAlertRef: any;
@@ -38,7 +37,7 @@ export class AllAlerts extends React.Component<any, any> {
             message: null,
             severity: "",
             isAlertOpen: false,
-            alertData: dummyData,
+            alertData: [],
             modal: false,
             resourceGroup: "",
             resource: "",
