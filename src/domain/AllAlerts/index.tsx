@@ -577,12 +577,6 @@ export class AllAlerts extends React.Component<any, any> {
                                 {this.createSelectbox(this.alertStates)}
                             </select>
                         </div>
-                        <div className="form-group filter-control-group archive">
-                            <label htmlFor="archive">
-                                <input type="checkbox" className="form-control" checked />
-                                <span>Archive</span>
-                            </label>
-                        </div>
                         <div className="form-group filter-control-group date-time-range-picker">
                             <label htmlFor="timerange">
                                 Time Range&nbsp;&nbsp;&nbsp;
@@ -593,6 +587,12 @@ export class AllAlerts extends React.Component<any, any> {
                                 value={datevalue}
                                 rangeDivider= "to"
                             />
+                        </div>
+                        <div className="form-group filter-control-group archive">
+                            <label htmlFor="archive">
+                                <input type="checkbox" className="form-control" checked />
+                                <span>Archive</span>
+                            </label>
                         </div>
                         {
                             filterCheckbox &&
