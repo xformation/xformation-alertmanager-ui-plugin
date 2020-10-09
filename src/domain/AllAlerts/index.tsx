@@ -26,8 +26,6 @@ export class AllAlerts extends React.Component<any, any> {
     alertStates: any;
     timeRangeRef: any;
     tableValue: any;
-    perPageLimit: any;
-    checkboxValue: any;
     constructor(props: any) {
         super(props);
         this.state = {
@@ -160,8 +158,6 @@ export class AllAlerts extends React.Component<any, any> {
                 },
             ],
         };
-        this.perPageLimit = 6;
-        this.checkboxValue = true;
         this.breadCrumbs = [
             {
                 label: "Home",
@@ -685,7 +681,7 @@ export class AllAlerts extends React.Component<any, any> {
                         <div className="heading">
                             <h2>All Alerts</h2>
                         </div>
-                        <Table valueFromData={{ columns: columns, data: tableData }} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue} tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" showingLine="Showing %start% to %end% of %total%" />
+                        <Table valueFromData={{ columns: columns, data: tableData }} perPageLimit={6} visiblecheckboxStatus={true} tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" showingLine="Showing %start% to %end% of %total%" />
                     </div>
                 </div>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">

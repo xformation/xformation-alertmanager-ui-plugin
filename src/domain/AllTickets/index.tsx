@@ -6,6 +6,8 @@ import { StartECPopup } from './StartECPopup';
 import { InstancePopup } from './InstancePopup';
 import { OpenNewTicketPopup } from '../../../../xformation-servicedesk-ui-plugin/src/components/OpenNewTicketPopup';
 import { RestService } from '../_service/RestService';
+import Table from './../../components/table';
+
 export class AllTickets extends React.Component<any, any> {
     breadCrumbs: any;
     startECRef: any;
@@ -16,7 +18,79 @@ export class AllTickets extends React.Component<any, any> {
         this.openNewTicketRef = React.createRef();
         this.state = {
             guid: '',
-            ticketDataList: [],
+            columns: [
+                {
+                    label: 'ID',
+                    key: 'id',
+                },
+                {
+                    label: 'Priority',
+                    key: 'priority',
+                    renderCallback: (value: any) => {
+                        let strClass = "";
+                        if (value) {
+                            value = value.toLowerCase();
+                        }
+                        if (value === "high") {
+                            strClass = "severity-high";
+                        } else if (value === "Low") {
+                            strClass = "severity-low";
+                        } else if (value === "Urgent") {
+                            strClass = "severity-urgent";
+                        } else if (value === "Critical") {
+                            strClass = "severity-critical";
+                        } else if (value === "Medium") {
+                            strClass = "severity-medium";
+                        }
+                        return <td><span className={strClass}>{value}</span></td>
+                    }
+                },
+                {
+                    label: 'Subject',
+                    key: 'subject'
+                },
+                {
+                    label: 'Assigned To',
+                    key: 'assignedToName'
+                },
+                {
+                    label: 'Created At',
+                    key: 'createdAt'
+                },
+                {
+                    label: 'Action',
+                    key: 'action',
+                    renderCallback: (value: any, alert: any) => {
+                        return <td>
+                            <div className="d-inline-block">
+                                <button className="btn btn-link">
+                                    <i className="fa fa-edit"></i>
+                                </button>
+                                <button className="btn btn-link">
+                                    <i className="fa fa-trash"></i>
+                                </button>
+                                <button className="btn btn-link" id={`PopoverFocus-${alert.id}`}>
+                                    <i className="fa fa-ellipsis-h"></i>
+                                </button>
+                                <UncontrolledPopover trigger="legacy" placement="bottom" target={`PopoverFocus-${alert.id}`}>
+                                    <PopoverBody>
+                                        <span className="bold-label colored-label pointer-label" onClick={this.onClickStartEC2}>Start EC2</span>
+                                        <br />
+                                        <span className="bold-label colored-label pointer-label">Start EC2 with prompt</span>
+                                    </PopoverBody>
+                                </UncontrolledPopover>
+                            </div>
+                        </td>
+                    }
+                },
+            ],
+            ticketDataList: [{
+                "createdAt": "2020-10-09T07:33:15.663Z",
+                "subject": "pp",
+                "assignedToName": null,
+                "id": 1102,
+                "priority": "Medium"
+            }],
         };
         this.breadCrumbs = [
             {
@@ -42,49 +116,19 @@ export class AllTickets extends React.Component<any, any> {
         this.setState({
             guid: guid,
         });
-        try {
-            await RestService.getData(config.GET_TICKETS_BY_GUID_URL + "/" + guid, null, null).then(
-                (response: any) => {
+        // try {
+        //     await RestService.getData(config.GET_TICKETS_BY_GUID_URL + "/" + guid, null, null).then(
+        //         (response: any) => {
 
-                    this.setState({
-                        ticketDataList: response,
-                    });
-                })
-        } catch (err) {
-            console.log("Loading ticket data failed. Error: ", err);
-        }
+        //             this.setState({
+        //                 ticketDataList: response,
+        //             });
+        //         })
+        // } catch (err) {
+        //     console.log("Loading ticket data failed. Error: ", err);
+        // }
     }
-    ticketsTable = () => {
-        const retData = [];
-        const { ticketDataList } = this.state;
-        console.log("final ticket data : ", ticketDataList);
-        for (let i = 0; i < ticketDataList.length; i++) {
-            const ticketData = ticketDataList[i];
-            retData.push(
-                <tr className="gray-label">
-                    <td className="gray-label bold-label">
-                        <div className="pointer-label">{ticketData.id}</div>
-                    </td>
-                    <td>
-                        {ticketData.subject}
-                    </td>
-                    <td>
-                        <div className="severity-critical bold-label colored-label">{ticketData.priority}</div>
-                    </td>
-                    <td>{ticketData.createdAt}</td>
-                    <td>{ticketData.assignedToName}</td>
-                    <td>
-                        <button className="btn btn-link" id="PopoverFocus">
-                            <i className="fa fa-ellipsis-h"></i>
-                        </button>
-                    </td>
-                    <td></td>
-                </tr>
-            )
-        }    
-        console.log("Ui data : ", retData)
-        return retData;
-    }
+
     onClickStartEC2 = (e: any) => {
         e.preventDefault();
         this.startECRef.current.toggle();
@@ -148,43 +192,8 @@ export class AllTickets extends React.Component<any, any> {
                     </div>
                 </div>
                 <div className="alert-data-table-container">
-                    <table className="alert-data-table">
-                        <thead>
-                            <tr>
-                                <th>Ticket</th>
-                                <th>Resource</th>
-                                <th>Severity</th>
-                                <th>Created At</th>
-                                <th>Assignee</th>
-                                <th>Action</th>
-                                <th>Result</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.ticketsTable()}
-                            <tr className="gray-label">
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <button className="btn btn-link" id="PopoverFocus">
-                                        <i className="fa fa-ellipsis-h"></i>
-                                    </button>
-                                </td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <Table valueFromData={{ columns: state.columns, data: state.ticketDataList }} perPageLimit={5} visiblecheckboxStatus={false} tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" showingLine="Showing %start% to %end% of %total%" />
                 </div>
-                <UncontrolledPopover trigger="legacy" placement="bottom" target="PopoverFocus">
-                    <PopoverBody>
-                        <span className="bold-label colored-label pointer-label" onClick={this.onClickStartEC2}>Start EC2</span>
-                        <br />
-                        <span className="bold-label colored-label pointer-label">Start EC2 with prompt</span>
-                    </PopoverBody>
-                </UncontrolledPopover>
                 <StartECPopup ref={this.startECRef} />
                 <InstancePopup ref={this.instanceRef} />
                 <OpenNewTicketPopup guid={state.guid} ref={this.openNewTicketRef} />
