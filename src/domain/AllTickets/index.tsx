@@ -81,7 +81,7 @@ export class AllTickets extends React.Component<any, any> {
                     <td></td>
                 </tr>
             )
-        }
+        }    
         console.log("Ui data : ", retData)
         return retData;
     }
@@ -163,93 +163,11 @@ export class AllTickets extends React.Component<any, any> {
                         <tbody>
                             {this.ticketsTable()}
                             <tr className="gray-label">
-                                <td className="gray-label bold-label">
-                                    <div className="pointer-label" onClick={this.onClickInstance}>144</div>
-                                </td>
-                                <td>
-                                    Instance ID: I-3545frds489
-                                </td>
-                                <td>
-                                    <div className="severity-critical bold-label colored-label">Critical</div>
-                                </td>
-                                <td>17/03/2020, 11:29:00</td>
-                                <td>Assign To</td>
-                                <td>
-                                    <button className="btn btn-link" id="PopoverFocus">
-                                        <i className="fa fa-ellipsis-h"></i>
-                                    </button>
-                                </td>
                                 <td></td>
-                            </tr>
-                            <tr className="gray-label">
-                                <td className="gray-label bold-label">
-                                    <div className="pointer-label">144</div>
-                                </td>
-                                <td>
-                                    Instance ID: I-3545frds489
-                                </td>
-                                <td>
-                                    <div className="severity-critical bold-label colored-label">Critical</div>
-                                </td>
-                                <td>17/03/2020, 11:29:00</td>
-                                <td>Assign To</td>
-                                <td>
-                                    <button className="btn btn-link" id="PopoverFocus">
-                                        <i className="fa fa-ellipsis-h"></i>
-                                    </button>
-                                </td>
                                 <td></td>
-                            </tr>
-                            <tr className="gray-label">
-                                <td className="gray-label bold-label">
-                                    <div className="pointer-label">144</div>
-                                </td>
-                                <td>
-                                    Instance ID: I-3545frds489
-                                </td>
-                                <td>
-                                    <div className="severity-critical bold-label colored-label">Critical</div>
-                                </td>
-                                <td>17/03/2020, 11:29:00</td>
-                                <td>Assign To</td>
-                                <td>
-                                    <button className="btn btn-link" id="PopoverFocus">
-                                        <i className="fa fa-ellipsis-h"></i>
-                                    </button>
-                                </td>
                                 <td></td>
-                            </tr>
-                            <tr className="gray-label">
-                                <td className="gray-label bold-label">
-                                    <div className="pointer-label">144</div>
-                                </td>
-                                <td>
-                                    Instance ID: I-3545frds489
-                                </td>
-                                <td>
-                                    <div className="severity-high bold-label colored-label">High</div>
-                                </td>
-                                <td>17/03/2020, 11:29:00</td>
-                                <td>Assign To</td>
-                                <td>
-                                    <button className="btn btn-link" id="PopoverFocus">
-                                        <i className="fa fa-ellipsis-h"></i>
-                                    </button>
-                                </td>
                                 <td></td>
-                            </tr>
-                            <tr className="gray-label">
-                                <td className="gray-label bold-label">
-                                    <div className="pointer-label">144</div>
-                                </td>
-                                <td>
-                                    Instance ID: I-3545frds489
-                                </td>
-                                <td>
-                                    <div className="severity-low bold-label colored-label">Low</div>
-                                </td>
-                                <td>17/03/2020, 11:29:00</td>
-                                <td>Assign To</td>
+                                <td></td>
                                 <td>
                                     <button className="btn btn-link" id="PopoverFocus">
                                         <i className="fa fa-ellipsis-h"></i>
