@@ -148,55 +148,50 @@ export class AllTickets extends React.Component<any, any> {
         return (
             <div className="all-alerts-container">
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} />
-                <div className="page-header-container">
-                    <span className="page-header">All Tickets</span>
-                    <button className="header-button" onClick={this.onClickOpenNewTicket} >
-                        <i className="fa fa-plus"></i>
-                        Create Ticket
-                    </button>
-                    <button className="header-button">
-                        <i className="fa fa-refresh"></i>
-                        Refresh
-                    </button>
-                    <div className="form-group filter-control-group" style={{ display: "inline-block", marginRight: "30px", marginBottom: "0px" }}>
-                        <div className="input-group mb-2">
-                            <div className="input-group-prepend">
-                                <div className="input-group-text">
-                                    <i className="fa fa-search"></i>
+                <div className="alert-page-container">
+                    <div className="common-container">
+                        <div className="row">
+                            <div className="col-lg-3 col-md-12 col-sm-12">
+                                <div className="alert-heading">All Tickets</div>
+                            </div>
+                            <div className="col-lg-9 col-md-12 col-sm-12">
+                                <div className="float-right script-editor-btn">
+
+                                    <button className="alert-white-button" onClick={this.onClickOpenNewTicket} >
+                                        <i className="fa fa-plus"></i>&nbsp;&nbsp;
+                                        Create Ticket
+                                    </button>
+                                    <button className="alert-white-button">
+                                        <i className="fa fa-refresh"></i>&nbsp;&nbsp;
+                                        Refresh
+                                    </button>
+                                    <button className="alert-white-button">
+                                        <i className="fa fa-floppy-o"></i>&nbsp;&nbsp;
+                                        Save Search
+                                    </button>
+                                    <div className="form-group filter-control-group" style={{ display: "inline-block", marginRight: "15px", marginBottom: "0px" }}>
+                                        <select className="form-control">
+                                            <option>Export</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div>
+                                    
                                 </div>
                             </div>
-                            <input type="text" className="form-control" id="inlineFormInputGroup" placeholder="filter alerts" />
                         </div>
+                        
+                        
                     </div>
-                    <button className="header-button">
-                        <i className="fa fa-floppy-o"></i>
-                        Save Search
-                    </button>
-                    <div className="form-group filter-control-group" style={{ display: "inline-block", marginRight: "30px", marginBottom: "0px" }}>
-                        <select className="form-control">
-                            <option>Sort by</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
+                    <div className="alert-data-table-container allalert-data-table-container common-container border-bottom-0">
+                        <Table valueFromData={{ columns: state.columns, data: state.ticketDataList }} perPageLimit={5} visiblecheckboxStatus={false} tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" showingLine="Showing %start% to %end% of %total%" />
                     </div>
-                    <div className="form-group filter-control-group" style={{ display: "inline-block", marginRight: "30px", marginBottom: "0px" }}>
-                        <select className="form-control">
-                            <option>Export</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
+                    <StartECPopup ref={this.startECRef} />
+                    <InstancePopup ref={this.instanceRef} />
+                    <OpenNewTicketPopup guid={state.guid} ref={this.openNewTicketRef} />
                 </div>
-                <div className="alert-data-table-container">
-                    <Table valueFromData={{ columns: state.columns, data: state.ticketDataList }} perPageLimit={5} visiblecheckboxStatus={false} tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" showingLine="Showing %start% to %end% of %total%" />
-                </div>
-                <StartECPopup ref={this.startECRef} />
-                <InstancePopup ref={this.instanceRef} />
-                <OpenNewTicketPopup guid={state.guid} ref={this.openNewTicketRef} />
             </div>
         );
     }

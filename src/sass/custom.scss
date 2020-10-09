@@ -211,40 +211,21 @@ a {
 /*********************** popover ****************************/
 
 .popover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1060;
+  text-align: center;
+  z-index: 106;
   display: block;
   max-width: 276px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.5;
-  text-align: left;
-  text-align: start;
-  text-decoration: none;
-  text-shadow: none;
-  text-transform: none;
-  letter-spacing: normal;
-  word-break: normal;
-  word-spacing: normal;
-  white-space: normal;
-  line-break: auto;
   font-size: 0.875rem;
-  word-wrap: break-word;
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.3rem;
-
   .arrow {
     position: absolute;
     display: block;
     width: 1rem;
     height: 0.5rem;
     margin: 0 0.3rem;
-
     &::before, &::after {
       position: absolute;
       display: block;
@@ -366,7 +347,7 @@ a {
 }
 
 .popover-body {
-  padding: 0.5rem 0.7rem 0.1rem;
+  padding: 0.5rem 0.7rem;
   color: #212529;
 }
 
@@ -724,5 +705,186 @@ a {
     .alert-white-button{
       min-width: inherit;
     }
+  }
+}
+
+
+.contact-popup-container{
+  .heading{
+    border-bottom: none;
+      h4{
+          color: #323C47;
+          font-size: 20px;
+          line-height: 24px;
+          font-weight: 600;
+          margin-bottom: 5px;
+      }
+      span{
+          color: #A9B9C6;
+          font-size: 12px;
+          line-height: 18px;
+          font-weight: 400;
+          a{
+              color: #49C740;
+          }
+      }
+  }
+  .upload-photo{
+      position: relative;
+      z-index: 10;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      .upload-icon{
+          background-color: #438AFB;
+          border-radius: 2px;
+          padding: 0;
+          width: 44px;
+          height: 44px;
+          color: #ffffff;
+          font-size: 24px;
+          line-height: 44px;
+          text-align: center;
+          margin-right: 15px;
+          vertical-align: top;
+      }
+      strong{
+          font-size: 16px;
+          line-height: 20px;
+          color: #438AFB;
+      }
+      p{
+          color: #A9B9C6;
+          font-size: 12px;
+          line-height: 18px;
+          font-weight: 400;
+          margin-bottom: 0;
+      }
+      .contactPhoto{
+          opacity: 0;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 60%;
+          height: 100%;
+          cursor: pointer;
+      }
+      .companyLogo{
+          opacity: 0;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 60%;
+          height: 100%;
+          cursor: pointer;
+      }
+  }
+  .form-group{
+      margin-bottom: 1.5rem;
+      label{
+          color: #323C47;
+          font-size: 14px;
+          line-height: 18px;
+          font-weight: 600;
+          margin-bottom: 0;
+          display: block;
+      }
+      .form-group-inner{
+          label{
+              display: none;
+          } 
+      }
+      .form-control{
+          background-color: transparent;
+          border: none;
+          border-bottom: 1px solid #89898a;
+          color: #89898a;
+          font-size: 13px;
+          line-height: 18px;
+          padding: 0.375rem 0;
+          width: 100%;
+          border-radius: 0;
+          text-align: left;
+          &.textarea{
+              height: 150px;
+          }
+          &:focus{
+              outline: none;
+          }
+      }
+      .add-conatct{
+          font-size: 12px;
+          font-weight: 600;
+          color: #3B7CFF;
+          line-height: 18px;
+          border: none;
+          background: none;
+          padding: 0;
+      }
+      .invalid-feedback{
+          color: red;
+          font-size: 13px;
+          line-height: 16px;
+          font-weight: 400;
+          display: block;
+      }
+  }
+  .atleast-fields-box{
+      border: 1px solid #D1DAE2;
+      background-color: #F9F9F9;
+      padding: 20px;
+      padding-bottom: 0;
+      margin-bottom: 20px;
+      h3{
+          color: #323C47;
+          font-size: 15px;
+          line-height: 18px;
+          font-weight: 600;
+          margin-bottom: 20px;
+      }
+  }
+  .form-check{
+    padding-right: 10px;
+    .form-check-input{
+        display: inline-block;
+        margin-top: 2px;
+    }
+    .form-check-label{
+        font-size: 14px;
+        line-height: 18px;
+        color: #323C47;
+        font-weight: 600;
+        display: inline-block;
+        padding-left: 7px;
+    }
+}
+  .contact-popup-buttons{
+      button{
+          border: 1px solid #A9B9C6;
+          background-color: #ffffff;
+          color: #89898a;
+          font-size: 15px;
+          line-height: 36px;
+          font-weight: 500;
+          padding: 0 30px;
+          margin: 5px;
+          text-align: center;
+          &.save{
+              border-color: #3B7CFF;
+              background-color: #3B7CFF;
+              color: #ffffff;
+          }
+      }
+      
+  }
+  &.new-ticket-container{
+      .form-group{
+          label{
+              margin-bottom: 5px;
+          }
+          .form-control{
+              border: 1px solid #D1DAE2;
+              padding: 0.375rem 0.75rem;
+          }
+      }
   }
 }

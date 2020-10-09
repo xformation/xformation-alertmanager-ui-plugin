@@ -199,30 +199,11 @@ a:hover {
 
 /*********************** popover ****************************/
 .popover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1060;
+  text-align: center;
+  z-index: 106;
   display: block;
   max-width: 276px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.5;
-  text-align: left;
-  text-align: start;
-  text-decoration: none;
-  text-shadow: none;
-  text-transform: none;
-  letter-spacing: normal;
-  word-break: normal;
-  word-spacing: normal;
-  white-space: normal;
-  line-break: auto;
   font-size: 0.875rem;
-  word-wrap: break-word;
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -372,7 +353,7 @@ a:hover {
 }
 
 .popover-body {
-  padding: 0.5rem 0.7rem 0.1rem;
+  padding: 0.5rem 0.7rem;
   color: #212529;
 }
 
@@ -786,6 +767,182 @@ a:hover {
   }
 }
 
+.contact-popup-container .heading {
+  border-bottom: none;
+}
+.contact-popup-container .heading h4 {
+  color: #323c47;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.contact-popup-container .heading span {
+  color: #a9b9c6;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+}
+.contact-popup-container .heading span a {
+  color: #49c740;
+}
+
+.contact-popup-container .upload-photo {
+  position: relative;
+  z-index: 10;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.contact-popup-container .upload-photo .upload-icon {
+  background-color: #438afb;
+  border-radius: 2px;
+  padding: 0;
+  width: 44px;
+  height: 44px;
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 44px;
+  text-align: center;
+  margin-right: 15px;
+  vertical-align: top;
+}
+.contact-popup-container .upload-photo strong {
+  font-size: 16px;
+  line-height: 20px;
+  color: #438afb;
+}
+.contact-popup-container .upload-photo p {
+  color: #a9b9c6;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+.contact-popup-container .upload-photo .contactPhoto {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  cursor: pointer;
+}
+.contact-popup-container .upload-photo .companyLogo {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.contact-popup-container .form-group {
+  margin-bottom: 1.5rem;
+}
+.contact-popup-container .form-group label {
+  color: #323c47;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+  margin-bottom: 0;
+  display: block;
+}
+.contact-popup-container .form-group .form-group-inner label {
+  display: none;
+}
+.contact-popup-container .form-group .form-control {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #89898a;
+  color: #89898a;
+  font-size: 13px;
+  line-height: 18px;
+  padding: 0.375rem 0;
+  width: 100%;
+  border-radius: 0;
+  text-align: left;
+}
+.contact-popup-container .form-group .form-control.textarea {
+  height: 150px;
+}
+.contact-popup-container .form-group .form-control:focus {
+  outline: none;
+}
+.contact-popup-container .form-group .add-conatct {
+  font-size: 12px;
+  font-weight: 600;
+  color: #3b7cff;
+  line-height: 18px;
+  border: none;
+  background: none;
+  padding: 0;
+}
+.contact-popup-container .form-group .invalid-feedback {
+  color: red;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 400;
+  display: block;
+}
+
+.contact-popup-container .atleast-fields-box {
+  border: 1px solid #d1dae2;
+  background-color: #f9f9f9;
+  padding: 20px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+}
+.contact-popup-container .atleast-fields-box h3 {
+  color: #323c47;
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.contact-popup-container .form-check {
+  padding-right: 10px;
+}
+.contact-popup-container .form-check .form-check-input {
+  display: inline-block;
+  margin-top: 2px;
+}
+.contact-popup-container .form-check .form-check-label {
+  font-size: 14px;
+  line-height: 18px;
+  color: #323c47;
+  font-weight: 600;
+  display: inline-block;
+  padding-left: 7px;
+}
+
+.contact-popup-container .contact-popup-buttons button {
+  border: 1px solid #a9b9c6;
+  background-color: #ffffff;
+  color: #89898a;
+  font-size: 15px;
+  line-height: 36px;
+  font-weight: 500;
+  padding: 0 30px;
+  margin: 5px;
+  text-align: center;
+}
+.contact-popup-container .contact-popup-buttons button.save {
+  border-color: #3b7cff;
+  background-color: #3b7cff;
+  color: #ffffff;
+}
+
+.contact-popup-container.new-ticket-container .form-group label {
+  margin-bottom: 5px;
+}
+
+.contact-popup-container.new-ticket-container .form-group .form-control {
+  border: 1px solid #d1dae2;
+  padding: 0.375rem 0.75rem;
+}
+
 .breadcrumbs-container {
   background-color: #3b4859;
   padding: 14px 20px 15px;
@@ -817,33 +974,38 @@ a:hover {
   }
 }
 
-.alert-modal-container {
-  max-width: 1200px !important;
+.modal {
+  -webkit-box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+  max-width: 992px;
+  background: #ffffff;
 }
-.alert-modal-container .modal-content {
-  padding: 15px;
-  background-color: white !important;
-  color: black;
+.modal .modal-content {
+  padding: 40px;
+  padding-right: 25px;
 }
-.alert-modal-container .modal-header {
-  background: white;
-  box-shadow: none;
-  border-bottom: 1px dashed #a2c0d4;
-  height: 35px;
+.modal .modal-content .modal-body {
+  padding-right: 15px;
 }
-.alert-modal-container .modal-header .modal-title {
-  color: #3b4859;
-  float: left;
-  margin: 0px;
-  font-size: 20px;
+.modal .modal-content .close-btn {
+  position: absolute;
+  right: -16px;
+  top: -16px;
+  background-color: #f93d3d;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 32px;
+  width: 32px;
+  text-align: center;
+  height: 32px;
+  border: none;
+  font-weight: 600;
 }
-.alert-modal-container .modal-header button {
-  float: right;
-  font-size: 33px;
-  top: -5px;
-  position: relative;
-  color: red;
-  opacity: 1;
+
+.modal-backdrop {
+  background-color: #141414b3;
+  opacity: 0.8;
 }
 
 /*********************************** Script Editor Buttons *********************************/

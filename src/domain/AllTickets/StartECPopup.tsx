@@ -14,23 +14,30 @@ export class StartECPopup extends React.Component<any, any> {
             modal: !this.state.modal
         });
     };
+    handleClose = () => {
+        this.setState({
+            modal: false,
+        });
+    }
 
     render() {
         const state = this.state;
         return (
             <Modal isOpen={state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">
-                <ModalHeader toggle={this.toggle}>Start EC2</ModalHeader>
+                <button className="close-btn" onClick={this.handleClose}>X</button>
                 <ModalBody style={{ height: 'calc(100vh - 210px)', overflowY: 'auto', overflowX: "hidden" }}>
-                    <div className="select-resource-container">
-                        <div className="italic-label gray-label m-b-1">
-                            This Job executes start EC2 action whenever a CloudWatch Events alert with "Instance Stopped" message is received
+                    <div className="d-block width-100 contact-popup-container select-resource-container">
+                        <div className="d-block width-100 p-b-20 heading">
+                            <h4 className="d-block">Start EC2</h4>
+                            <span className="d-block">This Job executes start EC2 action whenever a CloudWatch Events alert with "Instance Stopped" message is received</span>
                         </div>
+                        
                         <div className="form-group form-check">
                             <input type="checkbox" className="form-check-input" id="enablejob" />
                             <label className="form-check-label" htmlFor="enablejob">Enable Job</label>
                         </div>
                         <div className="bold-label gray-label">If following conditions are met</div>
-                        <select className="form-control col-sm-6 m-t-1">
+                        <select className="form-control col-sm-9 m-t-1">
                             <option>Default select</option>
                         </select>
                         <div className="form-row m-t-1">
@@ -112,9 +119,9 @@ export class StartECPopup extends React.Component<any, any> {
                             </select>
                             after alert is created.
                         </div>
-                        <div>
-                            <button className="btn btn-secondary m-r-2">Create &amp; Enable</button>
-                            <button className="btn btn-warning">Cancel</button>
+                        <div className="d-block text-right p-t-20 contact-popup-buttons">
+                            <button className="cancel" onClick={this.handleClose}>Cancel</button>
+                            <button className="save">Create &amp; Enable</button>
                         </div>
                     </div>
                 </ModalBody>

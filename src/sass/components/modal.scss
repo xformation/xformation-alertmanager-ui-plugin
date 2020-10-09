@@ -1,32 +1,33 @@
-.alert-modal-container {
-  max-width: 1200px !important;
-
+.modal{
+  -webkit-box-shadow: 0 0px 0px rgba(0, 0, 0, 0.0);
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.0);
+  max-width: 992px;
+  background: #ffffff;
   .modal-content {
-    padding: 15px;
-    background-color: white !important;
-    color: black;
-  }
-
-  .modal-header {
-    background: white;
-    box-shadow: none;
-    border-bottom: 1px dashed #a2c0d4;
-    height: 35px;
-
-    .modal-title {
-      color: #3b4859;
-      float: left;
-      margin: 0px;
-      font-size: 20px;
+    padding: 40px;
+    padding-right: 25px;
+    .modal-body{
+      padding-right: 15px;
     }
-
-    button {
-      float: right;
-      font-size: 33px;
-      top: -5px;
-      position: relative;
-      color: red;
-      opacity: 1;
+    .close-btn{
+      position: absolute;
+      right: -16px;
+      top: -16px;
+      background-color: #F93D3D;
+      border-radius: 50%;
+      color: #ffffff;
+      font-size: 16px;
+      line-height: 32px;
+      width: 32px;
+      text-align: center;
+      height: 32px;
+      border: none;
+      font-weight: 600;
     }
   }
+
+}
+.modal-backdrop{
+  background-color: #141414B3;
+  opacity: 0.8;
 }
