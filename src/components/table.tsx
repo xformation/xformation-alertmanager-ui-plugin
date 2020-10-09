@@ -7,6 +7,7 @@ const sortEnum = {
 };
 
 export class Table extends React.Component<any, any> {
+    paginationRef: any;
     constructor(props: any) {
         super(props);
         this.state = {
@@ -24,6 +25,7 @@ export class Table extends React.Component<any, any> {
             visibleCheckbox: this.props.visiblecheckboxStatus,
             showSelect: false
         }
+        this.paginationRef = React.createRef();
     };
 
     tableBodyData() {
@@ -179,8 +181,10 @@ export class Table extends React.Component<any, any> {
                     <li className="page-item previous">
                         <a className={currentPage === 0 ? 'page-link desable' : 'page-link enable'} href="#" onClick={(e) => this.navigatePage('pre', e, '')}>Previous</a>
                     </li>
-                    {rows}
-                    <li><a href="#">......</a></li>
+                    <div ref={this.paginationRef}>
+                        {rows}
+                    </div>
+                    {/* <li><a href="#">......</a></li> */}
                     <li className="page-item next">
                         <a className={currentPage === this.state.totalPages - 1 ? 'page-link desable' : 'page-link enable'} href="#" onClick={(e) => this.navigatePage('next', e, '')}>Next</a>
                     </li>
@@ -190,51 +194,52 @@ export class Table extends React.Component<any, any> {
     }
 
     navigatePage(target: any, e: any, i: any = null) {
-        const { totalPages, currentPage } = this.state;
+        let { totalPages, currentPage } = this.state;
         e.preventDefault();
         switch (target) {
             case 'pre':
                 if (currentPage !== 0) {
-                    this.setState({
-                        currentPage: currentPage - 1,
-                    });
+                    currentPage = currentPage - 1;
                 }
                 break;
             case 'next':
                 if (currentPage !== totalPages - 1) {
-                    this.setState({
-                        currentPage: currentPage + 1,
-                    });
+                    currentPage = currentPage + 1;
                 }
                 break;
             case 'btn-click':
-                this.setState({
-                    currentPage: i
-                });
+                currentPage = i;
                 break;
         }
+        this.setState({
+            currentPage
+        }, () => {
+            this.setCurrentPageIntoView();
+        });
     }
+
+    setCurrentPageIntoView = () => {
+        const { currentPage } = this.state;
+        let scrollLeft = currentPage * 28;
+        if(this.paginationRef.current){
+            this.paginationRef.current.scrollTo(scrollLeft, 0);
+        }
+    };
 
     handleChange = (e: any) => {
         const { displayData } = this.state;
         const totalData = displayData.length;
+        let totalPages = 1;
+        let perPageLimit = totalData;
         if (e.target.value !== 'all') {
-            let indexOfLastData = Math.ceil(totalData / e.target.value);
-            this.setState({
-                perPageLimit: e.target.value,
-                totalPages: indexOfLastData,
-                start_index: 1,
-                ending_index: e.target.value,
-            });
-        } else {
-            let indexOfLastData = Math.ceil(totalData / totalData);
-            this.setState({
-                perPageLimit: totalData,
-                totalPages: indexOfLastData,
-                start_index: 1,
-                ending_index: totalData
-            });
+            totalPages = Math.ceil(totalData / e.target.value);
+            perPageLimit = e.target.value;
         }
+        this.setState({
+            perPageLimit,
+            totalPages,
+            currentPage: 0
+        });
     }
 
     onSearchChange = (e: any) => {
