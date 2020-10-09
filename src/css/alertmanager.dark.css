@@ -423,7 +423,6 @@ a:hover {
 .filter-container .filter-control-group.date-time-range-picker {
   width: 410px;
   max-width: 410px;
-  margin-top: 27px;
 }
 .filter-container .filter-control-group .form-control {
   background-color: #f0f3f7 !important;
