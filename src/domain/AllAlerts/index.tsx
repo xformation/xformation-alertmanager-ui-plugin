@@ -5,7 +5,6 @@ import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
 import { PopupContent } from './PopupContent';
 import { EditAlertPopup } from './EditAlertPopup';
-import { severityDS } from '../_utilities/commonDS';
 import { RestService } from '../_service/RestService';
 import { TimePicker } from 'react-time-picker';
 import AlertMessage from '../../components/AlertMessage';
@@ -13,8 +12,8 @@ import ConfirmDialog from '../../components/ConfirmDialog';
 import { now } from 'lodash';
 import Table from './../../components/table';
 import TimeRange from './../../components/TimeRange';
-import { useState } from 'react';
 import DateTimeRangePicker from '@wojtekmaj/react-datetimerange-picker';
+import { dummyData } from './dummyData';
 
 export class AllAlerts extends React.Component<any, any> {
     editAlertRef: any;
@@ -41,7 +40,7 @@ export class AllAlerts extends React.Component<any, any> {
             message: null,
             severity: "",
             isAlertOpen: false,
-            alertData: [],
+            alertData: dummyData,
             modal: false,
             resourceGroup: "",
             resource: "",
@@ -62,11 +61,12 @@ export class AllAlerts extends React.Component<any, any> {
                                 <div className="pointer-label" onClick={() => this.toggleModal(value, alert)}>{value}</div>
                             </td>
                         );
-                    }
+                    },
+                    isCaseInsensitive: true
                 },
                 {
                     label: 'Severity',
-                    key: 'Severity',
+                    key: 'severity',
                     renderCallback: (value: any) => {
                         let strClass = "";
                         if (value) {
@@ -74,53 +74,63 @@ export class AllAlerts extends React.Component<any, any> {
                         }
                         if (value === "high") {
                             strClass = "severity-high";
-                        } else if (value === "Low") {
+                        } else if (value === "low") {
                             strClass = "severity-low";
-                        } else if (value === "Urgent") {
+                        } else if (value === "urgent") {
                             strClass = "severity-urgent";
-                        } else if (value === "Critical") {
+                        } else if (value === "critical") {
                             strClass = "severity-critical";
-                        } else if (value === "Medium") {
+                        } else if (value === "medium") {
                             strClass = "severity-medium";
                         }
                         return <td><span className={strClass}>{value}</span></td>
-                    }
+                    },
+                    isCaseInsensitive: true
                 },
                 {
                     label: 'Monitor Condition',
-                    key: 'monitorcondition'
+                    key: 'monitorcondition',
+                    isCaseInsensitive: true
                 },
                 {
                     label: 'Alert State',
-                    key: 'alert_state'
+                    key: 'alert_state',
+                    isCaseInsensitive: true
                 },
                 {
                     label: 'Affected Resource',
-                    key: 'affectedresource'
+                    key: 'affectedresource',
+                    isCaseInsensitive: true
                 },
                 {
                     label: 'Monitor Service',
-                    key: 'monitorservice'
+                    key: 'monitorservice',
+                    isCaseInsensitive: true
                 },
                 {
                     label: 'Signal Type',
-                    key: 'signaltype'
+                    key: 'signaltype',
+                    isCaseInsensitive: true
                 },
                 {
                     label: 'Fired Time',
-                    key: 'firedtime'
+                    key: 'firedtime',
+                    isCaseInsensitive: true
                 },
                 {
                     label: 'Subscription',
-                    key: 'brcsubscription'
+                    key: 'brcsubscription',
+                    isCaseInsensitive: true
                 },
                 {
                     label: 'Suppression State',
-                    key: 'suppressionstate'
+                    key: 'suppressionstate',
+                    isCaseInsensitive: true
                 },
                 {
                     label: 'Resources',
-                    key: 'resources'
+                    key: 'resources',
+                    isCaseInsensitive: true
                 },
                 {
                     label: 'Action',
@@ -145,7 +155,8 @@ export class AllAlerts extends React.Component<any, any> {
                                 </UncontrolledPopover>
                             </div>
                         </td>
-                    }
+                    },
+                    isCaseInsensitive: true
                 },
             ],
         };
@@ -167,82 +178,82 @@ export class AllAlerts extends React.Component<any, any> {
         ];
         this.resourceGroup = [{
             label: "Compute",
-            value: "Compute"
+            value: "compute"
         }, {
             label: "Jobs",
-            value: "Jobs"
+            value: "jobs"
         }, {
             label: "Network",
-            value: "Network"
+            value: "network"
         }];
         this.resources = {
-            "Compute": [{
+            "compute": [{
                 label: "Node",
-                value: "Node"
+                value: "node"
             }, {
                 label: "Database",
-                value: "Database"
+                value: "database"
             }, {
                 label: "Storage",
-                value: "Storage"
+                value: "storage"
             }, {
                 label: "App",
-                value: "App"
+                value: "app"
             }],
-            "Jobs": [{
+            "jobs": [{
                 label: "SHELL JOBS",
-                value: "SHELL JOBS"
+                value: "shell jobs"
             }, {
                 label: "ETL JOBS",
-                value: "ETL JOBS"
+                value: "etl jobs"
             }],
-            "Network": [{
+            "network": [{
                 label: "VPC",
-                value: "VPC"
+                value: "vpc"
             }, {
                 label: "VPN",
-                value: "VPN"
+                value: "vpn"
             }]
         };
         this.monitoringServices = [{
             label: "Native AWS",
-            value: "Native AWS"
+            value: "native aws"
         }, {
             label: "Native AZURE",
-            value: "Native AZURE"
+            value: "native azure"
         }];
         this.alertTypes = [{
             label: "Metrics",
-            value: "Metrics"
+            value: "metrics"
         }, {
             label: "Logs",
-            value: "Logs"
+            value: "logs"
         }];
         this.severity = [{
             label: "Urgent",
-            value: severityDS.URGENT
+            value: 'urgent'
         }, {
             label: "Critical",
-            value: severityDS.CRITICAL
+            value: 'critical'
         }, {
             label: "High",
-            value: severityDS.HIGH
+            value: 'high'
         }, {
             label: "Medium",
-            value: severityDS.MEDIUM
+            value: 'medium'
         }, {
             label: "Low",
-            value: severityDS.LOW
+            value: 'low'
         }];
         this.alertStates = [{
             label: "New",
-            value: "New"
+            value: "new"
         }, {
             label: "InProgress",
-            value: "InProgress"
+            value: "inprogress"
         }, {
             label: "Closed",
-            value: "Closed"
+            value: "closed"
         }];
         this.editAlertRef = React.createRef();
     }
@@ -255,8 +266,8 @@ export class AllAlerts extends React.Component<any, any> {
                 data = row.client_url;
             }
         }
-        console.log("Alert : ",alert)
-        let alertObjAry=[];
+        console.log("Alert : ", alert)
+        let alertObjAry = [];
         alertObjAry.push(alert);
         this.setState({
             modal: !this.state.modal,
@@ -336,24 +347,92 @@ export class AllAlerts extends React.Component<any, any> {
             const length = alertData.length;
             for (let i = 0; i < length; i++) {
                 const alert = alertData[i];
+                const alertKeys = Object.keys(alert);
+                const lowerCaseKeys = alertKeys.map((key) => key.toLocaleLowerCase());
                 let isMatched = true;
                 if (resourceGroup) {
-                    isMatched = resourceGroup === alert.resourceGroup;
+                    let index = lowerCaseKeys.indexOf("resourcegroup");
+                    if (index !== -1) {
+                        let key = alertKeys[index];
+                        let data = alert[key];
+                        if (data) {
+                            isMatched = resourceGroup === data.toLowerCase();
+                        } else {
+                            isMatched = false;
+                        }
+                    } else {
+                        isMatched = false;
+                    }
                 }
                 if (isMatched && resource) {
-                    isMatched = resource === alert.resources;
+                    let index = lowerCaseKeys.indexOf("resources");
+                    if (index !== -1) {
+                        let key = alertKeys[index];
+                        let data = alert[key];
+                        if (data) {
+                            isMatched = resource === data.toLowerCase();
+                        } else {
+                            isMatched = false;
+                        }
+                    } else {
+                        isMatched = false;
+                    }
                 }
                 if (isMatched && monitorService) {
-                    isMatched = monitorService === alert.monitorService;
+                    let index = lowerCaseKeys.indexOf("monitorservice");
+                    if (index !== -1) {
+                        let key = alertKeys[index];
+                        let data = alert[key];
+                        if (data) {
+                            isMatched = monitorService === data.toLowerCase();
+                        } else {
+                            isMatched = false;
+                        }
+                    } else {
+                        isMatched = false;
+                    }
                 }
                 if (isMatched && alertType) {
-                    isMatched = alertType === alert.signalType;
+                    let index = lowerCaseKeys.indexOf("signaltype");
+                    if (index !== -1) {
+                        let key = alertKeys[index];
+                        let data = alert[key];
+                        if (data) {
+                            isMatched = alertType === data.toLowerCase();
+                        } else {
+                            isMatched = false;
+                        }
+                    } else {
+                        isMatched = false;
+                    }
                 }
-                if (isMatched && severity && alert.Severity) {
-                    isMatched = severity.toLowerCase() === alert.Severity.toLowerCase();
+                if (isMatched && severity) {
+                    let index = lowerCaseKeys.indexOf("severity");
+                    if (index !== -1) {
+                        let key = alertKeys[index];
+                        let data = alert[key];
+                        if (data) {
+                            isMatched = severity === data.toLowerCase();
+                        } else {
+                            isMatched = false;
+                        }
+                    } else {
+                        isMatched = false;
+                    }
                 }
                 if (isMatched && alertState) {
-                    isMatched = alertState === alert.alertState;
+                    let index = lowerCaseKeys.indexOf("alert_state");
+                    if (index !== -1) {
+                        let key = alertKeys[index];
+                        let data = alert[key];
+                        if (data) {
+                            isMatched = alertState === data.toLowerCase();
+                        } else {
+                            isMatched = false;
+                        }
+                    } else {
+                        isMatched = false;
+                    }
                 }
                 if (isMatched) {
                     retData.push(
@@ -481,8 +560,6 @@ export class AllAlerts extends React.Component<any, any> {
     }
 
     render() {
-        // const [value, onChange] = useState([new Date(), new Date()]);
-
         const { resourceGroup, resource, openTimeRange, monitorService, alertType, severity, alertState, filterCheckbox, objectType, object,
             isConfirmDialogOpen, confirmTitleMessage, message, isAlertOpen, columns, datevalue } = this.state;
         const tableData = this.applyFilters();
@@ -496,22 +573,22 @@ export class AllAlerts extends React.Component<any, any> {
                     <div className="common-container">
                         <Link to={`${config.basePath}/managealertrule`} className="alert-white-button">
                             <i className="fa fa-plus"></i>&nbsp;&nbsp;
-                            New Alert Rule
-                        </Link>
+                             New Alert Rule
+                         </Link>
                         <a className="alert-white-button" onClick={this.refreshData}>
                             <i className="fa fa-refresh"></i>&nbsp;&nbsp;
-                            Refresh
-                        </a>
+                             Refresh
+                         </a>
                         <Link to={`${config.basePath}/managealertrule`} className="alert-white-button float-right">
                             <i className="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;
-                            Back
-                        </Link>
+                             Back
+                         </Link>
                     </div>
                     <div className="filter-container row common-container">
                         <div className="form-group filter-control-group">
                             <label htmlFor="resourceGroup">
                                 Resource Group&nbsp;&nbsp;&nbsp;
-                                <i className="fa fa-info-circle"></i>
+                             <i className="fa fa-info-circle"></i>
                             </label>
                             <select className="form-control" name="resourceGroup" value={resourceGroup} onChange={this.handleStateChange}>
                                 <option value="">Select Resource Group</option>
@@ -521,26 +598,26 @@ export class AllAlerts extends React.Component<any, any> {
                         <div className="form-group filter-control-group">
                             <label htmlFor="resources">
                                 Resources&nbsp;&nbsp;&nbsp;
-                                <i className="fa fa-info-circle"></i>
+                             <i className="fa fa-info-circle"></i>
                             </label>
                             <select className="form-control" name="resource" value={resource} onChange={this.handleStateChange}>
                                 <option value="">Select Resources</option>
                                 {this.createSelectbox(this.resources[resourceGroup])}
                             </select>
                         </div>
-                        
+
                         {/* <TimeRange /> */}
                         {/* <div className="col-lg-2 col-md-3 col-sm-12">
                             <DateTimeRangePicker
                                 onChange={this.onChange}
                                 value={value}
                             />
-                            <TimeRange /> 
+                            <TimeRange />
                         </div> */}
                         <div className="form-group filter-control-group">
                             <label htmlFor="monitorservices">
                                 Monitor services&nbsp;&nbsp;&nbsp;
-                                <i className="fa fa-info-circle"></i>
+                             <i className="fa fa-info-circle"></i>
                             </label>
                             <select className="form-control" name="monitorService" value={monitorService} onChange={this.handleStateChange}>
                                 <option value="">Select Monitor Services</option>
@@ -550,7 +627,7 @@ export class AllAlerts extends React.Component<any, any> {
                         <div className="form-group filter-control-group">
                             <label htmlFor="alertType">
                                 Alert Type&nbsp;&nbsp;&nbsp;
-                                <i className="fa fa-info-circle"></i>
+                             <i className="fa fa-info-circle"></i>
                             </label>
                             <select className="form-control" name="alertType" value={alertType} onChange={this.handleStateChange}>
                                 <option value="">Select Alert Type</option>
@@ -560,7 +637,7 @@ export class AllAlerts extends React.Component<any, any> {
                         <div className="form-group filter-control-group">
                             <label htmlFor="serverity">
                                 Serverity&nbsp;&nbsp;&nbsp;
-                                <i className="fa fa-info-circle"></i>
+                             <i className="fa fa-info-circle"></i>
                             </label>
                             <select className="form-control" name="severity" value={severity} onChange={this.handleStateChange}>
                                 <option value="">Select Severity</option>
@@ -570,7 +647,7 @@ export class AllAlerts extends React.Component<any, any> {
                         <div className="form-group filter-control-group">
                             <label htmlFor="alertState">
                                 Alert state&nbsp;&nbsp;&nbsp;
-                                <i className="fa fa-info-circle"></i>
+                             <i className="fa fa-info-circle"></i>
                             </label>
                             <select className="form-control" name="alertState" value={alertState} onChange={this.handleStateChange}>
                                 <option value="Select Alert State">Select Alert State</option>
@@ -585,7 +662,7 @@ export class AllAlerts extends React.Component<any, any> {
                             <DateTimeRangePicker
                                 onChange={this.onChange}
                                 value={datevalue}
-                                rangeDivider= "to"
+                                rangeDivider="to"
                             />
                         </div>
                         <div className="form-group filter-control-group archive">
@@ -618,13 +695,13 @@ export class AllAlerts extends React.Component<any, any> {
                     </ModalBody>
                 </Modal>
                 {/* {alertTable.isDataPresent &&
-                    <UncontrolledPopover trigger="legacy" placement="bottom" target="PopoverFocus">
-                        <PopoverBody>
-                            <Link className=" " to={`${config.basePath}/alltickets`}>Create Ticket</Link>
-                            <Link className=" " to="">Silence</Link>
-                        </PopoverBody>
-                    </UncontrolledPopover>
-                } */}
+                     <UncontrolledPopover trigger="legacy" placement="bottom" target="PopoverFocus">
+                         <PopoverBody>
+                             <Link className=" " to={`${config.basePath}/alltickets`}>Create Ticket</Link>
+                             <Link className=" " to="">Silence</Link>
+                         </PopoverBody>
+                     </UncontrolledPopover>
+                 } */}
                 <EditAlertPopup onSaveUpdate={this.updateAlertList} ref={this.editAlertRef} />
             </div>
         );
