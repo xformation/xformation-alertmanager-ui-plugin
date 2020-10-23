@@ -28,7 +28,7 @@ export class AllAlerts extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            datevalue: new Date(),
+            dateRange: new Date(),
             isConfirmDialogOpen: false,
             confirmTitleMessage: null,
             objectType: null,
@@ -337,7 +337,7 @@ export class AllAlerts extends React.Component<any, any> {
 
     applyFilters = () => {
         const retData = [];
-        const { alertData, resourceGroup, resource, monitorService, alertType, severity, alertState } = this.state;
+        const { alertData, resourceGroup, resource, monitorService, alertType, severity, alertState, dateRange } = this.state;
         if (alertData && alertData.length > 0) {
             const length = alertData.length;
             for (let i = 0; i < length; i++) {
@@ -424,6 +424,26 @@ export class AllAlerts extends React.Component<any, any> {
                             isMatched = alertState === data.toLowerCase();
                         } else {
                             isMatched = false;
+                        }
+                    } else {
+                        isMatched = false;
+                    }
+                }
+                if (isMatched && dateRange && dateRange.length > 1) {
+                    let index = lowerCaseKeys.indexOf("firedtime");
+                    if (index !== -1) {
+                        let key = alertKeys[index];
+                        let data = alert[key];
+                        let firedTime = data.split(",")[1];
+                        if (firedTime) {
+                            firedTime = firedTime.trim();
+                            firedTime = parseInt(firedTime, 10);
+                            firedTime = new Date(firedTime);
+                            if (firedTime >= dateRange[0] && firedTime <= dateRange[1]) {
+                                isMatched = true;
+                            } else {
+                                isMatched = false
+                            }
                         }
                     } else {
                         isMatched = false;
@@ -548,15 +568,14 @@ export class AllAlerts extends React.Component<any, any> {
     };
 
     onChange = (value: any) => {
-        console.log('New date is: ', value);
         this.setState({
-            datevalue: value,
+            dateRange: value,
         })
     }
 
     render() {
         const { resourceGroup, resource, openTimeRange, monitorService, alertType, severity, alertState, filterCheckbox, objectType, object,
-            isConfirmDialogOpen, confirmTitleMessage, message, isAlertOpen, columns, datevalue } = this.state;
+            isConfirmDialogOpen, confirmTitleMessage, message, isAlertOpen, columns, dateRange } = this.state;
         const tableData = this.applyFilters();
         return (
             <div className="all-alerts-container">
@@ -656,7 +675,7 @@ export class AllAlerts extends React.Component<any, any> {
                             </label>
                             <DateTimeRangePicker
                                 onChange={this.onChange}
-                                value={datevalue}
+                                value={dateRange}
                                 rangeDivider="to"
                             />
                         </div>
