@@ -115,6 +115,7 @@ export class AllTickets extends React.Component<any, any> {
         const urlParams = new URLSearchParams(queryString);
         const guid = urlParams.get('guid');
         const alertName=urlParams.get('alertName');
+        
         this.setState({
             guid: guid,
             alertName: alertName,

@@ -142,6 +142,7 @@ export class AllAlerts extends React.Component<any, any> {
                                     <i onClick={e => this.onClickDeleteAlert(e, alert)} className="fa fa-trash"></i>
                                 </button>
                                 <button className="btn btn-link" id={`PopoverFocus-${alert.guid}`}>
+                                    
                                     <i className="fa fa-ellipsis-h"></i>
                                 </button>
                                 <UncontrolledPopover trigger="legacy" placement="bottom" target={`PopoverFocus-${alert.guid}`}>
