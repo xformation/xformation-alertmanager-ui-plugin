@@ -18,6 +18,7 @@ export class AllTickets extends React.Component<any, any> {
         this.openNewTicketRef = React.createRef();
         this.state = {
             guid: '',
+            alertName: '',
             columns: [
                 {
                     label: 'ID',
@@ -113,8 +114,10 @@ export class AllTickets extends React.Component<any, any> {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const guid = urlParams.get('guid');
+        const alertName=urlParams.get('alertName');
         this.setState({
             guid: guid,
+            alertName: alertName,
         });
         // try {
         //     await RestService.getData(config.GET_TICKETS_BY_GUID_URL + "/" + guid, null, null).then(
@@ -190,7 +193,7 @@ export class AllTickets extends React.Component<any, any> {
                     </div>
                     <StartECPopup ref={this.startECRef} />
                     <InstancePopup ref={this.instanceRef} />
-                    <OpenNewTicketPopup guid={state.guid} ref={this.openNewTicketRef} />
+                    <OpenNewTicketPopup guid={state.guid} alertName={state.alertName}  ref={this.openNewTicketRef} />
                 </div>
             </div>
         );
