@@ -48,6 +48,7 @@ export class AllAlerts extends React.Component<any, any> {
             alertName: '',
             client_url: '',
             alertObjAry: null,
+            AlertObject: {},
             columns: [
                 {
                     label: 'Name',
@@ -142,7 +143,7 @@ export class AllAlerts extends React.Component<any, any> {
                                     <i onClick={e => this.onClickDeleteAlert(e, alert)} className="fa fa-trash"></i>
                                 </button>
                                 <button className="btn btn-link" id={`PopoverFocus-${alert.guid}`}>
-                                    
+
                                     <i className="fa fa-ellipsis-h"></i>
                                 </button>
                                 <UncontrolledPopover trigger="legacy" placement="bottom" target={`PopoverFocus-${alert.guid}`}>
@@ -270,6 +271,7 @@ export class AllAlerts extends React.Component<any, any> {
             alertName: value,
             client_url: data,
             alertObjAry: alertObjAry,
+            AlertObject:alert,
         });
     }
 
@@ -576,7 +578,7 @@ export class AllAlerts extends React.Component<any, any> {
 
     render() {
         const { resourceGroup, resource, openTimeRange, monitorService, alertType, severity, alertState, filterCheckbox, objectType, object,
-            isConfirmDialogOpen, confirmTitleMessage, message, isAlertOpen, columns, dateRange } = this.state;
+            isConfirmDialogOpen, confirmTitleMessage, message, isAlertOpen, columns, dateRange,AlertObject } = this.state;
         const tableData = this.applyFilters();
         return (
             <div className="all-alerts-container">
@@ -706,7 +708,7 @@ export class AllAlerts extends React.Component<any, any> {
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">
                     <ModalHeader toggle={this.toggle}>{this.state.alertName}</ModalHeader>
                     <ModalBody style={{ height: 'calc(100vh - 210px)', overflowY: 'auto', overflowX: "hidden" }}>
-                        <PopupContent popupcontentData={{ url: this.state.client_url, alertObjAry: this.state.alertObjAry }} />
+                        <PopupContent guid={AlertObject.guid}  popupcontentData={{ url: this.state.client_url, alertObjAry: this.state.alertObjAry }} />
                     </ModalBody>
                 </Modal>
                 {/* {alertTable.isDataPresent &&
