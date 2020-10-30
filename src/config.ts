@@ -11,8 +11,12 @@ export const config = {
   GET_ALL_ALERT_FROM_DB: `${alertSrvUrl}/api/listAlert`,
   UPDATE_ALERT: `${alertSrvUrl}/api/updateAlert`,
   DELETE_ALERT: `${alertSrvUrl}/api/deleteAlert`,
+  TOP_ALERT_TODAY: `${alertSrvUrl}/api/topAlertToday`,
+  GET_ALERT_VOLUME_DATA: `${alertSrvUrl}/api/getAlertVolumeData`,
+  GET_ALERT_VOLUME_BY_STATUS: `${alertSrvUrl}/api/getAlertVolumeByStatus`,
   TOTAL_ALERTS: `${searchSrvUrl}/search/totalRecords`,
   GET_TICKETS_BY_GUID_URL: `${ticketSrvUrl}/alertTicketsByGuid`,
+  GET_TEAM_MATRICS_DATA_URL: `${ticketSrvUrl}/getTeamMatricsData`,
   GET_ALERT_ACTIVITIES: `${alertSrvUrl}/api/getDataFromAlertActivity`,
 
   SEVERITY_ERROR: "error",

@@ -8,13 +8,14 @@ import { AlertVolumeChart } from './AlertVolumeChart';
 import { RestService } from '../_service/RestService';
 
 export class MonitorAlerts extends React.Component<any, any> {
-    topAlertsTodayData: any;
-    teamMetricsData: any;
+    
     breadCrumbs: any;
     constructor(props: any) {
         super(props);
         this.state = {
-            totalAlerts: 0
+            totalAlerts: 0,
+            topAlertsTodayData: [],
+            teamMetricsData: [],
         };
         this.breadCrumbs = [
             {
@@ -30,62 +31,40 @@ export class MonitorAlerts extends React.Component<any, any> {
                 isCurrentPage: true
             }
         ];
-        this.topAlertsTodayData = [{
-            name: 'CPU',
-            severity: 'high',
-            time: '10 mins',
-        }, {
-            name: 'AWS S3',
-            severity: 'low',
-            time: '12 mins',
-        }, {
-            name: 'Hard disk',
-            severity: 'medium',
-            time: '18 mins',
-        }, {
-            name: 'Network',
-            severity: 'high',
-            time: '25 mins',
-        }, {
-            name: 'vCenter',
-            severity: 'medium',
-            time: '53 mins',
-        }];
-        this.teamMetricsData = [{
-            agent: 'John',
-            alerts: '276',
-            time: '17 mins',
-        }, {
-            agent: 'Bill',
-            alerts: '180',
-            time: '19 mins',
-        }, {
-            agent: 'Lynda',
-            alerts: '219',
-            time: '43 mins',
-        }];
     }
     createTopAlertsTodayTable = () => {
         const retData = [];
-        const topAlertsToday = this.topAlertsTodayData.length;
+        const topAlertsToday = this.state.topAlertsTodayData.length;
+        console.log("I am in " + this.state.topAlertsTodayData)
         for (let i = 0; i < topAlertsToday; i++) {
-            const topAlerts = this.topAlertsTodayData[i];
+            console.log("I am in loop")
+            const topAlerts = this.state.topAlertsTodayData[i];
             retData.push(
                 <tr>
                     <td>{topAlerts.name}</td>
                     <td>
                         {
-                            topAlerts.severity === 'high' && 
+                            topAlerts.severity === 'high' &&
                             <div className="high">High</div>
                         }
                         {
-                            topAlerts.severity === 'low' && 
+                            topAlerts.severity === 'low' &&
                             <div className="low">Low</div>
                         }
                         {
-                            topAlerts.severity === 'medium' && 
+                            topAlerts.severity === 'medium' &&
                             <div className="medium">Medium</div>
                         }
+                        {
+                            topAlerts.severity === 'critical' &&
+                            <div className="medium">Critical</div>
+                        }
+                        {
+                            topAlerts.severity === 'urgent' &&
+                            <div className="medium">Urgent</div>
+                        }
+
+
                     </td>
                     <td>{topAlerts.time}</td>
                 </tr>
@@ -94,16 +73,49 @@ export class MonitorAlerts extends React.Component<any, any> {
         return retData;
     }
 
-    componentDidMount(){
+    componentDidMount() {
         try {
             this.fetchData();
         } catch (err) {
             console.log("MonitorAlert page. Loading total alerts from elastic failed. Error: ", err);
         }
+        try {
+            this.fetchDatatopAlertToday();
+        } catch (err) {
+            console.log("failed to load top alert today ", err);
+        }
+
+        try {
+            this.fetchTeamMatricsData();
+        } catch (err) {
+            console.log("failed to load Team Matrics Data ", err);
+        }
+    }
+    fetchDatatopAlertToday = () => {
+        RestService.getData(config.TOP_ALERT_TODAY, null, null).then(
+            (response: any) => {
+                // this.topAlertsTodayData=response;
+                this.setState({
+                    topAlertsTodayData: response,
+                })
+                console.log("top alert data :::::: ", response);
+            }
+        );
+    }
+    fetchTeamMatricsData = () => {
+        RestService.getData(config.GET_TEAM_MATRICS_DATA_URL, null, null).then(
+            (response: any) => {
+                // this.teamMetricsData=response;
+                this.setState({
+                    teamMetricsData: response,
+                });
+                console.log("Team Matrics data :::::: ", response);
+            }
+        );
     }
 
     fetchData = () => {
-        RestService.getData(config.TOTAL_ALERTS+'?type=alert&index=alert', null, null).then(
+        RestService.getData(config.TOTAL_ALERTS + '?type=alert&index=alert', null, null).then(
             (response: any) => {
                 this.setState({
                     totalAlerts: response
@@ -112,17 +124,17 @@ export class MonitorAlerts extends React.Component<any, any> {
             }
         );
     }
-    
+
     createteamMetricsTable = () => {
         const retData = [];
-        const teamMetrics = this.teamMetricsData.length;
+        const teamMetrics = this.state.teamMetricsData.length;
         for (let i = 0; i < teamMetrics; i++) {
-            const teamMetrics = this.teamMetricsData[i];
+            const teamMetrics = this.state.teamMetricsData[i];
             retData.push(
                 <tr>
-                    <td>{teamMetrics.agent}</td>
-                    <td>{teamMetrics.alerts}</td>
-                    <td>{teamMetrics.time}</td>
+                    <td>{teamMetrics.agentName}</td>
+                    <td>{teamMetrics.totalAlert}</td>
+                    <td>{teamMetrics.timeSinceLastTicketCreated}</td>
                 </tr>
             );
         }
@@ -130,7 +142,7 @@ export class MonitorAlerts extends React.Component<any, any> {
     }
 
     render() {
-        const {totalAlerts} = this.state;
+        const { totalAlerts } = this.state;
         return (
             <div className="monitor-alerts-container">
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALERTS" />
@@ -160,7 +172,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                                 </div>
                                 <div className="alert-data-meta">
                                     &nbsp;
-                                </div> 
+                                </div>
                             </Link>
                         </div>
                         <div className="alert-data-block col-lg-3 col-md-6 col-sm-12">
@@ -238,8 +250,8 @@ export class MonitorAlerts extends React.Component<any, any> {
                         </div>
                         <div className="chart-block col-xl-4 col-lg-6 col-md-12 col-sm-12">
                             <div className="chart-inner alert-volume">
-                                <div className="label">Alert Volume Today <i className="fa fa-cog"></i></div>
-                                <div className="current-time-chart row" style={{margin: "0px"}}>
+                                <div className="label">Alert Volume <i className="fa fa-cog"></i></div>
+                                <div className="current-time-chart row" style={{ margin: "0px" }}>
                                     <AlertVolumeChart />
                                 </div>
                             </div>
@@ -247,7 +259,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                         <div className="chart-block col-xl-4 col-lg-6 col-md-12 col-sm-12">
                             <div className="chart-inner alerts">
                                 <div className="label">Alert Volume By Status <i className="fa fa-cog"></i></div>
-                                <div className="current-time-chart row" style={{margin: "0px"}}>
+                                <div className="current-time-chart row" style={{ margin: "0px" }}>
                                     <AlertVolumeByStatusChart />
                                 </div>
                             </div>

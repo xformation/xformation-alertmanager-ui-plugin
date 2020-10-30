@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { Line } from 'react-chartjs-2';
+import { RestService } from '../_service/RestService';
+import { config } from '../../config';
 
 export class AlertVolumeByStatusChart extends React.Component<any, any> {
     chart: any;
@@ -13,13 +15,7 @@ export class AlertVolumeByStatusChart extends React.Component<any, any> {
                 data: [20, 29, 34, 11, 46, 25, 49]
             },
             {
-                label: "Open",
-                backgroundColor: "rgba(73, 183, 234, 0.7)",
-                borderColor: "rgba(73, 183, 234, 1)",
-                data: [20, 39, 38, 50, 56, 70, 39]
-            },
-            {
-                label: "Pending",
+                label: "InProgress",
                 backgroundColor: "rgba(109, 219, 146, 0.7)",
                 borderColor: "rgba(109, 219, 146, 1)",
                 data: [28, 48, 40, 19, 86, 27, 90]
@@ -31,7 +27,7 @@ export class AlertVolumeByStatusChart extends React.Component<any, any> {
                 data: [60, 49, 68, 31, 66, 75, 49]
             }
             ],
-            labels: ['', '', '', '', '', ''],
+            labels: ['20', '30', '40', '50', '60', '70'],
             legends: []
         };
         this.chart = null;
@@ -43,6 +39,40 @@ export class AlertVolumeByStatusChart extends React.Component<any, any> {
                 legends: this.chart.chartInstance.legend.legendItems
             });
         }
+        try {
+            this.fetchData();
+        } catch (err) {
+            console.log("Alert Volume data by status failed. Error: ", err);
+        }
+    }
+    fetchData = () => {
+        RestService.getData(config.GET_ALERT_VOLUME_BY_STATUS, null, null).then(
+            (response: any) => {
+                this.setState({
+                    datasets: [{
+                        label: "New",
+                        backgroundColor: "rgba(252, 203, 80, 0.7)",
+                        borderColor: "rgba(252, 203, 80, 1)",
+                        data: response.newAlertList
+                    },
+                    {
+                        label: "InProgress",
+                        backgroundColor: "rgba(109, 219, 146, 0.7)",
+                        borderColor: "rgba(109, 219, 146, 1)",
+                        data: response.inProgressList
+                    },
+                    {
+                        label: "Resolved",
+                        backgroundColor: "rgba(250, 125, 137, 0.7)",
+                        borderColor: "rgba(250, 125, 137, 1)",
+                        data: response.closedAlertList
+                    }
+                    ],
+                    labels: response.daysList,
+                })
+                console.log("Total alert data :::::: ", response);
+            }
+        );
     }
 
     createLegend = () => {

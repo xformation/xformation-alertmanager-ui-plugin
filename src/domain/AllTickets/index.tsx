@@ -85,13 +85,7 @@ export class AllTickets extends React.Component<any, any> {
                     }
                 },
             ],
-            ticketDataList: [{
-                "createdAt": "2020-10-09T07:33:15.663Z",
-                "subject": "pp",
-                "assignedToName": null,
-                "id": 1102,
-                "priority": "Medium"
-            }],
+            ticketDataList: [],
         };
         this.breadCrumbs = [
             {
@@ -120,17 +114,17 @@ export class AllTickets extends React.Component<any, any> {
             guid: guid,
             alertName: alertName,
         });
-        // try {
-        //     await RestService.getData(config.GET_TICKETS_BY_GUID_URL + "/" + guid, null, null).then(
-        //         (response: any) => {
+        try {
+            await RestService.getData(config.GET_TICKETS_BY_GUID_URL + "/" + guid, null, null).then(
+                (response: any) => {
 
-        //             this.setState({
-        //                 ticketDataList: response,
-        //             });
-        //         })
-        // } catch (err) {
-        //     console.log("Loading ticket data failed. Error: ", err);
-        // }
+                    this.setState({
+                        ticketDataList: response,
+                    });
+                })
+        } catch (err) {
+            console.log("Loading ticket data failed. Error: ", err);
+        }
     }
 
     onClickStartEC2 = (e: any) => {
