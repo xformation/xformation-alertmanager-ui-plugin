@@ -10,20 +10,20 @@ export class AlertVolumeChart extends React.Component<any, any> {
         this.state = {
             datasets: [
                 {
-                label: "New 156",
+                label: "New",
                 lineTension: 0.1,
                 fill: false,
                 borderColor: "rgba(252, 203, 80, 1)",
                 // backgroundColor: "rgba(255, 255,255, 0.1)",
-                data: [20, 29, 34, 11, 46, 25, 49]
+                data: []
             },
             {
-                label: "Resolved 75",
+                label: "Resolved",
                 lineTension: 0.1,
                 fill: false,
                 borderColor: "rgba(73, 183, 234, 1)",
                 // backgroundColor: "rgba(255, 255,255, 0.1)",
-                data: [40, 19, 38, 20, 26, 70, 39]
+                data: []
             }
             ],
             labels: ['', '', '', '', '', ''],

@@ -12,22 +12,22 @@ export class AlertVolumeByStatusChart extends React.Component<any, any> {
                 label: "New",
                 backgroundColor: "rgba(252, 203, 80, 0.7)",
                 borderColor: "rgba(252, 203, 80, 1)",
-                data: [20, 29, 34, 11, 46, 25, 49]
+                data: []
             },
             {
                 label: "InProgress",
                 backgroundColor: "rgba(109, 219, 146, 0.7)",
                 borderColor: "rgba(109, 219, 146, 1)",
-                data: [28, 48, 40, 19, 86, 27, 90]
+                data: []
             },
             {
                 label: "Resolved",
                 backgroundColor: "rgba(250, 125, 137, 0.7)",
                 borderColor: "rgba(250, 125, 137, 1)",
-                data: [60, 49, 68, 31, 66, 75, 49]
+                data: []
             }
             ],
-            labels: ['20', '30', '40', '50', '60', '70'],
+            labels: [],
             legends: []
         };
         this.chart = null;

@@ -35,9 +35,7 @@ export class MonitorAlerts extends React.Component<any, any> {
     createTopAlertsTodayTable = () => {
         const retData = [];
         const topAlertsToday = this.state.topAlertsTodayData.length;
-        console.log("I am in " + this.state.topAlertsTodayData)
         for (let i = 0; i < topAlertsToday; i++) {
-            console.log("I am in loop")
             const topAlerts = this.state.topAlertsTodayData[i];
             retData.push(
                 <tr>
@@ -66,7 +64,7 @@ export class MonitorAlerts extends React.Component<any, any> {
 
 
                     </td>
-                    <td>{topAlerts.time}</td>
+                    <td>{topAlerts.time} mins</td>
                 </tr>
             );
         }
@@ -134,7 +132,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                 <tr>
                     <td>{teamMetrics.agentName}</td>
                     <td>{teamMetrics.totalAlert}</td>
-                    <td>{teamMetrics.timeSinceLastTicketCreated}</td>
+                    <td>{teamMetrics.timeSinceLastTicketCreated} mins</td>
                 </tr>
             );
         }
@@ -181,10 +179,10 @@ export class MonitorAlerts extends React.Component<any, any> {
                                     Total alert rules
                                 </div>
                                 <div className="alert-data">
-                                    24
+                                    0
                                 </div>
                                 <div className="alert-data-meta">
-                                    Enabled 451
+                                    Enabled 0
                                 </div>
                             </Link>
                         </div>
@@ -195,10 +193,10 @@ export class MonitorAlerts extends React.Component<any, any> {
                                     <i className="fa fa-question-circle"></i>
                                 </div>
                                 <div className="alert-data">
-                                    67
+                                    0
                                 </div>
                                 <div className="alert-data-meta">
-                                    Enabled 55
+                                    Enabled 0
                                 </div>
                             </a>
                         </div>
