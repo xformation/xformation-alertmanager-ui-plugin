@@ -49,7 +49,7 @@ export class AlertVolumeChart extends React.Component<any, any> {
             (response: any) => {
                 this.setState({
                     datasets: [{
-                        label: "New 45",
+                        label: "New",
                         lineTension: 0.1,
                         fill: false,
                         borderColor: "rgba(252, 203, 80, 1)",
@@ -57,7 +57,7 @@ export class AlertVolumeChart extends React.Component<any, any> {
                         data: response.newAlertList
                     },
                     {
-                        label: "Resolved 90",
+                        label: "Resolved",
                         lineTension: 0.1,
                         fill: false,
                         borderColor: "rgba(73, 183, 234, 1)",
