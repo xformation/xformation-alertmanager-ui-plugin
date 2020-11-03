@@ -6,11 +6,13 @@ import { CurrentAvrageWaitResponceTimeChart } from './CurrentAvrageWaitResponceT
 import { AlertVolumeByStatusChart } from './AlertVolumeByStatusChart';
 import { AlertVolumeChart } from './AlertVolumeChart';
 import { RestService } from '../_service/RestService';
+import { UnimplementedFeaturePopup } from './unimplementedFeaturePopup';
 
 export class MonitorAlerts extends React.Component<any, any> {
     topAlertsTodayData: any;
     teamMetricsData: any;
     breadCrumbs: any;
+    unimplementedFeatureRef: any;
     constructor(props: any) {
         super(props);
         this.state = {
@@ -64,6 +66,7 @@ export class MonitorAlerts extends React.Component<any, any> {
             alerts: '219',
             time: '43 mins',
         }];
+        this.unimplementedFeatureRef = React.createRef();
     }
     createTopAlertsTodayTable = () => {
         const retData = [];
@@ -129,6 +132,10 @@ export class MonitorAlerts extends React.Component<any, any> {
         return retData;
     }
 
+    onClickonClickUnimplementedFeature = (e: any) => {
+        this.unimplementedFeatureRef.current.toggle();
+    };
+
     render() {
         const {totalAlerts} = this.state;
         return (
@@ -140,7 +147,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                             <i className="fa fa-cog"></i>&nbsp;&nbsp;
                             Manage Alert Rule
                         </Link>
-                        <a className="alert-blue-button">
+                        <a className="alert-blue-button" onClick={this.onClickonClickUnimplementedFeature}>
                             <i className="fa fa-cog"></i>&nbsp;&nbsp;
                             Manage Workflows
                         </a>
@@ -298,6 +305,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                         </div>
                     </div>
                 </div>
+                <UnimplementedFeaturePopup ref={this.unimplementedFeatureRef} />
             </div>
         );
     }

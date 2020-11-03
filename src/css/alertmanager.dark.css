@@ -18,20 +18,120 @@ a:hover {
   float: right;
 }
 
+.v-a-top {
+  vertical-align: top;
+}
+
+.v-a-middle {
+  vertical-align: middle;
+}
+
 .d-flex {
   display: flex;
 }
 
-.p-l-0 {
-  padding-left: 0;
+.d-block {
+  display: block;
 }
 
-.p-r-0 {
-  padding-right: 0;
+.d-inline-block {
+  display: inline-block;
+}
+
+.p-t-0 {
+  padding-top: 0 !important;
+}
+
+.p-t-5 {
+  padding-top: 5px !important;
+}
+
+.p-t-10 {
+  padding-top: 10px !important;
+}
+
+.p-t-15 {
+  padding-top: 15px !important;
 }
 
 .p-t-20 {
   padding-top: 20px !important;
+}
+
+.p-r-0 {
+  padding-right: 0 !important;
+}
+
+.p-r-5 {
+  padding-right: 5px !important;
+}
+
+.p-r-10 {
+  padding-right: 10px !important;
+}
+
+.p-r-15 {
+  padding-right: 15px !important;
+}
+
+.p-r-20 {
+  padding-right: 20px !important;
+}
+
+.p-b-0 {
+  padding-bottom: 0px !important;
+}
+
+.p-b-5 {
+  padding-bottom: 5px !important;
+}
+
+.p-b-10 {
+  padding-bottom: 10px !important;
+}
+
+.p-b-15 {
+  padding-bottom: 15px !important;
+}
+
+.p-b-20 {
+  padding-bottom: 20px !important;
+}
+
+.p-l-0 {
+  padding-left: 0 !important;
+}
+
+.p-l-5 {
+  padding-left: 5px !important;
+}
+
+.p-l-10 {
+  padding-left: 10px !important;
+}
+
+.p-l-15 {
+  padding-left: 15px !important;
+}
+
+.p-l-20 {
+  padding-left: 20px !important;
+}
+
+.m-l-0 {
+  margin-left: 0 !important;
+}
+
+.m-r-0 {
+  margin-right: 0 !important;
+}
+
+.m-t-0 {
+  margin-top: 0 !important;
+}
+
+.m-b-0 {
+  margin-bottom: 0 !important;
 }
 
 .width-auto {
@@ -1006,6 +1106,151 @@ a:hover {
 .modal-backdrop {
   background-color: #141414b3;
   opacity: 0.8;
+}
+
+.unimplemented-modal-container {
+  max-width: 992px !important;
+  -webkit-box-shadow: 0px 0px 16px #3b48593d;
+  box-shadow: 0px 0px 16px #3b48593d;
+  border-radius: 10px;
+  background: white;
+}
+.unimplemented-modal-container .modal-content {
+  padding: 30px;
+}
+.unimplemented-modal-container .modal-content .modal-header {
+  background: white;
+  box-shadow: none;
+  border-bottom: 1px dashed #a2c0d4;
+  margin-bottom: 20px;
+  padding: 0 10px 10px;
+}
+.unimplemented-modal-container .modal-content .modal-header .modal-title {
+  color: #3b4859;
+  float: left;
+  margin: 0px;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 0;
+  line-height: 28px;
+}
+.unimplemented-modal-container .modal-content .modal-header button {
+  float: right;
+  font-size: 28px;
+  top: 0;
+  position: relative;
+  color: #ffffff;
+  opacity: 1;
+  width: 28px;
+  height: 28px;
+  background-color: red;
+  border-radius: 50%;
+  border: none;
+  line-height: 28px;
+  text-align: center;
+}
+.unimplemented-modal-container .modal-content .modal-body {
+  padding: 0px 10px;
+  color: #3b4859;
+}
+.unimplemented-modal-container .modal-content .modal-body p {
+  font-style: italic;
+}
+.unimplemented-modal-container .modal-content .modal-body .form-group {
+  padding-bottom: 20px;
+}
+.unimplemented-modal-container .modal-content .modal-body .form-group label {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 36px;
+  color: #3b4859;
+  padding-right: 20px;
+}
+.unimplemented-modal-container
+  .modal-content
+  .modal-body
+  .form-group
+  .form-control {
+  background-color: #f0f3f7 !important;
+  border: none !important;
+  font-size: 13px;
+  height: 36px;
+}
+.unimplemented-modal-container
+  .modal-content
+  .modal-body
+  .form-group
+  .input-group-text {
+  background-color: #ffffff;
+  border: 1px solid #8392a7;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 34px;
+  color: #3b4859;
+  padding: 0 10px;
+  width: 100%;
+  text-align: left;
+}
+.unimplemented-modal-container
+  .modal-content
+  .modal-body
+  .form-group
+  .checkbox {
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-top: -4px;
+}
+.unimplemented-modal-container
+  .modal-content
+  .modal-body
+  .form-group
+  textarea.form-control {
+  height: 120px;
+}
+.unimplemented-modal-container
+  .modal-content
+  .modal-body
+  .form-group
+  .select-rule {
+  margin-top: 10px;
+  margin-left: 30px;
+}
+.unimplemented-modal-container
+  .modal-content
+  .modal-body
+  .form-group
+  .d-inline-block {
+  display: inline-block;
+}
+.unimplemented-modal-container
+  .modal-content
+  .modal-body
+  .form-group
+  .width-auto {
+  width: auto;
+}
+.unimplemented-modal-container .modal-content .modal-body .form-group .text {
+  padding: 0 3px;
+  line-height: 12px;
+  vertical-align: top;
+}
+.unimplemented-modal-container .modal-content .modal-footer {
+  padding: 20px 15px 0px;
+  background: none;
+  border: none;
+  border-top: 1px dashed #a2c0d4;
+}
+.unimplemented-modal-container .modal-content .modal-footer .blue-button {
+  border-radius: 7px !important;
+}
+.unimplemented-modal-container .modal-content .modal-footer .gray-button {
+  border-radius: 7px !important;
+}
+.unimplemented-modal-container .modal-content .modal-footer .white-button {
+  border-radius: 7px !important;
 }
 
 /*********************************** Script Editor Buttons *********************************/
