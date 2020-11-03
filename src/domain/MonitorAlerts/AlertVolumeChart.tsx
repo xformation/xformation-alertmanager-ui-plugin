@@ -1,26 +1,29 @@
 import * as React from 'react';
 import { Line } from 'react-chartjs-2';
+import { RestService } from '../_service/RestService';
+import { config } from '../../config';
 
 export class AlertVolumeChart extends React.Component<any, any> {
     chart: any;
     constructor(props: any) {
         super(props);
         this.state = {
-            datasets: [{
-                label: "New 156",
+            datasets: [
+                {
+                label: "New",
                 lineTension: 0.1,
                 fill: false,
                 borderColor: "rgba(252, 203, 80, 1)",
                 // backgroundColor: "rgba(255, 255,255, 0.1)",
-                data: [20, 29, 34, 11, 46, 25, 49]
+                data: []
             },
             {
-                label: "Resolved 75",
+                label: "Resolved",
                 lineTension: 0.1,
                 fill: false,
                 borderColor: "rgba(73, 183, 234, 1)",
                 // backgroundColor: "rgba(255, 255,255, 0.1)",
-                data: [40, 19, 38, 20, 26, 70, 39]
+                data: []
             }
             ],
             labels: ['', '', '', '', '', ''],
@@ -35,8 +38,39 @@ export class AlertVolumeChart extends React.Component<any, any> {
                 legends: this.chart.chartInstance.legend.legendItems
             });
         }
+        try {
+            this.fetchData();
+        } catch (err) {
+            console.log("Alert Volume data load failed. Error: ", err);
+        }
     }
-
+    fetchData = () => {
+        RestService.getData(config.GET_ALERT_VOLUME_DATA, null, null).then(
+            (response: any) => {
+                this.setState({
+                    datasets: [{
+                        label: "New 45",
+                        lineTension: 0.1,
+                        fill: false,
+                        borderColor: "rgba(252, 203, 80, 1)",
+                        // backgroundColor: "rgba(255, 255,255, 0.1)",
+                        data: response.newAlertList
+                    },
+                    {
+                        label: "Resolved 90",
+                        lineTension: 0.1,
+                        fill: false,
+                        borderColor: "rgba(73, 183, 234, 1)",
+                        // backgroundColor: "rgba(255, 255,255, 0.1)",
+                        data: response.closedAlertList
+                    }
+                    ],
+                    labels:response.daysList,
+                })
+                console.log("Total alert data :::::: ", response);
+            }
+        );
+    }
     createLegend = () => {
         const text = [];
         const { legends } = this.state;

@@ -28,7 +28,7 @@ export class AllAlerts extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            datevalue: new Date(),
+            dateRange: new Date(),
             isConfirmDialogOpen: false,
             confirmTitleMessage: null,
             objectType: null,
@@ -48,6 +48,7 @@ export class AllAlerts extends React.Component<any, any> {
             alertName: '',
             client_url: '',
             alertObjAry: null,
+            AlertObject: {},
             columns: [
                 {
                     label: 'Name',
@@ -142,11 +143,12 @@ export class AllAlerts extends React.Component<any, any> {
                                     <i onClick={e => this.onClickDeleteAlert(e, alert)} className="fa fa-trash"></i>
                                 </button>
                                 <button className="btn btn-link" id={`PopoverFocus-${alert.guid}`}>
+
                                     <i className="fa fa-ellipsis-h"></i>
                                 </button>
                                 <UncontrolledPopover trigger="legacy" placement="bottom" target={`PopoverFocus-${alert.guid}`}>
                                     <PopoverBody>
-                                        <Link className=" " to={`${config.basePath}/alltickets?guid=` + alert.guid}>Create Ticket</Link>
+                                        <Link className=" " to={`${config.basePath}/alltickets?guid=` + alert.guid+"&alertName="+alert.name}>Create Ticket</Link>
                                         <Link className=" " to="">Silence</Link>
                                     </PopoverBody>
                                 </UncontrolledPopover>
@@ -269,6 +271,7 @@ export class AllAlerts extends React.Component<any, any> {
             alertName: value,
             client_url: data,
             alertObjAry: alertObjAry,
+            AlertObject:alert,
         });
     }
 
@@ -337,7 +340,7 @@ export class AllAlerts extends React.Component<any, any> {
 
     applyFilters = () => {
         const retData = [];
-        const { alertData, resourceGroup, resource, monitorService, alertType, severity, alertState } = this.state;
+        const { alertData, resourceGroup, resource, monitorService, alertType, severity, alertState, dateRange } = this.state;
         if (alertData && alertData.length > 0) {
             const length = alertData.length;
             for (let i = 0; i < length; i++) {
@@ -424,6 +427,26 @@ export class AllAlerts extends React.Component<any, any> {
                             isMatched = alertState === data.toLowerCase();
                         } else {
                             isMatched = false;
+                        }
+                    } else {
+                        isMatched = false;
+                    }
+                }
+                if (isMatched && dateRange && dateRange.length > 1) {
+                    let index = lowerCaseKeys.indexOf("firedtime");
+                    if (index !== -1) {
+                        let key = alertKeys[index];
+                        let data = alert[key];
+                        let firedTime = data.split(",")[1];
+                        if (firedTime) {
+                            firedTime = firedTime.trim();
+                            firedTime = parseInt(firedTime, 10);
+                            firedTime = new Date(firedTime);
+                            if (firedTime >= dateRange[0] && firedTime <= dateRange[1]) {
+                                isMatched = true;
+                            } else {
+                                isMatched = false
+                            }
                         }
                     } else {
                         isMatched = false;
@@ -548,15 +571,14 @@ export class AllAlerts extends React.Component<any, any> {
     };
 
     onChange = (value: any) => {
-        console.log('New date is: ', value);
         this.setState({
-            datevalue: value,
+            dateRange: value,
         })
     }
 
     render() {
         const { resourceGroup, resource, openTimeRange, monitorService, alertType, severity, alertState, filterCheckbox, objectType, object,
-            isConfirmDialogOpen, confirmTitleMessage, message, isAlertOpen, columns, datevalue } = this.state;
+            isConfirmDialogOpen, confirmTitleMessage, message, isAlertOpen, columns, dateRange,AlertObject } = this.state;
         const tableData = this.applyFilters();
         return (
             <div className="all-alerts-container">
@@ -656,7 +678,7 @@ export class AllAlerts extends React.Component<any, any> {
                             </label>
                             <DateTimeRangePicker
                                 onChange={this.onChange}
-                                value={datevalue}
+                                value={dateRange}
                                 rangeDivider="to"
                             />
                         </div>
@@ -686,7 +708,7 @@ export class AllAlerts extends React.Component<any, any> {
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">
                     <ModalHeader toggle={this.toggle}>{this.state.alertName}</ModalHeader>
                     <ModalBody style={{ height: 'calc(100vh - 210px)', overflowY: 'auto', overflowX: "hidden" }}>
-                        <PopupContent popupcontentData={{ url: this.state.client_url, alertObjAry: this.state.alertObjAry }} />
+                        <PopupContent guid={AlertObject.guid}  popupcontentData={{ url: this.state.client_url, alertObjAry: this.state.alertObjAry }} />
                     </ModalBody>
                 </Modal>
                 {/* {alertTable.isDataPresent &&

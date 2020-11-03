@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import { Line } from 'react-chartjs-2';
+import { RestService } from '../_service/RestService';
+import { config } from '../../config';
 
 export class PopupContent extends React.Component<any, any> {
     options = {
@@ -33,33 +35,7 @@ export class PopupContent extends React.Component<any, any> {
         this.state = {
             activeTab: 0,
             client_url: this.props.popupcontentData.url,
-            historyTableArray: [
-                {
-                    name: 'Action group email to Siddhesh executed (configured on alert rule)',
-                    user: 'Automated',
-                    dateAndTime: '17/03/2020, 11:28:02'
-                },
-                {
-                    name: 'Alert fired',
-                    user: 'Automated',
-                    dateAndTime: '17/03/2020, 11:29:56'
-                },
-                {
-                    name: 'Ticked generated Ticket ID 144',
-                    user: 'Papu',
-                    dateAndTime: '01/04/2020, 13:28:05'
-                },
-                {
-                    name: 'Start EC2 Instance',
-                    user: 'Papu',
-                    dateAndTime: '01/04/2020, 12:34:30'
-                },
-                {
-                    name: 'Close ticket',
-                    user: 'Papu',
-                    dateAndTime: '01/04/2020, 12:58:34'
-                }
-            ],
+            historyTableArray: [],
             diagnosticsTableArray:this.props.popupcontentData.alertObjAry,
             iFrameLoaded: false
         };
@@ -70,7 +46,21 @@ export class PopupContent extends React.Component<any, any> {
             activeTab
         });
     };
-
+    async componentDidMount(){
+        let guid=this.props.guid;
+        try {
+            await RestService.getData(config.GET_ALERT_ACTIVITIES+"/"+guid, null, null).then(
+                (response: any) => {
+                    console.log("Response : ", response)
+                    this.setState({
+                        historyTableArray: response,
+                    });
+                })
+        } catch (err) {
+            console.log("Loading company data failed. Error: ", err);
+        }
+    }
+    
     historyTable = () => {
         const retData = [];
         const { historyTableArray } = this.state;
@@ -78,9 +68,9 @@ export class PopupContent extends React.Component<any, any> {
             const historyTable = historyTableArray[i];
             retData.push(
                 <tr>
-                    <td>{historyTable.name}</td>
-                    <td>{historyTable.user}</td>
-                    <td>{historyTable.dateAndTime}</td>
+                    <td>{historyTable.action}</td>
+                    <td>{historyTable.action_description}</td>
+                    <td>{historyTable.timestamp}</td>
                 </tr>
             )
         }
@@ -146,8 +136,8 @@ export class PopupContent extends React.Component<any, any> {
                             <table style={{ width: "100%" }} className="table">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>User</th>
+                                        <th>Action</th>
+                                        <th>Action Description</th>
                                         <th>Date/Time</th>
                                     </tr>
                                 </thead>
