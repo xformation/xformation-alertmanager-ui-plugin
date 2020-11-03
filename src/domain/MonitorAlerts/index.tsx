@@ -68,6 +68,7 @@ export class MonitorAlerts extends React.Component<any, any> {
         }];
         this.unimplementedFeatureRef = React.createRef();
     }
+    
     createTopAlertsTodayTable = () => {
         const retData = [];
         const topAlertsToday = this.topAlertsTodayData.length;
