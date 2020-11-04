@@ -6,12 +6,11 @@ import { CurrentAvrageWaitResponceTimeChart } from './CurrentAvrageWaitResponceT
 import { AlertVolumeByStatusChart } from './AlertVolumeByStatusChart';
 import { AlertVolumeChart } from './AlertVolumeChart';
 import { RestService } from '../_service/RestService';
-import { UnimplementedFeaturePopup } from './unimplementedFeaturePopup';
+import { UnimplementedFeaturePopup } from '../../components/UnimplementedFeaturePopup';
 
 export class MonitorAlerts extends React.Component<any, any> {
-    
     breadCrumbs: any;
-    unimplementedFeatureRef: any;
+    unimplementedFeatureModalRef: any;
     constructor(props: any) {
         super(props);
         this.state = {
@@ -33,7 +32,9 @@ export class MonitorAlerts extends React.Component<any, any> {
                 isCurrentPage: true
             }
         ];
+        this.unimplementedFeatureModalRef = React.createRef();
     }
+
     createTopAlertsTodayTable = () => {
         const retData = [];
         const topAlertsToday = this.state.topAlertsTodayData.length;
@@ -44,15 +45,15 @@ export class MonitorAlerts extends React.Component<any, any> {
                     <td>{topAlerts.name}</td>
                     <td>
                         {
-                            topAlerts.severity === 'high' && 
+                            topAlerts.severity === 'high' &&
                             <div className="high">High</div>
                         }
                         {
-                            topAlerts.severity === 'low' && 
+                            topAlerts.severity === 'low' &&
                             <div className="low">Low</div>
                         }
                         {
-                            topAlerts.severity === 'medium' && 
+                            topAlerts.severity === 'medium' &&
                             <div className="medium">Medium</div>
                         }
                         {
@@ -73,7 +74,7 @@ export class MonitorAlerts extends React.Component<any, any> {
         return retData;
     }
 
-    componentDidMount(){
+    componentDidMount() {
         try {
             this.fetchData();
         } catch (err) {
@@ -91,6 +92,7 @@ export class MonitorAlerts extends React.Component<any, any> {
             console.log("failed to load Team Matrics Data ", err);
         }
     }
+
     fetchDatatopAlertToday = () => {
         RestService.getData(config.TOP_ALERT_TODAY, null, null).then(
             (response: any) => {
@@ -115,7 +117,7 @@ export class MonitorAlerts extends React.Component<any, any> {
     }
 
     fetchData = () => {
-        RestService.getData(config.TOTAL_ALERTS+'?type=alert&index=alert', null, null).then(
+        RestService.getData(config.TOTAL_ALERTS + '?type=alert&index=alert', null, null).then(
             (response: any) => {
                 this.setState({
                     totalAlerts: response
@@ -124,7 +126,7 @@ export class MonitorAlerts extends React.Component<any, any> {
             }
         );
     }
-    
+
     createteamMetricsTable = () => {
         const retData = [];
         const teamMetrics = this.state.teamMetricsData.length;
@@ -141,12 +143,13 @@ export class MonitorAlerts extends React.Component<any, any> {
         return retData;
     }
 
-    onClickonClickUnimplementedFeature = (e: any) => {
-        this.unimplementedFeatureRef.current.toggle();
+    onClickUnImplementedFeature = (link: any) => {
+        this.unimplementedFeatureModalRef.current.setLink(link);
+        this.unimplementedFeatureModalRef.current.toggle();
     };
 
     render() {
-        const {totalAlerts} = this.state;
+        const { totalAlerts } = this.state;
         return (
             <div className="monitor-alerts-container">
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALERTS" />
@@ -156,11 +159,11 @@ export class MonitorAlerts extends React.Component<any, any> {
                             <i className="fa fa-cog"></i>&nbsp;&nbsp;
                             Manage Alert Rule
                         </Link>
-                        <a className="alert-blue-button" onClick={this.onClickonClickUnimplementedFeature}>
+                        <a className="alert-blue-button" onClick={() => this.onClickUnImplementedFeature("")}>
                             <i className="fa fa-cog"></i>&nbsp;&nbsp;
                             Manage Workflows
                         </a>
-                        <a className="alert-blue-button">
+                        <a className="alert-blue-button" onClick={() => this.onClickUnImplementedFeature("")}>
                             <i className="fa fa-refresh"></i>&nbsp;&nbsp;
                             Refresh
                         </a>
@@ -176,7 +179,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                                 </div>
                                 <div className="alert-data-meta">
                                     &nbsp;
-                                </div> 
+                                </div>
                             </Link>
                         </div>
                         <div className="alert-data-block col-lg-3 col-md-6 col-sm-12">
@@ -263,7 +266,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                         <div className="chart-block col-xl-4 col-lg-6 col-md-12 col-sm-12">
                             <div className="chart-inner alerts">
                                 <div className="label">Alert Volume By Status <i className="fa fa-cog"></i></div>
-                                <div className="current-time-chart row" style={{margin: "0px"}}>
+                                <div className="current-time-chart row" style={{ margin: "0px" }}>
                                     <AlertVolumeByStatusChart />
                                 </div>
                             </div>
@@ -314,7 +317,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                         </div>
                     </div>
                 </div>
-                <UnimplementedFeaturePopup ref={this.unimplementedFeatureRef} />
+                <UnimplementedFeaturePopup ref={this.unimplementedFeatureModalRef} />
             </div>
         );
     }
