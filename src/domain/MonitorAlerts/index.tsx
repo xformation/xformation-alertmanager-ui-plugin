@@ -183,7 +183,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                             </Link>
                         </div>
                         <div className="alert-data-block col-lg-3 col-md-6 col-sm-12">
-                            <Link to={`${config.basePath}/rules`}>
+                            <a onClick={() => this.onClickUnImplementedFeature("/rules")}>
                                 <div className="alert-data-label">
                                     Total alert rules
                                 </div>
@@ -193,7 +193,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                                 <div className="alert-data-meta">
                                     Enabled 0
                                 </div>
-                            </Link>
+                            </a>
                         </div>
                         <div className="alert-data-block col-lg-3 col-md-6 col-sm-12">
                             <a>
