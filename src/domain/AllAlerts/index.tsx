@@ -149,7 +149,7 @@ export class AllAlerts extends React.Component<any, any> {
                                 <UncontrolledPopover trigger="legacy" placement="bottom" target={`PopoverFocus-${alert.guid}`}>
                                     <PopoverBody>
                                         <Link className=" " to={`${config.basePath}/alltickets?guid=` + alert.guid+"&alertName="+alert.name}>Create Ticket</Link>
-                                        <Link className=" " to="">Silence</Link>
+                                        <Link className=" " to="#">Silence</Link>
                                     </PopoverBody>
                                 </UncontrolledPopover>
                             </div>

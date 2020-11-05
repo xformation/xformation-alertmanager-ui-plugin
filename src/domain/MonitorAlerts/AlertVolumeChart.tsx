@@ -18,7 +18,7 @@ export class AlertVolumeChart extends React.Component<any, any> {
                 data: []
             },
             {
-                label: "Resolved",
+                label: "Resolved 75",
                 lineTension: 0.1,
                 fill: false,
                 borderColor: "rgba(73, 183, 234, 1)",
