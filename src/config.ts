@@ -1,9 +1,9 @@
 const ALERT_URL = "alert.service.com";
 const SEARCH_URL = "search.service.com";
 
-const searchSrvUrl = `http://localhost:8092`;
-const alertSrvUrl = `http://localhost:5055`;
-const ticketSrvUrl = `http://localhost:7100/api`;
+const searchSrvUrl = `http://100.64.108.25:8092`;
+const alertSrvUrl = `http://100.64.108.25:5055`;
+const ticketSrvUrl = `http://100.64.108.25:7100/api`;
 
 export const config = {
   basePath: "/plugins/xformation-alertmanager-ui-plugin/page",
@@ -15,6 +15,7 @@ export const config = {
   GET_ALERT_VOLUME_DATA: `${alertSrvUrl}/api/getAlertVolumeData`,
   GET_ALERT_VOLUME_BY_STATUS: `${alertSrvUrl}/api/getAlertVolumeByStatus`,
   GET_AVG_RESP_TIME_DATA: `${alertSrvUrl}/api/getAvgResponseTime`,
+  GET_AVG_WAIT_TIME_DATA: `${alertSrvUrl}/api/getWaitTimeGraphData`,
   TOTAL_ALERTS: `${searchSrvUrl}/search/totalRecords`,
   GET_TICKETS_BY_GUID_URL: `${ticketSrvUrl}/alertTicketsByGuid`,
   GET_TEAM_MATRICS_DATA_URL: `${ticketSrvUrl}/getTeamMatricsData`,

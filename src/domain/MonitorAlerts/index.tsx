@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
 import { CurrentAvrageWaitResponceTimeChart } from './CurrentAvrageWaitResponceTimeChart';
+import {CurrentAvrageWaitTimeChart} from "./CurrentAvrageWaitTimeChart"
 import { AlertVolumeByStatusChart } from './AlertVolumeByStatusChart';
 import { AlertVolumeChart } from './AlertVolumeChart';
 import { RestService } from '../_service/RestService';
@@ -17,6 +18,10 @@ export class MonitorAlerts extends React.Component<any, any> {
             totalAlerts: 0,
             topAlertsTodayData: [],
             teamMetricsData: [],
+            avgRespTimeData: {},
+            dailyAvgRespTime: 0,
+            dailyAvgWaitTime: 0,
+            avgWaitTimeData: {},
         };
         this.breadCrumbs = [
             {
@@ -91,8 +96,75 @@ export class MonitorAlerts extends React.Component<any, any> {
         } catch (err) {
             console.log("failed to load Team Matrics Data ", err);
         }
+        try {
+            this.fetchAvgRespTimeData();
+        } catch (err) {
+            console.log("Avg Response time data load fail ", err);
+        }
+        try {
+            this.fetchAvgWaitTimeData();
+        } catch (err) {
+            console.log("Avg Wait time data load fail ", err);
+        }
     }
-
+    fetchAvgRespTimeData = () => {
+        RestService.getData(config.GET_AVG_RESP_TIME_DATA, null, null).then(
+            (response: any) => {
+                this.setState({
+                    avgRespTimeData: response,
+                    dailyAvgRespTime: response.lineDataSetList[0],
+                })
+                console.log("Avg Resp Time Data :::::: ", response);
+            }
+        );
+    }
+    fetchAvgWaitTimeData = () => {
+        RestService.getData(config.GET_AVG_RESP_TIME_DATA, null, null).then(
+            (response: any) => {
+                this.setState({
+                    avgWaitTimeData: response,
+                    dailyAvgWaitTime: response.lineDataSetList[0],
+                })
+                console.log("Avg Resp Time Data :::::: ", response);
+            }
+        );
+    }
+    createOptionForAvgRespTime = () => {
+        const { avgRespTimeData } = this.state;
+        const retData = [];
+        let i;
+        for (i in avgRespTimeData.daysList) {
+            retData.push(
+                <option value={i}>{avgRespTimeData.daysList[i]}</option>
+            );
+        }
+        return retData;
+    }
+    createOptionForAvgWaitTime = () => {
+        const { avgWaitTimeData } = this.state;
+        const retData = [];
+        let i;
+        for (i in avgWaitTimeData.daysList) {
+            retData.push(
+                <option value={i}>{avgWaitTimeData.daysList[i]}</option>
+            );
+        }
+        return retData;
+    }
+    onSelectAvgRespDate = (e: any) => {
+        const value = e.target.value;
+        const { avgRespTimeData } = this.state;
+        this.setState({
+            dailyAvgRespTime: avgRespTimeData.lineDataSetList[value],
+        });
+    }
+    onSelectAvgWaitDate = (e: any) => {
+        const value = e.target.value;
+        const { avgWaitTimeData } = this.state;
+        this.setState({
+            dailyAvgWaitTime: avgWaitTimeData.lineDataSetList[value],
+        });
+    }
     fetchDatatopAlertToday = () => {
         RestService.getData(config.TOP_ALERT_TODAY, null, null).then(
             (response: any) => {
@@ -149,7 +221,7 @@ export class MonitorAlerts extends React.Component<any, any> {
     };
 
     render() {
-        const { totalAlerts } = this.state;
+        const { totalAlerts, dailyAvgRespTime,dailyAvgWaitTime } = this.state;
         return (
             <div className="monitor-alerts-container">
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALERTS" />
@@ -239,19 +311,17 @@ export class MonitorAlerts extends React.Component<any, any> {
                                     </div>
                                     <div className="col-sm-7 p-l-0">
                                         <div className="current-responce-time-chart">
-                                            <CurrentAvrageWaitResponceTimeChart />
+                                            <CurrentAvrageWaitTimeChart />
                                         </div>
                                     </div>
                                 </div>
                                 <div className="current-bottom row">
                                     <div className="col-sm-8">
-                                        <select>
-                                            <option>Yesterday's avaerage</option>
-                                            <option>Yesterday's avaerage</option>
-                                            <option>Yesterday's avaerage</option>
+                                        <select name="avgWaitTimeSelectBox" onChange={e => this.onSelectAvgWaitDate(e)}>
+                                            {this.createOptionForAvgWaitTime()}
                                         </select>
                                     </div>
-                                    <div className="col-sm-4 minutes-text">23 minutes</div>
+                                    <div className="col-sm-4 minutes-text">{dailyAvgWaitTime} hours</div>
                                 </div>
                             </div>
                         </div>
@@ -288,13 +358,11 @@ export class MonitorAlerts extends React.Component<any, any> {
                                 </div>
                                 <div className="current-bottom row">
                                     <div className="col-sm-8">
-                                        <select>
-                                            <option>Yesterday's avaerage</option>
-                                            <option>Yesterday's avaerage</option>
-                                            <option>Yesterday's avaerage</option>
+                                        <select name="avgRespTimeSelectBox" onChange={e => this.onSelectAvgRespDate(e)}>
+                                            {this.createOptionForAvgRespTime()}
                                         </select>
                                     </div>
-                                    <div className="col-sm-4 minutes-text">23 minutes</div>
+                                    <div className="col-sm-4 minutes-text">{dailyAvgRespTime} hours</div>
                                 </div>
                             </div>
                         </div>

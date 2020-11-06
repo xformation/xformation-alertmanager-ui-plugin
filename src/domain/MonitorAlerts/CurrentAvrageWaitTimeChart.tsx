@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { RestService } from '../_service/RestService';
 import { config } from '../../config';
-export class CurrentAvrageWaitResponceTimeChart extends React.Component<any, any> {
+export class CurrentAvrageWaitTimeChart extends React.Component<any, any> {
 
     constructor(props: any) {
         super(props);
@@ -38,7 +38,7 @@ export class CurrentAvrageWaitResponceTimeChart extends React.Component<any, any
         }
     }
     fetchData = () => {
-        RestService.getData(config.GET_AVG_RESP_TIME_DATA, null, null).then(
+        RestService.getData(config.GET_AVG_WAIT_TIME_DATA, null, null).then(
             (response: any) => {
                 this.setState({
                     datasets: [{
