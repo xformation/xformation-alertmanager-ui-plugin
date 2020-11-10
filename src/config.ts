@@ -7,7 +7,7 @@ const ticketSrvUrl = `http://100.64.108.25:7100/api`;
 
 export const config = {
   basePath: "/plugins/xformation-alertmanager-ui-plugin/page",
-  GET_ALL_ALERT_FROM_ELASTIC: `${searchSrvUrl}/search/query?q=alert&pageSize=5000`,
+  GET_ALL_ALERT_FROM_ELASTIC: `${alertSrvUrl}/api/listAllAlertFromElastic`,
   GET_ALL_ALERT_FROM_DB: `${alertSrvUrl}/api/listAlert`,
   UPDATE_ALERT: `${alertSrvUrl}/api/updateAlert`,
   DELETE_ALERT: `${alertSrvUrl}/api/deleteAlert`,

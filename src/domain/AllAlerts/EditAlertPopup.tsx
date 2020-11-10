@@ -29,12 +29,12 @@ export class EditAlertPopup extends React.Component<any, any> {
     toggle = (selectedAlert: any) => {
         let alertState = "";
         const keys = Object.keys(selectedAlert);
-        const lowerCaseKeys = keys.map((key)=>key.toLowerCase());
-        const index = lowerCaseKeys.indexOf("alert_state");
+        const lowerCaseKeys = keys.map((key)=>key); //key.toLowerCase()
+        const index = lowerCaseKeys.indexOf("alertState");
         if(index !== -1){
             const key = keys[index];
             if(selectedAlert[key]){
-                alertState = selectedAlert[key].toLowerCase();
+                alertState = selectedAlert[key]; //.toLowerCase();
             }
         }
         this.setState({
@@ -86,17 +86,17 @@ export class EditAlertPopup extends React.Component<any, any> {
         await RestService.add(config.UPDATE_ALERT, obj).then(response => {
             console.log('update alert response: ', response);
             if(response.length > 0){
-                let ary = [];
-                for (let i = 0; i < response.length; i++) {
-                    let j = JSON.parse(response[i]);
-                    ary.push(j);
-                }
+                // let ary = [];
+                // for (let i = 0; i < response.length; i++) {
+                //     let j = JSON.parse(response[i]);
+                //     ary.push(j);
+                // }
                 this.setState({
                     severity : config.SEVERITY_SUCCESS,
                     message: config.UPDATE_ALERT_SUCCESS_MESSAGE,
                     isAlertOpen: true,
                 });
-                this.props.onSaveUpdate(ary);
+                this.props.onSaveUpdate(response);
             }else {
                 this.setState({
                     severity : config.SEVERITY_ERROR,
@@ -121,9 +121,9 @@ export class EditAlertPopup extends React.Component<any, any> {
                                 <label htmlFor="selectAlertState">Select Alert State</label>
                                 <select className="form-control" name="alertState" value={state.alertState} onChange={this.onChange}>
                                     <option key="" value="">Select Alert State</option>
-                                    <option key="New" value="new">New</option>
-                                    <option key="InProgress" value="inprogress">InProgress</option>
-                                    <option key="Closed" value="closed">Closed</option>
+                                    <option key="New" value="New">New</option>
+                                    <option key="InProgress" value="InProgress">InProgress</option>
+                                    <option key="Closed" value="Closed">Closed</option>
                                 </select>
                             </div>
                         </div>

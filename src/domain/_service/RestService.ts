@@ -36,5 +36,5 @@ function deleteObject(url: any) {
   return fetch(url, {
     method: "DELETE",
     redirect: "follow"
-  }).then(response => response.text());
+  }).then(response => response.json());
 }

@@ -92,8 +92,8 @@ export class AllAlerts extends React.Component<any, any> {
                 },
                 {
                     label: 'Alert State',
-                    key: 'alert_state',
-                    isCaseInsensitive: true
+                    key: 'alertState',
+                    isCaseInsensitive: false
                 },
                 {
                     label: 'Affected Resource',
@@ -244,13 +244,13 @@ export class AllAlerts extends React.Component<any, any> {
         }];
         this.alertStates = [{
             label: "New",
-            value: "new"
+            value: "New"
         }, {
             label: "InProgress",
-            value: "inprogress"
+            value: "InProgress"
         }, {
             label: "Closed",
-            value: "closed"
+            value: "Closed"
         }];
         this.editAlertRef = React.createRef();
     }
@@ -260,7 +260,7 @@ export class AllAlerts extends React.Component<any, any> {
         for (let i = 0; i < this.state.alertData.length; i++) {
             let row = this.state.alertData[i];
             if (row.name == value) {
-                data = row.client_url;
+                data = row.clientUrl;
             }
         }
         console.log("Alert : ", alert)
@@ -294,14 +294,14 @@ export class AllAlerts extends React.Component<any, any> {
     fetchData = () => {
         RestService.getData(config.GET_ALL_ALERT_FROM_ELASTIC, null, null).then(
             (response: any) => {
-                let ary = [];
-                for (let i = 0; i < response.length; i++) {
-                    let j = JSON.parse(response[i]);
-                    ary.push(j);
-                }
+                // let ary = [];
+                // for (let i = 0; i < response.length; i++) {
+                //     let j = JSON.parse(response[i]);
+                //     ary.push(j);
+                // }
                 console.log("alert data : ", response);
                 this.setState({
-                    alertData: ary,
+                    alertData: response,
                 });
             }
         );
@@ -419,12 +419,12 @@ export class AllAlerts extends React.Component<any, any> {
                     }
                 }
                 if (isMatched && alertState) {
-                    let index = lowerCaseKeys.indexOf("alert_state");
+                    let index = lowerCaseKeys.indexOf("alertstate");
                     if (index !== -1) {
                         let key = alertKeys[index];
                         let data = alert[key];
                         if (data) {
-                            isMatched = alertState === data.toLowerCase();
+                            isMatched = alertState === data; //.toLowerCase();
                         } else {
                             isMatched = false;
                         }
@@ -499,27 +499,12 @@ export class AllAlerts extends React.Component<any, any> {
 
     handleConfirmDelete = (objectType: any, object: any) => {
         let url = config.DELETE_ALERT + `/` + object.guid;
-        let res = this.callDeleteApi(url);
-
-        res.then((result: any) => {
+        RestService.deleteObject(url).then(response => {
             try {
-                let r = JSON.parse(result);
-                if (r.length > 0) {
-                    console.log("Updating alert list : ", r);
-                    let ary = [];
-                    for (let i = 0; i < r.length; i++) {
-                        let j = JSON.parse(r[i]);
-                        ary.push(j);
-                    }
-                    this.setState({
-                        alertData: ary
-                    });
-                } else {
-                    this.setState({
-                        alertData: []
-                    });
-                }
-            } catch (e) {
+                this.setState({
+                    alertData: response
+                });
+            }catch (e) {
                 console.log("Some error in deleting alert data");
                 this.setState({
                     severity: config.SEVERITY_ERROR,
@@ -527,7 +512,39 @@ export class AllAlerts extends React.Component<any, any> {
                     isAlertOpen: true,
                 });
             }
-        })
+        });
+        // let res = this.callDeleteApi(url);
+
+        // res.then((result: any) => {
+        //     try {
+        //         this.setState({
+        //             alertData: result
+        //         });
+        //         // let r = JSON.parse(result);
+        //         // if (result.length > 0) {
+        //         //     // console.log("Updating alert list : ", r);
+        //         //     // let ary = [];
+        //         //     // for (let i = 0; i < r.length; i++) {
+        //         //     //     let j = JSON.parse(r[i]);
+        //         //     //     ary.push(j);
+        //         //     // }
+        //         //     this.setState({
+        //         //         alertData: result
+        //         //     });
+        //         // } else {
+        //         //     this.setState({
+        //         //         alertData: []
+        //         //     });
+        //         // }
+        //     } catch (e) {
+        //         console.log("Some error in deleting alert data");
+        //         this.setState({
+        //             severity: config.SEVERITY_ERROR,
+        //             message: 'Alert could not be deleted. Please check the service logs for details',
+        //             isAlertOpen: true,
+        //         });
+        //     }
+        // })
 
         this.setState({
             isConfirmDialogOpen: false,
