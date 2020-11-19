@@ -69,8 +69,8 @@ export class PopupContent extends React.Component<any, any> {
             retData.push(
                 <tr>
                     <td>{historyTable.action}</td>
-                    <td>{historyTable.action_description}</td>
-                    <td>{historyTable.timestamp}</td>
+                    <td>{historyTable.actionDescription}</td>
+                    <td>{historyTable.updatedOn}</td>
                 </tr>
             )
         }
@@ -89,7 +89,7 @@ export class PopupContent extends React.Component<any, any> {
                         <span className="urgent">{diagnosticsTable.severity}</span>
                     </td>
                     <td><i className="fa fa-exclamation-triangle"></i> {diagnosticsTable.monitorcondition}</td>
-                    <td>{diagnosticsTable.alert_state}</td>
+                    <td>{diagnosticsTable.alertState}</td>
                     <td>{diagnosticsTable.affectedresource}</td>
                 </tr>
             )
