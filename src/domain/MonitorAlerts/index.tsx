@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
 import { CurrentAvrageWaitResponceTimeChart } from './CurrentAvrageWaitResponceTimeChart';
-import {CurrentAvrageWaitTimeChart} from "./CurrentAvrageWaitTimeChart"
+import { CurrentAvrageWaitTimeChart } from "./CurrentAvrageWaitTimeChart"
 import { AlertVolumeByStatusChart } from './AlertVolumeByStatusChart';
 import { AlertVolumeChart } from './AlertVolumeChart';
 import { RestService } from '../_service/RestService';
@@ -22,6 +22,12 @@ export class MonitorAlerts extends React.Component<any, any> {
             dailyAvgRespTime: 0,
             dailyAvgWaitTime: 0,
             avgWaitTimeData: {},
+            showCurrentWaitTimeFull: false,
+            showTopAlertsTodayFull: false,
+            showAlertVolumeFull: false,
+            showAlertVolumeByStatusFull: false,
+            showAverageResponseTimeFull: false,
+            showTeamMetricsFull: false
         };
         this.breadCrumbs = [
             {
@@ -119,7 +125,7 @@ export class MonitorAlerts extends React.Component<any, any> {
         );
     }
     fetchAvgWaitTimeData = () => {
-        RestService.getData(config.GET_AVG_WAIT_TIME_DATA, null, null).then(
+        RestService.getData(config.GET_AVG_RESP_TIME_DATA, null, null).then(
             (response: any) => {
                 this.setState({
                     avgWaitTimeData: response,
@@ -220,8 +226,54 @@ export class MonitorAlerts extends React.Component<any, any> {
         this.unimplementedFeatureModalRef.current.toggle();
     };
 
+    showCurrentWaitTimeFull = () => {
+        const { showCurrentWaitTimeFull } = this.state;
+        let showCurrent = !showCurrentWaitTimeFull;
+        this.setState({
+            showCurrentWaitTimeFull: showCurrent,
+        })
+    }
+    showTopAlertsTodayFull = () => {
+        const { showTopAlertsTodayFull } = this.state;
+        let showCurrent = !showTopAlertsTodayFull;
+        this.setState({
+            showTopAlertsTodayFull: showCurrent,
+        })
+    }
+    showAlertVolumeFull = () => {
+        const { showAlertVolumeFull } = this.state;
+        let showCurrent = !showAlertVolumeFull;
+        this.setState({
+            showAlertVolumeFull: showCurrent,
+        })
+    }
+
+    showAlertVolumeByStatusFull = () => {
+        const { showAlertVolumeByStatusFull } = this.state;
+        let showCurrent = !showAlertVolumeByStatusFull;
+        this.setState({
+            showAlertVolumeByStatusFull: showCurrent,
+        })
+    }
+
+    showAverageResponseTimeFull = () => {
+        const { showAverageResponseTimeFull } = this.state;
+        let showCurrent = !showAverageResponseTimeFull;
+        this.setState({
+            showAverageResponseTimeFull: showCurrent,
+        })
+    }
+
+    showTeamMetricsFull = () => {
+        const { showTeamMetricsFull } = this.state;
+        let showCurrent = !showTeamMetricsFull;
+        this.setState({
+            showTeamMetricsFull: showCurrent,
+        })
+    }
+
     render() {
-        const { totalAlerts, dailyAvgRespTime,dailyAvgWaitTime } = this.state;
+        const { totalAlerts, dailyAvgRespTime,dailyAvgWaitTime,showCurrentWaitTimeFull,showTopAlertsTodayFull,showAlertVolumeFull,showAlertVolumeByStatusFull,showAverageResponseTimeFull,showTeamMetricsFull } = this.state;
         return (
             <div className="monitor-alerts-container">
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALERTS" />
@@ -240,6 +292,135 @@ export class MonitorAlerts extends React.Component<any, any> {
                             Refresh
                         </a>
                     </div>
+                    
+                    {showCurrentWaitTimeFull === true && 
+                    <div className="charts-container full-chart row common-container">
+                        <div className="chart-block col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <div className="chart-inner current">
+                                <div className="label">Current Wait Time <i className="fa fa-cog" onClick={this.showCurrentWaitTimeFull}></i></div>
+                                <div className="row">
+                                    <div className="col-sm-7">
+                                        <div className="current-responce-time-chart">
+                                            <CurrentAvrageWaitTimeChart />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="current-bottom row">
+                                    <div className="col-sm-8">
+                                        <select name="avgWaitTimeSelectBox" onChange={e => this.onSelectAvgWaitDate(e)}>
+                                            {this.createOptionForAvgWaitTime()}
+                                        </select>
+                                    </div>
+                                    <div className="col-sm-4 minutes-text">{dailyAvgWaitTime} hours</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+                    {showTopAlertsTodayFull === true && 
+                    <div className="charts-container full-chart row common-container">
+                        <div className="chart-block col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <div className="chart-inner alerts">
+                                <div className="label">Top Alerts Today <i className="fa fa-cog" onClick={this.showTopAlertsTodayFull}></i></div>
+                                <div className="chart-data-table">
+                                    <table className="table">
+                                        <tbody>
+                                            <tr className="chart-header">
+                                                <th>Name</th>
+                                                <th>Severity</th>
+                                                <th>Time</th>
+                                            </tr>
+                                            {this.createTopAlertsTodayTable()}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+                    {showAlertVolumeFull === true && 
+                    <div className="charts-container full-chart row common-container">
+                        <div className="chart-block col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <div className="chart-inner alert-volume">
+                                <div className="label">Alert Volume <i className="fa fa-cog" onClick={this.showAlertVolumeFull}></i></div>
+                                <div className="current-time-chart row" style={{ margin: "0px" }}>
+                                    <AlertVolumeChart />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+                    {showAlertVolumeByStatusFull === true && 
+                    <div className="charts-container full-chart row common-container">
+                        <div className="chart-block col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <div className="chart-inner alerts">
+                                <div className="label">Alert Volume By Status <i className="fa fa-cog" 
+                                onClick={this.showAlertVolumeByStatusFull}></i></div>
+                                <div className="current-time-chart row" style={{ margin: "0px" }}>
+                                    <AlertVolumeByStatusChart />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+                    {showAverageResponseTimeFull === true && 
+                    <div className="charts-container full-chart row common-container">
+                        <div className="chart-block col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <div className="chart-inner current average">
+                                <div className="label">Average Response Time <i className="fa fa-cog" 
+                                onClick={this.showAverageResponseTimeFull}></i></div>
+                                <div className="row">
+                                    {/* <div className="col-sm-5 p-r-0">
+                                        <div className="current-text">
+                                            11<sub>mm</sub>
+                                        </div>
+                                    </div> */}
+                                    <div className="col-sm-7 p-l-0">
+                                        <div className="current-responce-time-chart">
+                                            <CurrentAvrageWaitResponceTimeChart />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="current-bottom row">
+                                    <div className="col-sm-8">
+                                        <select name="avgRespTimeSelectBox" onChange={e => this.onSelectAvgRespDate(e)}>
+                                            {this.createOptionForAvgRespTime()}
+                                        </select>
+                                    </div>
+                                    <div className="col-sm-4 minutes-text">{dailyAvgRespTime} hours</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+                    {showTeamMetricsFull === true && 
+                    <div className="charts-container full-chart row common-container">
+                        <div className="chart-block col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <div className="chart-inner alert-volume">
+                                <div className="label">Team Metrics <i className="fa fa-cog" onClick={this.showTeamMetricsFull}></i></div>
+                                <div className="chart-data-table">
+                                    <table className="table">
+                                        <tbody>
+                                            <tr className="chart-header">
+                                                <th>Agent</th>
+                                                <th>Alerts</th>
+                                                <th>Time</th>
+                                            </tr>
+                                            {this.createteamMetricsTable()}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+                    {showCurrentWaitTimeFull === false && showTopAlertsTodayFull === false && showAlertVolumeFull === false && showAlertVolumeByStatusFull === false && showAverageResponseTimeFull === false && showTeamMetricsFull === false && <div className="d-block">
                     <div className="alert-data-container row common-container">
                         <div className="alert-data-block col-lg-3 col-md-6 col-sm-12">
                             <Link to={`${config.basePath}/allalerts`}>
@@ -285,7 +466,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                     <div className="charts-container row common-container">
                         <div className="chart-block col-xl-4 col-lg-6 col-md-12 col-sm-12">
                             <div className="chart-inner alerts">
-                                <div className="label">Top Alerts Today <i className="fa fa-cog"></i></div>
+                                <div className="label">Top Alerts Today <i className="fa fa-cog" onClick={this.showTopAlertsTodayFull}></i></div>
                                 <div className="chart-data-table">
                                     <table className="table">
                                         <tbody>
@@ -302,7 +483,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                         </div>
                         <div className="chart-block col-xl-4 col-lg-6 col-md-12 col-sm-12">
                             <div className="chart-inner current">
-                                <div className="label">Current Wait Time <i className="fa fa-cog"></i></div>
+                                <div className="label">Current Wait Time <i className="fa fa-cog" onClick={this.showCurrentWaitTimeFull}></i></div>
                                 <div className="row">
                                     {/* <div className="col-sm-5 p-r-0">
                                         <div className="current-text">
@@ -327,7 +508,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                         </div>
                         <div className="chart-block col-xl-4 col-lg-6 col-md-12 col-sm-12">
                             <div className="chart-inner alert-volume">
-                                <div className="label">Alert Volume <i className="fa fa-cog"></i></div>
+                                <div className="label">Alert Volume <i className="fa fa-cog" onClick={this.showAlertVolumeFull}></i></div>
                                 <div className="current-time-chart row" style={{ margin: "0px" }}>
                                     <AlertVolumeChart />
                                 </div>
@@ -335,7 +516,8 @@ export class MonitorAlerts extends React.Component<any, any> {
                         </div>
                         <div className="chart-block col-xl-4 col-lg-6 col-md-12 col-sm-12">
                             <div className="chart-inner alerts">
-                                <div className="label">Alert Volume By Status <i className="fa fa-cog"></i></div>
+                                <div className="label">Alert Volume By Status <i className="fa fa-cog" 
+                                onClick={this.showAlertVolumeByStatusFull}></i></div>
                                 <div className="current-time-chart row" style={{ margin: "0px" }}>
                                     <AlertVolumeByStatusChart />
                                 </div>
@@ -343,7 +525,8 @@ export class MonitorAlerts extends React.Component<any, any> {
                         </div>
                         <div className="chart-block col-xl-4 col-lg-6 col-md-12 col-sm-12">
                             <div className="chart-inner current average">
-                                <div className="label">Average Response Time <i className="fa fa-cog"></i></div>
+                                <div className="label">Average Response Time <i className="fa fa-cog" 
+                                onClick={this.showAverageResponseTimeFull}></i></div>
                                 <div className="row">
                                     {/* <div className="col-sm-5 p-r-0">
                                         <div className="current-text">
@@ -368,7 +551,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                         </div>
                         <div className="chart-block col-xl-4 col-lg-6 col-md-12 col-sm-12">
                             <div className="chart-inner alert-volume">
-                                <div className="label">Team Metrics <i className="fa fa-cog"></i></div>
+                                <div className="label">Team Metrics <i className="fa fa-cog" onClick={this.showTeamMetricsFull}></i></div>
                                 <div className="chart-data-table">
                                     <table className="table">
                                         <tbody>
@@ -384,6 +567,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                             </div>
                         </div>
                     </div>
+                    </div>}
                 </div>
                 <UnimplementedFeaturePopup ref={this.unimplementedFeatureModalRef} />
             </div>

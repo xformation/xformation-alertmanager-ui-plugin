@@ -90,7 +90,17 @@
 .charts-container {
   padding-right: 20px;
   border-bottom: none;
-
+  &.full-chart{
+    .chart-block .chart-inner{
+      min-height: 400px;
+      .current-responce-time-chart {
+        height: 350px;
+      }
+    }
+    .current-time-chart {
+      height: 370px;
+    }  
+  }
   .chart-block .chart-inner {
     background: #f0f3f7;
     box-shadow: 0px 1px 5px #00000029;
@@ -99,7 +109,7 @@
     margin-bottom: 30px;
     border-radius: 5px;
     overflow: hidden;
-    margin-right: 30px;
+    margin-right: 0;
 
     &.current {
       background: #e31335;
@@ -119,11 +129,11 @@
       font-size: 14px;
       line-height: 20px;
       font-weight: 600;
-
       i {
         float: right;
         padding-right: 10px;
         font-size: 18px;
+        cursor: pointer;
       }
     }
 
