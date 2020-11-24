@@ -119,7 +119,7 @@ export class MonitorAlerts extends React.Component<any, any> {
         );
     }
     fetchAvgWaitTimeData = () => {
-        RestService.getData(config.GET_AVG_RESP_TIME_DATA, null, null).then(
+        RestService.getData(config.GET_AVG_WAIT_TIME_DATA, null, null).then(
             (response: any) => {
                 this.setState({
                     avgWaitTimeData: response,
