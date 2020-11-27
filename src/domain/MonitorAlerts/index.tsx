@@ -8,7 +8,8 @@ import { AlertVolumeByStatusChart } from './AlertVolumeByStatusChart';
 import { AlertVolumeChart } from './AlertVolumeChart';
 import { RestService } from '../_service/RestService';
 import { UnimplementedFeaturePopup } from '../../components/UnimplementedFeaturePopup';
-
+import Rbac from '../../components/Rbac'
+    import { fromPairs } from 'lodash';
 export class MonitorAlerts extends React.Component<any, any> {
     breadCrumbs: any;
     unimplementedFeatureModalRef: any;
@@ -227,18 +228,24 @@ export class MonitorAlerts extends React.Component<any, any> {
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALERTS" />
                 <div className="alert-page-container">
                     <div className="common-container">
+                        {/* <Rbac parentName={config.PARENT_NAME} childName="manage-alert-rule"> */}
                         <Link to={`${config.basePath}/managealertrule`} className="alert-blue-button">
                             <i className="fa fa-cog"></i>&nbsp;&nbsp;
                             Manage Alert Rule
                         </Link>
+                        {/* </Rbac> */}
+                        <Rbac parentName={config.PARENT_NAME} childName="manage-workflows">
                         <a className="alert-blue-button" onClick={() => this.onClickUnImplementedFeature("")}>
                             <i className="fa fa-cog"></i>&nbsp;&nbsp;
                             Manage Workflows
                         </a>
+                        </Rbac>
+                        <Rbac parentName={config.PARENT_NAME} childName="monitor_alerts_refresh_btn">
                         <a className="alert-blue-button" onClick={() => this.onClickUnImplementedFeature("")}>
                             <i className="fa fa-refresh"></i>&nbsp;&nbsp;
                             Refresh
                         </a>
+                        </Rbac>
                     </div>
                     <div className="alert-data-container row common-container">
                         <div className="alert-data-block col-lg-3 col-md-6 col-sm-12">
@@ -309,7 +316,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                                             21<sub>mm</sub>
                                         </div>
                                     </div> */}
-                                    <div className="col-sm-7 p-l-0">
+                                    <div className="col-sm-11 p-l-20">
                                         <div className="current-responce-time-chart">
                                             <CurrentAvrageWaitTimeChart />
                                         </div>
@@ -350,7 +357,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                                             11<sub>mm</sub>
                                         </div>
                                     </div> */}
-                                    <div className="col-sm-7 p-l-0">
+                                    <div className="col-sm-11 p-l-20">
                                         <div className="current-responce-time-chart">
                                             <CurrentAvrageWaitResponceTimeChart />
                                         </div>

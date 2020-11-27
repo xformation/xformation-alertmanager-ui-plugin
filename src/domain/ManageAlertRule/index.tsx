@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
 import Table from './../../components/table';
+import Rbac from './../../components/Rbac'
 
 export class ManageAlertRule extends React.Component<any, any> {
     alertsRulesData: any;
@@ -234,9 +235,11 @@ export class ManageAlertRule extends React.Component<any, any> {
                                 </div> */}
                             </div>
                             <div className="col-lg-4 col-md-12 col-sm-12 manage-rules-btn">
+                                <Rbac parentName={config.PARENT_NAME} childName="managealertrule_fld_index_create_alert-rule_btn">
                                 <div className="float-right common-right-btn">
                                     <Link to={`${config.basePath}/alertrulebuilder`} className="alert-blue-button m-r-0 create-rule-btn">Create Alert Rule</Link>
                                 </div>
+                                </Rbac>
                             </div>
                         </div>
                         <div className="alert-data-table-container managealertrules-data-table-container">

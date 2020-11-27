@@ -24,6 +24,8 @@ export const config = {
   GET_TEAM_MATRICS_DATA_URL: `${ticketSrvUrl}/getTeamMatricsData`,
   GET_ALERT_ACTIVITIES: `${alertSrvUrl}/api/getDataFromAlertActivity`,
 
+  PARENT_NAME: "xformation-alertmanager-ui-plugin",
+
   SEVERITY_ERROR: "error",
   SEVERITY_SUCCESS: "success",
   SERVER_ERROR_MESSAGE:

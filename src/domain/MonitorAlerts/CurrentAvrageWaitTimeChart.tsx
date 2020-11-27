@@ -21,22 +21,22 @@ export class CurrentAvrageWaitTimeChart extends React.Component<any, any> {
                 lineTension: 0.2,
                 fill: false,
                 borderColor: 'rgba(255,255,255,0.5)',
-                data: [],
+                data: [50,20,40,30,80,70,78],
                 borderWidth: 2,
                 // Changes this dataset to become a line
                 type: 'line'
             }],
-            labels: []
+            labels: [10,20,30,40,50,60,70]
 
         };
     }
-    componentDidMount() {
-        try {
-            this.fetchData();
-        } catch (err) {
-            console.log("Avarage response time data load failed. Error: ", err);
-        }
-    }
+    // componentDidMount() {
+    //     try {
+    //         this.fetchData();
+    //     } catch (err) {
+    //         console.log("Avarage response time data load failed. Error: ", err);
+    //     }
+    // }
     fetchData = () => {
         RestService.getData(config.GET_AVG_WAIT_TIME_DATA, null, null).then(
             (response: any) => {

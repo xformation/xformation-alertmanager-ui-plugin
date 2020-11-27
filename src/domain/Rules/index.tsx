@@ -4,7 +4,7 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
 import Table from './../../components/table';
-
+import Rbac from './../../components/Rbac'
 export class Rules extends React.Component<any, any> {
     ruleData: any;
     breadCrumbs: any;
@@ -117,10 +117,12 @@ export class Rules extends React.Component<any, any> {
                     <div className="common-container">
                         <div className="row">
                             <div className="col-md-9 col-sm-12">
+                                <Rbac parentName={config.PARENT_NAME} childName="rules_fld_index_new_alert_rule">
                                 <Link to={`${config.basePath}/managealertrule`} className="alert-white-button">
                                     <i className="fa fa-plus"></i>&nbsp;&nbsp;
                                     New Alert Rule
                                 </Link>
+                                </Rbac>
                                 <a className="alert-white-button">
                                     <i className="fa fa-refresh"></i>&nbsp;&nbsp;
                                     Refresh
