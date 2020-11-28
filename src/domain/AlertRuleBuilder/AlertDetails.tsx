@@ -6,13 +6,7 @@ export class AlertDetails extends React.Component<any,any>{
         <div className="alert-details">
             <div className="alert-details-name">
                 <label>Name this Alert Rule</label>
-                <select>
-                    <option>Untitled Rule</option>
-                    <option>Untitled Rule</option>
-                    <option>Untitled Rule</option>
-                    <option>Untitled Rule</option>
-                    <option>Untitled Rule</option>
-                </select>
+                <input type="text" placeholder="Untitled Rule" className="input-group-text" />
             </div>
             <div className="alert-details-description">
                 <label>Description</label>
