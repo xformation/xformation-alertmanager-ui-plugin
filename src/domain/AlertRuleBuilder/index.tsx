@@ -12,6 +12,7 @@ export class AlertRuleBuilder extends React.Component<any, any> {
     breadCrumbs: any;
     steps: any;
     conditionsRef: any;
+    wizardRef: any;
     constructor(props: any) {
         super(props);
         this.state = {
@@ -19,6 +20,7 @@ export class AlertRuleBuilder extends React.Component<any, any> {
             data: "Hello World",
             message: "",
             conditionData: true,
+            hideNextBtn: false
         };
         this.breadCrumbs = [
             {
@@ -40,10 +42,10 @@ export class AlertRuleBuilder extends React.Component<any, any> {
             component: <AlertDetails />
         }, {
             name: "Alert Type",
-            component: <AlertTypes parentCallback = {this.callbackFunction} />
+            component: <AlertTypes parentCallback={this.callbackFunction} />
         }, {
             name: "Conditions",
-            component: <Conditions ref= {this.conditionsRef} />
+            component: <Conditions ref={this.conditionsRef} />
         }, {
             name: "Alert Handlers",
             component: <AlertHandler />
@@ -51,12 +53,23 @@ export class AlertRuleBuilder extends React.Component<any, any> {
             name: "Message",
             component: <Message />
         }];
+        this.wizardRef = React.createRef();
     }
 
-    callbackFunction = (childData:any) => {
+    callbackFunction = (childData: any) => {
         console.log(childData)
         this.conditionsRef.current.onChangeAlertType(childData);
     }
+
+    onClickNext = () => {
+        this.wizardRef.current.goToNextPage();
+    };
+
+    onChangeStep = (currentStep: any, isLastStep: any) => {
+        this.setState({
+            hideNextBtn: isLastStep
+        });
+    };
 
     render() {
         const state = this.state;
@@ -85,7 +98,13 @@ export class AlertRuleBuilder extends React.Component<any, any> {
                         </div>
                     </div>
                     <div className="common-container wizard-container">
-                        <Wizard steps={this.steps} />
+                        <Wizard steps={this.steps} ref={this.wizardRef} onChangeStep={this.onChangeStep} />
+                        {
+                            !state.hideNextBtn &&
+                            <div className="alert-details-next">
+                                <button className="alert-blue-button next-btn" onClick={this.onClickNext}>Next</button>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

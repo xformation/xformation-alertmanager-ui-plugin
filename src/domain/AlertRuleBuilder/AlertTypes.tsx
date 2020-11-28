@@ -145,9 +145,6 @@ export class AlertTypes extends React.Component<any, any>{
                         </div>
                     </div>
                 </div>
-                <div className="alert-details-next">
-                    <button className="alert-blue-button next-btn">Next</button>
-                </div>
             </div>
         );
     }

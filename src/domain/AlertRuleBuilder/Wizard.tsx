@@ -12,6 +12,7 @@ export class Wizard extends React.Component<any, any>{
         this.setState({
             currentStep: activeStep
         });
+        this.props.onChangeStep(activeStep, activeStep === this.props.steps.length - 1);
     };
 
     createStepLine = () => {
@@ -25,6 +26,18 @@ export class Wizard extends React.Component<any, any>{
                 retData.push(<div className={`wizard-step-button ${currentStep === i ? 'active' : ''}`} onClick={e => this.onClickStepButton(i)}>{step.name}</div>);
             }
             return retData;
+        }
+    };
+
+    goToNextPage = () => {
+        const { currentStep } = this.state;
+        const { steps } = this.props;
+        const nextStep = currentStep + 1;
+        if (steps && nextStep < steps.length) {
+            this.setState({
+                currentStep: nextStep
+            });
+            this.props.onChangeStep(nextStep, nextStep === steps.length - 1);
         }
     };
 
