@@ -45,12 +45,16 @@ export class Rules extends React.Component<any, any> {
                     renderCallback: () => {
                         return <td>
                             <div className="d-inline-block">
-                                <button className="btn btn-link">
-                                    <i className="fa fa-edit"></i>
-                                </button>
-                                <button className="btn btn-link">
-                                    <i className="fa fa-trash"></i>
-                                </button>
+                                <Rbac parentName={config.PARENT_NAME} childName="rules-fld-index-edit-action-btn">
+                                    <button className="btn btn-link">
+                                        <i className="fa fa-edit"></i>
+                                    </button>
+                                </Rbac>
+                                <Rbac parentName={config.PARENT_NAME} childName="rules-fld-index-delete-action-btn">
+                                    <button className="btn btn-link">
+                                        <i className="fa fa-trash"></i>
+                                    </button>
+                                </Rbac>
                             </div>
                         </td>
                     }
@@ -88,9 +92,9 @@ export class Rules extends React.Component<any, any> {
             ],
         };
         this.perPageLimit = 2,
-        this.checkboxValue = true,
-        this.state = {
-        };
+            this.checkboxValue = true,
+            this.state = {
+            };
         this.breadCrumbs = [
             {
                 label: "Home",
@@ -117,9 +121,9 @@ export class Rules extends React.Component<any, any> {
                     <div className="common-container">
                         <div className="row">
                             <div className="col-md-9 col-sm-12">
-                                <Rbac parentName={config.PARENT_NAME} childName="rules_fld_index_new_alert_rule">
-                                <Link to={`${config.basePath}/managealertrule`} className="alert-white-button">
-                                    <i className="fa fa-plus"></i>&nbsp;&nbsp;
+                                <Rbac parentName={config.PARENT_NAME} childName="rules-fld-index-new-alert-rule">
+                                    <Link to={`${config.basePath}/managealertrule`} className="alert-white-button">
+                                        <i className="fa fa-plus"></i>&nbsp;&nbsp;
                                     New Alert Rule
                                 </Link>
                                 </Rbac>

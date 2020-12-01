@@ -40,8 +40,12 @@ export class ManageAlertRule extends React.Component<any, any> {
                         return <td>
                             <div className="d-inline-block">
                                 <div className="enabled"></div>
-                                <button className="btn btn-link"><i className="fa fa-edit"></i></button>
-                                <button className="btn btn-link"><i className="fa fa-trash"></i></button>
+                                <Rbac parentName={config.PARENT_NAME} childName="managealertrule-fld-index-rule-edit-action-btn">
+                                    <button className="btn btn-link"><i className="fa fa-edit"></i></button>
+                                </Rbac>
+                                <Rbac parentName="" childName="managealertrule-fld-index-rule-delete-action-btn">
+                                    <button className="btn btn-link"><i className="fa fa-trash"></i></button>
+                                </Rbac>
                             </div>
                         </td>
                     }
@@ -83,8 +87,13 @@ export class ManageAlertRule extends React.Component<any, any> {
                         return <td>
                             <div className="d-inline-block">
                                 <div className="enabled"></div>
-                                <button className="btn btn-link"><i className="fa fa-edit"></i></button>
-                                <button className="btn btn-link"><i className="fa fa-trash"></i></button>
+                                <Rbac parentName={config.PARENT_NAME} childName="managealertrule-fld-index-script-edit-action-btn">
+                                    <button className="btn btn-link"><i className="fa fa-edit"></i></button>
+                                </Rbac>
+                                <Rbac parentName={config.PARENT_NAME} childName="managealertrule-fld-index-script-edit-action-btn">
+                                    <button className="btn btn-link"><i className="fa fa-trash"></i></button>
+                                </Rbac>
+
                             </div>
                         </td>
                     }
@@ -104,9 +113,9 @@ export class ManageAlertRule extends React.Component<any, any> {
             ],
         };
         this.perPageLimit = 3,
-        this.checkboxValue = true,
-        this.state = {
-        };
+            this.checkboxValue = true,
+            this.state = {
+            };
         this.breadCrumbs = [
             {
                 label: "Home",
@@ -235,10 +244,10 @@ export class ManageAlertRule extends React.Component<any, any> {
                                 </div> */}
                             </div>
                             <div className="col-lg-4 col-md-12 col-sm-12 manage-rules-btn">
-                                <Rbac parentName={config.PARENT_NAME} childName="managealertrule_fld_index_create_alert-rule_btn">
-                                <div className="float-right common-right-btn">
-                                    <Link to={`${config.basePath}/alertrulebuilder`} className="alert-blue-button m-r-0 create-rule-btn">Create Alert Rule</Link>
-                                </div>
+                                <Rbac parentName={config.PARENT_NAME} childName="managealertrule-fld-index-create-alert-rule-btn">
+                                    <div className="float-right common-right-btn">
+                                        <Link to={`${config.basePath}/alertrulebuilder`} className="alert-blue-button m-r-0 create-rule-btn">Create Alert Rule</Link>
+                                    </div>
                                 </Rbac>
                             </div>
                         </div>
@@ -261,7 +270,9 @@ export class ManageAlertRule extends React.Component<any, any> {
                             </div>
                             <div className="col-lg-4 col-md-12 col-sm-12 manage-rules-btn">
                                 <div className="float-right common-right-btn">
-                                    <Link to={`${config.basePath}/scripteditor`} className="alert-blue-button m-r-0 create-rule-btn">Write Script</Link>
+                                    <Rbac parentName={config.PARENT_NAME} childName="managealertrule-fld-index-write-script-btn">
+                                        <Link to={`${config.basePath}/scripteditor`} className="alert-blue-button m-r-0 create-rule-btn">Write Script</Link>
+                                    </Rbac>
                                 </div>
                             </div>
                         </div>

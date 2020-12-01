@@ -13,7 +13,7 @@ import { now } from 'lodash';
 import Table from './../../components/table';
 import TimeRange from './../../components/TimeRange';
 import DateTimeRangePicker from '@wojtekmaj/react-datetimerange-picker';
-
+import Rbac from './../../components/Rbac'
 export class AllAlerts extends React.Component<any, any> {
     editAlertRef: any;
     breadCrumbs: any;
@@ -136,20 +136,28 @@ export class AllAlerts extends React.Component<any, any> {
                     renderCallback: (value: any, alert: any) => {
                         return <td>
                             <div className="d-inline-block">
+                            <Rbac parentName={config.PARENT_NAME} childName="allalerts-fld-index-alert-edit-action-btn">
                                 <button className="btn btn-link">
                                     <i onClick={e => this.onClickEditAlert(e, alert)} className="fa fa-edit"></i>
                                 </button>
+                                </Rbac>
+                                <Rbac parentName={config.PARENT_NAME} childName="allalerts-fld-index-alert-delete-action-btn">
                                 <button className="btn btn-link">
                                     <i onClick={e => this.onClickDeleteAlert(e, alert)} className="fa fa-trash"></i>
                                 </button>
+                                </Rbac>
                                 <button className="btn btn-link" id={`PopoverFocus-${alert.guid}`}>
 
                                     <i className="fa fa-ellipsis-h"></i>
                                 </button>
                                 <UncontrolledPopover trigger="legacy" placement="bottom" target={`PopoverFocus-${alert.guid}`}>
                                     <PopoverBody>
+                                    <Rbac parentName={config.PARENT_NAME} childName="allalerts-fld-index-alert-create-ticket-action-btn">
                                         <Link className=" " to={`${config.basePath}/alltickets?guid=` + alert.guid+"&alertName="+alert.name}>Create Ticket</Link>
+                                    </Rbac>
+                                    <Rbac parentName={config.PARENT_NAME} childName="allalerts-fld-index-alert-silence-action-btn">
                                         <Link className=" " to="#">Silence</Link>
+                                    </Rbac>
                                     </PopoverBody>
                                 </UncontrolledPopover>
                             </div>
