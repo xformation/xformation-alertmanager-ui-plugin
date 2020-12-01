@@ -4,6 +4,7 @@ import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
 import Table from './../../components/table';
 import Rbac from './../../components/Rbac'
+import { UnimplementedFeaturePopup } from '../../components/UnimplementedFeaturePopup';
 
 export class ManageAlertRule extends React.Component<any, any> {
     alertsRulesData: any;
@@ -13,6 +14,7 @@ export class ManageAlertRule extends React.Component<any, any> {
     perPageLimit: any;
     checkboxValue: any;
     scriptValue: any;
+    unimplementedFeatureModalRef: any;
     constructor(props: any) {
         super(props);
         this.tableValue = {
@@ -40,11 +42,11 @@ export class ManageAlertRule extends React.Component<any, any> {
                         return <td>
                             <div className="d-inline-block">
                                 <div className="enabled"></div>
-                                <Rbac parentName={config.PARENT_NAME} childName="managealertrule-fld-index-rule-edit-action-btn">
-                                    <button className="btn btn-link"><i className="fa fa-edit"></i></button>
+                                <Rbac parentName={config.PARENT_NAME} childName="managealertrule-index-ruletbl-editbtn">
+                                    <button className="btn btn-link" onClick={() => this.onClickUnImplementedFeature("")}><i className="fa fa-edit"></i></button>
                                 </Rbac>
-                                <Rbac parentName="" childName="managealertrule-fld-index-rule-delete-action-btn">
-                                    <button className="btn btn-link"><i className="fa fa-trash"></i></button>
+                                <Rbac parentName={config.PARENT_NAME} childName="managealertrule-index-ruletbl-deletebtn">
+                                    <button className="btn btn-link" onClick={() => this.onClickUnImplementedFeature("")}><i className="fa fa-trash"></i></button>
                                 </Rbac>
                             </div>
                         </td>
@@ -87,11 +89,11 @@ export class ManageAlertRule extends React.Component<any, any> {
                         return <td>
                             <div className="d-inline-block">
                                 <div className="enabled"></div>
-                                <Rbac parentName={config.PARENT_NAME} childName="managealertrule-fld-index-script-edit-action-btn">
-                                    <button className="btn btn-link"><i className="fa fa-edit"></i></button>
+                                <Rbac parentName={config.PARENT_NAME} childName="managealertrule-index-scripttbl-editbtn">
+                                    <button className="btn btn-link" onClick={() => this.onClickUnImplementedFeature("")}><i className="fa fa-edit"></i></button>
                                 </Rbac>
-                                <Rbac parentName={config.PARENT_NAME} childName="managealertrule-fld-index-script-edit-action-btn">
-                                    <button className="btn btn-link"><i className="fa fa-trash"></i></button>
+                                <Rbac parentName={config.PARENT_NAME} childName="managealertrule-index-scripttbl-deletebtn">
+                                    <button className="btn btn-link" onClick={() => this.onClickUnImplementedFeature("")}><i className="fa fa-trash"></i></button>
                                 </Rbac>
 
                             </div>
@@ -130,6 +132,7 @@ export class ManageAlertRule extends React.Component<any, any> {
                 isCurrentPage: true
             }
         ];
+        this.unimplementedFeatureModalRef = React.createRef();
         // this.alertsRulesData = [{
         //     name: 'CPU Percentage',
         //     ruleType: 'Threshold',
@@ -157,6 +160,10 @@ export class ManageAlertRule extends React.Component<any, any> {
         //     type: 'Slack (default)',
         // }];
     }
+    onClickUnImplementedFeature = (link: any) => {
+        this.unimplementedFeatureModalRef.current.setLink(link);
+        this.unimplementedFeatureModalRef.current.toggle();
+    };
     createAlertsRulesTable = () => {
         const retData = [];
         const alertsRules = this.alertsRulesData.length;
@@ -222,8 +229,8 @@ export class ManageAlertRule extends React.Component<any, any> {
                     <div className="common-container">
                         <div className="row">
                             <div className="col-md-6 col-sm-12">
-                                <button className="alert-gray-button kpi-btn active">KPI</button>
-                                <button className="alert-gray-button log-btn">Log</button>
+                                <button className="alert-gray-button kpi-btn active" onClick={() => this.onClickUnImplementedFeature("")}>KPI</button>
+                                <button className="alert-gray-button log-btn" onClick={() => this.onClickUnImplementedFeature("")}>Log</button>
                             </div>
                             <div className="col-md-6 col-sm-12">
                                 <div className="float-right common-right-btn">
@@ -244,7 +251,7 @@ export class ManageAlertRule extends React.Component<any, any> {
                                 </div> */}
                             </div>
                             <div className="col-lg-4 col-md-12 col-sm-12 manage-rules-btn">
-                                <Rbac parentName={config.PARENT_NAME} childName="managealertrule-fld-index-create-alert-rule-btn">
+                                <Rbac parentName={config.PARENT_NAME} childName="managealertrule-index-createalertrulebtn">
                                     <div className="float-right common-right-btn">
                                         <Link to={`${config.basePath}/alertrulebuilder`} className="alert-blue-button m-r-0 create-rule-btn">Create Alert Rule</Link>
                                     </div>
@@ -270,7 +277,7 @@ export class ManageAlertRule extends React.Component<any, any> {
                             </div>
                             <div className="col-lg-4 col-md-12 col-sm-12 manage-rules-btn">
                                 <div className="float-right common-right-btn">
-                                    <Rbac parentName={config.PARENT_NAME} childName="managealertrule-fld-index-write-script-btn">
+                                    <Rbac parentName={config.PARENT_NAME} childName="managealertrule-index-writescriptbtn">
                                         <Link to={`${config.basePath}/scripteditor`} className="alert-blue-button m-r-0 create-rule-btn">Write Script</Link>
                                     </Rbac>
                                 </div>
@@ -283,6 +290,7 @@ export class ManageAlertRule extends React.Component<any, any> {
                         </div>
                     </div>
                 </div>
+                <UnimplementedFeaturePopup ref={this.unimplementedFeatureModalRef} />
             </div>
         );
     }

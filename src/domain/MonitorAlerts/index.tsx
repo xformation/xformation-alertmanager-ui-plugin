@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
 import { CurrentAvrageWaitResponceTimeChart } from './CurrentAvrageWaitResponceTimeChart';
-import {CurrentAvrageWaitTimeChart} from "./CurrentAvrageWaitTimeChart"
+import { CurrentAvrageWaitTimeChart } from "./CurrentAvrageWaitTimeChart"
 import { AlertVolumeByStatusChart } from './AlertVolumeByStatusChart';
 import { AlertVolumeChart } from './AlertVolumeChart';
 import { RestService } from '../_service/RestService';
 import { UnimplementedFeaturePopup } from '../../components/UnimplementedFeaturePopup';
 import Rbac from '../../components/Rbac'
-    import { fromPairs } from 'lodash';
+import { fromPairs } from 'lodash';
 export class MonitorAlerts extends React.Component<any, any> {
     breadCrumbs: any;
     unimplementedFeatureModalRef: any;
@@ -222,30 +222,30 @@ export class MonitorAlerts extends React.Component<any, any> {
     };
 
     render() {
-        const { totalAlerts, dailyAvgRespTime,dailyAvgWaitTime } = this.state;
+        const { totalAlerts, dailyAvgRespTime, dailyAvgWaitTime } = this.state;
         return (
             <div className="monitor-alerts-container">
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALERTS" />
                 <div className="alert-page-container">
                     <div className="common-container">
                         <Rbac parentName={config.PARENT_NAME} childName="manage-alert-rule">
-                        <Link to={`${config.basePath}/managealertrule`} className="alert-blue-button">
-                            <i className="fa fa-cog"></i>&nbsp;&nbsp;
+                            <Link to={`${config.basePath}/managealertrule`} className="alert-blue-button">
+                                <i className="fa fa-cog"></i>&nbsp;&nbsp;
                             Manage Alert Rule
                         </Link>
                         </Rbac>
                         <Rbac parentName={config.PARENT_NAME} childName="manage-workflows">
-                        <a className="alert-blue-button" onClick={() => this.onClickUnImplementedFeature("")}>
-                            <i className="fa fa-cog"></i>&nbsp;&nbsp;
+                            <a className="alert-blue-button" onClick={() => this.onClickUnImplementedFeature("")}>
+                                <i className="fa fa-cog"></i>&nbsp;&nbsp;
                             Manage Workflows
                         </a>
                         </Rbac>
-                        
+
                         <a className="alert-blue-button" onClick={() => this.onClickUnImplementedFeature("")}>
                             <i className="fa fa-refresh"></i>&nbsp;&nbsp;
                             Refresh
                         </a>
-            
+
                     </div>
                     <div className="alert-data-container row common-container">
                         <div className="alert-data-block col-lg-3 col-md-6 col-sm-12">

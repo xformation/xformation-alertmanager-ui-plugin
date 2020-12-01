@@ -136,12 +136,12 @@ export class AllAlerts extends React.Component<any, any> {
                     renderCallback: (value: any, alert: any) => {
                         return <td>
                             <div className="d-inline-block">
-                            <Rbac parentName={config.PARENT_NAME} childName="allalerts-fld-index-alert-edit-action-btn">
+                            <Rbac parentName={config.PARENT_NAME} childName="allalerts-index-alerttbl-editbtn">
                                 <button className="btn btn-link">
                                     <i onClick={e => this.onClickEditAlert(e, alert)} className="fa fa-edit"></i>
                                 </button>
                                 </Rbac>
-                                <Rbac parentName={config.PARENT_NAME} childName="allalerts-fld-index-alert-delete-action-btn">
+                                <Rbac parentName={config.PARENT_NAME} childName="allalerts-index-alerttbl-deletebtn">
                                 <button className="btn btn-link">
                                     <i onClick={e => this.onClickDeleteAlert(e, alert)} className="fa fa-trash"></i>
                                 </button>
@@ -152,10 +152,10 @@ export class AllAlerts extends React.Component<any, any> {
                                 </button>
                                 <UncontrolledPopover trigger="legacy" placement="bottom" target={`PopoverFocus-${alert.guid}`}>
                                     <PopoverBody>
-                                    <Rbac parentName={config.PARENT_NAME} childName="allalerts-fld-index-alert-create-ticket-action-btn">
+                                    <Rbac parentName={config.PARENT_NAME} childName="allalerts-index-alerttbl-createticketbtn">
                                         <Link className=" " to={`${config.basePath}/alltickets?guid=` + alert.guid+"&alertName="+alert.name}>Create Ticket</Link>
                                     </Rbac>
-                                    <Rbac parentName={config.PARENT_NAME} childName="allalerts-fld-index-alert-silence-action-btn">
+                                    <Rbac parentName={config.PARENT_NAME} childName="allalerts-index-alerttbl-silencebtn">
                                         <Link className=" " to="#">Silence</Link>
                                     </Rbac>
                                     </PopoverBody>

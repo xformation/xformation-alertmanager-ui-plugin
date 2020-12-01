@@ -65,28 +65,28 @@ export class AllTickets extends React.Component<any, any> {
                     renderCallback: (value: any, alert: any) => {
                         return <td>
                             <div className="d-inline-block">
-                            <Rbac parentName={config.PARENT_NAME} childName="alltickets-fld-index-ticket-table-edit-action-btn">
-                                <button className="btn btn-link">
-                                    <i className="fa fa-edit"></i>
-                                </button>
+                                <Rbac parentName={config.PARENT_NAME} childName="alltickets-index-tickettbl-editbtn">
+                                    <button className="btn btn-link">
+                                        <i className="fa fa-edit"></i>
+                                    </button>
                                 </Rbac>
-                                <Rbac parentName={config.PARENT_NAME} childName="alltickets-fld-index-ticket-table-delete-action-btn">
-                                <button className="btn btn-link">
-                                    <i className="fa fa-trash"></i>
-                                </button>
+                                <Rbac parentName={config.PARENT_NAME} childName="alltickets-index-tickettbl-deletebtn">
+                                    <button className="btn btn-link">
+                                        <i className="fa fa-trash"></i>
+                                    </button>
                                 </Rbac>
                                 <button className="btn btn-link" id={`PopoverFocus-${alert.id}`}>
                                     <i className="fa fa-ellipsis-h"></i>
                                 </button>
                                 <UncontrolledPopover trigger="legacy" placement="bottom" target={`PopoverFocus-${alert.id}`}>
                                     <PopoverBody>
-                                    <Rbac parentName={config.PARENT_NAME} childName="alltickets-fld-index-ticket-table-ellipsis-start-ec2-action-btn">
-                                        <span className="bold-label colored-label pointer-label" onClick={this.onClickStartEC2}>Start EC2</span>
-                                    </Rbac>    
+                                        <Rbac parentName={config.PARENT_NAME} childName="alltickets-index-tickettbl-startec2btn">
+                                            <span className="bold-label colored-label pointer-label" onClick={this.onClickStartEC2}>Start EC2</span>
+                                        </Rbac>
                                         <br />
-                                        <Rbac parentName={config.PARENT_NAME} childName="alltickets-fld-index-ticket-table-ellipsis-start-ec2-with-prompt-action-btn">
-                                        <span className="bold-label colored-label pointer-label">Start EC2 with prompt</span>
-                                    </Rbac>
+                                        <Rbac parentName={config.PARENT_NAME} childName="alltickets-index-tickettbl-startec2withpromptbtn">
+                                            <span className="bold-label colored-label pointer-label">Start EC2 with prompt</span>
+                                        </Rbac>
                                     </PopoverBody>
                                 </UncontrolledPopover>
                             </div>
@@ -163,7 +163,7 @@ export class AllTickets extends React.Component<any, any> {
                             </div>
                             <div className="col-lg-9 col-md-12 col-sm-12">
                                 <div className="float-right script-editor-btn">
-                                    <Rbac parentName={config.PARENT_NAME} childName="alltickets-fld-index-create-ticket-btn">
+                                    <Rbac parentName={config.PARENT_NAME} childName="alltickets-index-createticketbtn">
                                         <button className="alert-white-button" onClick={this.onClickOpenNewTicket} >
                                             <i className="fa fa-plus"></i>&nbsp;&nbsp;
                                         Create Ticket

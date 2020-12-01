@@ -5,12 +5,14 @@ import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
 import Table from './../../components/table';
 import Rbac from './../../components/Rbac'
+import { UnimplementedFeaturePopup } from '../../components/UnimplementedFeaturePopup';
 export class Rules extends React.Component<any, any> {
     ruleData: any;
     breadCrumbs: any;
     tableValue: any;
     perPageLimit: any;
     checkboxValue: any;
+    unimplementedFeatureModalRef: any;
     constructor(props: any) {
         super(props);
         this.tableValue = {
@@ -45,13 +47,13 @@ export class Rules extends React.Component<any, any> {
                     renderCallback: () => {
                         return <td>
                             <div className="d-inline-block">
-                                <Rbac parentName={config.PARENT_NAME} childName="rules-fld-index-edit-action-btn">
-                                    <button className="btn btn-link">
+                                <Rbac parentName={config.PARENT_NAME} childName="rules-index-editbtn">
+                                    <button className="btn btn-link" onClick={() => this.onClickUnImplementedFeature("")} >
                                         <i className="fa fa-edit"></i>
                                     </button>
                                 </Rbac>
-                                <Rbac parentName={config.PARENT_NAME} childName="rules-fld-index-delete-action-btn">
-                                    <button className="btn btn-link">
+                                <Rbac parentName={config.PARENT_NAME} childName="rules-index-deletebtn">
+                                    <button className="btn btn-link" onClick={() => this.onClickUnImplementedFeature("")}>
                                         <i className="fa fa-trash"></i>
                                     </button>
                                 </Rbac>
@@ -109,8 +111,12 @@ export class Rules extends React.Component<any, any> {
                 isCurrentPage: true
             }
         ];
+        this.unimplementedFeatureModalRef = React.createRef();
     }
-
+    onClickUnImplementedFeature = (link: any) => {
+        this.unimplementedFeatureModalRef.current.setLink(link);
+        this.unimplementedFeatureModalRef.current.toggle();
+    };
 
 
     render() {
@@ -121,13 +127,13 @@ export class Rules extends React.Component<any, any> {
                     <div className="common-container">
                         <div className="row">
                             <div className="col-md-9 col-sm-12">
-                                <Rbac parentName={config.PARENT_NAME} childName="rules-fld-index-new-alert-rule">
+                                <Rbac parentName={config.PARENT_NAME} childName="rules-index-newalertrulebtn">
                                     <Link to={`${config.basePath}/managealertrule`} className="alert-white-button">
                                         <i className="fa fa-plus"></i>&nbsp;&nbsp;
                                     New Alert Rule
                                 </Link>
                                 </Rbac>
-                                <a className="alert-white-button">
+                                <a className="alert-white-button" onClick={() => this.onClickUnImplementedFeature("")}>
                                     <i className="fa fa-refresh"></i>&nbsp;&nbsp;
                                     Refresh
                                 </a>
@@ -172,6 +178,7 @@ export class Rules extends React.Component<any, any> {
                         <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue} tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" showingLine="Showing %start% to %end% of %total%" />
                     </div>
                 </div>
+                <UnimplementedFeaturePopup ref={this.unimplementedFeatureModalRef} />
             </div>
         );
     }
