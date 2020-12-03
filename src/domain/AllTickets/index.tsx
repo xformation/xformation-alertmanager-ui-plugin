@@ -114,6 +114,12 @@ export class AllTickets extends React.Component<any, any> {
         this.instanceRef = React.createRef();
     }
     async componentDidMount() {
+        this.fetchTicketOnAlert();
+    }
+    onRefreshClick=()=>{
+        this.fetchTicketOnAlert();
+    }
+    fetchTicketOnAlert = async () => {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const guid = urlParams.get('guid');
@@ -169,7 +175,7 @@ export class AllTickets extends React.Component<any, any> {
                                         Create Ticket
                                     </button>
                                     </Rbac>
-                                    <button className="alert-white-button">
+                                    <button className="alert-white-button" onClick={this.onRefreshClick}>
                                         <i className="fa fa-refresh"></i>&nbsp;&nbsp;
                                         Refresh
                                     </button>

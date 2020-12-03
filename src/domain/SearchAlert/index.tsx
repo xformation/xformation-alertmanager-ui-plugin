@@ -9,7 +9,7 @@ import '../../css/alertmanager.search.css';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import AlertMessage from '../../components/AlertMessage';
 import Table from './../../components/table';
-
+import Rbac from './../../components/Rbac'
 export class SearchAlert extends React.Component<any, any> {
     editAlertRef: any;
     breadCrumbs: any;
@@ -87,7 +87,7 @@ export class SearchAlert extends React.Component<any, any> {
                     },
                     {
                         label: 'Alert State',
-                        key: 'alert_state',
+                        key: 'alertState',
                         isCaseInsensitive: true
                     },
                     {
@@ -131,19 +131,27 @@ export class SearchAlert extends React.Component<any, any> {
                         renderCallback: (value: any, alert: any) => {
                             return <td>
                                 <div className="d-inline-block">
-                                    <button className="btn btn-link">
-                                        <i onClick={e => this.onClickEditAlert(e, alert)} className="fa fa-edit"></i>
-                                    </button>
-                                    <button className="btn btn-link">
-                                        <i onClick={e => this.onClickDeleteAlert(e, alert)} className="fa fa-trash"></i>
-                                    </button>
+                                    <Rbac parentName={config.PARENT_NAME} childName="searchalert-index-alertstbl-editbtn">
+                                        <button className="btn btn-link">
+                                            <i onClick={e => this.onClickEditAlert(e, alert)} className="fa fa-edit"></i>
+                                        </button>
+                                    </Rbac>
+                                    <Rbac parentName={config.PARENT_NAME} childName="searchalert-index-alertstbl-deletebtn">
+                                        <button className="btn btn-link">
+                                            <i onClick={e => this.onClickDeleteAlert(e, alert)} className="fa fa-trash"></i>
+                                        </button>
+                                    </Rbac>
                                     <button className="btn btn-link" id={`PopoverFocus-${alert.guid}`}>
                                         <i className="fa fa-ellipsis-h"></i>
                                     </button>
                                     <UncontrolledPopover trigger="legacy" placement="bottom" target={`PopoverFocus-${alert.guid}`}>
                                         <PopoverBody>
-                                            <Link className=" " to={`${config.basePath}/alltickets`}>Create Ticket</Link>
-                                            <Link className=" " to="">Silence</Link>
+                                            <Rbac parentName={config.PARENT_NAME} childName="searchalert-index-alertstbl-startec2btn">
+                                                <Link className=" " to={`${config.basePath}/alltickets`}>Create Ticket</Link>
+                                            </Rbac>
+                                            <Rbac parentName={config.PARENT_NAME} childName="searchalert-index-alertstbl-startec2withpromptbtn">
+                                                <Link className=" " to="">Silence</Link>
+                                            </Rbac>
                                         </PopoverBody>
                                     </UncontrolledPopover>
                                 </div>
@@ -269,11 +277,11 @@ export class SearchAlert extends React.Component<any, any> {
     fetchData = () => {
         RestService.getData(config.GET_ALL_ALERT_FROM_ELASTIC, null, null).then(
             (response: any) => {
-            //     let ary = [];
-            //     for (let i = 0; i < response.length; i++) {
-            //         let j = JSON.parse(response[i]);
-            //         ary.push(j);
-            //     }
+                //     let ary = [];
+                //     for (let i = 0; i < response.length; i++) {
+                //         let j = JSON.parse(response[i]);
+                //         ary.push(j);
+                //     }
                 this.setState({
                     alertData: response,
                 });
