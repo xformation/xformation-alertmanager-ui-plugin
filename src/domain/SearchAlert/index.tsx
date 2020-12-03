@@ -269,13 +269,13 @@ export class SearchAlert extends React.Component<any, any> {
     fetchData = () => {
         RestService.getData(config.GET_ALL_ALERT_FROM_ELASTIC, null, null).then(
             (response: any) => {
-                let ary = [];
-                for (let i = 0; i < response.length; i++) {
-                    let j = JSON.parse(response[i]);
-                    ary.push(j);
-                }
+            //     let ary = [];
+            //     for (let i = 0; i < response.length; i++) {
+            //         let j = JSON.parse(response[i]);
+            //         ary.push(j);
+            //     }
                 this.setState({
-                    alertData: ary,
+                    alertData: response,
                 });
                 this.setState({
                     isApiCalled: false
