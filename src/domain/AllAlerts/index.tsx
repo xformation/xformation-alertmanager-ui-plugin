@@ -677,8 +677,8 @@ export class AllAlerts extends React.Component<any, any> {
                             </select>
                         </div>
                         <div className="form-group filter-control-group">
-                            <label htmlFor="serverity">
-                                Serverity&nbsp;&nbsp;&nbsp;
+                            <label htmlFor="severity">
+                                Severity&nbsp;&nbsp;&nbsp;
                              <i className="fa fa-info-circle"></i>
                             </label>
                             <select className="form-control" name="severity" value={severity} onChange={this.handleStateChange}>
