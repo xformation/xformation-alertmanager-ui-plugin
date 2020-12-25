@@ -110,7 +110,7 @@ export class EditAlertPopup extends React.Component<any, any> {
     render() {
         const state = this.state;
         return (
-            <Modal isOpen={state.modal} toggle={this.closeModel} className="" modalClassName="alert-modal-container">
+            <Modal isOpen={state.modal} toggle={this.closeModel} className="modal-container unimplemented-modal-container" modalClassName="alert-modal-container">
                 <AlertMessage handleCloseAlert={this.handleCloseAlert} open={state.isAlertOpen} severity={state.severity} msg={state.message}></AlertMessage>
                 <ModalHeader toggle={this.closeModel}>Update Alert</ModalHeader>
                 <ModalBody style={{ height: 'calc(100vh - 210px)', overflowY: 'auto', overflowX: "hidden" }}>

@@ -37,7 +37,7 @@ export class AllAlerts extends React.Component<any, any> {
             message: null,
             severity: "",
             isAlertOpen: false,
-            alertData: [],
+            alertData: [ ],
             modal: false,
             resourceGroup: "",
             resource: "",
@@ -729,7 +729,7 @@ export class AllAlerts extends React.Component<any, any> {
                         <Table valueFromData={{ columns: columns, data: tableData }} perPageLimit={6} visiblecheckboxStatus={true} tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" showingLine="Showing %start% to %end% of %total%" />
                     </div>
                 </div>
-                <Modal isOpen={this.state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">
+                <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-container unimplemented-modal-container" modalClassName="alert-modal-container">
                     <ModalHeader toggle={this.toggle}>{this.state.alertName}</ModalHeader>
                     <ModalBody style={{ height: 'calc(100vh - 210px)', overflowY: 'auto', overflowX: "hidden" }}>
                         <PopupContent alert= {alertObject} />
