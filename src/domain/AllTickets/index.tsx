@@ -8,8 +8,9 @@ import { OpenNewTicketPopup } from '../../../../xformation-servicedesk-ui-plugin
 import { RestService } from '../_service/RestService';
 import Table from './../../components/table';
 import Rbac from './../../components/Rbac'
-
+import { UnimplementedFeaturePopup } from '../../components/UnimplementedFeaturePopup';
 export class AllTickets extends React.Component<any, any> {
+    unimplementedFeatureModalRef: any;
     breadCrumbs: any;
     startECRef: any;
     instanceRef: any;
@@ -17,6 +18,7 @@ export class AllTickets extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.openNewTicketRef = React.createRef();
+        this.unimplementedFeatureModalRef = React.createRef();
         this.state = {
             guid: '',
             alertName: '',
@@ -66,19 +68,20 @@ export class AllTickets extends React.Component<any, any> {
                         return <td>
                             <div className="d-inline-block">
                                 <Rbac parentName={config.PARENT_NAME} childName="alltickets-index-tickettbl-editbtn">
-                                    <button className="btn btn-link">
+                                    <button className="btn btn-link" onClick={() => this.onClickUnImplementedFeature("")}>
                                         <i className="fa fa-edit"></i>
                                     </button>
                                 </Rbac>
                                 <Rbac parentName={config.PARENT_NAME} childName="alltickets-index-tickettbl-deletebtn">
-                                    <button className="btn btn-link">
+                                    <button className="btn btn-link" onClick={() => this.onClickUnImplementedFeature("")}>
                                         <i className="fa fa-trash"></i>
                                     </button>
                                 </Rbac>
-                                <button className="btn btn-link" id={`PopoverFocus-${alert.id}`}>
+                                {/* <button className="btn btn-link" id={`PopoverFocus-${alert.id}`} onClick={() => this.onClickUnImplementedFeature("")}> */}
+                                <button className="btn btn-link"  onClick={() => this.onClickUnImplementedFeature("")}>
                                     <i className="fa fa-ellipsis-h"></i>
                                 </button>
-                                <UncontrolledPopover trigger="legacy" placement="bottom" target={`PopoverFocus-${alert.id}`}>
+                                {/* <UncontrolledPopover trigger="legacy" placement="bottom" target={`PopoverFocus-${alert.id}`}>
                                     <PopoverBody>
                                         <Rbac parentName={config.PARENT_NAME} childName="alltickets-index-tickettbl-startec2btn">
                                             <span className="bold-label colored-label pointer-label" onClick={this.onClickStartEC2}>Start EC2</span>
@@ -88,7 +91,7 @@ export class AllTickets extends React.Component<any, any> {
                                             <span className="bold-label colored-label pointer-label">Start EC2 with prompt</span>
                                         </Rbac>
                                     </PopoverBody>
-                                </UncontrolledPopover>
+                                </UncontrolledPopover> */}
                             </div>
                         </td>
                     }
@@ -113,10 +116,16 @@ export class AllTickets extends React.Component<any, any> {
         this.startECRef = React.createRef();
         this.instanceRef = React.createRef();
     }
+    onClickUnImplementedFeature = (link: any) => {
+        this.unimplementedFeatureModalRef.current.setLink(link);
+        this.unimplementedFeatureModalRef.current.toggle();
+    };
+
     async componentDidMount() {
         this.fetchTicketOnAlert();
     }
-    onRefreshClick=()=>{
+    onRefreshClick = () => {
+        console.log("refresh method called");
         this.fetchTicketOnAlert();
     }
     fetchTicketOnAlert = async () => {
@@ -204,8 +213,9 @@ export class AllTickets extends React.Component<any, any> {
                     </div>
                     <StartECPopup ref={this.startECRef} />
                     <InstancePopup ref={this.instanceRef} />
-                    <OpenNewTicketPopup guid={state.guid} alertName={state.alertName} ref={this.openNewTicketRef} />
+                    <OpenNewTicketPopup guid={state.guid} alertName={state.alertName} ref={this.openNewTicketRef} refreshParm={this.onRefreshClick} />
                 </div>
+                <UnimplementedFeaturePopup ref={this.unimplementedFeatureModalRef} />
             </div>
         );
     }

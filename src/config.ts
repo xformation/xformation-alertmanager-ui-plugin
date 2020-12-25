@@ -1,12 +1,12 @@
 const ALERT_URL = "alert.service.com";
 const SEARCH_URL = "search.service.com";
 
-const searchSrvUrl = `http://100.64.108.25:8092`;
-const alertSrvUrl = `http://100.64.108.25:5055`;
-const ticketSrvUrl = `http://100.64.108.25:7100/api`;
-// const searchSrvUrl = `http://localhost:8092`;
-// const alertSrvUrl = `http://localhost:5055`;
-// const ticketSrvUrl = `http://localhost:7100/api`;
+// const searchSrvUrl = `http://100.64.108.25:8092`;
+// const alertSrvUrl = `http://100.64.108.25:5055`;
+// const ticketSrvUrl = `http://100.64.108.25:7100/api`;
+const searchSrvUrl = `http://localhost:8092`;
+const alertSrvUrl = `http://localhost:5055`;
+const ticketSrvUrl = `http://localhost:7100/api`;
 
 export const config = {
   basePath: "/plugins/xformation-alertmanager-ui-plugin/page",

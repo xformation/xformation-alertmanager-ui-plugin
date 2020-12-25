@@ -1,4 +1,6 @@
 import * as React from 'react';
+import {useEffect, useMemo} from 'react'
+// import uniqid from 'uniqid'
 import { Link } from 'react-router-dom';
 import { Breadcrumbs } from '../Breadcrumbs';
 import { config } from '../../config';
@@ -81,6 +83,7 @@ export class MonitorAlerts extends React.Component<any, any> {
     }
 
     componentDidMount() {
+        console.log("Randam Id For Page :  ",Math.floor(Math.random() * 1000000));
         try {
             this.fetchData();
         } catch (err) {
