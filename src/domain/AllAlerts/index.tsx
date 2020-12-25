@@ -48,7 +48,7 @@ export class AllAlerts extends React.Component<any, any> {
             alertName: '',
             client_url: '',
             alertObjAry: null,
-            AlertObject: {},
+            alertObject: {},
             columns: [
                 {
                     label: 'Name',
@@ -136,15 +136,15 @@ export class AllAlerts extends React.Component<any, any> {
                     renderCallback: (value: any, alert: any) => {
                         return <td>
                             <div className="d-inline-block">
-                            <Rbac parentName={config.PARENT_NAME} childName="allalerts-index-alerttbl-editbtn">
-                                <button className="btn btn-link">
-                                    <i onClick={e => this.onClickEditAlert(e, alert)} className="fa fa-edit"></i>
-                                </button>
+                                <Rbac parentName={config.PARENT_NAME} childName="allalerts-index-alerttbl-editbtn">
+                                    <button className="btn btn-link">
+                                        <i onClick={e => this.onClickEditAlert(e, alert)} className="fa fa-edit"></i>
+                                    </button>
                                 </Rbac>
                                 <Rbac parentName={config.PARENT_NAME} childName="allalerts-index-alerttbl-deletebtn">
-                                <button className="btn btn-link">
-                                    <i onClick={e => this.onClickDeleteAlert(e, alert)} className="fa fa-trash"></i>
-                                </button>
+                                    <button className="btn btn-link">
+                                        <i onClick={e => this.onClickDeleteAlert(e, alert)} className="fa fa-trash"></i>
+                                    </button>
                                 </Rbac>
                                 <button className="btn btn-link" id={`PopoverFocus-${alert.guid}`}>
 
@@ -152,12 +152,12 @@ export class AllAlerts extends React.Component<any, any> {
                                 </button>
                                 <UncontrolledPopover trigger="legacy" placement="bottom" target={`PopoverFocus-${alert.guid}`}>
                                     <PopoverBody>
-                                    <Rbac parentName={config.PARENT_NAME} childName="allalerts-index-alerttbl-createticketbtn">
-                                        <Link className=" " to={`${config.basePath}/alltickets?guid=` + alert.guid+"&alertName="+alert.name}>Create Ticket</Link>
-                                    </Rbac>
-                                    <Rbac parentName={config.PARENT_NAME} childName="allalerts-index-alerttbl-silencebtn">
-                                        <Link className=" " to="#">Silence</Link>
-                                    </Rbac>
+                                        <Rbac parentName={config.PARENT_NAME} childName="allalerts-index-alerttbl-createticketbtn">
+                                            <Link className=" " to={`${config.basePath}/alltickets?guid=` + alert.guid + "&alertName=" + alert.name}>Create Ticket</Link>
+                                        </Rbac>
+                                        <Rbac parentName={config.PARENT_NAME} childName="allalerts-index-alerttbl-silencebtn">
+                                            <Link className=" " to="#">Silence</Link>
+                                        </Rbac>
                                     </PopoverBody>
                                 </UncontrolledPopover>
                             </div>
@@ -265,21 +265,20 @@ export class AllAlerts extends React.Component<any, any> {
 
     toggleModal = (value: any, alert: any) => {
         let data = '';
-        for (let i = 0; i < this.state.alertData.length; i++) {
-            let row = this.state.alertData[i];
-            if (row.name == value) {
-                data = row.clientUrl;
-            }
-        }
+        // for (let i = 0; i < this.state.alertData.length; i++) {
+        //     let row = this.state.alertData[i];
+        //     if (row.name == value) {
+        //         data = row.clientUrl;
+        //     }
+        // }
         console.log("Alert : ", alert)
         let alertObjAry = [];
         alertObjAry.push(alert);
         this.setState({
             modal: !this.state.modal,
             alertName: value,
-            client_url: data,
-            alertObjAry: alertObjAry,
-            AlertObject:alert,
+            client_url: alert.clientUrl,
+            alertObject: alert,
         });
     }
 
@@ -512,7 +511,7 @@ export class AllAlerts extends React.Component<any, any> {
                 this.setState({
                     alertData: response
                 });
-            }catch (e) {
+            } catch (e) {
                 console.log("Some error in deleting alert data");
                 this.setState({
                     severity: config.SEVERITY_ERROR,
@@ -603,7 +602,7 @@ export class AllAlerts extends React.Component<any, any> {
 
     render() {
         const { resourceGroup, resource, openTimeRange, monitorService, alertType, severity, alertState, filterCheckbox, objectType, object,
-            isConfirmDialogOpen, confirmTitleMessage, message, isAlertOpen, columns, dateRange,AlertObject } = this.state;
+            isConfirmDialogOpen, confirmTitleMessage, message, isAlertOpen, columns, dateRange, alertObject } = this.state;
         const tableData = this.applyFilters();
         return (
             <div className="all-alerts-container">
@@ -733,7 +732,7 @@ export class AllAlerts extends React.Component<any, any> {
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">
                     <ModalHeader toggle={this.toggle}>{this.state.alertName}</ModalHeader>
                     <ModalBody style={{ height: 'calc(100vh - 210px)', overflowY: 'auto', overflowX: "hidden" }}>
-                        <PopupContent guid={AlertObject.guid}  popupcontentData={{ url: this.state.client_url, alertObjAry: this.state.alertObjAry }} />
+                        <PopupContent alert= {alertObject} />
                     </ModalBody>
                 </Modal>
                 {/* {alertTable.isDataPresent &&
