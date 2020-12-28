@@ -254,6 +254,10 @@
   border-bottom-left-radius: 5px;
 }
 
+.custom-table tbody tr.checked-row{
+  background-color: #ababab !important;
+}
+
 .custom-table .pagination ul li.next a {
   padding-left: 20px;
   padding-right: 20px;

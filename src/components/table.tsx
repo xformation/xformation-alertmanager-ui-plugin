@@ -60,7 +60,7 @@ export class Table extends React.Component<any, any> {
                             }
                         }
                     }
-                    retData.push(<tr key={i}>{tdJSX}</tr>);
+                    retData.push(<tr className={`${displayData[i].checkStatus ? 'checked-row': ''}`} key={i}>{tdJSX}</tr>);
                 }
             }
         } else {
