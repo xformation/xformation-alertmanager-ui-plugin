@@ -231,7 +231,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                 <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALERTS" />
                 <div className="alert-page-container">
                     <div className="common-container">
-                        <Rbac parentName={config.PARENT_NAME} childName="manage-alert-rule">
+                        {/* <Rbac parentName={config.PARENT_NAME} childName="manage-alert-rule">
                             <Link to={`${config.basePath}/managealertrule`} className="alert-blue-button">
                                 <i className="fa fa-cog"></i>&nbsp;&nbsp;
                             Manage Alert Rule
@@ -242,7 +242,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                                 <i className="fa fa-cog"></i>&nbsp;&nbsp;
                             Manage Workflows
                         </a>
-                        </Rbac>
+                        </Rbac> */}
 
                         <a className="alert-blue-button" onClick={() => this.onClickUnImplementedFeature("")}>
                             <i className="fa fa-refresh"></i>&nbsp;&nbsp;
