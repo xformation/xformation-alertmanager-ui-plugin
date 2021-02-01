@@ -20,8 +20,11 @@ export class AlertRuleBuilder extends React.Component<any, any> {
             data: "Hello World",
             message: "",
             conditionData: true,
-            hideNextBtn: false
+            hideNextBtn: false,
+            hidePrevBtn: true,
+            hideFinishBtn: true,
         };
+
         this.breadCrumbs = [
             {
                 label: "Home",
@@ -65,11 +68,25 @@ export class AlertRuleBuilder extends React.Component<any, any> {
         this.wizardRef.current.goToNextPage();
     };
 
+    onClickPrevious = () => {
+        this.wizardRef.current.goToPreviousPage();
+    }
+
     onChangeStep = (currentStep: any, isLastStep: any) => {
         this.setState({
-            hideNextBtn: isLastStep
+            hideNextBtn: isLastStep,
+            hidePrevBtn: false,
+            hideFinishBtn: !isLastStep,
         });
     };
+
+    onChangePrevStep = (firstPage: any) => {
+        this.setState({
+            hidePrevBtn: firstPage,
+            hideNextBtn: false,
+            hideFinishBtn: true,
+        });
+    }
 
     render() {
         const state = this.state;
@@ -98,11 +115,22 @@ export class AlertRuleBuilder extends React.Component<any, any> {
                         </div>
                     </div>
                     <div className="common-container wizard-container">
-                        <Wizard steps={this.steps} ref={this.wizardRef} onChangeStep={this.onChangeStep} />
+                        <Wizard steps={this.steps} ref={this.wizardRef} onChangeStep={this.onChangeStep} onChangePrevStep={this.onChangePrevStep} />
+                        {!state.hidePrevBtn &&
+                            <div className="alert-details-previous">
+                                <button className="alert-blue-button previous-btn" onClick={this.onClickPrevious}>Previous</button>
+                            </div>
+                        }
                         {
                             !state.hideNextBtn &&
                             <div className="alert-details-next">
                                 <button className="alert-blue-button next-btn" onClick={this.onClickNext}>Next</button>
+                            </div>
+                        }
+                        {
+                            !state.hideFinishBtn &&
+                            <div className="alert-details-next">
+                                <button className="alert-blue-button next-btn">Finish</button>
                             </div>
                         }
                     </div>

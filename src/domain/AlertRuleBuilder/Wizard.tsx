@@ -23,7 +23,10 @@ export class Wizard extends React.Component<any, any>{
             const totalSteps = steps.length;
             for (let i = 0; i < totalSteps; i++) {
                 const step = steps[i];
-                retData.push(<div className={`wizard-step-button ${currentStep === i ? 'active' : ''}`} onClick={e => this.onClickStepButton(i)}>{step.name}</div>);
+                retData.push(
+                    <div className={`wizard-step-button ${currentStep === i ? 'active' : ''}`}>{step.name}</div>
+                    // onClick={e => this.onClickStepButton(i)}
+                );
             }
             return retData;
         }
@@ -40,6 +43,18 @@ export class Wizard extends React.Component<any, any>{
             this.props.onChangeStep(nextStep, nextStep === steps.length - 1);
         }
     };
+
+    goToPreviousPage = () => {
+        const { currentStep } = this.state;
+        const { steps } = this.props;
+        const beforeStep = currentStep - 1;
+        if (steps && beforeStep < steps.length) {
+            this.setState({
+                currentStep: beforeStep
+            });
+            this.props.onChangePrevStep(beforeStep===0);
+        }
+    }
 
     createStepContainer = () => {
         const { steps } = this.props;
