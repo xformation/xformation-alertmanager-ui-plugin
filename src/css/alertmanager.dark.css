@@ -482,9 +482,14 @@ a:hover {
 
 .common-container {
   padding-top: 15px;
-  padding-left: 20px;
+  padding-left: 45px;
   padding-bottom: 15px;
+  padding-right: 45px;
   border-bottom: 1px solid #202226;
+}
+
+.wizard-container {
+  margin-right: 0 !important;
 }
 
 /************************* Filter container ********************/
@@ -1471,7 +1476,7 @@ a:hover {
 }
 .alert-details .alert-details-name label {
   display: block;
-  color: #3b4859;
+  color: #ffffff;
   font-size: 14px;
   line-height: 20px;
   font-weight: 600;
@@ -1495,7 +1500,7 @@ a:hover {
 }
 .alert-details .alert-details-description label {
   display: block;
-  color: #3b4859;
+  color: #ffffff;
   font-size: 14px;
   line-height: 20px;
   font-weight: 600;
@@ -2565,6 +2570,11 @@ a:hover {
 .all-alerts-container .react-datetimerange-picker {
   z-index: 100;
   width: 100%;
+}
+
+.wizard-step-component {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .create-rule-container .data-block {

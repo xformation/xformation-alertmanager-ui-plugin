@@ -482,9 +482,14 @@ a:hover {
 
 .common-container {
   padding-top: 15px;
-  padding-left: 20px;
+  padding-left: 45px;
   padding-bottom: 15px;
+  padding-right: 45px;
   border-bottom: 1px solid #f5f6f5;
+}
+
+.wizard-container {
+  margin-right: 0 !important;
 }
 
 /************************* Filter container ********************/
@@ -2565,6 +2570,11 @@ a:hover {
 .all-alerts-container .react-datetimerange-picker {
   z-index: 100;
   width: 100%;
+}
+
+.wizard-step-component {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .create-rule-container .data-block {
