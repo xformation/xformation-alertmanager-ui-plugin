@@ -14,7 +14,6 @@ import Table from './../../components/table';
 import TimeRange from './../../components/TimeRange';
 import DateTimeRangePicker from '@wojtekmaj/react-datetimerange-picker';
 import Rbac from './../../components/Rbac';
-import {dummyData} from './dummyData';
 
 export class AllAlerts extends React.Component<any, any> {
     editAlertRef: any;
@@ -39,7 +38,7 @@ export class AllAlerts extends React.Component<any, any> {
             message: null,
             severity: "",
             isAlertOpen: false,
-            alertData: dummyData,
+            alertData: [],
             modal: false,
             resourceGroup: "",
             resource: "",
@@ -731,10 +730,10 @@ export class AllAlerts extends React.Component<any, any> {
                         <Table valueFromData={{ columns: columns, data: tableData }} perPageLimit={6} visiblecheckboxStatus={true} tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" showingLine="Showing %start% to %end% of %total%" />
                     </div>
                 </div>
-                <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-container unimplemented-modal-container" modalClassName="alert-modal-container">
+                <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-container alert-modal-container" modalClassName="alert-modal-container">
                     <ModalHeader toggle={this.toggle}>{this.state.alertName}</ModalHeader>
                     <ModalBody style={{ height: 'calc(100vh - 210px)', overflowY: 'auto', overflowX: "hidden" }}>
-                        <PopupContent alert= {alertObject} />
+                        <PopupContent alert={alertObject} />
                     </ModalBody>
                 </Modal>
                 {/* {alertTable.isDataPresent &&
