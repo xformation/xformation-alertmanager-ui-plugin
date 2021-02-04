@@ -23,7 +23,7 @@ export class StartECPopup extends React.Component<any, any> {
     render() {
         const state = this.state;
         return (
-            <Modal isOpen={state.modal} toggle={this.toggle} className="" modalClassName="alert-modal-container">
+            <Modal isOpen={state.modal} toggle={this.toggle} className="modal-container alert-modal-container">
                 <button className="close-btn" onClick={this.handleClose}>X</button>
                 <ModalBody style={{ height: 'calc(100vh - 210px)', overflowY: 'auto', overflowX: "hidden" }}>
                     <div className="d-block width-100 contact-popup-container select-resource-container">
