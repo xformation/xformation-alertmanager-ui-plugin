@@ -80,6 +80,9 @@
         z-index: 1;
         cursor: pointer;
       }
+      .clear-btn{
+        min-width: 100%;
+      }
       span {
         display: inline-block;
         padding-left: 30px;
@@ -371,7 +374,7 @@
     width: auto;
   }
   .react-datetimerange-picker{
-    z-index: 100;
+    z-index: 10;
     width: 100%;
   }
 }

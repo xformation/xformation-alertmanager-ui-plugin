@@ -116,23 +116,19 @@ export class AlertRuleBuilder extends React.Component<any, any> {
                     </div>
                     <div className="common-container wizard-container">
                         <Wizard steps={this.steps} ref={this.wizardRef} onChangeStep={this.onChangeStep} onChangePrevStep={this.onChangePrevStep} />
-                        {!state.hidePrevBtn &&
-                            <div className="alert-details-previous">
-                                <button className="alert-blue-button previous-btn" onClick={this.onClickPrevious}>Previous</button>
-                            </div>
-                        }
-                        {
-                            !state.hideNextBtn &&
-                            <div className="alert-details-next">
-                                <button className="alert-blue-button next-btn" onClick={this.onClickNext}>Next</button>
-                            </div>
-                        }
-                        {
-                            !state.hideFinishBtn &&
-                            <div className="alert-details-next">
-                                <button className="alert-blue-button next-btn">Finish</button>
-                            </div>
-                        }
+                        <div className="d-block width-100 text-right alert-wizard-buttons">
+                            {!state.hidePrevBtn &&
+                                <button className="alert-blue-button m-r-0 m-b-0 previous-btn" onClick={this.onClickPrevious}>Previous</button>
+                            }
+                            {
+                                !state.hideNextBtn &&
+                                <button className="alert-blue-button m-r-0 m-b-0 next-btn" onClick={this.onClickNext}>Next</button>
+                            }
+                            {
+                                !state.hideFinishBtn &&
+                                <button className="alert-blue-button m-r-0 m-b-0 finish-btn">Finish</button>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

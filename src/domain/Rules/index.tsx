@@ -146,7 +146,7 @@ export class Rules extends React.Component<any, any> {
                             </div>
                         </div>
                     </div>
-                    <div className="filter-container form-row common-container">
+                    <div className="filter-container row common-container">
                         <div className="form-group filter-control-group col-md-4 col-sm-12">
                             <label htmlFor="resources">
                                 Rousources Group&nbsp;&nbsp;&nbsp;

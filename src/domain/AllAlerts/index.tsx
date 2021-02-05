@@ -717,9 +717,7 @@ export class AllAlerts extends React.Component<any, any> {
                             filterCheckbox &&
                             <div className="form-check filter-control-group clear-filters">
                                 <input className="form-check-input clear-all-filter" value={filterCheckbox} type="checkbox" checked={filterCheckbox} name="clearAllFilter" onChange={this.clearAllFilters} />
-                                <label className="form-check-label" htmlFor="clearFilter">
-                                    <span>Clear All Filters</span>
-                                </label>
+                                <button className="alert-blue-button m-r-0 m-b-0 clear-btn" onChange={this.clearAllFilters}>Clear All Filters</button>
                             </div>
                         }
                     </div>

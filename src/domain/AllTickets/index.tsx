@@ -97,12 +97,7 @@ export class AllTickets extends React.Component<any, any> {
                     }
                 },
             ],
-            ticketDataList: [
-                { "severity": "Urgent", "client_url": "http:\/\/100.64.108.25:3000\/d\/6hVzaKOMk\/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1", "RESOURCEGROUP": "JOBS", "monitorservice": "JASMIN", "signaltype": "Metrics", "resources": "SHELL JOBS", "description": "", "updatedon": "1601483077544", "firedtime": "03\/06\/2020, 1596616397872", "createdon": "1601483077544", "alert_state": "Closed", "monitorcondition": "Fired", "affectedresource": "Prod_Service_20", "brcsubscription": "Alert Management", "suppressionstate": "Archive", "name": "JASMIN", "guid": "e6fc1d43-e309-4aa9-85c5-b1f9197bfff5", "client": "Grafana", "details": "Triggered metrics:\\n\\nA-series: 27.912\\n", "incident_key": "alertId-1" }, { "severity": "High", "client_url": "http:\/\/100.64.108.25:3000\/d\/6hVzaKOMk\/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1", "resourcegroup": "JOBS", "monitorservice": "Synectiks", "signaltype": "Logs", "resources": "ETL JOBS", "description": "", "updatedon": "1601483077554", "firedtime": "03\/06\/2020, 1596616397872", "createdon": "1601483077554", "alert_state": "New", "monitorcondition": "Fired", "affectedresource": "Prod_Service_20", "brcsubscription": "Alert Management", "suppressionstate": "None", "name": "Power Off Machine", "guid": "3e578db1-51df-411a-a309-710b2578b299", "client": "Grafana", "details": "Triggered metrics:\\n\\nA-series: 27.912\\n", "incident_key": "alertId-1" },
-                { "severity": "Critical", "client_url": "http:\/\/100.64.108.25:3000\/d\/6hVzaKOMk\/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1", "resourcegroup": "JOBS", "monitorservice": "Native AZURE", "signaltype": "Metrics", "resources": "ETL JOBS", "description": "", "updatedon": "1601483077560", "firedtime": "03\/06\/2020, 1596616397872", "createdon": "1601483077560", "alert_state": "InProgress", "monitorcondition": "Fired", "affectedresource": "Prod_DB_SYN14", "brcsubscription": "Alert Management", "suppressionstate": "None", "name": "Power Off Machine", "guid": "51e1b820-72ea-4999-991d-ba1513d3ccb9", "client": "Grafana", "details": "Triggered metrics:\\n\\nA-series: 27.912\\n", "incident_key": "alertId-1" },
-                { "severity": "urgent", "client_url": "http:\/\/100.64.108.25:3000\/d\/6hVzaKOMk\/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1", "resourcegroup": "Compute", "monitorservice": "Native AWS", "signaltype": "Logs", "resources": "App", "description": "", "updatedon": "1601483460944", "firedtime": "03\/06\/2020, 1596616397872", "createdon": "1601483460944", "alert_state": "InProgress", "monitorcondition": "Fired", "affectedresource": "Prod_Service_20", "brcsubscription": "Alert Management", "suppressionstate": "DeDup", "name": "Disk Read Bytes", "guid": "24b42e91-139c-4119-9cf4-11f1b06e7036", "client": "Grafana", "details": "Triggered metrics:\\n\\nA-series: 27.912\\n", "incident_key": "alertId-1" },
-                { "severity": "critical", "client_url": "http:\/\/100.64.108.25:3000\/d\/6hVzaKOMk\/alerttest?tab=alert&editPanel=2&orgId=1&removeOptions=1", "resourcegroup": "Compute", "monitorservice": "Native AWS", "signaltype": "Logs", "resources": "App", "description": "", "updatedon": "1601483460950", "firedtime": "03\/06\/2020, 1596616397872", "createdon": "1601483460950", "alert_state": "New", "monitorcondition": "Fired", "affectedresource": "Prod_Service_20", "brcsubscription": "Alert Management", "suppressionstate": "DeDup", "name": "Power Off Machine", "guid": "e2301574-3b00-4332-bcad-299af59b5aae", "client": "Grafana", "details": "Triggered metrics:\\n\\nA-series: 27.912\\n", "incident_key": "alertId-1" }
-            ],
+            ticketDataList: [ ],
         };
         this.breadCrumbs = [
             {
@@ -174,7 +169,7 @@ export class AllTickets extends React.Component<any, any> {
         const state = this.state;
         return (
             <div className="all-alerts-container">
-                <Breadcrumbs breadcrumbs={this.breadCrumbs} />
+                <Breadcrumbs breadcrumbs={this.breadCrumbs} pageTitle="MONITOR | ALL TICKETS" />
                 <div className="alert-page-container">
                     <div className="common-container">
                         <div className="row">
@@ -197,7 +192,7 @@ export class AllTickets extends React.Component<any, any> {
                                         <i className="fa fa-floppy-o"></i>&nbsp;&nbsp;
                                         Save Search
                                     </button>
-                                    <div className="form-group filter-control-group" style={{ display: "inline-block", marginRight: "15px", marginBottom: "0px" }}>
+                                    <div className="form-group filter-control-group" style={{ display: "inline-block", marginRight: "0px", marginBottom: "0px" }}>
                                         <select className="form-control">
                                             <option>Export</option>
                                             <option>2</option>

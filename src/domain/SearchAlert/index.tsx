@@ -645,7 +645,7 @@ export class SearchAlert extends React.Component<any, any> {
                                 </div>
                             </div>
                             <div className="col-lg-9 col-md-8 col-sm-12">
-                                <div className="alert-data-table-container searchalert-data-table-container common-container border-bottom-0">
+                                <div className="alert-data-table-container searchalert-data-table-container border-bottom-0">
                                     <div className="heading">
                                         <h2>Alerts</h2>
                                     </div>
