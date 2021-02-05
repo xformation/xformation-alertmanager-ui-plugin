@@ -97,7 +97,7 @@ export class AlertVolumeByStatusChart extends React.Component<any, any> {
 
     render() {
         return (
-            <div className="row" style={{width: "100%", height: "100%", marginLeft: "0px"}}>
+            <div className="row" style={{ width: "100%", height: "100%", marginLeft: "0px" }}>
                 <Line
                     ref={ref => (this.chart = ref)}
                     data={this.state}
@@ -111,6 +111,17 @@ export class AlertVolumeByStatusChart extends React.Component<any, any> {
                                     beginAtZero: true
                                 }
                             }],
+                            xAxes: [
+                                {
+                                    ticks: {
+                                        callback: function (value: any, index: any, values: any) {
+                                            let str = value.split('-', 3);
+                                            let newData = str[1] + '-' + str[2];
+                                            return newData;
+                                        }
+                                    },
+                                },
+                            ],
                         },
                         legend: {
                             display: false,

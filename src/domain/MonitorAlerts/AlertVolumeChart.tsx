@@ -10,21 +10,21 @@ export class AlertVolumeChart extends React.Component<any, any> {
         this.state = {
             datasets: [
                 {
-                label: "New",
-                lineTension: 0.1,
-                fill: false,
-                borderColor: "rgba(252, 203, 80, 1)",
-                // backgroundColor: "rgba(255, 255,255, 0.1)",
-                data: []
-            },
-            {
-                label: "Resolved 75",
-                lineTension: 0.1,
-                fill: false,
-                borderColor: "rgba(73, 183, 234, 1)",
-                // backgroundColor: "rgba(255, 255,255, 0.1)",
-                data: []
-            }
+                    label: "New",
+                    lineTension: 0.1,
+                    fill: false,
+                    borderColor: "rgba(252, 203, 80, 1)",
+                    // backgroundColor: "rgba(255, 255,255, 0.1)",
+                    data: []
+                },
+                {
+                    label: "Resolved 75",
+                    lineTension: 0.1,
+                    fill: false,
+                    borderColor: "rgba(73, 183, 234, 1)",
+                    // backgroundColor: "rgba(255, 255,255, 0.1)",
+                    data: []
+                }
             ],
             labels: ['', '', '', '', '', ''],
             legends: []
@@ -65,7 +65,7 @@ export class AlertVolumeChart extends React.Component<any, any> {
                         data: response.closedAlertList
                     }
                     ],
-                    labels:response.daysList,
+                    labels: response.daysList,
                 })
                 console.log("Total alert data :::::: ", response);
             }
@@ -106,6 +106,18 @@ export class AlertVolumeChart extends React.Component<any, any> {
                                     stepSize: 10,
                                     beginAtZero: true
                                 }
+                            }],
+                            xAxes: [{
+                                ticks: {
+                                    callback: function (value: any, index: any, values: any) {
+                                        if (value) {
+                                            let str = value.split('-', 3);
+                                            let newData = str[1] + '-' + str[2];
+                                            return newData;
+                                        }
+                                        return null;
+                                    }
+                                },
                             }],
                         },
                         legend: {

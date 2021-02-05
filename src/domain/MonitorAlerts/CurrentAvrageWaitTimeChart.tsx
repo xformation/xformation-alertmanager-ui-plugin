@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { RestService } from '../_service/RestService';
 import { config } from '../../config';
+
 export class CurrentAvrageWaitTimeChart extends React.Component<any, any> {
 
     constructor(props: any) {
@@ -86,6 +87,11 @@ export class CurrentAvrageWaitTimeChart extends React.Component<any, any> {
                                 ticks: {
                                     fontColor: "white",
                                     stepSize: 10,
+                                    callback: function (value: any, index: any, values: any) {
+                                        let str = value.split('-', 3);
+                                        let newData = str[1] + '-' + str[2];
+                                        return newData;
+                                    }
                                 }
                             }]
                         },
