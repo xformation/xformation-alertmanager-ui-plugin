@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { Modal, ModalHeader, ModalBody, UncontrolledPopover, PopoverBody } from 'reactstrap';
 import { Breadcrumbs } from '../Breadcrumbs';
 import { EditAlertPopup } from '../AllAlerts/EditAlertPopup';
-import '../../css/alertmanager.search.css';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import AlertMessage from '../../components/AlertMessage';
 import Table from './../../components/table';
