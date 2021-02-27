@@ -221,6 +221,14 @@ export class ManageAlertRule extends React.Component<any, any> {
         return retData;
     }
 
+    isLightTheme() {
+        const w: any = window;
+        if (w.grafanaBootData && w.grafanaBootData.user) {
+            return w.grafanaBootData.user.lightTheme;
+        }
+        return false;
+    }
+
     render() {
         return (
             <div className="monitor-alerts-container manage-alert-rule">
@@ -260,7 +268,7 @@ export class ManageAlertRule extends React.Component<any, any> {
                         </div>
                         <div className="alert-data-table-container managealertrules-data-table-container">
                             <Table valueFromData={this.tableValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue}
-                                tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" showingLine="Showing %start% to %end% of %total%" />
+                                tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" showingLine="Showing %start% to %end% of %total%" dark={!this.isLightTheme()} />
 
                         </div>
                     </div>
@@ -285,7 +293,7 @@ export class ManageAlertRule extends React.Component<any, any> {
                         </div>
                         <div className="alert-data-table-container managealertrules-data-table-container">
                             <Table valueFromData={this.scriptValue} perPageLimit={this.perPageLimit} visiblecheckboxStatus={this.checkboxValue}
-                                tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" showingLine="Showing %start% to %end% of %total%" />
+                                tableClasses={{ table: "alert-data-tabel", tableParent: "alerts-data-tabel", parentClass: "all-alert-data-table" }} searchKey="name" showingLine="Showing %start% to %end% of %total%" dark={!this.isLightTheme()}/>
 
                         </div>
                     </div>
