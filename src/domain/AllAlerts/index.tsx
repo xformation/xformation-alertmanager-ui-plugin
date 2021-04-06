@@ -14,6 +14,8 @@ import Table from './../../components/table';
 import TimeRange from './../../components/TimeRange';
 import DateTimeRangePicker from '@wojtekmaj/react-datetimerange-picker';
 import Rbac from './../../components/Rbac';
+import { CommonService } from '../_common/common';
+import * as moment from 'moment';
 
 export class AllAlerts extends React.Component<any, any> {
     editAlertRef: any;
@@ -29,6 +31,7 @@ export class AllAlerts extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
+            totalAlerts: 0,
             dateRange: new Date(),
             isConfirmDialogOpen: false,
             confirmTitleMessage: null,
@@ -93,7 +96,7 @@ export class AllAlerts extends React.Component<any, any> {
                 },
                 {
                     label: 'Alert State',
-                    key: 'alertState',
+                    key: 'alert_state',
                     isCaseInsensitive: false
                 },
                 {
@@ -285,34 +288,76 @@ export class AllAlerts extends React.Component<any, any> {
 
     refreshData = () => {
         try {
-            this.fetchData();
+            // this.fetchData();
+            this.getTotalAlerts();
+            // this.getAllAlerts();
         } catch (err) {
             console.log("Alert data refresh failed. Error: ", err);
         }
     }
 
+    getTotalAlerts = async () => {
+        var requestOptions = await CommonService.requestOptionsForGetRequest();
+        await fetch(config.GET_TOTAL_XF_ALERT_FROM_ELASTIC, requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                    console.log("Total alerts :::: ",result.all_shards.documents.count)
+                    // this.setState({
+                    //     totalAlerts: result.all_shards.documents.count
+                    // })
+                    this.getAllAlerts(result.all_shards.documents.count);
+                }
+            ).catch(error => console.log('error', error));
+        
+    }
+
     componentDidMount() {
         try {
-            this.fetchData();
+            // this.fetchData();
+            const prms = new URLSearchParams(this.props.location.search);
+            const tl = prms.get('totalAlerts');
+            
+            this.getAllAlerts(tl);
         } catch (err) {
             console.log("AllAlert page. Loading alert data from elastic failed. Error: ", err);
         }
     }
 
-    fetchData = () => {
-        RestService.getData(config.GET_ALL_ALERT_FROM_ELASTIC, null, null).then(
-            (response: any) => {
-                // let ary = [];
-                // for (let i = 0; i < response.length; i++) {
-                //     let j = JSON.parse(response[i]);
-                //     ary.push(j);
-                // }
-                console.log("alert data : ", response);
-                this.setState({
-                    alertData: response,
-                });
-            }
-        );
+    // fetchData = () => {
+    //     RestService.getData(config.GET_ALL_ALERT_FROM_ELASTIC, null, null).then(
+    //         (response: any) => {
+    //             // let ary = [];
+    //             // for (let i = 0; i < response.length; i++) {
+    //             //     let j = JSON.parse(response[i]);
+    //             //     ary.push(j);
+    //             // }
+    //             console.log("alert data : ", response);
+    //             this.setState({
+    //                 alertData: response,
+    //             });
+    //         }
+    //     );
+    // }
+
+    getAllAlerts = async (tl: any) => {
+        var requestOptions = await CommonService.requestOptionsForGetRequest();
+        // const prms = new URLSearchParams(this.props.location.search);
+        // var tl = prms.get('totalAlerts');
+        
+        var dt = moment().format('YYYY-MM-DDTHH:mm:ss.SSS');
+        var qryOpt=config.GET_ALL_XF_ALERT_FROM_ELASTIC+'query=client&from=2020-01-01T01:00:00.000Z&to='+dt+'Z&limit='+tl+'&filter=streams:60674079fed40a6eac444cc0';
+        console.log("query opt :",qryOpt);
+        await fetch(qryOpt, requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                    // for (let i = 0; i < result.messages.length; i++) {
+                    //     console.log("alert data : ", result.messages[i].message);
+                    // }
+                    this.setState({
+                        alertData: result.messages
+                    });
+                }
+            ).catch(error => console.log('error', error));
     }
     toggle = () => {
         this.setState({
@@ -351,8 +396,11 @@ export class AllAlerts extends React.Component<any, any> {
         const { alertData, resourceGroup, resource, monitorService, alertType, severity, alertState, dateRange } = this.state;
         if (alertData && alertData.length > 0) {
             const length = alertData.length;
+            console.log("total rec : ",length);
             for (let i = 0; i < length; i++) {
-                const alert = alertData[i];
+                var msg = JSON.parse(alertData[i].message.message.substring(20));
+                // console.log("HELO : ",msg.records[0].value);
+                const alert = msg.records[0].value;//alertData[i];
                 const alertKeys = Object.keys(alert);
                 const lowerCaseKeys = alertKeys.map((key) => key.toLocaleLowerCase());
                 let isMatched = true;
@@ -427,7 +475,7 @@ export class AllAlerts extends React.Component<any, any> {
                     }
                 }
                 if (isMatched && alertState) {
-                    let index = lowerCaseKeys.indexOf("alertstate");
+                    let index = lowerCaseKeys.indexOf("alert_state");
                     if (index !== -1) {
                         let key = alertKeys[index];
                         let data = alert[key];

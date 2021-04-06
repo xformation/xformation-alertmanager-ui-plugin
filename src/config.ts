@@ -4,12 +4,14 @@ const SEARCH_URL = "search.service.com";
 const searchSrvUrl = `http://100.64.108.25:8092`;
 const alertSrvUrl = `http://100.64.108.25:5055`;
 const ticketSrvUrl = `http://100.64.108.25:7100/api`;
-// const searchSrvUrl = `http://localhost:8092`;
-// const alertSrvUrl = `http://localhost:5055`;
-// const ticketSrvUrl = `http://localhost:7100/api`;
+
+const xfAlertSrvUrl = `http://100.64.108.25:7035`;
 
 export const config = {
   basePath: "/plugins/xformation-alertmanager-ui-plugin/page",
+  GET_TOTAL_XF_ALERT_FROM_ELASTIC: `${xfAlertSrvUrl}/api/system/indexer/indices/xf_alert_0`,
+  GET_ALL_XF_ALERT_FROM_ELASTIC: `${xfAlertSrvUrl}/api/search/universal/absolute?`,
+
   GET_ALL_ALERT_FROM_ELASTIC: `${alertSrvUrl}/api/listAllAlertFromElastic`,
   GET_ALL_ALERT_FROM_DB: `${alertSrvUrl}/api/listAlert`,
   UPDATE_ALERT: `${alertSrvUrl}/api/updateAlert`,
@@ -32,5 +34,8 @@ export const config = {
   SEVERITY_SUCCESS: "success",
   SERVER_ERROR_MESSAGE:
     "Operation failed. Please check service logs for details",
-  UPDATE_ALERT_SUCCESS_MESSAGE: "Alert updated successfully"
+  UPDATE_ALERT_SUCCESS_MESSAGE: "Alert updated successfully",
+
+  USERID: "admin",
+  PASSWORD: "admin"
 };

@@ -30,7 +30,7 @@ export class EditAlertPopup extends React.Component<any, any> {
         let alertState = "";
         const keys = Object.keys(selectedAlert);
         const lowerCaseKeys = keys.map((key)=>key); //key.toLowerCase()
-        const index = lowerCaseKeys.indexOf("alertState");
+        const index = lowerCaseKeys.indexOf("alert_state");
         if(index !== -1){
             const key = keys[index];
             if(selectedAlert[key]){
