@@ -3,6 +3,7 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import {RestService} from '../_service/RestService';
 import { config } from '../../config';
 import AlertMessage from '../../components/AlertMessage';
+import { CommonService } from '../_common/common'
 
 // export interface AlertProp extends React.HTMLAttributes<HTMLElement>{
 //     onSaveUpdate?: any;
@@ -83,9 +84,14 @@ export class EditAlertPopup extends React.Component<any, any> {
             alertState: alertState,
         } 
         console.log("Alert being update : ",obj);
-        await RestService.add(config.UPDATE_ALERT, obj).then(response => {
-            console.log('update alert response: ', response);
-            if(response.length > 0){
+        var requestOptions = CommonService.requestOptionsForPostRequest({});
+        const URL = `${config.UPDATE_ALL_XF_ALERT_IN_ELASTIC}/${config.XF_ALERT_INDEX}/${id}/${alertState}`
+        await fetch(URL, requestOptions) 
+            .then(result => result.json())
+            .then(response => {
+        // await RestService.add(config.UPDATE_ALERT, obj).then(response => {
+            console.log('update alert response: ', response.message.complete);
+            if(response.message.complete == true){
                 // let ary = [];
                 // for (let i = 0; i < response.length; i++) {
                 //     let j = JSON.parse(response[i]);
@@ -96,7 +102,10 @@ export class EditAlertPopup extends React.Component<any, any> {
                     message: config.UPDATE_ALERT_SUCCESS_MESSAGE,
                     isAlertOpen: true,
                 });
-                this.props.onSaveUpdate(response);
+                var msg = JSON.parse(response.message.message.substring(20));
+                const alert = msg.records[0].value;
+                alert.id = response.message.id;
+                this.props.onSaveUpdate(alert);
             }else {
                 this.setState({
                     severity : config.SEVERITY_ERROR,

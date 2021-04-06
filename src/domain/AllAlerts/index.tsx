@@ -401,6 +401,9 @@ export class AllAlerts extends React.Component<any, any> {
                 var msg = JSON.parse(alertData[i].message.message.substring(20));
                 // console.log("HELO : ",msg.records[0].value);
                 const alert = msg.records[0].value;//alertData[i];
+                alert.id = alertData[i].message._id;
+                console.log("Alert Object : ",alert);
+                
                 const alertKeys = Object.keys(alert);
                 const lowerCaseKeys = alertKeys.map((key) => key.toLocaleLowerCase());
                 let isMatched = true;
@@ -523,11 +526,12 @@ export class AllAlerts extends React.Component<any, any> {
         this.editAlertRef.current.toggle(selectedAlert);
     };
 
-    updateAlertList = (alertList: any) => {
-        console.log("Updated alert list :::: ", alertList);
-        this.setState({
-            alertData: alertList
-        });
+    updateAlertList = (alertObj: any) => {
+        console.log("Updated alert object :::: ", alertObj);
+        // this.setState({
+        //     alertData: alertObj
+        // });
+        this.getTotalAlerts();
     }
 
     clearAllFilters = () => {
