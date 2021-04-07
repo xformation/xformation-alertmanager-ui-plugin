@@ -52,7 +52,11 @@ export class EditAlertPopup extends React.Component<any, any> {
             alertId: null,
             alertState: "",
             id: null,
+            severity : null,
+            message: null,
+            
         });
+        
     }
 
     onChange = (e: any) => {
@@ -68,6 +72,14 @@ export class EditAlertPopup extends React.Component<any, any> {
         })
     }
     
+    sendAlertActivityAsGelf = async (alertObj: any) => {
+        console.log("Sending Alert activity object : ",alertObj);
+         
+        await RestService.add(config.SEND_XF_ALERT_ACTIVITY, alertObj).then(response => {
+            console.log("Alert activity send. Response : ",response)
+        })
+    }
+
     async updateAlert() {
         const {id, guid, alertState} = this.state;
         if(alertState === ""){
@@ -90,7 +102,7 @@ export class EditAlertPopup extends React.Component<any, any> {
             .then(result => result.json())
             .then(response => {
         // await RestService.add(config.UPDATE_ALERT, obj).then(response => {
-            console.log('update alert response: ', response.message.complete);
+            console.log('update alert response: ', response);
             if(response.message.complete == true){
                 // let ary = [];
                 // for (let i = 0; i < response.length; i++) {
@@ -105,7 +117,10 @@ export class EditAlertPopup extends React.Component<any, any> {
                 var msg = JSON.parse(response.message.message.substring(20));
                 const alert = msg.records[0].value;
                 alert.id = response.message.id;
+                alert.alert_state = alertState;
                 this.props.onSaveUpdate(alert);
+                this.sendAlertActivityAsGelf(alert);
+
             }else {
                 this.setState({
                     severity : config.SEVERITY_ERROR,

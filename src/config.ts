@@ -12,6 +12,7 @@ export const config = {
   GET_TOTAL_XF_ALERT_FROM_ELASTIC: `${xfAlertSrvUrl}/api/system/indexer/indices/xf_alert_0`,
   GET_ALL_XF_ALERT_FROM_ELASTIC: `${xfAlertSrvUrl}/api/search/universal/absolute?`,
   UPDATE_ALL_XF_ALERT_IN_ELASTIC: `${xfAlertSrvUrl}/api/messages/update`,
+  SEND_XF_ALERT_ACTIVITY: `http://localhost:3000/api/alert-notifications/sendAlertActivity`,
 
   GET_ALL_ALERT_FROM_ELASTIC: `${alertSrvUrl}/api/listAllAlertFromElastic`,
   GET_ALL_ALERT_FROM_DB: `${alertSrvUrl}/api/listAlert`,

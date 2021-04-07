@@ -3,6 +3,8 @@ import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import { Line } from 'react-chartjs-2';
 import { RestService } from '../_service/RestService';
 import { config } from '../../config';
+import * as moment from 'moment';
+import { CommonService } from '../_common/common';
 
 export class PopupContent extends React.Component<any, any> {
 
@@ -11,7 +13,7 @@ export class PopupContent extends React.Component<any, any> {
         this.state = {
             activeTab: 0,
             alert: this.props.alert,
-            client_url: this.props.alert.clientUrl,
+            client_url: this.props.alert.client_url,
             historyTableArray: [],
             iFrameLoaded: false,
             guid: this.props.alert.guid
@@ -25,14 +27,25 @@ export class PopupContent extends React.Component<any, any> {
     };
     async componentDidMount() {
         let guid = this.state.guid;
+        var requestOptions = await CommonService.requestOptionsForGetRequest();
         try {
-            await RestService.getData(config.GET_ALERT_ACTIVITIES + "/" + guid, null, null).then(
-                (response: any) => {
-                    console.log("Response : ", response)
-                    this.setState({
-                        historyTableArray: response,
-                    });
-                })
+            var dt = moment().format('YYYY-MM-DDTHH:mm:ss.SSS');
+            var qryOpt=config.GET_ALL_XF_ALERT_FROM_ELASTIC+'query='+guid+'&from=2020-01-01T01:00:00.000Z&to='+dt+'Z&limit=1000&filter=streams:'+config.XF_ALERT_ACTIVITY_STREAM_ID;
+            await fetch(qryOpt, requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                // console.log("Activity Log : ",result.messages);
+                this.setState({
+                    historyTableArray: result.messages,
+                });
+            }).catch(error => console.log('error', error));
+            // await RestService.getData(config.GET_ALERT_ACTIVITIES + "/" + guid, null, null).then(
+            //     (response: any) => {
+            //         console.log("Response : ", response)
+            //         this.setState({
+            //             historyTableArray: response,
+            //         });
+            //     })
         } catch (err) {
             console.log("Loading company data failed. Error: ", err);
         }
@@ -42,12 +55,15 @@ export class PopupContent extends React.Component<any, any> {
         const retData = [];
         const { historyTableArray } = this.state;
         for (let i = 0; i < historyTableArray.length; i++) {
-            const historyTable = historyTableArray[i];
+            // const historyTable = historyTableArray[i];
+            var msg = JSON.parse(historyTableArray[i].message.message.substring(20));
+            const historyTable = msg.records[0].value
+            console.log("Activity Record : ",historyTable);
             retData.push(
                 <tr>
                     <td>{historyTable.action}</td>
-                    <td>{historyTable.actionDescription}</td>
-                    <td>{historyTable.updatedOn}</td>
+                    <td>{historyTable.action_description}</td>
+                    <td>{historyTable.fired_time}</td>
                 </tr>
             )
         }
@@ -64,7 +80,7 @@ export class PopupContent extends React.Component<any, any> {
                     <span className="urgent">{alert.severity}</span>
                 </td>
                 <td><i className="fa fa-exclamation-triangle"></i> {alert.monitorcondition}</td>
-                <td>{alert.alertState}</td>
+                <td>{alert.alert_state}</td>
                 <td>{alert.affectedresource}</td>
             </tr>
         )
@@ -81,6 +97,7 @@ export class PopupContent extends React.Component<any, any> {
 
     render() {
         const { activeTab, iFrameLoaded, alert } = this.state;
+        console.log("Alert object  from parent ::::: ",alert);
         return (
             <div className="percentage-tabs">
                 <ul>
@@ -107,7 +124,7 @@ export class PopupContent extends React.Component<any, any> {
                                 alert.client !== "EXTERNAL SERVICE" &&
                                 <>
                                     <div style={{ display: iFrameLoaded ? '' : 'none' }}>
-                                        <iframe style={{ width: "100%", height: "450px", border: "none" }} src={this.state.client_url} onLoad={this.onIframeLoaded}></iframe>
+                                        <iframe style={{ width: "100%", height: "450px", border: "none" }} src={alert.client_url} onLoad={this.onIframeLoaded}></iframe>
                                     </div>
                                     <div style={{ textAlign: "center", display: iFrameLoaded ? 'none' : '' }}>
                                         Data is loading...

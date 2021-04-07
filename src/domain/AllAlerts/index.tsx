@@ -116,7 +116,7 @@ export class AllAlerts extends React.Component<any, any> {
                 },
                 {
                     label: 'Fired Time',
-                    key: 'firedtime',
+                    key: 'fired_time',
                     isCaseInsensitive: true
                 },
                 {
@@ -275,13 +275,13 @@ export class AllAlerts extends React.Component<any, any> {
         //         data = row.clientUrl;
         //     }
         // }
-        console.log("Alert : ", alert)
+        console.log("toggleModal Alert : ", alert)
         let alertObjAry = [];
         alertObjAry.push(alert);
         this.setState({
             modal: !this.state.modal,
             alertName: value,
-            client_url: alert.clientUrl,
+            client_url: alert.client_url,
             alertObject: alert,
         });
     }
@@ -356,7 +356,7 @@ export class AllAlerts extends React.Component<any, any> {
                     this.setState({
                         alertData: result.messages
                     });
-                }
+            }
             ).catch(error => console.log('error', error));
     }
     toggle = () => {
@@ -402,7 +402,7 @@ export class AllAlerts extends React.Component<any, any> {
                 // console.log("HELO : ",msg.records[0].value);
                 const alert = msg.records[0].value;//alertData[i];
                 alert.id = alertData[i].message._id;
-                console.log("Alert Object : ",alert);
+                // console.log("Alert Object : ",alert);
                 
                 const alertKeys = Object.keys(alert);
                 const lowerCaseKeys = alertKeys.map((key) => key.toLocaleLowerCase());
@@ -492,7 +492,7 @@ export class AllAlerts extends React.Component<any, any> {
                     }
                 }
                 if (isMatched && dateRange && dateRange.length > 1) {
-                    let index = lowerCaseKeys.indexOf("firedtime");
+                    let index = lowerCaseKeys.indexOf("fired_time");
                     if (index !== -1) {
                         let key = alertKeys[index];
                         let data = alert[key];
@@ -527,7 +527,7 @@ export class AllAlerts extends React.Component<any, any> {
     };
 
     updateAlertList = (alertObj: any) => {
-        console.log("Updated alert object :::: ", alertObj);
+        console.log("onSaveUpdate called. Updated alert object :::: ", alertObj);
         // this.setState({
         //     alertData: alertObj
         // });
