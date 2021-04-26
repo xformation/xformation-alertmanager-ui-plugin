@@ -345,7 +345,7 @@ export class AllAlerts extends React.Component<any, any> {
         // var tl = prms.get('totalAlerts');
         
         var dt = moment().format('YYYY-MM-DDTHH:mm:ss.SSS');
-        var qryOpt=config.GET_ALL_XF_ALERT_FROM_ELASTIC+'query=client&from=2020-01-01T01:00:00.000Z&to='+dt+'Z&limit='+tl+'&filter=streams:60674079fed40a6eac444cc0';
+        var qryOpt=config.GET_ALL_XF_ALERT_FROM_ELASTIC+'query=client&from=2020-01-01T01:00:00.000Z&to='+dt+'Z&limit='+tl+'&filter=streams:'+config.XF_ALERT_STREAM_ID;
         console.log("query opt :",qryOpt);
         await fetch(qryOpt, requestOptions)
             .then(response => response.json())
