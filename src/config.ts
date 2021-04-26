@@ -41,7 +41,7 @@ export const config = {
   USERID: "admin",
   PASSWORD: "admin",
   XF_ALERT_INDEX: `xf_alert_0`,
-  XF_ALERT_STREAM_ID: `60866150cb4d044d90048ef1`,
+  XF_ALERT_STREAM_ID: `60866125cb4d044d90048ebe`,
   XF_ALERT_ACTIVITY_INDEX: `xf_al_activity_0`,
   XF_ALERT_ACTIVITY_STREAM_ID: `60866150cb4d044d90048ef1`
 };
