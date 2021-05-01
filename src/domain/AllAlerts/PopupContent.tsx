@@ -28,13 +28,14 @@ export class PopupContent extends React.Component<any, any> {
     async componentDidMount() {
         let guid = this.state.guid;
         var requestOptions = await CommonService.requestOptionsForGetRequest();
+        // console.log("PopupContents componentDidMount()");
         try {
             var dt = moment().format('YYYY-MM-DDTHH:mm:ss.SSS');
             var qryOpt=config.GET_ALL_XF_ALERT_FROM_ELASTIC+'query='+guid+'&from=2020-01-01T01:00:00.000Z&to='+dt+'Z&limit=1000&filter=streams:'+config.XF_ALERT_ACTIVITY_STREAM_ID;
             await fetch(qryOpt, requestOptions)
             .then(response => response.json())
             .then(result => {
-                // console.log("Activity Log : ",result.messages);
+                // console.log("Alert Activity list : ",result.messages);
                 this.setState({
                     historyTableArray: result.messages,
                 });
@@ -54,11 +55,14 @@ export class PopupContent extends React.Component<any, any> {
     historyTable = () => {
         const retData = [];
         const { historyTableArray } = this.state;
+        console.log("All Activity Records : ",historyTableArray);
         for (let i = 0; i < historyTableArray.length; i++) {
             // const historyTable = historyTableArray[i];
-            var msg = JSON.parse(historyTableArray[i].message.message.substring(20));
-            const historyTable = msg.records[0].value
-            console.log("Activity Record : ",historyTable);
+            // console.log("historyTable() alert : ",historyTableArray[i].message);
+            // var msg = JSON.parse(historyTableArray[i]);
+            // console.log("historyTable() alert : ",msg);
+            const historyTable = JSON.parse(historyTableArray[i].message.message.substring(20));
+            
             retData.push(
                 <tr>
                     <td>{historyTable.action}</td>
@@ -97,7 +101,7 @@ export class PopupContent extends React.Component<any, any> {
 
     render() {
         const { activeTab, iFrameLoaded, alert } = this.state;
-        console.log("Alert object  from parent ::::: ",alert);
+        // console.log("Alert object  from parent ::::: ",alert);
         return (
             <div className="percentage-tabs">
                 <ul>
