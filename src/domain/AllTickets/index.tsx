@@ -22,6 +22,8 @@ export class AllTickets extends React.Component<any, any> {
         this.state = {
             guid: '',
             alertName: '',
+            createdOn: '',
+            alertState: '',
             columns: [
                 {
                     label: 'ID',
@@ -133,10 +135,13 @@ export class AllTickets extends React.Component<any, any> {
         const urlParams = new URLSearchParams(queryString);
         const guid = urlParams.get('guid');
         const alertName = urlParams.get('alertName');
-
+        const createdOn = urlParams.get('createdOn');
+        const alertState = urlParams.get('alertState');
         this.setState({
             guid: guid,
             alertName: alertName,
+            createdOn: createdOn,
+            alertState: alertState,
         });
         try {
             await RestService.getData(config.GET_TICKETS_BY_GUID_URL + "/" + guid, null, null).then(
@@ -213,7 +218,7 @@ export class AllTickets extends React.Component<any, any> {
                     </div>
                     <StartECPopup ref={this.startECRef} />
                     <InstancePopup ref={this.instanceRef} />
-                    <OpenNewTicketPopup guid={state.guid} alertName={state.alertName} ref={this.openNewTicketRef} refreshParm={this.onRefreshClick} />
+                    <OpenNewTicketPopup createdOn={state.createdOn} alertState={state.alertState} guid={state.guid} alertName={state.alertName} ref={this.openNewTicketRef} refreshParm={this.onRefreshClick} />
                 </div>
                 <UnimplementedFeaturePopup ref={this.unimplementedFeatureModalRef} />
             </div>

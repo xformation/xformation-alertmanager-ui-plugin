@@ -3,6 +3,8 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import {RestService} from '../_service/RestService';
 import { config } from '../../config';
 import AlertMessage from '../../components/AlertMessage';
+import { CommonService } from '../_common/common'
+import * as moment from 'moment';
 
 // export interface AlertProp extends React.HTMLAttributes<HTMLElement>{
 //     onSaveUpdate?: any;
@@ -18,19 +20,21 @@ export class EditAlertPopup extends React.Component<any, any> {
             severity: null,
             guid: null,
             id: null,
-            alertState: ""
+            alertState: null,
+            alertData: []
         };
 
         this.updateAlert = this.updateAlert.bind(this);
         this.onChange = this.onChange.bind(this);
         this.handleCloseAlert = this.handleCloseAlert.bind(this);
+        this.sendAlertActivityAsGelf = this.sendAlertActivityAsGelf.bind(this);
     }
 
     toggle = (selectedAlert: any) => {
         let alertState = "";
         const keys = Object.keys(selectedAlert);
         const lowerCaseKeys = keys.map((key)=>key); //key.toLowerCase()
-        const index = lowerCaseKeys.indexOf("alertState");
+        const index = lowerCaseKeys.indexOf("alert_state");
         if(index !== -1){
             const key = keys[index];
             if(selectedAlert[key]){
@@ -45,13 +49,18 @@ export class EditAlertPopup extends React.Component<any, any> {
         });
     };
 
-    closeModel = () => {
+    closeModel = (e: any) => {
+        this.handleCloseAlert(e);
         this.setState({
             modal: !this.state.modal,
             alertId: null,
-            alertState: "",
+            alertState: null,
             id: null,
+            // severity : null, (commented to solve page break error)
+            message: null,
+            
         });
+        
     }
 
     onChange = (e: any) => {
@@ -82,29 +91,52 @@ export class EditAlertPopup extends React.Component<any, any> {
             guid: guid,
             alertState: alertState,
         } 
-        console.log("Alert being update : ",obj);
-        await RestService.add(config.UPDATE_ALERT, obj).then(response => {
-            console.log('update alert response: ', response);
-            if(response.length > 0){
-                // let ary = [];
-                // for (let i = 0; i < response.length; i++) {
-                //     let j = JSON.parse(response[i]);
-                //     ary.push(j);
-                // }
+        console.log("Calling update alert : ",obj);
+        var requestOptions = CommonService.requestOptionsForPostRequest({});
+        const URL = `${config.UPDATE_ALL_XF_ALERT_IN_ELASTIC}/${config.XF_ALERT_INDEX}/${id}/${alertState}`
+        await fetch(URL, requestOptions) 
+            .then(result => result.json())
+            .then(response => {
+            // console.log('response after alert update: ', response);
+            if(response.message.complete == true){
                 this.setState({
                     severity : config.SEVERITY_SUCCESS,
                     message: config.UPDATE_ALERT_SUCCESS_MESSAGE,
                     isAlertOpen: true,
                 });
-                this.props.onSaveUpdate(response);
+                if (this.props.refreshParm) {
+                    let refreshMethod = this.props.refreshParm;
+                    refreshMethod();
+                }
+                this.sendAlertActivityAsGelf(response, alertState);
             }else {
                 this.setState({
                     severity : config.SEVERITY_ERROR,
                     message: config.SERVER_ERROR_MESSAGE,
                     isAlertOpen: true,
                 });
-            } 
+            }
         });
+        // this.getTotalAlerts();
+        
+        // setTimeout(this.closeModel, 3000); 
+                
+    }
+
+    sendAlertActivityAsGelf = async (resp: any, alertState: any) => {
+        var msg = JSON.parse(resp.message.message.substring(20));
+        const alertActivity = msg; //.records[0].value;
+        alertActivity.id = resp.message.id;
+        alertActivity.alert_state = alertState;
+        alertActivity.user_name = 'Automated';
+        alertActivity.event_type = 'Update';
+        alertActivity.action = 'Alert Updated';
+        alertActivity.action_description = 'Alert Updated. State changed to: '+alertState;
+        
+        console.log("Calling sendAlertActivityAsGelf. Alert activity : ",alertActivity);
+        await RestService.add(config.SEND_XF_ALERT_ACTIVITY, alertActivity).then(response => {
+            console.log("Alert activity response : ",response)
+        })
     }
 
     render() {

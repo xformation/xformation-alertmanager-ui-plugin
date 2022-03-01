@@ -12,6 +12,8 @@ import { RestService } from '../_service/RestService';
 import { UnimplementedFeaturePopup } from '../../components/UnimplementedFeaturePopup';
 import Rbac from '../../components/Rbac'
 import { fromPairs } from 'lodash';
+import { CommonService } from '../_common/common'
+
 export class MonitorAlerts extends React.Component<any, any> {
     breadCrumbs: any;
     unimplementedFeatureModalRef: any;
@@ -30,6 +32,10 @@ export class MonitorAlerts extends React.Component<any, any> {
             {
                 label: "Home",
                 route: `/`
+            },
+            {
+                label: "Monitor | Alerts",
+                route: `${config.basePath}/monitoralerts`
             },
             {
                 label: "Monitor Alerts",
@@ -81,7 +87,8 @@ export class MonitorAlerts extends React.Component<any, any> {
     componentDidMount() {
         console.log("Randam Id For Page :  ",Math.floor(Math.random() * 1000000));
         try {
-            this.fetchData();
+            // this.fetchData();
+            this.getTotalAlerts();
         } catch (err) {
             console.log("MonitorAlert page. Loading total alerts from elastic failed. Error: ", err);
         }
@@ -188,15 +195,28 @@ export class MonitorAlerts extends React.Component<any, any> {
         );
     }
 
-    fetchData = () => {
-        RestService.getData(config.TOTAL_ALERTS + '?type=alert&index=alert', null, null).then(
-            (response: any) => {
-                this.setState({
-                    totalAlerts: response
-                })
-                console.log("Total alert data :::::: ", response);
-            }
-        );
+    // fetchData = () => {
+    //     RestService.getData(config.TOTAL_ALERTS + '?type=alert&index=alert', null, null).then(
+    //         (response: any) => {
+    //             this.setState({
+    //                 totalAlerts: response
+    //             })
+    //             console.log("Total alert data :::::: ", response);
+    //         }
+    //     );
+    // }
+
+    getTotalAlerts = async () => {
+        var requestOptions = await CommonService.requestOptionsForGetRequest();
+        await fetch(config.GET_TOTAL_XF_ALERT_FROM_ELASTIC, requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                    console.log("Total alerts :::: ",result.all_shards.documents.count)
+                    this.setState({
+                        totalAlerts: result.all_shards.documents.count
+                    })
+                }
+            ).catch(error => console.log('error', error));
     }
 
     createteamMetricsTable = () => {
@@ -220,6 +240,16 @@ export class MonitorAlerts extends React.Component<any, any> {
         this.unimplementedFeatureModalRef.current.toggle();
     };
 
+    refresh = () => {
+        try {
+            this.getTotalAlerts();
+        } catch (err) {
+            console.log("MonitorAlert page. Error in refresh: ", err);
+        }
+    };
+
+    
+
     render() {
         const { totalAlerts, dailyAvgRespTime, dailyAvgWaitTime } = this.state;
         return (
@@ -240,7 +270,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                         </a>
                         </Rbac> */}
 
-                        <a className="alert-blue-button" onClick={() => this.onClickUnImplementedFeature("")}>
+                        <a className="alert-blue-button" onClick={() => this.refresh()}>
                             <i className="fa fa-refresh"></i>&nbsp;&nbsp;
                             Refresh
                         </a>
@@ -248,7 +278,7 @@ export class MonitorAlerts extends React.Component<any, any> {
                     </div>
                     <div className="alert-data-container row common-container">
                         <div className="alert-data-block col-lg-3 col-md-6 col-sm-12">
-                            <Link to={`${config.basePath}/allalerts`}>
+                            <Link to={`${config.basePath}/allalerts?totalAlerts=${totalAlerts}`}>
                                 <div className="alert-data-label">
                                     Total alerts
                                 </div>

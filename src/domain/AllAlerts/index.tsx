@@ -14,6 +14,8 @@ import Table from './../../components/table';
 import TimeRange from './../../components/TimeRange';
 import DateTimeRangePicker from '@wojtekmaj/react-datetimerange-picker';
 import Rbac from './../../components/Rbac';
+import { CommonService } from '../_common/common';
+import * as moment from 'moment';
 
 export class AllAlerts extends React.Component<any, any> {
     editAlertRef: any;
@@ -29,6 +31,7 @@ export class AllAlerts extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
+            totalAlerts: 0,
             dateRange: new Date(),
             isConfirmDialogOpen: false,
             confirmTitleMessage: null,
@@ -93,7 +96,7 @@ export class AllAlerts extends React.Component<any, any> {
                 },
                 {
                     label: 'Alert State',
-                    key: 'alertState',
+                    key: 'alert_state',
                     isCaseInsensitive: false
                 },
                 {
@@ -113,7 +116,7 @@ export class AllAlerts extends React.Component<any, any> {
                 },
                 {
                     label: 'Fired Time',
-                    key: 'firedtime',
+                    key: 'fired_time',
                     isCaseInsensitive: true
                 },
                 {
@@ -135,6 +138,7 @@ export class AllAlerts extends React.Component<any, any> {
                     label: 'Action',
                     key: 'action',
                     renderCallback: (value: any, alert: any) => {
+                        // console.log("ALERT OBJ : ",alert);
                         return <td>
                             <div className="d-inline-block">
                                 <Rbac parentName={config.PARENT_NAME} childName="allalerts-index-alerttbl-editbtn">
@@ -154,7 +158,7 @@ export class AllAlerts extends React.Component<any, any> {
                                 <UncontrolledPopover trigger="legacy" placement="bottom" target={`PopoverFocus-${alert.guid}`}>
                                     <PopoverBody>
                                         <Rbac parentName={config.PARENT_NAME} childName="allalerts-index-alerttbl-createticketbtn">
-                                            <Link className=" " to={`${config.basePath}/alltickets?guid=` + alert.guid + "&alertName=" + alert.name}>Create Ticket</Link>
+                                            <Link className=" " to={`${config.basePath}/alltickets?guid=` + alert.guid + "&alertName=" + alert.name+ "&id=" + alert.id+ "&createdOn=" + alert.created_on+ "&alertState=" + alert.alert_state}>Create Ticket</Link>
                                         </Rbac>
                                         <Rbac parentName={config.PARENT_NAME} childName="allalerts-index-alerttbl-silencebtn">
                                             <Link className=" " to="#">Silence</Link>
@@ -262,58 +266,106 @@ export class AllAlerts extends React.Component<any, any> {
             value: "Closed"
         }];
         this.editAlertRef = React.createRef();
+        // this.onSaveUpdate = this.onSaveUpdate.bind(this);
+        this.getTotalAlerts = this.getTotalAlerts.bind(this);
+        this.getAllAlerts = this.getAllAlerts.bind(this);
     }
 
     toggleModal = (value: any, alert: any) => {
-        let data = '';
+        // let data = '';
         // for (let i = 0; i < this.state.alertData.length; i++) {
         //     let row = this.state.alertData[i];
         //     if (row.name == value) {
         //         data = row.clientUrl;
         //     }
         // }
-        console.log("Alert : ", alert)
+        console.log("toggleModal Alert : ", alert)
         let alertObjAry = [];
         alertObjAry.push(alert);
         this.setState({
             modal: !this.state.modal,
             alertName: value,
-            client_url: alert.clientUrl,
+            client_url: alert.client_url,
             alertObject: alert,
         });
     }
 
-    refreshData = () => {
+    refreshData = async () => {
+        console.log("Calling refreshData()");
         try {
-            this.fetchData();
+            // this.fetchData();
+            await this.getTotalAlerts();
+            // await this.getAllAlerts(this.state.totalAlerts);
+            // this.getAllAlerts();
         } catch (err) {
             console.log("Alert data refresh failed. Error: ", err);
         }
     }
 
+    getTotalAlerts = async () => {
+        console.log("calling getTotalAlerts")
+        var requestOptions = await CommonService.requestOptionsForGetRequest();
+        await fetch(config.GET_TOTAL_XF_ALERT_FROM_ELASTIC, requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                    console.log("Total alerts :::: ",result.all_shards.documents.count)
+                    this.setState({
+                        totalAlerts: result.all_shards.documents.count
+                    })
+                    this.getAllAlerts(result.all_shards.documents.count);
+                }
+            ).catch(error => console.log('error', error));
+        
+    }
+
     componentDidMount() {
         try {
-            this.fetchData();
+            // this.fetchData();
+            const prms = new URLSearchParams(this.props.location.search);
+            const tl = prms.get('totalAlerts');
+            
+            this.getAllAlerts(tl);
         } catch (err) {
             console.log("AllAlert page. Loading alert data from elastic failed. Error: ", err);
         }
     }
 
-    fetchData = () => {
-        RestService.getData(config.GET_ALL_ALERT_FROM_ELASTIC, null, null).then(
-            (response: any) => {
-                // let ary = [];
-                // for (let i = 0; i < response.length; i++) {
-                //     let j = JSON.parse(response[i]);
-                //     ary.push(j);
-                // }
-                console.log("alert data : ", response);
-                this.setState({
-                    alertData: response,
-                });
+    // fetchData = () => {
+    //     RestService.getData(config.GET_ALL_ALERT_FROM_ELASTIC, null, null).then(
+    //         (response: any) => {
+    //             // let ary = [];
+    //             // for (let i = 0; i < response.length; i++) {
+    //             //     let j = JSON.parse(response[i]);
+    //             //     ary.push(j);
+    //             // }
+    //             console.log("alert data : ", response);
+    //             this.setState({
+    //                 alertData: response,
+    //             });
+    //         }
+    //     );
+    // }
+
+    getAllAlerts = async (tl: any) => {
+        console.log("Calling getAllAlerts");
+        var requestOptions = await CommonService.requestOptionsForGetRequest();
+        var dt = moment().format('YYYY-MM-DDTHH:mm:ss.SSS');
+        var qryOpt=config.GET_ALL_XF_ALERT_FROM_ELASTIC+'query=client&from=2020-01-01T01:00:00.000Z&to='+dt+'Z&limit='+tl+'&filter=streams:'+config.XF_ALERT_STREAM_ID;
+        console.log("AllAlerts api url : ",qryOpt);
+        await fetch(qryOpt, requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                // console.log("Alerts list : ", result.messages[0].message);
+                    // for (let i = 0; i < result.messages.length; i++) {
+                    //     console.log("alert data : ", result.messages[i].message);
+                    // }
+                    this.setState({
+                        alertData: result.messages
+                    });
             }
-        );
+            ).catch(error => console.log('error', error));
     }
+
     toggle = () => {
         this.setState({
             modal: !this.state.modal
@@ -351,8 +403,14 @@ export class AllAlerts extends React.Component<any, any> {
         const { alertData, resourceGroup, resource, monitorService, alertType, severity, alertState, dateRange } = this.state;
         if (alertData && alertData.length > 0) {
             const length = alertData.length;
+            // console.log("applyFilters() alert list : ",alertData);
             for (let i = 0; i < length; i++) {
-                const alert = alertData[i];
+                var msg = JSON.parse(alertData[i].message.message.substring(20));
+                // console.log("HELO : ",msg);
+                const alert = msg; //.records[0].value;//alertData[i];
+                alert.id = alertData[i].message._id;
+                // console.log("Alert Object : ",alert);
+                
                 const alertKeys = Object.keys(alert);
                 const lowerCaseKeys = alertKeys.map((key) => key.toLocaleLowerCase());
                 let isMatched = true;
@@ -427,7 +485,7 @@ export class AllAlerts extends React.Component<any, any> {
                     }
                 }
                 if (isMatched && alertState) {
-                    let index = lowerCaseKeys.indexOf("alertstate");
+                    let index = lowerCaseKeys.indexOf("alert_state");
                     if (index !== -1) {
                         let key = alertKeys[index];
                         let data = alert[key];
@@ -441,7 +499,7 @@ export class AllAlerts extends React.Component<any, any> {
                     }
                 }
                 if (isMatched && dateRange && dateRange.length > 1) {
-                    let index = lowerCaseKeys.indexOf("firedtime");
+                    let index = lowerCaseKeys.indexOf("fired_time");
                     if (index !== -1) {
                         let key = alertKeys[index];
                         let data = alert[key];
@@ -475,12 +533,22 @@ export class AllAlerts extends React.Component<any, any> {
         this.editAlertRef.current.toggle(selectedAlert);
     };
 
-    updateAlertList = (alertList: any) => {
-        console.log("Updated alert list :::: ", alertList);
-        this.setState({
-            alertData: alertList
-        });
-    }
+    // updateAlertList = (alertObj: any) => {
+    //     console.log("onSaveUpdate called. Updated alert object :::: ", alertObj);
+    //     this.getTotalAlerts();
+    // }
+
+    // sendAlertActivityAsGelf = async (alertObj: any) => {
+    //     console.log("Calling sendAlertActivityAsGelf : ",alertObj);
+    //     await RestService.add(config.SEND_XF_ALERT_ACTIVITY, alertObj).then(response => {
+    //         console.log("Alert activity response : ",response)
+    //     })
+    // }
+
+    // onSaveUpdate (){
+    //     console.log("Calling onSaveUpate");
+    //     this.getTotalAlerts();
+    // }
 
     clearAllFilters = () => {
         this.setState(
@@ -582,7 +650,7 @@ export class AllAlerts extends React.Component<any, any> {
         })
     }
     showData = () => {
-        console.log("State Data=", this.state.alertData)
+        console.log("alertData: ", this.state.alertData)
     }
     onClickDeleteAlert = (e: any, alert: any) => {
         console.log("Alert : " + alert);
@@ -742,7 +810,7 @@ export class AllAlerts extends React.Component<any, any> {
                          </PopoverBody>
                      </UncontrolledPopover>
                  } */}
-                <EditAlertPopup onSaveUpdate={this.updateAlertList} ref={this.editAlertRef} />
+                <EditAlertPopup refreshParm={this.refreshData} ref={this.editAlertRef} />
             </div>
         );
     }
