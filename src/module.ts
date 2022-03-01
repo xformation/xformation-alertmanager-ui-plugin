@@ -1,21 +1,10 @@
-import {
-  ScriptEditor,
-  MonitorAlerts,
-  AllAlerts,
-  Rules,
-  CreateRule,
-  AllTickets,
-  AlertRuleBuilder,
-  ManageAlertRule,
-  SearchAlert
-} from "./ui";
-import { ConfigCtrl } from "./ConfigCtrl";
+import { AppPlugin } from "@grafana/data";
+import { App } from "./components/App";
+import { AppConfig } from "./components/AppConfig";
 
-// import { loadPluginCss } from '@grafana/runtime';
-// Patch since @grafana/runtime is giving error on build
-declare const window: any;
 export function loadPluginCss() {
-  if (window.grafanaBootData.user.lightTheme) {
+  const w: any = window;
+  if (w.grafanaBootData.user.lightTheme) {
     require("./css/alertmanager.light.css");
   } else {
     require("./css/alertmanager.dark.css");
@@ -24,15 +13,11 @@ export function loadPluginCss() {
 
 loadPluginCss();
 
-export {
-  ConfigCtrl,
-  ScriptEditor,
-  MonitorAlerts,
-  AllAlerts,
-  Rules,
-  CreateRule,
-  AllTickets,
-  AlertRuleBuilder,
-  ManageAlertRule,
-  SearchAlert
-};
+export const plugin = new AppPlugin<{}>().setRootPage(App).addConfigPage({
+  title: "Configuration",
+  icon: "fa fa-cog",
+  // @ts-ignore - Would expect a Class component, however works absolutely fine with a functional one
+  // Implementation: https://github.com/grafana/grafana/blob/fd44c01675e54973370969dfb9e78f173aff7910/public/app/features/plugins/PluginPage.tsx#L157
+  body: AppConfig,
+  id: "configuration",
+});

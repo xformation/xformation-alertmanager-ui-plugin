@@ -1,20 +1,20 @@
 {
+  "$schema": "https://raw.githubusercontent.com/grafana/grafana/master/docs/sources/developers/plugins/plugin.schema.json",
   "type": "app",
   "name": "Alert manager",
   "id": "xformation-alertmanager-ui-plugin",
   "info": {
-    "description": "Alert list",
+    "description": "Alert manager",
     "author": {
-      "name": "Synectiks",
-      "url": "https://xformation.com"
+      "name": "Synectiks"
     },
-    "keywords": ["cms", "panel"],
-    "version": "1.0",
-    "updated": "2018-10-12",
     "logos": {
-      "small": "img/alert_logo.svg",
-      "large": "img/alert_logo.svg"
-    }
+      "small": "img/asset_logo.svg",
+      "large": "img/asset_logo.svg"
+    },
+    "screenshots": [],
+    "version": "%VERSION%",
+    "updated": "%TODAY%"
   },
   "includes": [
     {
@@ -22,67 +22,76 @@
       "name": "MonitorAlerts",
       "addToNav": false,
       "defaultNav": false,
-      "component": "MonitorAlerts"
+      "role": "Admin",
+      "path": "/a/%PLUGIN_ID%"
     },
     {
       "type": "page",
       "name": "AllAlerts",
       "addToNav": false,
       "defaultNav": false,
-      "component": "AllAlerts"
+      "role": "Admin",
+      "path": "/a/%PLUGIN_ID%?path=all-alerts"
     },
     {
       "type": "page",
       "name": "Rules",
       "addToNav": false,
       "defaultNav": false,
-      "component": "Rules"
+      "role": "Admin",
+      "path": "/a/%PLUGIN_ID%?path=rules"
     },
     {
       "type": "page",
       "name": "CreateRule",
       "addToNav": false,
       "defaultNav": false,
-      "component": "CreateRule"
+      "role": "Admin",
+      "path": "/a/%PLUGIN_ID%?path=create-rule"
     },
     {
       "type": "page",
       "name": "AllTickets",
       "addToNav": false,
       "defaultNav": false,
-      "component": "AllTickets"
+      "role": "Admin",
+      "path": "/a/%PLUGIN_ID%?path=all-tickets"
     },
     {
       "type": "page",
       "name": "AlertRuleBuilder",
       "addToNav": false,
       "defaultNav": false,
-      "component": "AlertRuleBuilder"
+      "role": "Admin",
+      "path": "/a/%PLUGIN_ID%?path=alert-rule-builder"
     },
     {
       "type": "page",
       "name": "ManageAlertRule",
       "addToNav": false,
       "defaultNav": false,
-      "component": "ManageAlertRule"
+      "role": "Admin",
+      "path": "/a/%PLUGIN_ID%?path=manage-alert-rule"
     },
     {
       "type": "page",
       "name": "ScriptEditor",
       "addToNav": false,
       "defaultNav": false,
-      "component": "ScriptEditor"
+      "role": "Admin",
+      "path": "/a/%PLUGIN_ID%?path=script-editor"
     },
     {
       "type": "page",
       "name": "SearchAlert",
       "addToNav": false,
       "defaultNav": false,
-      "component": "SearchAlert"
+      "role": "Admin",
+      "path": "/a/%PLUGIN_ID%?path=search-alert"
     }
   ],
   "dependencies": {
-    "grafanaVersion": "3.x 4.x 5.x",
+    "grafanaDependency": ">=8.0.0",
     "plugins": []
   }
 }

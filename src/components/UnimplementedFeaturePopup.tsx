@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { config } from '../config';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import './UnimplementedFeaturePopup.css';
+import { PLUGIN_BASE_URL } from '../constants';
 
 export class UnimplementedFeaturePopup extends React.Component<any, any> {
     constructor(props: any) {
@@ -37,7 +37,7 @@ export class UnimplementedFeaturePopup extends React.Component<any, any> {
                     <div className="d-block text-center">
                         {
                             state.link &&
-                            <Link to={`${config.basePath}${state.link}`} onClick={this.toggle} className="alert-blue-button m-b-0" >Continue</Link>
+                            <Link to={`${PLUGIN_BASE_URL}${state.link}`} onClick={this.toggle} className="alert-blue-button m-b-0" >Continue</Link>
                         }
                         <button className="alert-gray-button m-r-0 m-b-0" onClick={this.toggle}>Close</button>
                     </div>

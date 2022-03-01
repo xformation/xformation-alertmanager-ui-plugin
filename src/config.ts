@@ -1,19 +1,15 @@
-const ALERT_URL = "alert.service.com";
-const SEARCH_URL = "search.service.com";
+//const ALERT_URL = "alert.service.com";
+//const SEARCH_URL = "search.service.com";
 
 const searchSrvUrl = `http://100.64.108.25:8092`;
 const alertSrvUrl = `http://100.64.108.25:5055`;
 const ticketSrvUrl = `http://100.64.108.25:7100/api`;
-
-const xfAlertSrvUrl = `http://100.64.108.25:7035`;
+// const searchSrvUrl = `http://localhost:8092`;
+// const alertSrvUrl = `http://localhost:5055`;
+// const ticketSrvUrl = `http://localhost:7100/api`;
 
 export const config = {
   basePath: "/plugins/xformation-alertmanager-ui-plugin/page",
-  GET_TOTAL_XF_ALERT_FROM_ELASTIC: `${xfAlertSrvUrl}/api/system/indexer/indices/xf_alert_0`,
-  GET_ALL_XF_ALERT_FROM_ELASTIC: `${xfAlertSrvUrl}/api/search/universal/absolute?`,
-  UPDATE_ALL_XF_ALERT_IN_ELASTIC: `${xfAlertSrvUrl}/api/messages/update`,
-  SEND_XF_ALERT_ACTIVITY: `http://100.64.108.25:3000/api/alert-notifications/sendAlertActivity`,
-
   GET_ALL_ALERT_FROM_ELASTIC: `${alertSrvUrl}/api/listAllAlertFromElastic`,
   GET_ALL_ALERT_FROM_DB: `${alertSrvUrl}/api/listAlert`,
   UPDATE_ALERT: `${alertSrvUrl}/api/updateAlert`,
@@ -36,12 +32,5 @@ export const config = {
   SEVERITY_SUCCESS: "success",
   SERVER_ERROR_MESSAGE:
     "Operation failed. Please check service logs for details",
-  UPDATE_ALERT_SUCCESS_MESSAGE: "Alert updated successfully",
-
-  USERID: "admin",
-  PASSWORD: "admin",
-  XF_ALERT_INDEX: `xf_alert_0`,
-  XF_ALERT_STREAM_ID: `60866125cb4d044d90048ebe`,
-  XF_ALERT_ACTIVITY_INDEX: `xf_al_activity_0`,
-  XF_ALERT_ACTIVITY_STREAM_ID: `60866150cb4d044d90048ef1`
+  UPDATE_ALERT_SUCCESS_MESSAGE: "Alert updated successfully"
 };
