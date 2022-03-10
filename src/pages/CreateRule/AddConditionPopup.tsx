@@ -2,24 +2,25 @@ import * as React from 'react';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { Line } from 'react-chartjs-2';
 
-export class AddConditionPopup extends React.Component<any, any> {
-    options = {
-        responsive: true,
-        title: {
-            display: false
-        },
-        scales: {
-            yAxes: [{
-                ticks: {
-                    stepSize: 20,
-                    suggestedMin: 0,
-                    callback: function (value: any, index: any, values: any) {
-                        return value + "%";
-                    }
+const options: any = {
+    responsive: true,
+    title: {
+        display: false
+    },
+    scales: {
+        yAxes: [{
+            ticks: {
+                stepSize: 20,
+                suggestedMin: 0,
+                callback: function (value: any, index: any, values: any) {
+                    return value + "%";
                 }
-            }]
-        }
-    };
+            }
+        }]
+    }
+}
+
+export class AddConditionPopup extends React.Component<any, any> {
     dummyData = {
         label: "",
         backgroundColor: "#21AFC3",
@@ -177,7 +178,7 @@ export class AddConditionPopup extends React.Component<any, any> {
                                     </select>
                                 </div>
                             </div>
-                            <Line data={{ labels: this.labels, datasets: [this.dummyData] }} options={this.options} height={320} />
+                            <Line data={{ labels: this.labels, datasets: [this.dummyData] }} options={options} height={320} />
                             <div className="row m-t-3">
                                 <div className="col-sm-12">
                                     <div style={{ display: "table-row" }}>
